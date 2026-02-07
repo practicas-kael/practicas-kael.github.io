@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Kael - Matemáticas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.ciencias {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .nav-btn.ciencias:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .nav-btn.espanol {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .nav-btn.espanol:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.matematicas {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn.matematicas:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .nav-btn.active {
+            border: 2px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .question-block {
+            background: #f8f9fa;
+            border-left: 5px solid #f5576c;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .question-block:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.2);
+        }
+
+        .question-number {
+            color: #f5576c;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .math-expression {
+            background: white;
+            border: 2px solid #f5576c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-size: 1.2em;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .options {
+            margin-top: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: #f5576c;
+            background: #fff0f3;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            accent-color: #f5576c;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex-grow: 1;
+            font-size: 1.05em;
+        }
+
+        .input-answer {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f5576c;
+            border-radius: 8px;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.pass {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .result.fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .correct {
+            border-color: #28a745 !important;
+            background: #d4edda !important;
+        }
+
+        .incorrect {
+            border-color: #dc3545 !important;
+            background: #f8d7da !important;
+        }
+
+        .score-details {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="examen_practica_ciencias.html" class="nav-btn ciencias">🔬 Ciencias</a>
+            <a href="examen_prueba_espanol_convocatoria_2025.html" class="nav-btn espanol">📚 Español</a>
+            <a href="prueba_kael_matematicas.html" class="nav-btn matematicas active">🔢 Matemáticas</a>
+        </div>
+
+        <div class="header">
+            <h1>🔢 Prueba Kael - Matemáticas</h1>
+            <p>Álgebra y Operaciones Básicas</p>
+        </div>
+
+        <div class="content">
+            <div class="section-title">
+                Examen de Práctica - Valor (10 pts)
+            </div>
+
+            <form id="examForm">
+                <!-- Pregunta 1 -->
+                <div class="question-block">
+                    <div class="question-number">1. Resuelve la siguiente ecuación:</div>
+                    <div class="math-expression">
+                        3x + 7 = 22
+                    </div>
+                    <div class="question-text">¿Cuál es el valor de x?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1a" name="q1" value="A">
+                            <label for="q1a">A. x = 3</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1b" name="q1" value="B">
+                            <label for="q1b">B. x = 5</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1c" name="q1" value="C">
+                            <label for="q1c">C. x = 7</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="question-block">
+                    <div class="question-number">2. Calcula el área de un rectángulo:</div>
+                    <div class="question-text">
+                        Un rectángulo tiene una base de 8 cm y una altura de 5 cm.<br>
+                        ¿Cuál es su área?
+                    </div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2a" name="q2" value="A">
+                            <label for="q2a">A. 13 cm²</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2b" name="q2" value="B">
+                            <label for="q2b">B. 26 cm²</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2c" name="q2" value="C">
+                            <label for="q2c">C. 40 cm²</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="question-block">
+                    <div class="question-number">3. Simplifica la expresión:</div>
+                    <div class="math-expression">
+                        (15 + 9) ÷ 3 × 2
+                    </div>
+                    <div class="question-text">¿Cuál es el resultado?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q3a" name="q3" value="A">
+                            <label for="q3a">A. 8</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3b" name="q3" value="B">
+                            <label for="q3b">B. 16</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3c" name="q3" value="C">
+                            <label for="q3c">C. 24</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="question-block">
+                    <div class="question-number">4. Encuentra el perímetro:</div>
+                    <div class="question-text">
+                        Un triángulo tiene lados de 6 cm, 8 cm y 10 cm.<br>
+                        ¿Cuál es su perímetro?
+                    </div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q4a" name="q4" value="A">
+                            <label for="q4a">A. 20 cm</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4b" name="q4" value="B">
+                            <label for="q4b">B. 24 cm</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4c" name="q4" value="C">
+                            <label for="q4c">C. 28 cm</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="question-block">
+                    <div class="question-number">5. Resuelve la proporción:</div>
+                    <div class="math-expression">
+                        x/4 = 15/6
+                    </div>
+                    <div class="question-text">¿Cuál es el valor de x?</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q5a" name="q5" value="A">
+                            <label for="q5a">A. x = 8</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5b" name="q5" value="B">
+                            <label for="q5b">B. x = 10</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5c" name="q5" value="C">
+                            <label for="q5c">C. x = 12</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="question-block">
+                    <div class="question-number">6. Calcula el porcentaje:</div>
+                    <div class="question-text">
+                        ¿Cuánto es el 25% de 80?
+                    </div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q6a" name="q6" value="A">
+                            <label for="q6a">A. 15</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6b" name="q6" value="B">
+                            <label for="q6b">B. 20</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6c" name="q6" value="C">
+                            <label for="q6c">C. 25</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Calificar Examen</button>
+            </form>
+
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'B',  // 3x + 7 = 22 → 3x = 15 → x = 5
+            q2: 'C',  // Área = base × altura = 8 × 5 = 40 cm²
+            q3: 'B',  // (15 + 9) ÷ 3 × 2 = 24 ÷ 3 × 2 = 8 × 2 = 16
+            q4: 'B',  // Perímetro = 6 + 8 + 10 = 24 cm
+            q5: 'B',  // x/4 = 15/6 → x = (15 × 4) / 6 = 60/6 = 10
+            q6: 'B'   // 25% de 80 = 0.25 × 80 = 20
+        };
+
+        document.getElementById('examForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+            let answeredQuestions = 0;
+            
+            // Verificar todas las respuestas
+            for (let question in correctAnswers) {
+                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                const options = document.querySelectorAll(`input[name="${question}"]`);
+                
+                if (selectedOption) {
+                    answeredQuestions++;
+                    const parentOption = selectedOption.closest('.option');
+                    
+                    if (selectedOption.value === correctAnswers[question]) {
+                        score++;
+                        parentOption.classList.add('correct');
+                    } else {
+                        parentOption.classList.add('incorrect');
+                        // Marcar la respuesta correcta
+                        options.forEach(opt => {
+                            if (opt.value === correctAnswers[question]) {
+                                opt.closest('.option').classList.add('correct');
+                            }
+                        });
+                    }
+                }
+            }
+            
+            // Calcular porcentaje
+            const percentage = (score / totalQuestions) * 100;
+            const resultDiv = document.getElementById('result');
+            
+            if (answeredQuestions < totalQuestions) {
+                resultDiv.className = 'result show fail';
+                resultDiv.innerHTML = `
+                    ⚠️ Por favor responde todas las preguntas<br>
+                    <div class="score-details">
+                        Has respondido ${answeredQuestions} de ${totalQuestions} preguntas
+                    </div>
+                `;
+            } else {
+                if (percentage >= 70) {
+                    resultDiv.className = 'result show pass';
+                    resultDiv.innerHTML = `
+                        🎉 ¡Excelente! Has aprobado<br>
+                        <div class="score-details">
+                            Calificación: ${score}/${totalQuestions} (${percentage.toFixed(1)}%)
+                        </div>
+                    `;
+                } else {
+                    resultDiv.className = 'result show fail';
+                    resultDiv.innerHTML = `
+                        📚 Necesitas repasar más<br>
+                        <div class="score-details">
+                            Calificación: ${score}/${totalQuestions} (${percentage.toFixed(1)}%)<br>
+                            Necesitas al menos 70% para aprobar
+                        </div>
+                    `;
+                }
+            }
+            
+            // Scroll al resultado
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Deshabilitar el formulario después de calificar
+            const inputs = document.querySelectorAll('input[type="radio"]');
+            inputs.forEach(input => input.disabled = true);
+        });
+    </script>
+</body>
+</html>

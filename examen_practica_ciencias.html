@@ -297,10 +297,71 @@
             padding: 2px 5px;
             border-radius: 3px;
         }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.ciencias {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn.ciencias:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .nav-btn.espanol {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .nav-btn.espanol:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.matematicas {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .nav-btn.matematicas:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .nav-btn.active {
+            border: 2px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="nav-menu">
+            <a href="examen_practica_ciencias.html" class="nav-btn ciencias active">🔬 Ciencias</a>
+            <a href="examen_prueba_espanol_convocatoria_2025.html" class="nav-btn espanol">📚 Español</a>
+            <a href="prueba_kael_matematicas.html" class="nav-btn matematicas">🔢 Matemáticas</a>
+        </div>
+
         <div class="header">
             <h1>📚 Examen de Práctica</h1>
             <p>Ciencias: División Celular y Biología Celular</p>
