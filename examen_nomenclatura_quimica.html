@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen: Nomenclatura Química - Símbolos y Elementos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .teoria-section {
+            background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .teoria-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .regla-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #9fa8da;
+        }
+
+        .regla-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .regla-box .regla {
+            color: #333;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .ejemplo {
+            background: #e8f5e9;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #4caf50;
+        }
+
+        .ejemplo .correcto {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .ejemplo .incorrecto {
+            color: #c62828;
+            font-weight: bold;
+            text-decoration: line-through;
+        }
+
+        .elementos-table {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .tabla-elementos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .tabla-elementos th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .tabla-elementos td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tabla-elementos tr:hover {
+            background: #f5f5f5;
+        }
+
+        .simbolo {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+        }
+
+        .question {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .question h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .question-text {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.05em;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            font-weight: bold;
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            color: white;
+            border-color: #c62828;
+        }
+
+        .input-answer {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.3em;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .input-answer:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            animation: slideIn 0.3s;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+            border-left: 5px solid #43a047;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+            border-left: 5px solid #e53935;
+        }
+
+        .feedback strong {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 3px solid #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 12px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 25px rgba(102,126,234,0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102,126,234,0.6);
+        }
+
+        .results {
+            display: none;
+            background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 3px solid #667eea;
+        }
+
+        .results.show {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+
+        .results h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score {
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            color: #5e35b1;
+            margin: 20px 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.05em;
+        }
+
+        .nav-btn.back {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .nav-btn.back:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-btn.retry {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+
+        .nav-btn.retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .tabla-elementos {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">🧪</div>
+            <h1>Nomenclatura Química</h1>
+            <p>Símbolos, Nombres y Reglas de Escritura</p>
+        </div>
+
+        <div class="teoria-section">
+            <h2>📚 Reglas de Nomenclatura</h2>
+
+            <div class="regla-box">
+                <h3>Regla 1: Escritura de Símbolos Químicos</h3>
+                <div class="regla">
+                    Los símbolos químicos se escriben con la <strong>primera letra MAYÚSCULA</strong> 
+                    y la segunda letra (si existe) en <strong>minúscula</strong>.
+                </div>
+                <div class="ejemplo">
+                    <strong>✅ Correcto:</strong><br>
+                    • <span class="correcto">H</span> (Hidrógeno)<br>
+                    • <span class="correcto">He</span> (Helio)<br>
+                    • <span class="correcto">Ca</span> (Calcio)<br>
+                    • <span class="correcto">Na</span> (Sodio)<br><br>
+                    <strong>❌ Incorrecto:</strong><br>
+                    • <span class="incorrecto">ca</span>, <span class="incorrecto">CA</span>, <span class="incorrecto">cA</span><br>
+                    • <span class="incorrecto">na</span>, <span class="incorrecto">NA</span>, <span class="incorrecto">nA</span>
+                </div>
+            </div>
+
+            <div class="regla-box">
+                <h3>Regla 2: Origen de los Símbolos</h3>
+                <div class="regla">
+                    Algunos símbolos provienen del nombre en <strong>latín</strong> del elemento, 
+                    no del español. Por eso pueden parecer diferentes.
+                </div>
+                <div class="ejemplo">
+                    <strong>Ejemplos:</strong><br>
+                    • <span class="correcto">Na</span> → Sodio (del latín Natrium)<br>
+                    • <span class="correcto">K</span> → Potasio (del latín Kalium)<br>
+                    • <span class="correcto">Fe</span> → Hierro (del latín Ferrum)<br>
+                    • <span class="correcto">Au</span> → Oro (del latín Aurum)<br>
+                    • <span class="correcto">Ag</span> → Plata (del latín Argentum)
+                </div>
+            </div>
+
+            <div class="elementos-table">
+                <h3 style="color: #667eea; margin-bottom: 10px;">Elementos Químicos Importantes</h3>
+                <table class="tabla-elementos">
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Número Atómico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="simbolo">H</td><td>Hidrógeno</td><td>1</td></tr>
+                        <tr><td class="simbolo">He</td><td>Helio</td><td>2</td></tr>
+                        <tr><td class="simbolo">C</td><td>Carbono</td><td>6</td></tr>
+                        <tr><td class="simbolo">N</td><td>Nitrógeno</td><td>7</td></tr>
+                        <tr><td class="simbolo">O</td><td>Oxígeno</td><td>8</td></tr>
+                        <tr><td class="simbolo">F</td><td>Flúor</td><td>9</td></tr>
+                        <tr><td class="simbolo">Na</td><td>Sodio</td><td>11</td></tr>
+                        <tr><td class="simbolo">Mg</td><td>Magnesio</td><td>12</td></tr>
+                        <tr><td class="simbolo">Al</td><td>Aluminio</td><td>13</td></tr>
+                        <tr><td class="simbolo">Si</td><td>Silicio</td><td>14</td></tr>
+                        <tr><td class="simbolo">P</td><td>Fósforo</td><td>15</td></tr>
+                        <tr><td class="simbolo">S</td><td>Azufre</td><td>16</td></tr>
+                        <tr><td class="simbolo">Cl</td><td>Cloro</td><td>17</td></tr>
+                        <tr><td class="simbolo">K</td><td>Potasio</td><td>19</td></tr>
+                        <tr><td class="simbolo">Ca</td><td>Calcio</td><td>20</td></tr>
+                        <tr><td class="simbolo">Fe</td><td>Hierro</td><td>26</td></tr>
+                        <tr><td class="simbolo">Cu</td><td>Cobre</td><td>29</td></tr>
+                        <tr><td class="simbolo">Zn</td><td>Zinc</td><td>30</td></tr>
+                        <tr><td class="simbolo">Ag</td><td>Plata</td><td>47</td></tr>
+                        <tr><td class="simbolo">Au</td><td>Oro</td><td>79</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pregunta 1 -->
+        <div class="question" data-question="1" data-type="input">
+            <h3>Pregunta 1: Escribir Símbolo</h3>
+            <div class="question-text">
+                Escribe el símbolo químico correcto para el <strong>Calcio</strong>.<br>
+                <small>(Recuerda: primera letra mayúscula, segunda minúscula)</small>
+            </div>
+            <input type="text" class="input-answer" placeholder="Escribe aquí el símbolo..." maxlength="2">
+            <button class="check-btn" onclick="verificarRespuesta(1, 'Ca')">Verificar Respuesta</button>
+            <div class="feedback">
+                <strong></strong>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="question" data-question="2">
+            <h3>Pregunta 2: Identificar Elemento</h3>
+            <div class="question-text">
+                ¿Qué elemento tiene el símbolo <strong class="simbolo">Fe</strong>?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="Hierro">Hierro</div>
+                <div class="option" data-answer="Flúor">Flúor</div>
+                <div class="option" data-answer="Fósforo">Fósforo</div>
+                <div class="option" data-answer="Francio">Francio</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p>El símbolo <strong>Fe</strong> proviene del latín <em>Ferrum</em> y representa al <strong>Hierro</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="question" data-question="3" data-type="input">
+            <h3>Pregunta 3: Escribir Símbolo</h3>
+            <div class="question-text">
+                Escribe el símbolo químico correcto para el <strong>Sodio</strong>.<br>
+                <small>(Pista: proviene del latín Natrium)</small>
+            </div>
+            <input type="text" class="input-answer" placeholder="Escribe aquí el símbolo..." maxlength="2">
+            <button class="check-btn" onclick="verificarRespuesta(3, 'Na')">Verificar Respuesta</button>
+            <div class="feedback">
+                <strong></strong>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="question" data-question="4">
+            <h3>Pregunta 4: Símbolo Correcto</h3>
+            <div class="question-text">
+                ¿Cuál es la forma CORRECTA de escribir el símbolo del Cloro?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="Cl">Cl</div>
+                <div class="option" data-answer="cl">cl</div>
+                <div class="option" data-answer="CL">CL</div>
+                <div class="option" data-answer="C">C (solo)</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p>Los símbolos se escriben con la primera letra en <strong>MAYÚSCULA</strong> y la segunda en <strong>minúscula</strong>: <strong>Cl</strong></p>
+            </div>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="question" data-question="5">
+            <h3>Pregunta 5: Identificar Elemento</h3>
+            <div class="question-text">
+                ¿Qué elemento tiene el símbolo <strong class="simbolo">K</strong>?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="Potasio">Potasio</div>
+                <div class="option" data-answer="Kripton">Kriptón</div>
+                <div class="option" data-answer="Calcio">Calcio</div>
+                <div class="option" data-answer="Carbono">Carbono</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p>El símbolo <strong>K</strong> proviene del latín <em>Kalium</em> y representa al <strong>Potasio</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 6 -->
+        <div class="question" data-question="6" data-type="input">
+            <h3>Pregunta 6: Escribir Símbolo</h3>
+            <div class="question-text">
+                Escribe el símbolo químico correcto para el <strong>Oro</strong>.<br>
+                <small>(Pista: proviene del latín Aurum)</small>
+            </div>
+            <input type="text" class="input-answer" placeholder="Escribe aquí el símbolo..." maxlength="2">
+            <button class="check-btn" onclick="verificarRespuesta(6, 'Au')">Verificar Respuesta</button>
+            <div class="feedback">
+                <strong></strong>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Pregunta 7 -->
+        <div class="question" data-question="7">
+            <h3>Pregunta 7: Múltiples Símbolos</h3>
+            <div class="question-text">
+                Identifica el símbolo INCORRECTO:
+            </div>
+            <div class="options">
+                <div class="option" data-answer="ca">ca (para Calcio)</div>
+                <div class="option" data-answer="He">He (para Helio)</div>
+                <div class="option" data-answer="Mg">Mg (para Magnesio)</div>
+                <div class="option" data-answer="O">O (para Oxígeno)</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p><strong>ca</strong> está mal escrito. El símbolo correcto del Calcio es <strong>Ca</strong> (primera mayúscula, segunda minúscula).</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 8 -->
+        <div class="question" data-question="8">
+            <h3>Pregunta 8: Identificar Elemento</h3>
+            <div class="question-text">
+                ¿Qué elemento tiene el símbolo <strong class="simbolo">Ag</strong>?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="Plata">Plata</div>
+                <div class="option" data-answer="Argon">Argón</div>
+                <div class="option" data-answer="Aluminio">Aluminio</div>
+                <div class="option" data-answer="Oro">Oro</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p>El símbolo <strong>Ag</strong> proviene del latín <em>Argentum</em> y representa a la <strong>Plata</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 9 -->
+        <div class="question" data-question="9" data-type="input">
+            <h3>Pregunta 9: Escribir Símbolo</h3>
+            <div class="question-text">
+                Escribe el símbolo químico correcto para el <strong>Carbono</strong>.
+            </div>
+            <input type="text" class="input-answer" placeholder="Escribe aquí el símbolo..." maxlength="2">
+            <button class="check-btn" onclick="verificarRespuesta(9, 'C')">Verificar Respuesta</button>
+            <div class="feedback">
+                <strong></strong>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Pregunta 10 -->
+        <div class="question" data-question="10">
+            <h3>Pregunta 10: Número Atómico</h3>
+            <div class="question-text">
+                El elemento con símbolo <strong class="simbolo">O</strong> (Oxígeno) tiene el número atómico:
+            </div>
+            <div class="options">
+                <div class="option" data-answer="8">8</div>
+                <div class="option" data-answer="6">6</div>
+                <div class="option" data-answer="7">7</div>
+                <div class="option" data-answer="16">16</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p>El <strong>Oxígeno (O)</strong> tiene número atómico <strong>8</strong>, lo que significa que tiene 8 protones.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 11 -->
+        <div class="question" data-question="11" data-type="input">
+            <h3>Pregunta 11: Escribir Símbolo</h3>
+            <div class="question-text">
+                Escribe el símbolo químico correcto para el <strong>Hierro</strong>.<br>
+                <small>(Pista: proviene del latín Ferrum)</small>
+            </div>
+            <input type="text" class="input-answer" placeholder="Escribe aquí el símbolo..." maxlength="2">
+            <button class="check-btn" onclick="verificarRespuesta(11, 'Fe')">Verificar Respuesta</button>
+            <div class="feedback">
+                <strong></strong>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Pregunta 12 -->
+        <div class="question" data-question="12">
+            <h3>Pregunta 12: Regla de Escritura</h3>
+            <div class="question-text">
+                ¿Por qué el símbolo del Cobre es <strong class="simbolo">Cu</strong> y no <strong>Co</strong>?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="latin">Proviene del latín Cuprum</div>
+                <div class="option" data-answer="error">Es un error histórico</div>
+                <div class="option" data-answer="confundir">Para no confundirlo con Cobalto (Co)</div>
+                <div class="option" data-answer="ingles">Proviene del inglés Copper</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <p>El símbolo <strong>Cu</strong> proviene del latín <em>Cuprum</em>. Además, <strong>Co</strong> ya está asignado al Cobalto.</p>
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <button class="submit-btn" onclick="calcularResultados()">Ver Resultados 📊</button>
+            
+            <div class="results">
+                <h2>🎯 Resultados del Examen</h2>
+                <div class="score"></div>
+                <p style="text-align: center; color: #666; font-size: 1.1em; margin-top: 20px;">
+                    <span id="mensaje-final"></span>
+                </p>
+                <div class="nav-buttons">
+                    <a href="ciencias_2025.html" class="nav-btn back">← Volver a Exámenes</a>
+                    <button class="nav-btn retry" onclick="location.reload()">🔄 Reintentar Examen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const respuestasCorrectas = {
+            1: "Ca",
+            2: "Hierro",
+            3: "Na",
+            4: "Cl",
+            5: "Potasio",
+            6: "Au",
+            7: "ca",
+            8: "Plata",
+            9: "C",
+            10: "8",
+            11: "Fe",
+            12: "latin"
+        };
+
+        let respuestasUsuario = {};
+
+        // Función para verificar respuestas de input
+        function verificarRespuesta(questionNum, correctAnswer) {
+            const question = document.querySelector(`.question[data-question="${questionNum}"]`);
+            const input = question.querySelector('.input-answer');
+            const feedback = question.querySelector('.feedback');
+            const userAnswer = input.value.trim();
+
+            feedback.classList.add('show');
+
+            // Normalizar respuesta (insensible a mayúsculas/minúsculas para comparación, pero mostrar correcto)
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                feedback.classList.remove('incorrect');
+                feedback.classList.add('correct');
+                feedback.querySelector('strong').textContent = '✅ ¡Correcto!';
+                feedback.querySelector('p').textContent = `La respuesta correcta es: ${correctAnswer}`;
+                input.style.borderColor = '#43a047';
+                input.style.background = '#e8f5e9';
+                respuestasUsuario[questionNum] = correctAnswer;
+            } else {
+                feedback.classList.remove('correct');
+                feedback.classList.add('incorrect');
+                feedback.querySelector('strong').textContent = '❌ Incorrecto';
+                feedback.querySelector('p').textContent = `La respuesta correcta es: ${correctAnswer}`;
+                input.style.borderColor = '#e53935';
+                input.style.background = '#ffebee';
+                respuestasUsuario[questionNum] = userAnswer;
+            }
+        }
+
+        // Manejar selección de opciones (preguntas de opción múltiple)
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const question = this.closest('.question');
+                const questionNum = question.dataset.question;
+                
+                // Deseleccionar otras opciones
+                question.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                // Seleccionar esta opción
+                this.classList.add('selected');
+                
+                // Mostrar feedback
+                const feedback = question.querySelector('.feedback');
+                const userAnswer = this.dataset.answer;
+                const correctAnswer = respuestasCorrectas[questionNum];
+                
+                respuestasUsuario[questionNum] = userAnswer;
+                feedback.classList.add('show');
+                
+                if (userAnswer === correctAnswer) {
+                    feedback.classList.remove('incorrect');
+                    feedback.classList.add('correct');
+                    feedback.querySelector('strong').textContent = '✅ ¡Correcto!';
+                    this.classList.add('correct');
+                } else {
+                    feedback.classList.remove('correct');
+                    feedback.classList.add('incorrect');
+                    feedback.querySelector('strong').textContent = '❌ Incorrecto';
+                    this.classList.add('incorrect');
+                    
+                    // Resaltar la respuesta correcta
+                    question.querySelectorAll('.option').forEach(opt => {
+                        if (opt.dataset.answer === correctAnswer) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                }
+            });
+        });
+
+        function calcularResultados() {
+            let correctas = 0;
+            const totalPreguntas = Object.keys(respuestasCorrectas).length;
+            
+            // Contar respuestas correctas
+            Object.keys(respuestasCorrectas).forEach(questionNum => {
+                const userAnswer = respuestasUsuario[questionNum];
+                const correctAnswer = respuestasCorrectas[questionNum];
+                
+                if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    correctas++;
+                }
+            });
+            
+            // Calcular porcentaje
+            const porcentaje = ((correctas / totalPreguntas) * 100).toFixed(1);
+            
+            // Mostrar resultados
+            const resultsDiv = document.querySelector('.results');
+            const scoreDiv = document.querySelector('.score');
+            const mensajeFinal = document.getElementById('mensaje-final');
+            
+            scoreDiv.textContent = `${correctas} / ${totalPreguntas} (${porcentaje}%)`;
+            
+            // Mensaje según el resultado
+            if (porcentaje >= 90) {
+                mensajeFinal.textContent = '🌟 ¡Excelente! Dominas la nomenclatura química perfectamente.';
+            } else if (porcentaje >= 70) {
+                mensajeFinal.textContent = '👍 ¡Muy bien! Conoces bien los símbolos químicos.';
+            } else if (porcentaje >= 50) {
+                mensajeFinal.textContent = '📚 Bien, pero revisa la tabla de elementos y practica más.';
+            } else {
+                mensajeFinal.textContent = '💪 Sigue practicando. Estudia la tabla de elementos y las reglas de escritura.';
+            }
+            
+            resultsDiv.classList.add('show');
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>

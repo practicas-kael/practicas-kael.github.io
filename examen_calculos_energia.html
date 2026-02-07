@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen: Cálculos de Energía - Fórmulas y Ejercicios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffa726 0%, #ff6f00 50%, #ffb74d 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ffa726;
+        }
+
+        .header h1 {
+            color: #ff6f00;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .teoria-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff6f00;
+        }
+
+        .teoria-section h2 {
+            color: #ff6f00;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #ffa726;
+        }
+
+        .formula-box h3 {
+            color: #ff6f00;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .formula {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #d84315;
+            text-align: center;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-description {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .formula-description strong {
+            color: #ff6f00;
+        }
+
+        .unidades {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #1565c0;
+        }
+
+        .question {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ffa726;
+        }
+
+        .question h3 {
+            color: #ff6f00;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .question-text {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .question-data {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #1976d2;
+        }
+
+        .question-data strong {
+            color: #1565c0;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.05em;
+        }
+
+        .option:hover {
+            border-color: #ffa726;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(255,167,38,0.3);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #ffa726 0%, #ff6f00 100%);
+            color: white;
+            border-color: #ff6f00;
+            font-weight: bold;
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            color: white;
+            border-color: #c62828;
+        }
+
+        .input-answer {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .input-answer:focus {
+            outline: none;
+            border-color: #ffa726;
+            box-shadow: 0 0 0 3px rgba(255,167,38,0.2);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #ffa726 0%, #ff6f00 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,167,38,0.4);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            animation: slideIn 0.3s;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+            border-left: 5px solid #43a047;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+            border-left: 5px solid #e53935;
+        }
+
+        .feedback strong {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .explanation {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #1976d2;
+        }
+
+        .explanation h4 {
+            color: #1565c0;
+            margin-bottom: 8px;
+        }
+
+        .calculation-steps {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 3px solid #ffa726;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6f00 0%, #d84315 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 12px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 25px rgba(255,111,0,0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255,111,0,0.6);
+        }
+
+        .results {
+            display: none;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 3px solid #ff6f00;
+        }
+
+        .results.show {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+
+        .results h2 {
+            color: #ff6f00;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score {
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            color: #d84315;
+            margin: 20px 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.05em;
+        }
+
+        .nav-btn.back {
+            background: white;
+            color: #ff6f00;
+            border: 2px solid #ff6f00;
+        }
+
+        .nav-btn.back:hover {
+            background: #ff6f00;
+            color: white;
+        }
+
+        .nav-btn.retry {
+            background: linear-gradient(135deg, #ffa726 0%, #ff6f00 100%);
+            color: white;
+            border: none;
+        }
+
+        .nav-btn.retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,167,38,0.4);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .formula {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">⚡</div>
+            <h1>Cálculos de Energía</h1>
+            <p>Fórmulas y Ejercicios Prácticos</p>
+        </div>
+
+        <div class="teoria-section">
+            <h2>📐 Fórmulas de Energía</h2>
+
+            <div class="formula-box">
+                <h3>1. Energía Cinética (Ec)</h3>
+                <div class="formula">Ec = ½ × m × v²</div>
+                <div class="formula-description">
+                    <strong>Donde:</strong><br>
+                    • <strong>Ec</strong> = Energía cinética (Joules, J)<br>
+                    • <strong>m</strong> = masa del objeto (kilogramos, kg)<br>
+                    • <strong>v</strong> = velocidad del objeto (metros/segundo, m/s)
+                </div>
+                <div class="unidades">
+                    <strong>Unidades:</strong> La energía cinética se mide en Joules (J) o kilojulios (kJ)
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h3>2. Energía Potencial Gravitatoria (Ep)</h3>
+                <div class="formula">Ep = m × g × h</div>
+                <div class="formula-description">
+                    <strong>Donde:</strong><br>
+                    • <strong>Ep</strong> = Energía potencial (Joules, J)<br>
+                    • <strong>m</strong> = masa del objeto (kilogramos, kg)<br>
+                    • <strong>g</strong> = aceleración de la gravedad (9.8 m/s² en la Tierra)<br>
+                    • <strong>h</strong> = altura sobre el suelo (metros, m)
+                </div>
+                <div class="unidades">
+                    <strong>Unidades:</strong> La energía potencial se mide en Joules (J) o kilojulios (kJ)
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h3>3. Energía Mecánica (Em)</h3>
+                <div class="formula">Em = Ec + Ep</div>
+                <div class="formula-description">
+                    <strong>Donde:</strong><br>
+                    • <strong>Em</strong> = Energía mecánica total (Joules, J)<br>
+                    • <strong>Ec</strong> = Energía cinética (J)<br>
+                    • <strong>Ep</strong> = Energía potencial (J)
+                </div>
+                <div class="unidades">
+                    <strong>Nota:</strong> La energía mecánica es la suma de la energía cinética y potencial en un sistema
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 1: Cálculo de Energía Cinética -->
+        <div class="question" data-question="1">
+            <h3>Pregunta 1: Cálculo de Energía Cinética</h3>
+            <div class="question-text">
+                Un automóvil tiene una masa de 1,200 kg y se desplaza a una velocidad de 20 m/s. 
+                ¿Cuál es su energía cinética?
+            </div>
+            <div class="question-data">
+                <strong>Datos:</strong><br>
+                • Masa (m) = 1,200 kg<br>
+                • Velocidad (v) = 20 m/s<br>
+                • Fórmula: Ec = ½ × m × v²
+            </div>
+            <div class="options">
+                <div class="option" data-answer="240000">Ec = 240,000 J</div>
+                <div class="option" data-answer="120000">Ec = 120,000 J</div>
+                <div class="option" data-answer="480000">Ec = 480,000 J</div>
+                <div class="option" data-answer="24000">Ec = 24,000 J</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Solución paso a paso:</h4>
+                    <div class="calculation-steps">
+                        Ec = ½ × m × v²<br>
+                        Ec = ½ × 1,200 kg × (20 m/s)²<br>
+                        Ec = ½ × 1,200 × 400<br>
+                        Ec = ½ × 480,000<br>
+                        <strong>Ec = 240,000 J</strong>
+                    </div>
+                    La respuesta correcta es <strong>240,000 Joules</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 2: Cálculo de Energía Potencial -->
+        <div class="question" data-question="2">
+            <h3>Pregunta 2: Cálculo de Energía Potencial</h3>
+            <div class="question-text">
+                Una manzana de 0.2 kg está en una rama a 3 metros de altura. 
+                ¿Cuál es su energía potencial gravitatoria? (Usa g = 9.8 m/s²)
+            </div>
+            <div class="question-data">
+                <strong>Datos:</strong><br>
+                • Masa (m) = 0.2 kg<br>
+                • Altura (h) = 3 m<br>
+                • Gravedad (g) = 9.8 m/s²<br>
+                • Fórmula: Ep = m × g × h
+            </div>
+            <div class="options">
+                <div class="option" data-answer="5.88">Ep = 5.88 J</div>
+                <div class="option" data-answer="2.94">Ep = 2.94 J</div>
+                <div class="option" data-answer="11.76">Ep = 11.76 J</div>
+                <div class="option" data-answer="0.6">Ep = 0.6 J</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Solución paso a paso:</h4>
+                    <div class="calculation-steps">
+                        Ep = m × g × h<br>
+                        Ep = 0.2 kg × 9.8 m/s² × 3 m<br>
+                        Ep = 0.2 × 9.8 × 3<br>
+                        Ep = 0.2 × 29.4<br>
+                        <strong>Ep = 5.88 J</strong>
+                    </div>
+                    La respuesta correcta es <strong>5.88 Joules</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 3: Energía Mecánica -->
+        <div class="question" data-question="3">
+            <h3>Pregunta 3: Energía Mecánica Total</h3>
+            <div class="question-text">
+                Un objeto tiene una energía cinética de 500 J y una energía potencial de 300 J. 
+                ¿Cuál es su energía mecánica total?
+            </div>
+            <div class="question-data">
+                <strong>Datos:</strong><br>
+                • Energía cinética (Ec) = 500 J<br>
+                • Energía potencial (Ep) = 300 J<br>
+                • Fórmula: Em = Ec + Ep
+            </div>
+            <div class="options">
+                <div class="option" data-answer="800">Em = 800 J</div>
+                <div class="option" data-answer="200">Em = 200 J</div>
+                <div class="option" data-answer="1500">Em = 1,500 J</div>
+                <div class="option" data-answer="600">Em = 600 J</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Solución paso a paso:</h4>
+                    <div class="calculation-steps">
+                        Em = Ec + Ep<br>
+                        Em = 500 J + 300 J<br>
+                        <strong>Em = 800 J</strong>
+                    </div>
+                    La energía mecánica es simplemente la suma de las energías cinética y potencial.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 4: Velocidad desde Energía Cinética -->
+        <div class="question" data-question="4">
+            <h3>Pregunta 4: Calcular Velocidad</h3>
+            <div class="question-text">
+                Un objeto de 50 kg tiene una energía cinética de 1,250 J. ¿Cuál es su velocidad?<br>
+                <small>(Despeja v de la fórmula: Ec = ½ × m × v²)</small>
+            </div>
+            <div class="question-data">
+                <strong>Datos:</strong><br>
+                • Masa (m) = 50 kg<br>
+                • Energía cinética (Ec) = 1,250 J<br>
+                • Despejando: v = √(2 × Ec / m)
+            </div>
+            <div class="options">
+                <div class="option" data-answer="7.07">v ≈ 7.07 m/s</div>
+                <div class="option" data-answer="5">v = 5 m/s</div>
+                <div class="option" data-answer="10">v = 10 m/s</div>
+                <div class="option" data-answer="25">v = 25 m/s</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Solución paso a paso:</h4>
+                    <div class="calculation-steps">
+                        Ec = ½ × m × v²<br>
+                        v² = 2 × Ec / m<br>
+                        v = √(2 × Ec / m)<br>
+                        v = √(2 × 1,250 / 50)<br>
+                        v = √(2,500 / 50)<br>
+                        v = √50<br>
+                        <strong>v ≈ 7.07 m/s</strong>
+                    </div>
+                    La velocidad es aproximadamente <strong>7.07 metros por segundo</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 5: Altura desde Energía Potencial -->
+        <div class="question" data-question="5">
+            <h3>Pregunta 5: Calcular Altura</h3>
+            <div class="question-text">
+                Un objeto de 10 kg tiene una energía potencial de 490 J. ¿A qué altura se encuentra?<br>
+                <small>(Usa g = 9.8 m/s² y despeja h de la fórmula: Ep = m × g × h)</small>
+            </div>
+            <div class="question-data">
+                <strong>Datos:</strong><br>
+                • Masa (m) = 10 kg<br>
+                • Energía potencial (Ep) = 490 J<br>
+                • Gravedad (g) = 9.8 m/s²<br>
+                • Despejando: h = Ep / (m × g)
+            </div>
+            <div class="options">
+                <div class="option" data-answer="5">h = 5 m</div>
+                <div class="option" data-answer="10">h = 10 m</div>
+                <div class="option" data-answer="2.5">h = 2.5 m</div>
+                <div class="option" data-answer="50">h = 50 m</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Solución paso a paso:</h4>
+                    <div class="calculation-steps">
+                        Ep = m × g × h<br>
+                        h = Ep / (m × g)<br>
+                        h = 490 / (10 × 9.8)<br>
+                        h = 490 / 98<br>
+                        <strong>h = 5 m</strong>
+                    </div>
+                    El objeto se encuentra a <strong>5 metros de altura</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 6: Problema Combinado -->
+        <div class="question" data-question="6">
+            <h3>Pregunta 6: Problema Combinado</h3>
+            <div class="question-text">
+                Una pelota de 0.5 kg se lanza hacia arriba con una velocidad de 10 m/s. 
+                ¿Cuál es su energía mecánica total al momento del lanzamiento?<br>
+                <small>(Considera que está a nivel del suelo, h = 0)</small>
+            </div>
+            <div class="question-data">
+                <strong>Datos:</strong><br>
+                • Masa (m) = 0.5 kg<br>
+                • Velocidad inicial (v) = 10 m/s<br>
+                • Altura inicial (h) = 0 m<br>
+                • Calcular: Em = Ec + Ep
+            </div>
+            <div class="options">
+                <div class="option" data-answer="25">Em = 25 J</div>
+                <div class="option" data-answer="50">Em = 50 J</div>
+                <div class="option" data-answer="5">Em = 5 J</div>
+                <div class="option" data-answer="100">Em = 100 J</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Solución paso a paso:</h4>
+                    <div class="calculation-steps">
+                        Ec = ½ × m × v²<br>
+                        Ec = ½ × 0.5 × (10)²<br>
+                        Ec = ½ × 0.5 × 100<br>
+                        Ec = 25 J<br><br>
+                        Ep = m × g × h<br>
+                        Ep = 0.5 × 9.8 × 0<br>
+                        Ep = 0 J<br><br>
+                        Em = Ec + Ep<br>
+                        Em = 25 + 0<br>
+                        <strong>Em = 25 J</strong>
+                    </div>
+                    Como está a nivel del suelo, solo tiene energía cinética: <strong>25 Joules</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 7: Conceptual sobre Energía Cinética -->
+        <div class="question" data-question="7">
+            <h3>Pregunta 7: Concepto de Energía Cinética</h3>
+            <div class="question-text">
+                Si duplicas la velocidad de un objeto, ¿qué le sucede a su energía cinética?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="cuadruplica">Se cuadruplica (×4)</div>
+                <div class="option" data-answer="duplica">Se duplica (×2)</div>
+                <div class="option" data-answer="triplica">Se triplica (×3)</div>
+                <div class="option" data-answer="igual">Permanece igual</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Explicación:</h4>
+                    <div class="calculation-steps">
+                        Ec = ½ × m × v²<br><br>
+                        Si v se duplica (2v):<br>
+                        Ec_nueva = ½ × m × (2v)²<br>
+                        Ec_nueva = ½ × m × 4v²<br>
+                        Ec_nueva = 4 × (½ × m × v²)<br>
+                        <strong>Ec_nueva = 4 × Ec_original</strong>
+                    </div>
+                    Como la velocidad está elevada al cuadrado en la fórmula, 
+                    duplicar la velocidad <strong>cuadruplica</strong> la energía cinética.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pregunta 8: Conceptual sobre Energía Potencial -->
+        <div class="question" data-question="8">
+            <h3>Pregunta 8: Concepto de Energía Potencial</h3>
+            <div class="question-text">
+                Dos objetos tienen la misma masa. El objeto A está a 2 metros de altura y el objeto B está a 6 metros. 
+                ¿Cuántas veces mayor es la energía potencial de B comparada con A?
+            </div>
+            <div class="options">
+                <div class="option" data-answer="3">3 veces mayor</div>
+                <div class="option" data-answer="2">2 veces mayor</div>
+                <div class="option" data-answer="6">6 veces mayor</div>
+                <div class="option" data-answer="igual">Igual</div>
+            </div>
+            <div class="feedback">
+                <strong></strong>
+                <div class="explanation">
+                    <h4>💡 Explicación:</h4>
+                    <div class="calculation-steps">
+                        Ep = m × g × h<br><br>
+                        Objeto A: Ep_A = m × g × 2<br>
+                        Objeto B: Ep_B = m × g × 6<br><br>
+                        Ep_B / Ep_A = (m × g × 6) / (m × g × 2)<br>
+                        Ep_B / Ep_A = 6 / 2<br>
+                        <strong>Ep_B = 3 × Ep_A</strong>
+                    </div>
+                    La energía potencial es directamente proporcional a la altura. 
+                    Si la altura es 3 veces mayor (6m vs 2m), la energía potencial es <strong>3 veces mayor</strong>.
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <button class="submit-btn" onclick="calcularResultados()">Ver Resultados 📊</button>
+            
+            <div class="results">
+                <h2>🎯 Resultados del Examen</h2>
+                <div class="score"></div>
+                <p style="text-align: center; color: #666; font-size: 1.1em; margin-top: 20px;">
+                    <span id="mensaje-final"></span>
+                </p>
+                <div class="nav-buttons">
+                    <a href="ciencias_2025.html" class="nav-btn back">← Volver a Exámenes</a>
+                    <button class="nav-btn retry" onclick="location.reload()">🔄 Reintentar Examen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const respuestasCorrectas = {
+            1: "240000",
+            2: "5.88",
+            3: "800",
+            4: "7.07",
+            5: "5",
+            6: "25",
+            7: "cuadruplica",
+            8: "3"
+        };
+
+        // Manejar selección de opciones
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const question = this.closest('.question');
+                const questionNum = question.dataset.question;
+                
+                // Deseleccionar otras opciones
+                question.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Seleccionar esta opción
+                this.classList.add('selected');
+                
+                // Mostrar feedback
+                const feedback = question.querySelector('.feedback');
+                const userAnswer = this.dataset.answer;
+                const correctAnswer = respuestasCorrectas[questionNum];
+                
+                feedback.classList.add('show');
+                
+                if (userAnswer === correctAnswer) {
+                    feedback.classList.remove('incorrect');
+                    feedback.classList.add('correct');
+                    feedback.querySelector('strong').textContent = '✅ ¡Correcto!';
+                    this.classList.add('correct');
+                } else {
+                    feedback.classList.remove('correct');
+                    feedback.classList.add('incorrect');
+                    feedback.querySelector('strong').textContent = '❌ Incorrecto';
+                    this.classList.add('incorrect');
+                    
+                    // Resaltar la respuesta correcta
+                    question.querySelectorAll('.option').forEach(opt => {
+                        if (opt.dataset.answer === correctAnswer) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                }
+            });
+        });
+
+        function calcularResultados() {
+            let correctas = 0;
+            const totalPreguntas = Object.keys(respuestasCorrectas).length;
+            
+            // Contar respuestas correctas
+            document.querySelectorAll('.question').forEach(question => {
+                const questionNum = question.dataset.question;
+                const selectedOption = question.querySelector('.option.selected');
+                
+                if (selectedOption && selectedOption.dataset.answer === respuestasCorrectas[questionNum]) {
+                    correctas++;
+                }
+            });
+            
+            // Calcular porcentaje
+            const porcentaje = ((correctas / totalPreguntas) * 100).toFixed(1);
+            
+            // Mostrar resultados
+            const resultsDiv = document.querySelector('.results');
+            const scoreDiv = document.querySelector('.score');
+            const mensajeFinal = document.getElementById('mensaje-final');
+            
+            scoreDiv.textContent = `${correctas} / ${totalPreguntas} (${porcentaje}%)`;
+            
+            // Mensaje según el resultado
+            if (porcentaje >= 90) {
+                mensajeFinal.textContent = '🌟 ¡Excelente! Dominas los cálculos de energía perfectamente.';
+            } else if (porcentaje >= 70) {
+                mensajeFinal.textContent = '👍 ¡Muy bien! Tienes buen manejo de las fórmulas.';
+            } else if (porcentaje >= 50) {
+                mensajeFinal.textContent = '📚 Bien, pero revisa las fórmulas y practica más los cálculos.';
+            } else {
+                mensajeFinal.textContent = '💪 Sigue practicando. Revisa la teoría y los ejemplos paso a paso.';
+            }
+            
+            resultsDiv.classList.add('show');
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
