@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Repaso General - Ciencias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: white;
+            color: #fa709a;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #fa709a;
+            border-bottom: 3px solid #fa709a;
+        }
+        
+        .tab:hover {
+            background: #e8e8e8;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .intro-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .intro-section h2 {
+            color: #fa709a;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .intro-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .topic-card {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .topic-card .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .question-box {
+            background: #f9f9f9;
+            border-left: 4px solid #fa709a;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .question-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .question-item strong {
+            color: #fa709a;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #ffe5ec;
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #fa709a;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(250, 112, 154, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .result.partial {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+        
+        .result-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .final-score {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            display: none;
+        }
+        
+        .final-score.show {
+            display: block;
+        }
+        
+        .final-score h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .final-score p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            background: white;
+            height: 100%;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fa709a;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Examen de Repaso General</h1>
+            <p>Ciencias - Evaluación Completa de Todos los Temas</p>
+            <a href="index.html" class="nav-button">← Volver al Inicio</a>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('intro')">🏠 Inicio</button>
+            <button class="tab" onclick="showSection('parte1')">📝 Parte 1</button>
+            <button class="tab" onclick="showSection('parte2')">📝 Parte 2</button>
+            <button class="tab" onclick="showSection('parte3')">📝 Parte 3</button>
+            <button class="tab" onclick="showSection('parte4')">📝 Parte 4</button>
+            <button class="tab" onclick="showSection('resultados')">📊 Resultados</button>
+        </div>
+        
+        <div class="content">
+            <!-- INTRODUCCIÓN -->
+            <div id="intro" class="section active">
+                <div class="intro-section">
+                    <h2>¡Bienvenido al Examen de Repaso General!</h2>
+                    <p>Este examen integra todos los temas que has estudiado. Es tu oportunidad para demostrar todo lo que has aprendido.</p>
+                    
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <div class="icon">🧬</div>
+                            <div>División Celular</div>
+                        </div>
+                        <div class="topic-card">
+                            <div class="icon">⚛️</div>
+                            <div>Modelos Atómicos</div>
+                        </div>
+                        <div class="topic-card">
+                            <div class="icon">🧪</div>
+                            <div>Elementos Químicos</div>
+                        </div>
+                        <div class="topic-card">
+                            <div class="icon">🌿</div>
+                            <div>Bioelementos</div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: #fa709a; margin-top: 30px;">📋 Estructura del Examen:</h3>
+                    <p><strong>Parte 1:</strong> División Celular y Estructuras (5 preguntas)</p>
+                    <p><strong>Parte 2:</strong> Modelos Atómicos e Historia (5 preguntas)</p>
+                    <p><strong>Parte 3:</strong> Elementos y Clasificación (5 preguntas)</p>
+                    <p><strong>Parte 4:</strong> Bioelementos y Funciones (5 preguntas)</p>
+                    <p style="margin-top: 20px;"><strong>Total: 20 preguntas</strong></p>
+                    
+                    <div class="button-container" style="margin-top: 40px;">
+                        <button class="btn" onclick="showSection('parte1')">Comenzar Examen →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PARTE 1: DIVISIÓN CELULAR -->
+            <div id="parte1" class="section">
+                <div class="question-box">
+                    <div class="question-title">PARTE 1: División Celular y Estructuras Celulares</div>
+                    
+                    <div class="question-item">
+                        <strong>1. ¿En qué fase de la mitosis los cromosomas se alinean en el centro de la célula?</strong>
+                        <label class="option"><input type="radio" name="p1q1" value="a"> a) Profase</label>
+                        <label class="option"><input type="radio" name="p1q1" value="b"> b) Metafase</label>
+                        <label class="option"><input type="radio" name="p1q1" value="c"> c) Anafase</label>
+                        <label class="option"><input type="radio" name="p1q1" value="d"> d) Telofase</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. ¿Cuál es la fase del ciclo celular donde se duplica el ADN?</strong>
+                        <label class="option"><input type="radio" name="p1q2" value="a"> a) G1</label>
+                        <label class="option"><input type="radio" name="p1q2" value="b"> b) S (Síntesis)</label>
+                        <label class="option"><input type="radio" name="p1q2" value="c"> c) G2</label>
+                        <label class="option"><input type="radio" name="p1q2" value="d"> d) Profase</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. ¿Cuál estructura celular controla las actividades de la célula?</strong>
+                        <label class="option"><input type="radio" name="p1q3" value="a"> a) Membrana celular</label>
+                        <label class="option"><input type="radio" name="p1q3" value="b"> b) Citoplasma</label>
+                        <label class="option"><input type="radio" name="p1q3" value="c"> c) Núcleo</label>
+                        <label class="option"><input type="radio" name="p1q3" value="d"> d) Mitocondria</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. ¿Qué sucede en la Anafase?</strong>
+                        <label class="option"><input type="radio" name="p1q4" value="a"> a) Los cromosomas se condensan</label>
+                        <label class="option"><input type="radio" name="p1q4" value="b"> b) Las cromátidas se separan y van a polos opuestos</label>
+                        <label class="option"><input type="radio" name="p1q4" value="c"> c) Se forma la membrana nuclear</label>
+                        <label class="option"><input type="radio" name="p1q4" value="d"> d) Los cromosomas se alinean</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>5. La membrana celular es:</strong>
+                        <label class="option"><input type="radio" name="p1q5" value="a"> a) Rígida e impermeable</label>
+                        <label class="option"><input type="radio" name="p1q5" value="b"> b) Selectivamente permeable y flexible</label>
+                        <label class="option"><input type="radio" name="p1q5" value="c"> c) Solo permite el paso de agua</label>
+                        <label class="option"><input type="radio" name="p1q5" value="d"> d) No tiene ninguna función</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkParte1()">Verificar Parte 1</button>
+                        <button id="btnNextParte2" class="btn" onclick="showSection('parte2')" style="display:none;">Siguiente Parte →</button>
+                    </div>
+                    
+                    <div id="parte1Result" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- PARTE 2: MODELOS ATÓMICOS -->
+            <div id="parte2" class="section">
+                <div class="question-box">
+                    <div class="question-title">PARTE 2: Modelos Atómicos e Historia</div>
+                    
+                    <div class="question-item">
+                        <strong>6. ¿Quién propuso el modelo del "budín de pasas"?</strong>
+                        <label class="option"><input type="radio" name="p2q1" value="a"> a) Dalton</label>
+                        <label class="option"><input type="radio" name="p2q1" value="b"> b) Thomson</label>
+                        <label class="option"><input type="radio" name="p2q1" value="c"> c) Rutherford</label>
+                        <label class="option"><input type="radio" name="p2q1" value="d"> d) Bohr</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>7. ¿Qué científico descubrió el núcleo atómico?</strong>
+                        <label class="option"><input type="radio" name="p2q2" value="a"> a) Dalton</label>
+                        <label class="option"><input type="radio" name="p2q2" value="b"> b) Thomson</label>
+                        <label class="option"><input type="radio" name="p2q2" value="c"> c) Rutherford</label>
+                        <label class="option"><input type="radio" name="p2q2" value="d"> d) Demócrito</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>8. Según Dalton, los átomos son:</strong>
+                        <label class="option"><input type="radio" name="p2q3" value="a"> a) Divisibles en partículas más pequeñas</label>
+                        <label class="option"><input type="radio" name="p2q3" value="b"> b) Indivisibles y no pueden ser destruidos</label>
+                        <label class="option"><input type="radio" name="p2q3" value="c"> c) Tienen electrones en órbitas</label>
+                        <label class="option"><input type="radio" name="p2q3" value="d"> d) Tienen un núcleo central</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>9. ¿Qué modelo propuso órbitas cuantizadas con niveles de energía?</strong>
+                        <label class="option"><input type="radio" name="p2q4" value="a"> a) Modelo de Dalton</label>
+                        <label class="option"><input type="radio" name="p2q4" value="b"> b) Modelo de Thomson</label>
+                        <label class="option"><input type="radio" name="p2q4" value="c"> c) Modelo de Rutherford</label>
+                        <label class="option"><input type="radio" name="p2q4" value="d"> d) Modelo de Bohr</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>10. ¿Qué partícula subatómica descubrió Thomson?</strong>
+                        <label class="option"><input type="radio" name="p2q5" value="a"> a) Protón</label>
+                        <label class="option"><input type="radio" name="p2q5" value="b"> b) Neutrón</label>
+                        <label class="option"><input type="radio" name="p2q5" value="c"> c) Electrón</label>
+                        <label class="option"><input type="radio" name="p2q5" value="d"> d) Núcleo</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkParte2()">Verificar Parte 2</button>
+                        <button id="btnNextParte3" class="btn" onclick="showSection('parte3')" style="display:none;">Siguiente Parte →</button>
+                    </div>
+                    
+                    <div id="parte2Result" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- PARTE 3: ELEMENTOS QUÍMICOS -->
+            <div id="parte3" class="section">
+                <div class="question-box">
+                    <div class="question-title">PARTE 3: Elementos Químicos y Clasificación</div>
+                    
+                    <div class="question-item">
+                        <strong>11. El hierro (Fe) es un:</strong>
+                        <label class="option"><input type="radio" name="p3q1" value="a"> a) Metal</label>
+                        <label class="option"><input type="radio" name="p3q1" value="b"> b) No metal</label>
+                        <label class="option"><input type="radio" name="p3q1" value="c"> c) Metaloide</label>
+                        <label class="option"><input type="radio" name="p3q1" value="d"> d) Gas noble</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>12. ¿Cuál es el único no metal líquido?</strong>
+                        <label class="option"><input type="radio" name="p3q2" value="a"> a) Mercurio</label>
+                        <label class="option"><input type="radio" name="p3q2" value="b"> b) Bromo</label>
+                        <label class="option"><input type="radio" name="p3q2" value="c"> c) Cloro</label>
+                        <label class="option"><input type="radio" name="p3q2" value="d"> d) Yodo</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>13. Los metaloides son:</strong>
+                        <label class="option"><input type="radio" name="p3q3" value="a"> a) Buenos conductores de electricidad</label>
+                        <label class="option"><input type="radio" name="p3q3" value="b"> b) Semiconductores</label>
+                        <label class="option"><input type="radio" name="p3q3" value="c"> c) Aislantes</label>
+                        <label class="option"><input type="radio" name="p3q3" value="d"> d) Siempre gaseosos</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>14. ¿Qué significa que un metal sea "dúctil"?</strong>
+                        <label class="option"><input type="radio" name="p3q4" value="a"> a) Que puede formar láminas</label>
+                        <label class="option"><input type="radio" name="p3q4" value="b"> b) Que puede formar hilos</label>
+                        <label class="option"><input type="radio" name="p3q4" value="c"> c) Que es muy duro</label>
+                        <label class="option"><input type="radio" name="p3q4" value="d"> d) Que brilla</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>15. Los metales se encuentran principalmente en:</strong>
+                        <label class="option"><input type="radio" name="p3q5" value="a"> a) El lado derecho de la tabla periódica</label>
+                        <label class="option"><input type="radio" name="p3q5" value="b"> b) El lado izquierdo de la tabla periódica</label>
+                        <label class="option"><input type="radio" name="p3q5" value="c"> c) El centro de la tabla periódica</label>
+                        <label class="option"><input type="radio" name="p3q5" value="d"> d) No están en la tabla periódica</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkParte3()">Verificar Parte 3</button>
+                        <button id="btnNextParte4" class="btn" onclick="showSection('parte4')" style="display:none;">Siguiente Parte →</button>
+                    </div>
+                    
+                    <div id="parte3Result" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- PARTE 4: BIOELEMENTOS -->
+            <div id="parte4" class="section">
+                <div class="question-box">
+                    <div class="question-title">PARTE 4: Bioelementos y Funciones Vitales</div>
+                    
+                    <div class="question-item">
+                        <strong>16. ¿Cuál es el elemento más abundante en los seres vivos?</strong>
+                        <label class="option"><input type="radio" name="p4q1" value="a"> a) Oxígeno</label>
+                        <label class="option"><input type="radio" name="p4q1" value="b"> b) Hidrógeno</label>
+                        <label class="option"><input type="radio" name="p4q1" value="c"> c) Carbono</label>
+                        <label class="option"><input type="radio" name="p4q1" value="d"> d) Nitrógeno</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>17. El calcio es importante para:</strong>
+                        <label class="option"><input type="radio" name="p4q2" value="a"> a) La respiración celular</label>
+                        <label class="option"><input type="radio" name="p4q2" value="b"> b) Los huesos y la coagulación sanguínea</label>
+                        <label class="option"><input type="radio" name="p4q2" value="c"> c) La fotosíntesis</label>
+                        <label class="option"><input type="radio" name="p4q2" value="d"> d) La digestión</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>18. ¿Qué elemento forma parte del ADN y ARN?</strong>
+                        <label class="option"><input type="radio" name="p4q3" value="a"> a) Calcio</label>
+                        <label class="option"><input type="radio" name="p4q3" value="b"> b) Potasio</label>
+                        <label class="option"><input type="radio" name="p4q3" value="c"> c) Fósforo</label>
+                        <label class="option"><input type="radio" name="p4q3" value="d"> d) Sodio</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>19. Una buena fuente de fósforo es:</strong>
+                        <label class="option"><input type="radio" name="p4q4" value="a"> a) Frutas cítricas</label>
+                        <label class="option"><input type="radio" name="p4q4" value="b"> b) Pescado y lácteos</label>
+                        <label class="option"><input type="radio" name="p4q4" value="c"> c) Aceites vegetales</label>
+                        <label class="option"><input type="radio" name="p4q4" value="d"> d) Azúcares</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>20. ¿Qué elemento es esencial para las proteínas?</strong>
+                        <label class="option"><input type="radio" name="p4q5" value="a"> a) Calcio</label>
+                        <label class="option"><input type="radio" name="p4q5" value="b"> b) Fósforo</label>
+                        <label class="option"><input type="radio" name="p4q5" value="c"> c) Nitrógeno</label>
+                        <label class="option"><input type="radio" name="p4q5" value="d"> d) Potasio</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkParte4()">Verificar Parte 4</button>
+                        <button id="btnViewResults" class="btn" onclick="showSection('resultados')" style="display:none;">Ver Resultados Finales →</button>
+                    </div>
+                    
+                    <div id="parte4Result" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- RESULTADOS FINALES -->
+            <div id="resultados" class="section">
+                <div class="intro-section">
+                    <h2>📊 Resultados del Examen</h2>
+                    <p>Aquí puedes ver tu desempeño general en todas las partes del examen.</p>
+                    
+                    <div id="finalScore" class="final-score">
+                        <h2 id="scoreTitle">¡Calculando...</h2>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar" style="width: 0%;">0%</div>
+                        </div>
+                        <p id="scoreDetail"></p>
+                        <p id="scoreMessage"></p>
+                        <div id="recommendations" style="margin-top: 20px;"></div>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="calculateFinalScore()">Calcular Calificación Final</button>
+                        <button class="btn btn-secondary" onclick="resetExam()">Reintentar Examen Completo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let scores = {
+            parte1: null,
+            parte2: null,
+            parte3: null,
+            parte4: null
+        };
+        
+        const answers = {
+            parte1: {
+                p1q1: { correct: 'b', explanation: 'En la METAFASE los cromosomas se alinean en el plano ecuatorial (centro) de la célula.' },
+                p1q2: { correct: 'b', explanation: 'En la fase S (Síntesis) de la interfase se duplica el ADN.' },
+                p1q3: { correct: 'c', explanation: 'El NÚCLEO controla las actividades celulares y contiene el ADN.' },
+                p1q4: { correct: 'b', explanation: 'En la ANAFASE las cromátidas hermanas se separan y se mueven hacia polos opuestos.' },
+                p1q5: { correct: 'b', explanation: 'La membrana celular es selectivamente permeable (controla qué entra y sale) y flexible.' }
+            },
+            parte2: {
+                p2q1: { correct: 'b', explanation: 'THOMSON propuso el modelo del "budín de pasas" donde los electrones están embebidos en carga positiva.' },
+                p2q2: { correct: 'c', explanation: 'RUTHERFORD descubrió el núcleo atómico mediante el experimento de la lámina de oro.' },
+                p2q3: { correct: 'b', explanation: 'Según DALTON, los átomos son indivisibles y no pueden ser creados ni destruidos.' },
+                p2q4: { correct: 'd', explanation: 'BOHR propuso el modelo de órbitas cuantizadas con niveles de energía específicos.' },
+                p2q5: { correct: 'c', explanation: 'Thomson descubrió el ELECTRÓN, demostrando que el átomo tiene partículas más pequeñas.' }
+            },
+            parte3: {
+                p3q1: { correct: 'a', explanation: 'El hierro (Fe) es un METAL, maleable y buen conductor.' },
+                p3q2: { correct: 'b', explanation: 'El BROMO (Br) es el único no metal que es líquido a temperatura ambiente.' },
+                p3q3: { correct: 'b', explanation: 'Los metaloides son SEMICONDUCTORES, usados en electrónica.' },
+                p3q4: { correct: 'b', explanation: 'DÚCTIL significa que puede formar hilos, como el cobre en cables.' },
+                p3q5: { correct: 'b', explanation: 'Los metales se ubican en el LADO IZQUIERDO de la tabla periódica.' }
+            },
+            parte4: {
+                p4q1: { correct: 'c', explanation: 'El CARBONO es el elemento más abundante en los seres vivos, forma todas las moléculas orgánicas.' },
+                p4q2: { correct: 'b', explanation: 'El CALCIO es esencial para huesos, dientes y la coagulación sanguínea.' },
+                p4q3: { correct: 'c', explanation: 'El FÓSFORO forma parte de las moléculas de ADN y ARN.' },
+                p4q4: { correct: 'b', explanation: 'El PESCADO y los LÁCTEOS son excelentes fuentes de fósforo.' },
+                p4q5: { correct: 'c', explanation: 'El NITRÓGENO es esencial para las proteínas y ácidos nucleicos.' }
+            }
+        };
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function checkParte(parteNum, parteKey) {
+            let correct = 0;
+            let total = 5;
+            let resultHTML = '';
+            
+            for (let i = 1; i <= 5; i++) {
+                const questionKey = `p${parteNum}q${i}`;
+                const selected = document.querySelector(`input[name="${questionKey}"]:checked`);
+                const userAnswer = selected ? selected.value : null;
+                const correctAnswer = answers[parteKey][questionKey].correct;
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${(parteNum-1)*5 + i}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${answers[parteKey][questionKey].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${(parteNum-1)*5 + i}:</strong> Incorrecto.<br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${answers[parteKey][questionKey].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            scores[parteKey] = correct;
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById(`${parteKey}Result`);
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Mostrar botón de siguiente parte después de verificar
+            if (parteKey === 'parte1') {
+                document.getElementById('btnNextParte2').style.display = 'inline-block';
+            } else if (parteKey === 'parte2') {
+                document.getElementById('btnNextParte3').style.display = 'inline-block';
+            } else if (parteKey === 'parte3') {
+                document.getElementById('btnNextParte4').style.display = 'inline-block';
+            } else if (parteKey === 'parte4') {
+                document.getElementById('btnViewResults').style.display = 'inline-block';
+            }
+        }
+        
+        function checkParte1() { checkParte(1, 'parte1'); }
+        function checkParte2() { checkParte(2, 'parte2'); }
+        function checkParte3() { checkParte(3, 'parte3'); }
+        function checkParte4() { checkParte(4, 'parte4'); }
+        
+        function calculateFinalScore() {
+            let totalCorrect = 0;
+            let totalQuestions = 20;
+            let completedParts = 0;
+            
+            for (let parte in scores) {
+                if (scores[parte] !== null) {
+                    totalCorrect += scores[parte];
+                    completedParts++;
+                }
+            }
+            
+            if (completedParts === 0) {
+                alert('Debes completar al menos una parte del examen primero.');
+                return;
+            }
+            
+            const percentage = (totalCorrect / totalQuestions) * 100;
+            const finalScoreDiv = document.getElementById('finalScore');
+            const scoreTitle = document.getElementById('scoreTitle');
+            const scoreDetail = document.getElementById('scoreDetail');
+            const scoreMessage = document.getElementById('scoreMessage');
+            const progressBar = document.getElementById('progressBar');
+            
+            finalScoreDiv.classList.add('show');
+            
+            setTimeout(() => {
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = Math.round(percentage) + '%';
+            }, 100);
+            
+            scoreTitle.textContent = '🎓 Tu Calificación';
+            scoreDetail.innerHTML = `
+                <strong>Preguntas correctas: ${totalCorrect} de ${totalQuestions}</strong><br>
+                Parte 1 (División Celular): ${scores.parte1 !== null ? scores.parte1 + '/5' : 'No completada'}<br>
+                Parte 2 (Modelos Atómicos): ${scores.parte2 !== null ? scores.parte2 + '/5' : 'No completada'}<br>
+                Parte 3 (Elementos Químicos): ${scores.parte3 !== null ? scores.parte3 + '/5' : 'No completada'}<br>
+                Parte 4 (Bioelementos): ${scores.parte4 !== null ? scores.parte4 + '/5' : 'No completada'}
+            `;
+            
+            if (percentage >= 90) {
+                scoreMessage.textContent = '¡Excelente! Dominas todos los temas. ¡Estás listo para el examen!';
+            } else if (percentage >= 80) {
+                scoreMessage.textContent = '¡Muy bien! Tienes un buen dominio de los temas. Repasa los puntos donde fallaste.';
+            } else if (percentage >= 70) {
+                scoreMessage.textContent = 'Bien. Tienes una base sólida, pero necesitas repasar algunos temas.';
+            } else if (percentage >= 60) {
+                scoreMessage.textContent = 'Regular. Necesitas estudiar más antes del examen real.';
+            } else {
+                scoreMessage.textContent = 'Necesitas estudiar más. Revisa la teoría y vuelve a intentarlo.';
+            }
+            
+            // Análisis de temas a reforzar
+            showRecommendations();
+        }
+        
+        function showRecommendations() {
+            const recommendationsDiv = document.getElementById('recommendations');
+            const themes = [
+                { 
+                    name: 'División Celular',
+                    key: 'parte1',
+                    link: 'examen_practica_ciencias.html',
+                    icon: '🧬',
+                    topics: 'Ciclo celular, Mitosis, Estructuras celulares'
+                },
+                { 
+                    name: 'Modelos Atómicos',
+                    key: 'parte2',
+                    link: 'examen_practica_atomos.html',
+                    icon: '⚛️',
+                    topics: 'Historia atómica, Thomson, Dalton, Rutherford, Bohr'
+                },
+                { 
+                    name: 'Elementos Químicos',
+                    key: 'parte3',
+                    link: 'examen_practica_elementos.html',
+                    icon: '🧪',
+                    topics: 'Metales, No metales, Metaloides, Tabla periódica'
+                },
+                { 
+                    name: 'Bioelementos',
+                    key: 'parte4',
+                    link: 'examen_practica_bioelementos.html',
+                    icon: '🌿',
+                    topics: 'Carbono, Calcio, Fósforo, Nitrógeno'
+                }
+            ];
+            
+            const weakTopics = [];
+            const strongTopics = [];
+            
+            themes.forEach(theme => {
+                const score = scores[theme.key];
+                if (score !== null) {
+                    const percentage = (score / 5) * 100;
+                    if (percentage < 80) {
+                        weakTopics.push({...theme, score, percentage});
+                    } else {
+                        strongTopics.push({...theme, score, percentage});
+                    }
+                }
+            });
+            
+            let html = '';
+            
+            if (weakTopics.length > 0) {
+                html += `
+                    <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 20px; margin-top: 20px;">
+                        <h3 style="color: #856404; margin-bottom: 15px;">📚 Temas que necesitas reforzar:</h3>
+                        <p style="color: #856404; margin-bottom: 15px;">Basándonos en tus resultados, te recomendamos estudiar más estos temas:</p>
+                `;
+                
+                weakTopics.forEach(topic => {
+                    const statusIcon = topic.percentage >= 60 ? '⚠️' : '❌';
+                    html += `
+                        <div style="background: white; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 200px;">
+                                    <h4 style="color: #fa709a; margin-bottom: 5px;">${statusIcon} ${topic.icon} ${topic.name}</h4>
+                                    <p style="color: #666; font-size: 0.9em; margin: 5px 0;">Puntaje: ${topic.score}/5 (${Math.round(topic.percentage)}%)</p>
+                                    <p style="color: #777; font-size: 0.85em; margin: 5px 0;"><em>${topic.topics}</em></p>
+                                </div>
+                                <div>
+                                    <a href="${topic.link}" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; display: inline-block; font-weight: bold; margin-top: 10px;">Practicar ahora →</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+            
+            if (strongTopics.length > 0) {
+                html += `
+                    <div style="background: #d4edda; border: 2px solid #28a745; border-radius: 10px; padding: 20px; margin-top: 15px;">
+                        <h3 style="color: #155724; margin-bottom: 10px;">✅ Temas que dominas:</h3>
+                `;
+                
+                strongTopics.forEach(topic => {
+                    html += `
+                        <div style="display: inline-block; background: white; border-left: 4px solid #28a745; padding: 10px 15px; margin: 5px; border-radius: 5px;">
+                            <strong style="color: #28a745;">${topic.icon} ${topic.name}</strong>
+                            <span style="color: #666; margin-left: 10px;">${topic.score}/5 (${Math.round(topic.percentage)}%)</span>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+            
+            if (weakTopics.length === 0 && strongTopics.length > 0) {
+                html += `
+                    <div style="background: #d4edda; border: 2px solid #28a745; border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center;">
+                        <h3 style="color: #155724;">🎉 ¡Felicitaciones!</h3>
+                        <p style="color: #155724; margin-top: 10px;">Tienes un excelente dominio de todos los temas. ¡Estás más que preparado!</p>
+                    </div>
+                `;
+            }
+            
+            recommendationsDiv.innerHTML = html;
+        }
+        
+        function resetExam() {
+            if (confirm('¿Estás seguro que quieres reiniciar todo el examen?')) {
+                scores = { parte1: null, parte2: null, parte3: null, parte4: null };
+                
+                // Limpiar todas las respuestas
+                document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+                document.querySelectorAll('.result').forEach(result => result.classList.remove('show'));
+                document.getElementById('finalScore').classList.remove('show');
+                
+                // Ocultar botones de siguiente parte
+                document.getElementById('btnNextParte2').style.display = 'none';
+                document.getElementById('btnNextParte3').style.display = 'none';
+                document.getElementById('btnNextParte4').style.display = 'none';
+                document.getElementById('btnViewResults').style.display = 'none';
+                
+                showSection('intro');
+            }
+        }
+    </script>
+</body>
+</html>

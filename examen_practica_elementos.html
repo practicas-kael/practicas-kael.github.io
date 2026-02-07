@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Práctica - Elementos Químicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: white;
+            color: #00f2fe;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #00f2fe;
+            border-bottom: 3px solid #00f2fe;
+        }
+        
+        .tab:hover {
+            background: #e8e8e8;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theory-section {
+            margin-bottom: 30px;
+        }
+        
+        .theory-section h2 {
+            color: #00f2fe;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00f2fe;
+        }
+        
+        .theory-section h3 {
+            color: #4facfe;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .theory-section p, .theory-section ul {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .theory-section ul {
+            margin-left: 25px;
+        }
+        
+        .theory-section li {
+            margin-bottom: 8px;
+        }
+        
+        .element-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .element-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-table {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .question-box {
+            background: #f9f9f9;
+            border-left: 4px solid #00f2fe;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .question-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .question-item strong {
+            color: #00f2fe;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-group label {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-group label:hover {
+            background: #d4f1ff;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00f2fe;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .result.partial {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+        
+        .result-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #d4f1ff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Examen de Práctica</h1>
+            <p>Ciencias: Clasificación de Elementos Químicos</p>
+            <a href="index.html" class="nav-button">← Volver al Inicio</a>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('theory')">📖 Teoría</button>
+            <button class="tab" onclick="showSection('classification')">✓ Clasificación</button>
+            <button class="tab" onclick="showSection('complete')">✍️ Completar</button>
+        </div>
+        
+        <div class="content">
+            <!-- SECCIÓN DE TEORÍA -->
+            <div id="theory" class="section active">
+                <div class="theory-section">
+                    <h2>Clasificación de los Elementos Químicos en la Vida Diaria</h2>
+                    
+                    <p>De acuerdo con la <strong>Tabla Periódica</strong>, los elementos se clasifican en <span class="highlight">metales</span>, <span class="highlight">no metales</span> y <span class="highlight">metaloides</span>. Los elementos químicos de forma general se organizan de acuerdo con el tipo o grado metálico, electronegatividad y radio atómico. Los metales son los más abundantes en la naturaleza y se ubican hacia la izquierda, luego los metaloides y los no metales hacia la derecha.</p>
+                    
+                    <div class="element-card">
+                        <h3>⚙️ METALES</h3>
+                        <p>Son la mayoría de los elementos químicos de la tabla periódica. Entre sus principales características se encuentran:</p>
+                    </div>
+                    
+                    <h3>Características de los Metales:</h3>
+                    <ul>
+                        <li>✓ <strong>Presentan densidad alta</strong> - Son pesados para su tamaño</li>
+                        <li>✓ <strong>Poseen puntos de fusión y de ebullición altos</strong> - Necesitan mucho calor para fundirse o hervir</li>
+                        <li>✓ <strong>Presentan brillo metálico</strong> - Reflejan la luz y la mayoría son plateados como el aluminio (Al)</li>
+                        <li>✓ <strong>Son buenos conductores de calor y la electricidad</strong> - Por eso se usan en cables eléctricos</li>
+                        <li>✓ <strong>Son dúctiles</strong> - Tienen capacidad de formar hilos, como el cobre (Cu)</li>
+                        <li>✓ <strong>Son maleables</strong> - Tienen la capacidad de formar láminas, como el hierro (Fe)</li>
+                        <li>✓ <strong>Todos son sólidos con excepción del mercurio (Hg) y el francio (Fr)</strong> que son líquidos</li>
+                        <li>✓ <strong>No se combinan fácilmente entre sí</strong> - Cuando se combinan con otros elementos se convierten en cationes (iones positivos)</li>
+                        <li>✓ <strong>Retienen débilmente los electrones</strong> - La mayoría reacciona con los no metales</li>
+                        <li>✓ <strong>Son duros, tienen resistencia a ser rayados</strong> - Difíciles de romper o deformar</li>
+                    </ul>
+                    
+                    <h3>Ejemplos de Metales Comunes:</h3>
+                    <p><strong>Oro (Au)</strong>, <strong>Plata (Ag)</strong>, <strong>Cobre (Cu)</strong>, <strong>Hierro (Fe)</strong>, <strong>Aluminio (Al)</strong>, <strong>Zinc (Zn)</strong>, <strong>Mercurio (Hg)</strong></p>
+                    
+                    <div class="element-card" style="margin-top: 30px;">
+                        <h3>🌬️ NO METALES</h3>
+                        <p>Son los elementos químicos que se encuentran en menor proporción en la tabla periódica. Muchos se encuentran en los seres vivos en cantidades importantes (carbono, hidrógeno, oxígeno, nitrógeno, fósforo).</p>
+                    </div>
+                    
+                    <h3>Características de los No Metales:</h3>
+                    <ul>
+                        <li>✓ <strong>Se encuentran en los tres estados físicos:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>• Líquido: solamente el <strong>bromo (Br)</strong></li>
+                                <li>• Sólido: <strong>carbono (C)</strong>, <strong>azufre (S)</strong>, <strong>yodo (I)</strong>, <strong>fósforo (P)</strong></li>
+                                <li>• Gaseosos: <strong>nitrógeno (N)</strong>, <strong>cloro (Cl)</strong>, <strong>helio (He)</strong>, <strong>oxígeno (O)</strong></li>
+                            </ul>
+                        </li>
+                        <li>✓ <strong>No tienen brillo</strong> - Presentan diversos colores</li>
+                        <li>✓ <strong>Son muy frágiles</strong> - Se rompen fácilmente</li>
+                        <li>✓ <strong>No son dúctiles ni maleables</strong> - No se pueden hacer hilos ni láminas</li>
+                        <li>✓ <strong>Puntos de fusión y de ebullición muy bajos</strong> - Se derriten y hierven fácilmente</li>
+                        <li>✓ <strong>La mayoría son frágiles en estado sólido</strong> - Tienen alta electronegatividad</li>
+                        <li>✓ <strong>Constituyen aproximadamente el 20% de los elementos químicos</strong></li>
+                        <li>✓ <strong>Son alotrópicos</strong> - Presentan formas diferentes del mismo elemento</li>
+                    </ul>
+                    
+                    <h3>Ejemplos de No Metales Comunes:</h3>
+                    <p><strong>Oxígeno (O)</strong>, <strong>Carbono (C)</strong>, <strong>Hidrógeno (H)</strong>, <strong>Nitrógeno (N)</strong>, <strong>Azufre (S)</strong>, <strong>Fósforo (P)</strong>, <strong>Cloro (Cl)</strong></p>
+                    
+                    <div class="element-card" style="margin-top: 30px;">
+                        <h3>⚡ METALOIDES</h3>
+                        <p>Son elementos que tienen propiedades intermedias entre metales y no metales. Se encuentran en la frontera de la tabla periódica.</p>
+                    </div>
+                    
+                    <h3>Características de los Metaloides:</h3>
+                    <ul>
+                        <li>✓ <strong>Presentan propiedades de metales y no metales</strong></li>
+                        <li>✓ <strong>Son semiconductores</strong> - Conducen electricidad bajo ciertas condiciones</li>
+                        <li>✓ <strong>Se usan en la industria electrónica</strong> - Especialmente el silicio (Si) y el germanio (Ge)</li>
+                    </ul>
+                    
+                    <h3>Ejemplos de Metaloides:</h3>
+                    <p><strong>Boro (B)</strong>, <strong>Silicio (Si)</strong>, <strong>Germanio (Ge)</strong>, <strong>Arsénico (As)</strong>, <strong>Antimonio (Sb)</strong>, <strong>Telurio (Te)</strong></p>
+                    
+                    <div class="comparison-table">
+                        <h3 style="color: #00f2fe; text-align: center; margin-bottom: 20px;">📊 Tabla Comparativa</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Propiedad</th>
+                                    <th>Metales</th>
+                                    <th>No Metales</th>
+                                    <th>Metaloides</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Brillo</strong></td>
+                                    <td>Sí, metálico</td>
+                                    <td>No</td>
+                                    <td>Variable</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Conductividad</strong></td>
+                                    <td>Excelente</td>
+                                    <td>Mala</td>
+                                    <td>Semiconductores</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Maleabilidad</strong></td>
+                                    <td>Sí</td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ductilidad</strong></td>
+                                    <td>Sí</td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Estado común</strong></td>
+                                    <td>Sólido (excepto Hg, Fr)</td>
+                                    <td>Sólido, líquido, gas</td>
+                                    <td>Sólido</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Densidad</strong></td>
+                                    <td>Alta</td>
+                                    <td>Baja</td>
+                                    <td>Variable</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Punto de fusión</strong></td>
+                                    <td>Alto</td>
+                                    <td>Bajo</td>
+                                    <td>Variable</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ubicación en tabla</strong></td>
+                                    <td>Izquierda</td>
+                                    <td>Derecha</td>
+                                    <td>Centro (frontera)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button class="btn" onclick="showSection('classification')">Comenzar Examen →</button>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE CLASIFICACIÓN -->
+            <div id="classification" class="section">
+                <div class="question-box">
+                    <div class="question-title">A. CLASIFICACIÓN DE ELEMENTOS - Valor: 10 puntos</div>
+                    <p><strong>Instrucciones:</strong> Clasifica cada elemento como Metal, No Metal o Metaloide.</p>
+                    
+                    <div class="question-item">
+                        <strong>1. Oro (Au)</strong>
+                        <select id="class1">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. Oxígeno (O)</strong>
+                        <select id="class2">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. Silicio (Si)</strong>
+                        <select id="class3">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. Mercurio (Hg)</strong>
+                        <select id="class4">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>5. Carbono (C)</strong>
+                        <select id="class5">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>6. Hierro (Fe)</strong>
+                        <select id="class6">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>7. Bromo (Br)</strong>
+                        <select id="class7">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>8. Boro (B)</strong>
+                        <select id="class8">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>9. Cobre (Cu)</strong>
+                        <select id="class9">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>10. Nitrógeno (N)</strong>
+                        <select id="class10">
+                            <option value="">-- Selecciona --</option>
+                            <option value="metal">Metal</option>
+                            <option value="nometal">No Metal</option>
+                            <option value="metaloide">Metaloide</option>
+                        </select>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkClassification()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetClassification()">Reintentar</button>
+                    </div>
+                    
+                    <div id="classificationResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE COMPLETAR -->
+            <div id="complete" class="section">
+                <div class="question-box">
+                    <div class="question-title">B. COMPLETAR Y RESPONDER - Valor: 6 puntos</div>
+                    <p><strong>Instrucciones:</strong> Completa las oraciones y responde las preguntas.</p>
+                    
+                    <div class="question-item">
+                        <strong>1. Menciona tres características de los metales: (3 puntos)</strong>
+                        <input type="text" id="comp1a" placeholder="a) Primera característica">
+                        <input type="text" id="comp1b" placeholder="b) Segunda característica">
+                        <input type="text" id="comp1c" placeholder="c) Tercera característica">
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. ¿Cuál es el único no metal que se encuentra en estado líquido? (1 punto)</strong>
+                        <input type="text" id="comp2" placeholder="Escribe tu respuesta">
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. ¿Qué significa que un elemento sea "maleable"? (1 punto)</strong>
+                        <textarea id="comp3" placeholder="Escribe tu respuesta aquí..."></textarea>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. ¿Para qué se utilizan principalmente los metaloides en la industria? (1 punto)</strong>
+                        <textarea id="comp4" placeholder="Escribe tu respuesta aquí..."></textarea>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkComplete()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetComplete()">Reintentar</button>
+                    </div>
+                    
+                    <div id="completeResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Respuestas correctas para clasificación
+        const classificationAnswers = {
+            class1: { correct: 'metal', explanation: 'El Oro (Au) es un metal precioso, tiene brillo metálico, es dúctil y maleable.' },
+            class2: { correct: 'nometal', explanation: 'El Oxígeno (O) es un no metal gaseoso, esencial para la respiración.' },
+            class3: { correct: 'metaloide', explanation: 'El Silicio (Si) es un metaloide semiconductor, usado en la industria electrónica.' },
+            class4: { correct: 'metal', explanation: 'El Mercurio (Hg) es un metal, el único que es líquido a temperatura ambiente.' },
+            class5: { correct: 'nometal', explanation: 'El Carbono (C) es un no metal sólido, base de la vida orgánica.' },
+            class6: { correct: 'metal', explanation: 'El Hierro (Fe) es un metal, muy usado en construcción, es maleable y magnético.' },
+            class7: { correct: 'nometal', explanation: 'El Bromo (Br) es un no metal líquido, uno de los pocos elementos líquidos.' },
+            class8: { correct: 'metaloide', explanation: 'El Boro (B) es un metaloide, tiene propiedades intermedias entre metales y no metales.' },
+            class9: { correct: 'metal', explanation: 'El Cobre (Cu) es un metal, excelente conductor de electricidad, usado en cables.' },
+            class10: { correct: 'nometal', explanation: 'El Nitrógeno (N) es un no metal gaseoso, forma el 78% de la atmósfera.' }
+        };
+        
+        // Guías para completar
+        const completeGuides = {
+            q1: {
+                keywords: ['brillo', 'conductores', 'dúctiles', 'maleables', 'sólidos', 'densidad', 'fusión', 'ebullición', 'electricidad', 'calor', 'duros'],
+                answers: [
+                    'Presentan brillo metálico',
+                    'Son buenos conductores de calor y electricidad',
+                    'Son dúctiles (forman hilos)',
+                    'Son maleables (forman láminas)',
+                    'Tienen alta densidad',
+                    'Puntos de fusión y ebullición altos',
+                    'Son duros y resistentes'
+                ]
+            },
+            q2: {
+                correct: ['bromo', 'br'],
+                explanation: 'El Bromo (Br) es el único no metal que se encuentra en estado líquido a temperatura ambiente.'
+            },
+            q3: {
+                keywords: ['láminas', 'laminar', 'formar', 'aplanar', 'extender', 'delgadas'],
+                answer: 'Maleable significa que tiene la capacidad de formar láminas delgadas, es decir, que se puede aplanar o extender sin romperse. Ejemplo: el hierro se puede hacer en láminas.'
+            },
+            q4: {
+                keywords: ['electrónica', 'semiconductores', 'chips', 'computadoras', 'tecnología', 'circuitos', 'electricidad'],
+                answer: 'Los metaloides se utilizan principalmente en la industria electrónica como semiconductores, para fabricar chips, circuitos integrados y componentes de computadoras.'
+            }
+        };
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function checkClassification() {
+            let correct = 0;
+            let total = 10;
+            let resultHTML = '';
+            
+            for (let i = 1; i <= 10; i++) {
+                const select = document.getElementById(`class${i}`);
+                const userAnswer = select.value;
+                const correctAnswer = classificationAnswers[`class${i}`].correct;
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Elemento ${i}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${classificationAnswers[`class${i}`].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Elemento ${i}:</strong> Incorrecto. 
+                        Seleccionaste: <strong>${userAnswer || 'ninguna'}</strong><br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${classificationAnswers[`class${i}`].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('classificationResult');
+            
+            if (correct === total) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas (${percentage}%)</h3>` + resultHTML;
+            } else if (percentage >= 70) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas (${percentage}%)</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas (${percentage}%)</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetClassification() {
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById(`class${i}`).value = '';
+            }
+            document.getElementById('classificationResult').classList.remove('show');
+        }
+        
+        function checkComplete() {
+            let totalPoints = 0;
+            let maxPoints = 6;
+            let resultHTML = '';
+            
+            // Pregunta 1 - Características de metales (3 puntos)
+            const q1a = document.getElementById('comp1a').value.toLowerCase().trim();
+            const q1b = document.getElementById('comp1b').value.toLowerCase().trim();
+            const q1c = document.getElementById('comp1c').value.toLowerCase().trim();
+            let q1Points = 0;
+            
+            if (completeGuides.q1.keywords.some(keyword => q1a.includes(keyword))) q1Points++;
+            if (completeGuides.q1.keywords.some(keyword => q1b.includes(keyword))) q1Points++;
+            if (completeGuides.q1.keywords.some(keyword => q1c.includes(keyword))) q1Points++;
+            
+            totalPoints += q1Points;
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 1: Características de metales</strong><br>
+                Puntos obtenidos: ${q1Points}/3<br>
+                <div class="explanation">
+                    <strong>Respuestas correctas:</strong><br>
+                    ${completeGuides.q1.answers.map(ans => `• ${ans}`).join('<br>')}
+                </div>
+            </div>`;
+            
+            // Pregunta 2 - No metal líquido (1 punto)
+            const q2 = document.getElementById('comp2').value.toLowerCase().trim();
+            let q2Points = 0;
+            if (completeGuides.q2.correct.some(ans => q2.includes(ans))) {
+                q2Points = 1;
+            }
+            totalPoints += q2Points;
+            
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 2: No metal líquido</strong><br>
+                Puntos obtenidos: ${q2Points}/1<br>
+                <div class="explanation">
+                    <strong>Respuesta correcta:</strong> ${completeGuides.q2.explanation}
+                </div>
+            </div>`;
+            
+            // Pregunta 3 - Maleable (1 punto)
+            const q3 = document.getElementById('comp3').value.toLowerCase().trim();
+            let q3Points = 0;
+            const q3Matches = completeGuides.q3.keywords.filter(keyword => q3.includes(keyword)).length;
+            if (q3Matches >= 2 && q3.length > 15) {
+                q3Points = 1;
+            }
+            totalPoints += q3Points;
+            
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 3: Definición de maleable</strong><br>
+                Puntos obtenidos: ${q3Points}/1<br>
+                <div class="explanation">
+                    <strong>Respuesta esperada:</strong><br>
+                    ${completeGuides.q3.answer}
+                </div>
+            </div>`;
+            
+            // Pregunta 4 - Uso de metaloides (1 punto)
+            const q4 = document.getElementById('comp4').value.toLowerCase().trim();
+            let q4Points = 0;
+            const q4Matches = completeGuides.q4.keywords.filter(keyword => q4.includes(keyword)).length;
+            if (q4Matches >= 1 && q4.length > 10) {
+                q4Points = 1;
+            }
+            totalPoints += q4Points;
+            
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 4: Uso de metaloides</strong><br>
+                Puntos obtenidos: ${q4Points}/1<br>
+                <div class="explanation">
+                    <strong>Respuesta esperada:</strong><br>
+                    ${completeGuides.q4.answer}
+                </div>
+            </div>`;
+            
+            // Mostrar resultado
+            const percentage = (totalPoints / maxPoints) * 100;
+            const resultDiv = document.getElementById('completeResult');
+            
+            if (percentage >= 80) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Excelente! ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+        }
+        
+        function resetComplete() {
+            document.getElementById('comp1a').value = '';
+            document.getElementById('comp1b').value = '';
+            document.getElementById('comp1c').value = '';
+            document.getElementById('comp2').value = '';
+            document.getElementById('comp3').value = '';
+            document.getElementById('comp4').value = '';
+            document.getElementById('completeResult').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

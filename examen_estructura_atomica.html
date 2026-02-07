@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Estructura Atómica - Ciencias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .nav-button {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .nav-button:hover {
+            background: #333;
+            color: white;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #a8edea;
+            border-bottom: 3px solid #a8edea;
+        }
+        
+        .tab:hover {
+            background: #e8e8e8;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theory-section h2 {
+            color: #a8edea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(168, 237, 234, 0.3);
+        }
+        
+        .theory-section h3 {
+            color: #fed6e3;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        .theory-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .formula-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(168, 237, 234, 0.3);
+        }
+        
+        .formula-box h3 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .formula {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .formula-explanation {
+            color: #333;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .concept-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #a8edea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .concept-card h4 {
+            color: #a8edea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .concept-card .symbol {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fed6e3;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .highlight-box strong {
+            color: #2e7d32;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box strong {
+            color: #f57c00;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .question-box {
+            background: #f9f9f9;
+            border-left: 4px solid #a8edea;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .question-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .question-item strong {
+            color: #a8edea;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .calc-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+        
+        .calc-item label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .calc-item input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .calc-item input:focus {
+            outline: none;
+            border-color: #a8edea;
+        }
+        
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #e0f7fa;
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #a8edea;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(168, 237, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 237, 234, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .result.partial {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+        
+        .result-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .ion-example {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚛️ Examen de Estructura Atómica</h1>
+            <p>Número Atómico, Masa Atómica y Partículas Subatómicas</p>
+            <a href="index.html" class="nav-button">← Volver al Inicio</a>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('teoria')">📚 Teoría</button>
+            <button class="tab" onclick="showSection('conceptos')">💡 Conceptos</button>
+            <button class="tab" onclick="showSection('calculos')">🧮 Cálculos</button>
+            <button class="tab" onclick="showSection('multiple')">✏️ Opción Múltiple</button>
+        </div>
+        
+        <div class="content">
+            <!-- TEORÍA -->
+            <div id="teoria" class="section active theory-section">
+                <h2>⚛️ Estructura del Átomo</h2>
+                
+                <p>
+                    El átomo es la unidad básica de la materia. Está compuesto por <strong>partículas subatómicas</strong> 
+                    que determinan sus propiedades y comportamiento químico.
+                </p>
+                
+                <h3>🔬 Partículas Subatómicas Fundamentales</h3>
+                
+                <div class="concept-cards">
+                    <div class="concept-card">
+                        <h4>Protón (p⁺)</h4>
+                        <div class="symbol">p⁺</div>
+                        <p><strong>Carga:</strong> Positiva (+1)</p>
+                        <p><strong>Ubicación:</strong> Núcleo</p>
+                        <p><strong>Masa:</strong> 1 uma (unidad de masa atómica)</p>
+                        <p>Define el <strong>número atómico</strong> del elemento</p>
+                    </div>
+                    
+                    <div class="concept-card">
+                        <h4>Neutrón (n⁰)</h4>
+                        <div class="symbol">n⁰</div>
+                        <p><strong>Carga:</strong> Neutra (0)</p>
+                        <p><strong>Ubicación:</strong> Núcleo</p>
+                        <p><strong>Masa:</strong> 1 uma</p>
+                        <p>Contribuye a la <strong>masa atómica</strong></p>
+                    </div>
+                    
+                    <div class="concept-card">
+                        <h4>Electrón (e⁻)</h4>
+                        <div class="symbol">e⁻</div>
+                        <p><strong>Carga:</strong> Negativa (-1)</p>
+                        <p><strong>Ubicación:</strong> Nube electrónica</p>
+                        <p><strong>Masa:</strong> Despreciable</p>
+                        <p>Determina el <strong>comportamiento químico</strong></p>
+                    </div>
+                </div>
+                
+                <h3>📊 Número Atómico (Z) vs Masa Atómica (A)</h3>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Número Atómico (Z)</th>
+                            <th>Masa Atómica (A)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Definición</strong></td>
+                            <td>Número de protones en el núcleo</td>
+                            <td>Suma de protones y neutrones</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Símbolo</strong></td>
+                            <td>Z</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Determina</strong></td>
+                            <td>La identidad del elemento</td>
+                            <td>La masa del átomo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Es único</strong></td>
+                            <td>✅ Cada elemento tiene un Z único</td>
+                            <td>❌ Puede variar (isótopos)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ejemplo</strong></td>
+                            <td>Carbono (C) siempre tiene Z = 6</td>
+                            <td>Carbono puede tener A = 12, 13 o 14</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="formula-box">
+                    <h3>🔑 Fórmula Fundamental</h3>
+                    <div class="formula">A = Z + n</div>
+                    <div class="formula-explanation">
+                        <strong>A</strong> = Masa atómica (número másico)<br>
+                        <strong>Z</strong> = Número atómico (protones)<br>
+                        <strong>n</strong> = Número de neutrones
+                    </div>
+                    <p style="margin-top: 15px;">
+                        <strong>Despejando neutrones:</strong> n = A - Z
+                    </p>
+                </div>
+                
+                <h3>⚡ Iones: Átomo con Carga</h3>
+                
+                <div class="highlight-box">
+                    <strong>Átomo Neutro:</strong><br>
+                    Número de protones (p⁺) = Número de electrones (e⁻)<br>
+                    <em>Carga neta = 0</em>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>¡IMPORTANTE!</strong> El número de protones NUNCA cambia. Si cambia, es otro elemento.<br>
+                    Solo los electrones pueden ganarse o perderse, formando iones.
+                </div>
+                
+                <h3>➕ Cationes (Iones Positivos)</h3>
+                <p>
+                    Se forman cuando un átomo <strong>pierde electrones</strong>. Quedan más protones que electrones.
+                </p>
+                <p>
+                    <span class="ion-example">Na⁺</span> = Sodio perdió 1 electrón<br>
+                    <span class="ion-example">Ca²⁺</span> = Calcio perdió 2 electrones<br>
+                    <span class="ion-example">Al³⁺</span> = Aluminio perdió 3 electrones
+                </p>
+                
+                <h3>➖ Aniones (Iones Negativos)</h3>
+                <p>
+                    Se forman cuando un átomo <strong>gana electrones</strong>. Quedan más electrones que protones.
+                </p>
+                <p>
+                    <span class="ion-example">Cl⁻</span> = Cloro ganó 1 electrón<br>
+                    <span class="ion-example">O²⁻</span> = Oxígeno ganó 2 electrones<br>
+                    <span class="ion-example">N³⁻</span> = Nitrógeno ganó 3 electrones
+                </p>
+                
+                <h3>🧮 Cálculo de Partículas en Iones</h3>
+                
+                <div class="formula-box">
+                    <h3>Fórmulas para Iones</h3>
+                    <div style="text-align: left; margin: 20px;">
+                        <p><strong>Para Cationes (iones positivos):</strong></p>
+                        <div class="formula" style="font-size: 1.3em;">e⁻ = Z - carga</div>
+                        <p style="margin: 15px 0;"><em>Ejemplo: Cu⁺³ → e⁻ = 29 - 3 = 26 electrones</em></p>
+                        
+                        <p><strong>Para Aniones (iones negativos):</strong></p>
+                        <div class="formula" style="font-size: 1.3em;">e⁻ = Z + carga</div>
+                        <p style="margin: 15px 0;"><em>Ejemplo: N³⁻ → e⁻ = 7 + 3 = 10 electrones</em></p>
+                        
+                        <p><strong>Siempre:</strong></p>
+                        <div class="formula" style="font-size: 1.3em;">p⁺ = Z (nunca cambia)</div>
+                        <div class="formula" style="font-size: 1.3em;">n⁰ = A - Z</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CONCEPTOS -->
+            <div id="conceptos" class="section">
+                <div class="question-box">
+                    <div class="question-title">CONCEPTOS CLAVE - Responde Verdadero o Falso</div>
+                    
+                    <div class="question-item">
+                        <strong>1. El número atómico indica la cantidad de neutrones en el núcleo.</strong>
+                        <label class="option"><input type="radio" name="c1" value="a"> Verdadero</label>
+                        <label class="option"><input type="radio" name="c1" value="b"> Falso</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. La masa atómica es la suma de protones y neutrones.</strong>
+                        <label class="option"><input type="radio" name="c2" value="a"> Verdadero</label>
+                        <label class="option"><input type="radio" name="c2" value="b"> Falso</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. En un átomo neutro, el número de protones es igual al número de electrones.</strong>
+                        <label class="option"><input type="radio" name="c3" value="a"> Verdadero</label>
+                        <label class="option"><input type="radio" name="c3" value="b"> Falso</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. Un catión se forma cuando un átomo gana electrones.</strong>
+                        <label class="option"><input type="radio" name="c4" value="a"> Verdadero</label>
+                        <label class="option"><input type="radio" name="c4" value="b"> Falso</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>5. El número de protones puede cambiar en las reacciones químicas.</strong>
+                        <label class="option"><input type="radio" name="c5" value="a"> Verdadero</label>
+                        <label class="option"><input type="radio" name="c5" value="b"> Falso</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkConceptos()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetConceptos()">Limpiar</button>
+                    </div>
+                    
+                    <div id="conceptosResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- CÁLCULOS -->
+            <div id="calculos" class="section">
+                <div class="question-box">
+                    <div class="question-title">RESOLUCIÓN DE PROBLEMAS - Calcula protones, neutrones y electrones</div>
+                    
+                    <p style="margin-bottom: 20px; color: #666;">
+                        <strong>Instrucciones:</strong> Para cada especie química, calcula el número de protones (p⁺), 
+                        neutrones (n⁰) y electrones (e⁻). Usa la tabla periódica para encontrar Z y A.
+                    </p>
+                    
+                    <!-- Nitrógeno N³⁻ -->
+                    <div class="question-item">
+                        <strong>1. Nitrógeno: N³⁻ (A = 15, Z = 7)</strong>
+                        <div class="calc-grid">
+                            <div class="calc-item">
+                                <label>Protones (p⁺):</label>
+                                <input type="number" id="n_p" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Neutrones (n⁰):</label>
+                                <input type="number" id="n_n" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Electrones (e⁻):</label>
+                                <input type="number" id="n_e" placeholder="¿Cuántos?">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Azufre S⁻¹ -->
+                    <div class="question-item">
+                        <strong>2. Azufre: S⁻¹ (A = 33, Z = 16)</strong>
+                        <div class="calc-grid">
+                            <div class="calc-item">
+                                <label>Protones (p⁺):</label>
+                                <input type="number" id="s_p" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Neutrones (n⁰):</label>
+                                <input type="number" id="s_n" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Electrones (e⁻):</label>
+                                <input type="number" id="s_e" placeholder="¿Cuántos?">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cobre Cu⁺³ -->
+                    <div class="question-item">
+                        <strong>3. Cobre: Cu⁺³ (A = 63, Z = 29)</strong>
+                        <div class="calc-grid">
+                            <div class="calc-item">
+                                <label>Protones (p⁺):</label>
+                                <input type="number" id="cu_p" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Neutrones (n⁰):</label>
+                                <input type="number" id="cu_n" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Electrones (e⁻):</label>
+                                <input type="number" id="cu_e" placeholder="¿Cuántos?">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Estroncio Sr⁺² -->
+                    <div class="question-item">
+                        <strong>4. Estroncio: Sr⁺² (A = 84, Z = 38)</strong>
+                        <div class="calc-grid">
+                            <div class="calc-item">
+                                <label>Protones (p⁺):</label>
+                                <input type="number" id="sr_p" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Neutrones (n⁰):</label>
+                                <input type="number" id="sr_n" placeholder="¿Cuántos?">
+                            </div>
+                            <div class="calc-item">
+                                <label>Electrones (e⁻):</label>
+                                <input type="number" id="sr_e" placeholder="¿Cuántos?">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkCalculos()">Verificar Cálculos</button>
+                        <button class="btn btn-secondary" onclick="resetCalculos()">Limpiar</button>
+                    </div>
+                    
+                    <div id="calculosResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- OPCIÓN MÚLTIPLE -->
+            <div id="multiple" class="section">
+                <div class="question-box">
+                    <div class="question-title">OPCIÓN MÚLTIPLE - Selecciona la respuesta correcta</div>
+                    
+                    <div class="question-item">
+                        <strong>1. ¿Cuál es la diferencia principal entre número atómico y masa atómica?</strong>
+                        <label class="option"><input type="radio" name="m1" value="a"> a) El número atómico incluye neutrones, la masa no</label>
+                        <label class="option"><input type="radio" name="m1" value="b"> b) El número atómico son los protones, la masa incluye protones y neutrones</label>
+                        <label class="option"><input type="radio" name="m1" value="c"> c) El número atómico son los electrones, la masa son los protones</label>
+                        <label class="option"><input type="radio" name="m1" value="d"> d) No hay diferencia, son lo mismo</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. Un átomo tiene 17 protones, 18 neutrones y 17 electrones. Su masa atómica es:</strong>
+                        <label class="option"><input type="radio" name="m2" value="a"> a) 17</label>
+                        <label class="option"><input type="radio" name="m2" value="b"> b) 18</label>
+                        <label class="option"><input type="radio" name="m2" value="c"> c) 35</label>
+                        <label class="option"><input type="radio" name="m2" value="d"> d) 52</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. ¿Qué partícula determina la identidad de un elemento?</strong>
+                        <label class="option"><input type="radio" name="m3" value="a"> a) Electrones</label>
+                        <label class="option"><input type="radio" name="m3" value="b"> b) Neutrones</label>
+                        <label class="option"><input type="radio" name="m3" value="c"> c) Protones</label>
+                        <label class="option"><input type="radio" name="m3" value="d"> d) Todas las anteriores</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. Un ion Ca²⁺ tiene 20 protones. ¿Cuántos electrones tiene?</strong>
+                        <label class="option"><input type="radio" name="m4" value="a"> a) 22</label>
+                        <label class="option"><input type="radio" name="m4" value="b"> b) 20</label>
+                        <label class="option"><input type="radio" name="m4" value="c"> c) 18</label>
+                        <label class="option"><input type="radio" name="m4" value="d"> d) 2</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>5. ¿Cuál de las siguientes afirmaciones es CORRECTA?</strong>
+                        <label class="option"><input type="radio" name="m5" value="a"> a) Los neutrones tienen carga positiva</label>
+                        <label class="option"><input type="radio" name="m5" value="b"> b) Los electrones están en el núcleo</label>
+                        <label class="option"><input type="radio" name="m5" value="c"> c) Los protones determinan el número atómico</label>
+                        <label class="option"><input type="radio" name="m5" value="d"> d) La masa de un electrón es igual a la de un protón</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>6. Un anión es un átomo que ha:</strong>
+                        <label class="option"><input type="radio" name="m6" value="a"> a) Perdido protones</label>
+                        <label class="option"><input type="radio" name="m6" value="b"> b) Ganado protones</label>
+                        <label class="option"><input type="radio" name="m6" value="c"> c) Perdido electrones</label>
+                        <label class="option"><input type="radio" name="m6" value="d"> d) Ganado electrones</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkMultiple()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetMultiple()">Limpiar</button>
+                    </div>
+                    
+                    <div id="multipleResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // CONCEPTOS
+        const conceptosAnswers = {
+            c1: { correct: 'b', explanation: 'FALSO. El número atómico (Z) indica la cantidad de PROTONES, no neutrones.' },
+            c2: { correct: 'a', explanation: 'VERDADERO. La masa atómica (A) = protones + neutrones.' },
+            c3: { correct: 'a', explanation: 'VERDADERO. En un átomo neutro: p⁺ = e⁻' },
+            c4: { correct: 'b', explanation: 'FALSO. Un catión se forma cuando el átomo PIERDE electrones (carga positiva).' },
+            c5: { correct: 'b', explanation: 'FALSO. El número de protones NUNCA cambia. Si cambia, es otro elemento.' }
+        };
+        
+        function checkConceptos() {
+            let correct = 0;
+            let total = 5;
+            let resultHTML = '';
+            
+            for (let q in conceptosAnswers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const userAnswer = selected ? selected.value : null;
+                const correctAnswer = conceptosAnswers[q].correct;
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${q.substring(1)}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${conceptosAnswers[q].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${q.substring(1)}:</strong> Incorrecto.<br>
+                        <div class="explanation">${conceptosAnswers[q].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('conceptosResult');
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetConceptos() {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            document.getElementById('conceptosResult').classList.remove('show');
+        }
+        
+        // CÁLCULOS
+        const calculosAnswers = {
+            n: { p: 7, n: 8, e: 10, explanation: 'N³⁻: p⁺ = Z = 7 | n⁰ = A - Z = 15 - 7 = 8 | e⁻ = Z + 3 = 7 + 3 = 10 (ganó 3 e⁻)' },
+            s: { p: 16, n: 17, e: 17, explanation: 'S⁻¹: p⁺ = Z = 16 | n⁰ = A - Z = 33 - 16 = 17 | e⁻ = Z + 1 = 16 + 1 = 17 (ganó 1 e⁻)' },
+            cu: { p: 29, n: 34, e: 26, explanation: 'Cu⁺³: p⁺ = Z = 29 | n⁰ = A - Z = 63 - 29 = 34 | e⁻ = Z - 3 = 29 - 3 = 26 (perdió 3 e⁻)' },
+            sr: { p: 38, n: 46, e: 36, explanation: 'Sr⁺²: p⁺ = Z = 38 | n⁰ = A - Z = 84 - 38 = 46 | e⁻ = Z - 2 = 38 - 2 = 36 (perdió 2 e⁻)' }
+        };
+        
+        function checkCalculos() {
+            let correct = 0;
+            let total = 12; // 4 especies x 3 valores
+            let resultHTML = '';
+            
+            for (let element in calculosAnswers) {
+                const userP = parseInt(document.getElementById(`${element}_p`).value) || 0;
+                const userN = parseInt(document.getElementById(`${element}_n`).value) || 0;
+                const userE = parseInt(document.getElementById(`${element}_e`).value) || 0;
+                
+                const correctP = calculosAnswers[element].p;
+                const correctN = calculosAnswers[element].n;
+                const correctE = calculosAnswers[element].e;
+                
+                const isCorrect = (userP === correctP && userN === correctN && userE === correctE);
+                
+                if (isCorrect) {
+                    correct += 3;
+                    resultHTML += `<div style="margin: 15px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>${element.toUpperCase()}:</strong> ¡Perfecto!<br>
+                        <div class="explanation">${calculosAnswers[element].explanation}</div>
+                    </div>`;
+                } else {
+                    let partialCorrect = 0;
+                    if (userP === correctP) partialCorrect++;
+                    if (userN === correctN) partialCorrect++;
+                    if (userE === correctE) partialCorrect++;
+                    
+                    correct += partialCorrect;
+                    
+                    resultHTML += `<div style="margin: 15px 0;">
+                        <span class="result-icon">${partialCorrect > 0 ? '⚠️' : '❌'}</span>
+                        <strong>${element.toUpperCase()}:</strong> ${partialCorrect}/3 correctos<br>
+                        Tu respuesta: p⁺=${userP}, n⁰=${userN}, e⁻=${userE}<br>
+                        <div class="explanation">✅ Respuesta correcta: p⁺=${correctP}, n⁰=${correctN}, e⁻=${correctE}<br>
+                        ${calculosAnswers[element].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('calculosResult');
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Excelente! Todos los cálculos correctos (${correct}/${total})</h3>` + resultHTML;
+            } else if (percentage >= 70) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctos (${Math.round(percentage)}%)</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Revisa las fórmulas. ${correct}/${total} correctos</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetCalculos() {
+            document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+            document.getElementById('calculosResult').classList.remove('show');
+        }
+        
+        // OPCIÓN MÚLTIPLE
+        const multipleAnswers = {
+            m1: { correct: 'b', explanation: 'El número atómico (Z) son los PROTONES, la masa atómica (A) incluye protones Y neutrones.' },
+            m2: { correct: 'c', explanation: 'Masa atómica = protones + neutrones = 17 + 18 = 35' },
+            m3: { correct: 'c', explanation: 'Los PROTONES determinan la identidad del elemento (número atómico).' },
+            m4: { correct: 'c', explanation: 'Ca²⁺ tiene carga +2, perdió 2 electrones: e⁻ = 20 - 2 = 18 electrones' },
+            m5: { correct: 'c', explanation: 'Los PROTONES determinan el número atómico. Es la única afirmación correcta.' },
+            m6: { correct: 'd', explanation: 'Un ANIÓN (carga negativa) se forma al GANAR electrones.' }
+        };
+        
+        function checkMultiple() {
+            let correct = 0;
+            let total = 6;
+            let resultHTML = '';
+            
+            for (let q in multipleAnswers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const userAnswer = selected ? selected.value : null;
+                const correctAnswer = multipleAnswers[q].correct;
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${q.substring(1)}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${multipleAnswers[q].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${q.substring(1)}:</strong> Incorrecto.<br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${multipleAnswers[q].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('multipleResult');
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetMultiple() {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            document.getElementById('multipleResult').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

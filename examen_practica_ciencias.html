@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Práctica - Ciencias: División Celular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab:hover {
+            background: #e8e8e8;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theory-section {
+            margin-bottom: 30px;
+        }
+        
+        .theory-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .theory-section h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .theory-section p, .theory-section ul {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .theory-section ul {
+            margin-left: 25px;
+        }
+        
+        .theory-section li {
+            margin-bottom: 8px;
+        }
+        
+        .question-box {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .column {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .column h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .match-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+        
+        .match-item strong {
+            color: #764ba2;
+        }
+        
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        select:focus, input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .short-answer-item {
+            margin: 15px 0;
+        }
+        
+        .short-answer-item label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .result.partial {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+        
+        .result-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        
+        .score-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .score-summary.show {
+            display: block;
+        }
+        
+        .score-summary h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Examen de Práctica</h1>
+            <p>Ciencias: División Celular y Biología Celular</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('theory')">📖 Teoría</button>
+            <button class="tab" onclick="showSection('matching')">🔗 Correspondencia</button>
+            <button class="tab" onclick="showSection('short')">✍️ Respuesta Corta</button>
+        </div>
+        
+        <div class="content">
+            <!-- SECCIÓN DE TEORÍA -->
+            <div id="theory" class="section active">
+                <div class="theory-section">
+                    <h2>División Celular y el Ciclo Celular</h2>
+                    
+                    <h3>El Ciclo Celular</h3>
+                    <p>El ciclo celular es el proceso mediante el cual una célula crece y se divide para formar dos células hijas. Se divide en dos grandes fases:</p>
+                    <ul>
+                        <li><strong>Interfase:</strong> Fase de crecimiento y preparación (90% del ciclo)</li>
+                        <li><strong>Fase M (Mitosis):</strong> Fase de división celular (10% del ciclo)</li>
+                    </ul>
+                    
+                    <h3>1. Interfase</h3>
+                    <p>Es la fase más larga del ciclo celular. La célula NO está dividiéndose, sino preparándose. Se subdivide en:</p>
+                    <ul>
+                        <li><strong>G1 (Gap 1):</strong> Crecimiento celular, síntesis de proteínas y organelas</li>
+                        <li><strong>S (Síntesis):</strong> Duplicación del ADN (los cromosomas se replican)</li>
+                        <li><strong>G2 (Gap 2):</strong> Continúa el crecimiento, se duplican organelas como los centriolos</li>
+                    </ul>
+                    <p><strong>Características de la Interfase:</strong></p>
+                    <ul>
+                        <li>La célula aumenta de tamaño</li>
+                        <li>Se duplica el ADN</li>
+                        <li>Se duplican las organelas (mitocondrias, centriolos, etc.)</li>
+                        <li>La célula se prepara para la división</li>
+                        <li>El núcleo está visible y la membrana nuclear está intacta</li>
+                    </ul>
+                    
+                    <h3>2. Mitosis - Fases de la División Celular</h3>
+                    
+                    <h3>a) Profase</h3>
+                    <p>Es la primera fase de la mitosis y la más larga.</p>
+                    <ul>
+                        <li>Los cromosomas se condensan y se hacen visibles</li>
+                        <li>Los cromosomas están formados por dos cromátidas hermanas unidas por el centrómero</li>
+                        <li>Los centríolos se mueven hacia los polos opuestos de la célula</li>
+                        <li>Comienza a formarse el huso mitótico (fibras que guiarán los cromosomas)</li>
+                        <li><strong class="highlight">La membrana nuclear comienza a desaparecer al final de esta fase</strong></li>
+                    </ul>
+                    
+                    <h3>b) Metafase</h3>
+                    <p>Los cromosomas se alinean en el centro de la célula.</p>
+                    <ul>
+                        <li><strong class="highlight">Los cromosomas se ubican en el plano ecuatorial (centro) de la célula</strong></li>
+                        <li>Están unidos al huso mitótico por el centrómero</li>
+                        <li>Los cromosomas están en máxima condensación</li>
+                        <li>Es el momento ideal para observar y contar cromosomas</li>
+                    </ul>
+                    
+                    <h3>c) Anafase</h3>
+                    <p>Es la fase más corta pero crucial.</p>
+                    <ul>
+                        <li><strong class="highlight">Las cromátidas hermanas se separan en el centrómero</strong></li>
+                        <li>Cada cromátida (ahora cromosoma individual) se mueve hacia polos opuestos</li>
+                        <li>Los centrómeros van primero, arrastrando los brazos del cromosoma</li>
+                        <li>La célula comienza a alargarse</li>
+                    </ul>
+                    
+                    <h3>d) Telofase</h3>
+                    <p>Es la fase final de la mitosis, reversa de la profase.</p>
+                    <ul>
+                        <li>Los cromosomas llegan a los polos de la célula</li>
+                        <li><strong class="highlight">Los cromosomas se desenrollan (descondensan)</strong></li>
+                        <li><strong class="highlight">Reaparece la membrana nuclear alrededor de cada grupo de cromosomas</strong></li>
+                        <li><strong class="highlight">Reaparecen los nucléolos</strong></li>
+                        <li>Se forma una membrana celular en el centro (citocinesis)</li>
+                        <li>Resultado: dos células hijas idénticas</li>
+                    </ul>
+                    
+                    <h3>📋 Orden de las Fases del Ciclo Celular</h3>
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <p style="text-align: center; font-size: 1.2em; margin-bottom: 15px;"><strong>El ciclo celular sigue este orden:</strong></p>
+                        <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; font-size: 1.1em;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; font-weight: bold;">1️⃣ INTERFASE</div>
+                            <span style="font-size: 1.5em;">→</span>
+                            <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; font-weight: bold;">2️⃣ PROFASE</div>
+                            <span style="font-size: 1.5em;">→</span>
+                            <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; font-weight: bold;">3️⃣ METAFASE</div>
+                            <span style="font-size: 1.5em;">→</span>
+                            <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; font-weight: bold;">4️⃣ ANAFASE</div>
+                            <span style="font-size: 1.5em;">→</span>
+                            <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; font-weight: bold;">5️⃣ TELOFASE</div>
+                            <span style="font-size: 1.5em;">→</span>
+                            <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; font-weight: bold;">🔄 CITOCINESIS</div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px; font-size: 1.1em;">
+                            💡 <strong>Truco para recordar:</strong> <span style="background: rgba(255,255,255,0.3); padding: 5px 15px; border-radius: 5px; font-size: 1.2em; letter-spacing: 3px;">I-P-M-A-T</span>
+                        </p>
+                        <p style="text-align: center; margin-top: 10px;">
+                            (Interfase, Profase, Metafase, Anafase, Telofase)
+                        </p>
+                    </div>
+                    
+                    <h3>3. Estructuras Celulares Importantes</h3>
+                    
+                    <h3>La Membrana Celular</h3>
+                    <p>Es la estructura que rodea y protege la célula. Características:</p>
+                    <ul>
+                        <li><strong>Selectivamente permeable:</strong> Controla qué entra y sale de la célula</li>
+                        <li><strong>Flexible:</strong> Permite el movimiento celular</li>
+                        <li><strong>Estructura:</strong> Compuesta principalmente de lípidos (fosfolípidos) y proteínas</li>
+                        <li><strong>Funciones principales:</strong>
+                            <ul>
+                                <li>Protección de la célula</li>
+                                <li>Control del paso de sustancias</li>
+                                <li>Comunicación celular</li>
+                                <li>Reconocimiento celular</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>El Citoplasma</h3>
+                    <p>Es el material gelatinoso entre la membrana celular y el núcleo.</p>
+                    <ul>
+                        <li><strong>Composición:</strong> Agua, sales, proteínas y organelas</li>
+                        <li><strong>Funciones principales:</strong>
+                            <ul>
+                                <li>Sostén de las organelas</li>
+                                <li>Lugar donde ocurren reacciones metabólicas</li>
+                                <li>Almacenamiento de sustancias</li>
+                                <li>Transporte de materiales dentro de la célula</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>El Núcleo Celular</h3>
+                    <p>Es el centro de control de la célula, contiene el ADN.</p>
+                    <ul>
+                        <li><strong>Funciones principales:</strong>
+                            <ul>
+                                <li>Almacena la información genética (ADN)</li>
+                                <li>Controla las actividades celulares</li>
+                                <li>Coordina la división celular</li>
+                                <li>Síntesis de ARN y producción de ribosomas</li>
+                                <li>Transmite información hereditaria</li>
+                            </ul>
+                        </li>
+                        <li><strong>Componentes:</strong>
+                            <ul>
+                                <li>Membrana nuclear (doble)</li>
+                                <li>Cromatina/cromosomas (ADN + proteínas)</li>
+                                <li>Nucléolo (produce ribosomas)</li>
+                                <li>Nucleoplasma (líquido interno)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="button-container">
+                    <button class="btn" onclick="showSection('matching')">Comenzar Examen →</button>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE CORRESPONDENCIA -->
+            <div id="matching" class="section">
+                <div class="question-box">
+                    <div class="question-title">A. CORRESPONDENCIA - Valor: 5 puntos</div>
+                    <p><strong>Instrucciones:</strong> Relaciona los procesos de la División Celular (Columna A) con los nombres de las fases (Columna B). Selecciona la fase correspondiente para cada proceso.</p>
+                    
+                    <div class="matching-container">
+                        <div class="column">
+                            <h4>Columna A - Procesos</h4>
+                            <div class="match-item">
+                                <strong>1.</strong> Los cromosomas se separan del centrómero en dos cromátidas idénticas.
+                            </div>
+                            <div class="match-item">
+                                <strong>2.</strong> Los cromosomas se desenrollan porque están menos condensados y reaparece la membrana nuclear y los nucléolos.
+                            </div>
+                            <div class="match-item">
+                                <strong>3.</strong> Los cromosomas se unen por medio del centrómero y se ubican en el plano ecuatorial.
+                            </div>
+                            <div class="match-item">
+                                <strong>4.</strong> Se organiza la célula para la división, aumentando su tamaño y duplicando el ADN y las organelas.
+                            </div>
+                            <div class="match-item">
+                                <strong>5.</strong> Se desaparece la membrana celular y los centríolos se desplazan hacia los polos de la célula.
+                            </div>
+                        </div>
+                        
+                        <div class="column">
+                            <h4>Columna B - Tu Respuesta</h4>
+                            <div class="match-item">
+                                <strong>1.</strong>
+                                <select id="match1">
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="profase">Profase</option>
+                                    <option value="metafase">Metafase</option>
+                                    <option value="anafase">Anafase</option>
+                                    <option value="telofase">Telofase</option>
+                                    <option value="interfase">Interfase</option>
+                                </select>
+                            </div>
+                            <div class="match-item">
+                                <strong>2.</strong>
+                                <select id="match2">
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="profase">Profase</option>
+                                    <option value="metafase">Metafase</option>
+                                    <option value="anafase">Anafase</option>
+                                    <option value="telofase">Telofase</option>
+                                    <option value="interfase">Interfase</option>
+                                </select>
+                            </div>
+                            <div class="match-item">
+                                <strong>3.</strong>
+                                <select id="match3">
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="profase">Profase</option>
+                                    <option value="metafase">Metafase</option>
+                                    <option value="anafase">Anafase</option>
+                                    <option value="telofase">Telofase</option>
+                                    <option value="interfase">Interfase</option>
+                                </select>
+                            </div>
+                            <div class="match-item">
+                                <strong>4.</strong>
+                                <select id="match4">
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="profase">Profase</option>
+                                    <option value="metafase">Metafase</option>
+                                    <option value="anafase">Anafase</option>
+                                    <option value="telofase">Telofase</option>
+                                    <option value="interfase">Interfase</option>
+                                </select>
+                            </div>
+                            <div class="match-item">
+                                <strong>5.</strong>
+                                <select id="match5">
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="profase">Profase</option>
+                                    <option value="metafase">Metafase</option>
+                                    <option value="anafase">Anafase</option>
+                                    <option value="telofase">Telofase</option>
+                                    <option value="interfase">Interfase</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkMatching()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetMatching()">Reintentar</button>
+                    </div>
+                    
+                    <div id="matchingResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE RESPUESTA CORTA -->
+            <div id="short" class="section">
+                <div class="question-box">
+                    <div class="question-title">B. RESPUESTA CORTA - Valor: 11 puntos (1 punto cada acierto)</div>
+                    <p><strong>Instrucciones:</strong> Lee los enunciados y escribe en los espacios asignados las palabras que completan cada uno de estos. Escribe con letra legible y en orden.</p>
+                    
+                    <div class="short-answer-item">
+                        <label>1. Anote dos características que presenta la membrana celular:</label>
+                        <input type="text" id="short1a" placeholder="a) Primera característica">
+                        <input type="text" id="short1b" placeholder="b) Segunda característica">
+                    </div>
+                    
+                    <div class="short-answer-item">
+                        <label>2. Anote dos funciones principales del citoplasma:</label>
+                        <input type="text" id="short2a" placeholder="a) Primera función">
+                        <input type="text" id="short2b" placeholder="b) Segunda función">
+                    </div>
+                    
+                    <div class="short-answer-item">
+                        <label>3. Escriba una función del núcleo de la célula:</label>
+                        <textarea id="short3" placeholder="Escribe tu respuesta aquí..."></textarea>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkShortAnswers()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetShortAnswers()">Reintentar</button>
+                    </div>
+                    
+                    <div id="shortResult" class="result"></div>
+                </div>
+                
+                <div id="finalScore" class="score-summary">
+                    <h3>¡Examen Completado! 🎉</h3>
+                    <p id="scoreText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Respuestas correctas para la sección de correspondencia
+        const matchingAnswers = {
+            match1: 'anafase',
+            match2: 'telofase',
+            match3: 'metafase',
+            match4: 'interfase',
+            match5: 'profase'
+        };
+        
+        const matchingExplanations = {
+            match1: 'ANAFASE: En esta fase las cromátidas hermanas se separan en el centrómero y se mueven hacia polos opuestos.',
+            match2: 'TELOFASE: Los cromosomas se desenrollan (descondensan) y reaparecen la membrana nuclear y los nucléolos.',
+            match3: 'METAFASE: Los cromosomas se alinean en el plano ecuatorial (centro) unidos por el centrómero al huso mitótico.',
+            match4: 'INTERFASE: Es la fase de preparación donde la célula crece, duplica su ADN y las organelas antes de dividirse.',
+            match5: 'PROFASE: La membrana nuclear se desintegra y los centríolos migran hacia los polos opuestos de la célula.'
+        };
+        
+        // Respuestas aceptables para respuesta corta
+        const shortAnswersGuide = {
+            question1: {
+                keywords: ['selectiva', 'permeable', 'flexible', 'protección', 'lípidos', 'proteínas', 'fosfolípidos', 'barrera', 'control'],
+                fullAnswers: [
+                    'Es selectivamente permeable (controla qué entra y sale)',
+                    'Es flexible y permite el movimiento',
+                    'Está compuesta de lípidos y proteínas',
+                    'Protege el contenido celular'
+                ]
+            },
+            question2: {
+                keywords: ['sostén', 'organelas', 'reacciones', 'metabólicas', 'almacenamiento', 'transporte', 'materiales', 'sustancias'],
+                fullAnswers: [
+                    'Sostiene y mantiene las organelas en su lugar',
+                    'Es el lugar donde ocurren reacciones metabólicas',
+                    'Almacena sustancias necesarias para la célula',
+                    'Transporta materiales dentro de la célula'
+                ]
+            },
+            question3: {
+                keywords: ['adn', 'información', 'genética', 'controla', 'actividades', 'división', 'herencia', 'arn', 'ribosomas'],
+                fullAnswers: [
+                    'Almacena la información genética (ADN)',
+                    'Controla las actividades celulares',
+                    'Coordina la división celular',
+                    'Transmite información hereditaria',
+                    'Produce ARN y ribosomas'
+                ]
+            }
+        };
+        
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Actualizar tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function checkMatching() {
+            let correct = 0;
+            let total = 5;
+            let resultHTML = '';
+            
+            for (let i = 1; i <= 5; i++) {
+                const select = document.getElementById(`match${i}`);
+                const userAnswer = select.value;
+                const correctAnswer = matchingAnswers[`match${i}`];
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${i}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${matchingExplanations[`match${i}`]}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${i}:</strong> Incorrecto. 
+                        Seleccionaste: <strong>${userAnswer || 'ninguna'}</strong><br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${matchingExplanations[`match${i}`]}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('matchingResult');
+            
+            if (correct === total) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas</h3>` + resultHTML;
+            } else if (correct >= 3) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetMatching() {
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`match${i}`).value = '';
+            }
+            document.getElementById('matchingResult').classList.remove('show');
+        }
+        
+        function checkShortAnswers() {
+            let totalPoints = 0;
+            let maxPoints = 5; // 2 + 2 + 1
+            let resultHTML = '';
+            
+            // Pregunta 1 - Características de la membrana celular
+            const q1a = document.getElementById('short1a').value.toLowerCase().trim();
+            const q1b = document.getElementById('short1b').value.toLowerCase().trim();
+            let q1Points = 0;
+            
+            if (shortAnswersGuide.question1.keywords.some(keyword => q1a.includes(keyword))) {
+                q1Points++;
+            }
+            if (shortAnswersGuide.question1.keywords.some(keyword => q1b.includes(keyword))) {
+                q1Points++;
+            }
+            
+            totalPoints += q1Points;
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 1: Características de la membrana celular</strong><br>
+                Puntos obtenidos: ${q1Points}/2<br>
+                <div class="explanation">
+                    <strong>Respuestas correctas:</strong><br>
+                    ${shortAnswersGuide.question1.fullAnswers.map(ans => `• ${ans}`).join('<br>')}
+                </div>
+            </div>`;
+            
+            // Pregunta 2 - Funciones del citoplasma
+            const q2a = document.getElementById('short2a').value.toLowerCase().trim();
+            const q2b = document.getElementById('short2b').value.toLowerCase().trim();
+            let q2Points = 0;
+            
+            if (shortAnswersGuide.question2.keywords.some(keyword => q2a.includes(keyword))) {
+                q2Points++;
+            }
+            if (shortAnswersGuide.question2.keywords.some(keyword => q2b.includes(keyword))) {
+                q2Points++;
+            }
+            
+            totalPoints += q2Points;
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 2: Funciones del citoplasma</strong><br>
+                Puntos obtenidos: ${q2Points}/2<br>
+                <div class="explanation">
+                    <strong>Respuestas correctas:</strong><br>
+                    ${shortAnswersGuide.question2.fullAnswers.map(ans => `• ${ans}`).join('<br>')}
+                </div>
+            </div>`;
+            
+            // Pregunta 3 - Función del núcleo
+            const q3 = document.getElementById('short3').value.toLowerCase().trim();
+            let q3Points = 0;
+            
+            if (shortAnswersGuide.question3.keywords.some(keyword => q3.includes(keyword))) {
+                q3Points = 1;
+            }
+            
+            totalPoints += q3Points;
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 3: Función del núcleo</strong><br>
+                Puntos obtenidos: ${q3Points}/1<br>
+                <div class="explanation">
+                    <strong>Respuestas correctas:</strong><br>
+                    ${shortAnswersGuide.question3.fullAnswers.map(ans => `• ${ans}`).join('<br>')}
+                </div>
+            </div>`;
+            
+            // Mostrar resultado
+            const percentage = (totalPoints / maxPoints) * 100;
+            const resultDiv = document.getElementById('shortResult');
+            
+            if (percentage >= 80) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Excelente! ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            
+            // Mostrar resumen final
+            showFinalScore();
+        }
+        
+        function resetShortAnswers() {
+            document.getElementById('short1a').value = '';
+            document.getElementById('short1b').value = '';
+            document.getElementById('short2a').value = '';
+            document.getElementById('short2b').value = '';
+            document.getElementById('short3').value = '';
+            document.getElementById('shortResult').classList.remove('show');
+            document.getElementById('finalScore').classList.remove('show');
+        }
+        
+        function showFinalScore() {
+            const scoreDiv = document.getElementById('finalScore');
+            const scoreText = document.getElementById('scoreText');
+            
+            scoreText.innerHTML = `
+                Has completado todas las secciones del examen de práctica.<br>
+                <strong>Revisa tus resultados arriba y repasa los temas donde tengas dudas.</strong><br>
+                <br>
+                💡 <em>Recuerda leer bien la teoría antes de hacer el examen real.</em>
+            `;
+            
+            scoreDiv.classList.add('show');
+        }
+    </script>
+</body>
+</html>

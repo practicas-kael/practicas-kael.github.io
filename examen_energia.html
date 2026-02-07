@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Energía - Ciencias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: white;
+            color: #e17055;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #e17055;
+            border-bottom: 3px solid #e17055;
+        }
+        
+        .tab:hover {
+            background: #e8e8e8;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theory-section h2 {
+            color: #e17055;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .theory-section h3 {
+            color: #fdcb6e;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        .theory-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .energy-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .energy-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(253, 203, 110, 0.3);
+        }
+        
+        .energy-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #e17055;
+        }
+        
+        .energy-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .energy-card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .highlight-box strong {
+            color: #e17055;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            color: #333;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .question-box {
+            background: #f9f9f9;
+            border-left: 4px solid #e17055;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .question-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .question-item strong {
+            color: #e17055;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #ffe5d9;
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #e17055;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(225, 112, 85, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 112, 85, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .result.partial {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+        
+        .result-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Examen de Energía y sus Aplicaciones</h1>
+            <p>Tipos de Energía, Fuentes y Transformaciones</p>
+            <a href="index.html" class="nav-button">← Volver al Inicio</a>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('teoria')">📚 Teoría</button>
+            <button class="tab" onclick="showSection('multiple')">✏️ Opción Múltiple</button>
+            <button class="tab" onclick="showSection('relacionar')">🔗 Relacionar</button>
+            <button class="tab" onclick="showSection('cortas')">📝 Resp. Cortas</button>
+        </div>
+        
+        <div class="content">
+            <!-- TEORÍA -->
+            <div id="teoria" class="section active theory-section">
+                <h2>⚡ Energía: Conceptos Fundamentales</h2>
+                
+                <p>
+                    La <strong>energía</strong> es la capacidad de realizar un trabajo o producir un cambio. 
+                    Está presente en todo lo que nos rodea y es fundamental para la vida en la Tierra. 
+                    La energía no se crea ni se destruye, solo se transforma de un tipo a otro.
+                </p>
+                
+                <h3>🌟 Tipos Fundamentales de Energía</h3>
+                
+                <div class="highlight-box">
+                    <strong>Clasificación Principal:</strong><br>
+                    • <strong>Energía Natural:</strong> Proviene de fuentes naturales (solar, eólica, geotérmica)<br>
+                    • <strong>Energía Artificial:</strong> Generada por el ser humano (nuclear, eléctrica de plantas)
+                </div>
+                
+                <div class="energy-types">
+                    <div class="energy-card">
+                        <div class="icon">☀️</div>
+                        <h4>Energía Luminosa</h4>
+                        <p>Proviene de la luz. Puede ser <strong>natural</strong> (del Sol) o <strong>artificial</strong> (bombillas, lámparas). Es esencial para la fotosíntesis y la visión.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">⚛️</div>
+                        <h4>Energía Nuclear</h4>
+                        <p>Se libera en las reacciones nucleares (fisión o fusión). Es muy potente pero puede ser peligrosa. Ejemplo: <strong>Chernóbil (1986)</strong>.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">💧</div>
+                        <h4>Energía Hidroeléctrica</h4>
+                        <p>Aprovecha el movimiento del agua (ríos, olas del mar). Es una energía <strong>limpia y renovable</strong>.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">🌋</div>
+                        <h4>Energía Geotérmica</h4>
+                        <p>Se genera del <strong>calor del interior de la Tierra</strong>. Se usa en calefacción y electricidad.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">🏃</div>
+                        <h4>Energía Cinética</h4>
+                        <p>Energía del <strong>movimiento</strong>. Todo objeto en movimiento posee energía cinética.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">🎢</div>
+                        <h4>Energía Potencial</h4>
+                        <p>Energía almacenada debido a la <strong>posición</strong> de un objeto. Ej: objeto elevado.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">💨</div>
+                        <h4>Energía Eólica</h4>
+                        <p>Generada por el <strong>viento</strong>. Mueve turbinas para producir electricidad. Es renovable.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">⚡</div>
+                        <h4>Energía Eléctrica</h4>
+                        <p>Flujo de electrones a través de conductores. Alimenta aparatos, iluminación e industrias.</p>
+                    </div>
+                    
+                    <div class="energy-card">
+                        <div class="icon">🔥</div>
+                        <h4>Energía Química</h4>
+                        <p>Almacenada en enlaces químicos. Se libera en reacciones como la combustión.</p>
+                    </div>
+                </div>
+                
+                <h3>🌿 Aplicaciones de la Energía</h3>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aplicación</th>
+                            <th>Tipo de Energía</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fotosíntesis</strong></td>
+                            <td>Luminosa (Solar)</td>
+                            <td>Las plantas convierten luz en energía química</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Electricidad en hogares</strong></td>
+                            <td>Eléctrica</td>
+                            <td>Iluminación, electrodomésticos, computadoras</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Radiactividad médica</strong></td>
+                            <td>Nuclear</td>
+                            <td>Tratamientos de cáncer, radiografías</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transporte</strong></td>
+                            <td>Química/Cinética</td>
+                            <td>Combustibles fósiles en vehículos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Calefacción</strong></td>
+                            <td>Geotérmica/Eléctrica</td>
+                            <td>Sistemas de calefacción en edificios</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>♻️ Energías Limpias vs Contaminantes</h3>
+                
+                <div class="highlight-box">
+                    <strong>Energías Limpias (Renovables):</strong><br>
+                    ✅ Solar | ✅ Eólica | ✅ Hidroeléctrica | ✅ Geotérmica<br>
+                    <em>No generan contaminación significativa y son inagotables</em>
+                </div>
+                
+                <div class="highlight-box" style="background: #f8d7da; border-left-color: #dc3545;">
+                    <strong>Energías Contaminantes:</strong><br>
+                    ❌ Combustibles fósiles (carbón, petróleo, gas)<br>
+                    ⚠️ Nuclear (residuos radiactivos peligrosos)<br>
+                    <em>Generan contaminación y tienen recursos limitados</em>
+                </div>
+                
+                <h3>⚖️ Transformación de la Energía</h3>
+                <p>
+                    La energía puede transformarse de un tipo a otro. Ejemplos:
+                </p>
+                <ul style="line-height: 2; margin-left: 30px;">
+                    <li><strong>Energía química → Cinética:</strong> Motor de un auto (combustión)</li>
+                    <li><strong>Energía cinética → Eléctrica:</strong> Generador hidroeléctrico</li>
+                    <li><strong>Energía solar → Eléctrica:</strong> Paneles solares</li>
+                    <li><strong>Energía eléctrica → Luminosa:</strong> Bombilla</li>
+                    <li><strong>Energía potencial → Cinética:</strong> Objeto cayendo</li>
+                </ul>
+            </div>
+            
+            <!-- OPCIÓN MÚLTIPLE -->
+            <div id="multiple" class="section">
+                <div class="question-box">
+                    <div class="question-title">OPCIÓN MÚLTIPLE - Selecciona la respuesta correcta</div>
+                    
+                    <div class="question-item">
+                        <strong>1. Existen dos tipos fundamentales de energía luminosa:</strong>
+                        <label class="option"><input type="radio" name="q1" value="a"> a) Solar y general</label>
+                        <label class="option"><input type="radio" name="q1" value="b"> b) Natural y artificial</label>
+                        <label class="option"><input type="radio" name="q1" value="c"> c) Química y física</label>
+                        <label class="option"><input type="radio" name="q1" value="d"> d) Eléctrica y mecánica</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. El desastre de Chernóbil (1986) fue causado por energía:</strong>
+                        <label class="option"><input type="radio" name="q2" value="a"> a) Nuclear</label>
+                        <label class="option"><input type="radio" name="q2" value="b"> b) Química</label>
+                        <label class="option"><input type="radio" name="q2" value="c"> c) Hidroeléctrica</label>
+                        <label class="option"><input type="radio" name="q2" value="d"> d) Eólica</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. El movimiento de las olas del mar y la velocidad de los ríos se aprovecha para generar energía:</strong>
+                        <label class="option"><input type="radio" name="q3" value="a"> a) Eólica</label>
+                        <label class="option"><input type="radio" name="q3" value="b"> b) Luminosa</label>
+                        <label class="option"><input type="radio" name="q3" value="c"> c) Hidroeléctrica</label>
+                        <label class="option"><input type="radio" name="q3" value="d"> d) Nuclear</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. La energía geotérmica es generada a partir de:</strong>
+                        <label class="option"><input type="radio" name="q4" value="a"> a) El movimiento de la Tierra</label>
+                        <label class="option"><input type="radio" name="q4" value="b"> b) El calor de una cocina de leña</label>
+                        <label class="option"><input type="radio" name="q4" value="c"> c) El calor proveniente del interior de la Tierra</label>
+                        <label class="option"><input type="radio" name="q4" value="d"> d) El calor del Sol</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>5. La opción que representa una energía limpia corresponde a:</strong>
+                        <label class="option"><input type="radio" name="q5" value="a"> a) Combustibles fósiles</label>
+                        <label class="option"><input type="radio" name="q5" value="b"> b) Combustible nuclear</label>
+                        <label class="option"><input type="radio" name="q5" value="c"> c) Movimiento del agua</label>
+                        <label class="option"><input type="radio" name="q5" value="d"> d) Carbón mineral</label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>6. La capacidad que posee los cuerpos en movimiento se aprovecha en la energía:</strong>
+                        <label class="option"><input type="radio" name="q6" value="a"> a) Eólica</label>
+                        <label class="option"><input type="radio" name="q6" value="b"> b) Cinética</label>
+                        <label class="option"><input type="radio" name="q6" value="c"> c) Potencial</label>
+                        <label class="option"><input type="radio" name="q6" value="d"> d) Térmica</label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkMultiple()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetMultiple()">Limpiar</button>
+                    </div>
+                    
+                    <div id="multipleResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- RELACIONAR -->
+            <div id="relacionar" class="section">
+                <div class="question-box">
+                    <div class="question-title">RELACIONAR - Conecta cada aplicación con el tipo de energía</div>
+                    
+                    <p style="margin-bottom: 20px; color: #666;">
+                        <strong>Instrucciones:</strong> Selecciona el tipo de energía que corresponde a cada utilidad.
+                    </p>
+                    
+                    <div class="question-item">
+                        <strong>1. Una utilidad que le da el ser humano a la energía se observa en la opción:</strong>
+                        <select id="rel1" style="margin-top: 10px;">
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="a">a) Fotosíntesis</option>
+                            <option value="b">b) Electricidad</option>
+                            <option value="c">c) Radiactividad</option>
+                            <option value="d">d) Todas las anteriores</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. El texto sobre avances científicos y tecnológicos se refiere a:</strong>
+                        <select id="rel2">
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="a">a) Aplicaciones de la energía</option>
+                            <option value="b">b) Repercusiones de las fuentes de energía</option>
+                            <option value="c">c) Consecuencia del movimiento de las partículas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. ¿Qué proceso natural utiliza energía luminosa?</strong>
+                        <select id="rel3">
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="a">a) Respiración</option>
+                            <option value="b">b) Fotosíntesis</option>
+                            <option value="c">c) Digestión</option>
+                            <option value="d">d) Circulación</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. ¿Qué tipo de energía se relaciona con la radiactividad?</strong>
+                        <select id="rel4">
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="a">a) Energía solar</option>
+                            <option value="b">b) Energía nuclear</option>
+                            <option value="c">c) Energía eólica</option>
+                            <option value="d">d) Energía cinética</option>
+                        </select>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkRelacionar()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetRelacionar()">Limpiar</button>
+                    </div>
+                    
+                    <div id="relacionarResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- RESPUESTAS CORTAS -->
+            <div id="cortas" class="section">
+                <div class="question-box">
+                    <div class="question-title">RESPUESTAS CORTAS - Desarrolla tus respuestas</div>
+                    
+                    <div class="question-item">
+                        <strong>1. Menciona DOS diferencias entre energía natural y energía artificial:</strong>
+                        <textarea id="corta1" placeholder="Escribe tus dos diferencias aquí..."></textarea>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. ¿Cuáles son las ventajas de usar energías limpias en lugar de combustibles fósiles?</strong>
+                        <textarea id="corta2" placeholder="Menciona al menos tres ventajas..."></textarea>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. Explica la diferencia entre energía cinética y energía potencial con un ejemplo:</strong>
+                        <textarea id="corta3" placeholder="Escribe tu explicación con ejemplos..."></textarea>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. Describe cómo se transforma la energía en una central hidroeléctrica:</strong>
+                        <textarea id="corta4" placeholder="Explica el proceso de transformación..."></textarea>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkCortas()">Ver Respuestas Sugeridas</button>
+                        <button class="btn btn-secondary" onclick="resetCortas()">Limpiar</button>
+                    </div>
+                    
+                    <div id="cortasResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // OPCIÓN MÚLTIPLE
+        const multipleAnswers = {
+            q1: { correct: 'b', explanation: 'La energía luminosa puede ser NATURAL (del Sol) o ARTIFICIAL (creada por el ser humano como bombillas).' },
+            q2: { correct: 'a', explanation: 'Chernóbil fue un desastre de la central NUCLEAR en 1986, propagó radiación en gran parte de la antigua Unión Soviética.' },
+            q3: { correct: 'c', explanation: 'La energía HIDROELÉCTRICA aprovecha el movimiento del agua (olas del mar, velocidad de ríos) para generar electricidad.' },
+            q4: { correct: 'c', explanation: 'La energía GEOTÉRMICA se genera del CALOR PROVENIENTE DEL INTERIOR DE LA TIERRA.' },
+            q5: { correct: 'c', explanation: 'El MOVIMIENTO DEL AGUA (hidroeléctrica) es una energía LIMPIA, renovable y no contaminante.' },
+            q6: { correct: 'b', explanation: 'La energía CINÉTICA es la capacidad que posee los cuerpos en movimiento.' }
+        };
+        
+        function checkMultiple() {
+            let correct = 0;
+            let total = 6;
+            let resultHTML = '';
+            
+            for (let q in multipleAnswers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const userAnswer = selected ? selected.value : null;
+                const correctAnswer = multipleAnswers[q].correct;
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${q.substring(1)}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${multipleAnswers[q].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${q.substring(1)}:</strong> Incorrecto.<br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${multipleAnswers[q].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('multipleResult');
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas (${Math.round(percentage)}%)</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetMultiple() {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            document.getElementById('multipleResult').classList.remove('show');
+        }
+        
+        // RELACIONAR
+        const relacionarAnswers = {
+            rel1: { correct: 'd', explanation: 'TODAS las opciones son utilidades de la energía: Fotosíntesis (plantas), Electricidad (hogares/industrias), Radiactividad (medicina).' },
+            rel2: { correct: 'a', explanation: 'El texto sobre avances científicos para facilitar la vida se refiere a las APLICACIONES DE LA ENERGÍA.' },
+            rel3: { correct: 'b', explanation: 'La FOTOSÍNTESIS es el proceso donde las plantas usan energía luminosa (solar) para producir su alimento.' },
+            rel4: { correct: 'b', explanation: 'La RADIACTIVIDAD está relacionada con la ENERGÍA NUCLEAR (liberación de partículas radiactivas).' }
+        };
+        
+        function checkRelacionar() {
+            let correct = 0;
+            let total = 4;
+            let resultHTML = '';
+            
+            for (let q in relacionarAnswers) {
+                const selected = document.getElementById(q).value;
+                const correctAnswer = relacionarAnswers[q].correct;
+                
+                if (selected === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${q.substring(3)}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${relacionarAnswers[q].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${q.substring(3)}:</strong> ${selected ? 'Incorrecto' : 'Sin responder'}.<br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${relacionarAnswers[q].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('relacionarResult');
+            
+            if (percentage === 100) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetRelacionar() {
+            document.querySelectorAll('select').forEach(select => select.value = '');
+            document.getElementById('relacionarResult').classList.remove('show');
+        }
+        
+        // RESPUESTAS CORTAS
+        function checkCortas() {
+            const resultDiv = document.getElementById('cortasResult');
+            resultDiv.className = 'result partial show';
+            
+            resultDiv.innerHTML = `
+                <h3><span class="result-icon">📝</span> Respuestas Sugeridas</h3>
+                
+                <div style="margin: 15px 0;">
+                    <strong>1. Diferencias entre energía natural y artificial:</strong>
+                    <div class="explanation">
+                        • <strong>Origen:</strong> Natural proviene de fuentes naturales (Sol, viento), Artificial es generada por el humano.<br>
+                        • <strong>Disponibilidad:</strong> Natural es renovable e ilimitada, Artificial puede depender de recursos limitados.<br>
+                        • <strong>Impacto ambiental:</strong> Natural generalmente no contamina, Artificial puede generar contaminación.
+                    </div>
+                </div>
+                
+                <div style="margin: 15px 0;">
+                    <strong>2. Ventajas de las energías limpias:</strong>
+                    <div class="explanation">
+                        • Son <strong>renovables</strong> (no se agotan)<br>
+                        • No generan contaminación atmosférica<br>
+                        • No producen gases de efecto invernadero<br>
+                        • Reducen la dependencia de combustibles fósiles<br>
+                        • Contribuyen a la sostenibilidad del planeta
+                    </div>
+                </div>
+                
+                <div style="margin: 15px 0;">
+                    <strong>3. Energía cinética vs potencial:</strong>
+                    <div class="explanation">
+                        • <strong>Cinética:</strong> Energía del movimiento. Ejemplo: un auto en marcha, una pelota rodando.<br>
+                        • <strong>Potencial:</strong> Energía almacenada por posición. Ejemplo: una pelota en la cima de una colina, agua en una represa elevada.<br>
+                        • <strong>Transformación:</strong> Al soltar la pelota, la energía potencial se convierte en cinética.
+                    </div>
+                </div>
+                
+                <div style="margin: 15px 0;">
+                    <strong>4. Transformación en central hidroeléctrica:</strong>
+                    <div class="explanation">
+                        1. El agua en la represa tiene <strong>energía potencial</strong> (altura)<br>
+                        2. Al caer, se convierte en <strong>energía cinética</strong> (movimiento)<br>
+                        3. El agua mueve las turbinas (energía mecánica)<br>
+                        4. Las turbinas activan generadores que producen <strong>energía eléctrica</strong><br>
+                        5. La electricidad se distribuye a hogares e industrias
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px; font-style: italic; color: #666;">
+                    Compara tus respuestas con estas sugerencias. Si tus respuestas contienen las ideas principales, ¡están correctas!
+                </p>
+            `;
+            
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetCortas() {
+            document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+            document.getElementById('cortasResult').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

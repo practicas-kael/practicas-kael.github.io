@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Práctica - Modelos Atómicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: white;
+            color: #f5576c;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #f5576c;
+            border-bottom: 3px solid #f5576c;
+        }
+        
+        .tab:hover {
+            background: #e8e8e8;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .theory-section {
+            margin-bottom: 30px;
+        }
+        
+        .theory-section h2 {
+            color: #f5576c;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f5576c;
+        }
+        
+        .theory-section h3 {
+            color: #f093fb;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .theory-section p, .theory-section ul {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .theory-section ul {
+            margin-left: 25px;
+        }
+        
+        .theory-section li {
+            margin-bottom: 8px;
+        }
+        
+        .scientist-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .scientist-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .question-box {
+            background: #f9f9f9;
+            border-left: 4px solid #f5576c;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .question-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .question-item strong {
+            color: #f5576c;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #ffd4e5;
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #f5576c;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .result.partial {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+        
+        .result-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid #f5576c;
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '⚛️';
+            position: absolute;
+            left: -42px;
+            top: 0;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚛️ Examen de Práctica</h1>
+            <p>Ciencias: Historia de los Modelos Atómicos</p>
+            <a href="index.html" class="nav-button">← Volver al Inicio</a>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('theory')">📖 Teoría</button>
+            <button class="tab" onclick="showSection('multiple')">✓ Opción Múltiple</button>
+            <button class="tab" onclick="showSection('short')">✍️ Respuesta Corta</button>
+        </div>
+        
+        <div class="content">
+            <!-- SECCIÓN DE TEORÍA -->
+            <div id="theory" class="section active">
+                <div class="theory-section">
+                    <h2>Historia de los Modelos Atómicos</h2>
+                    
+                    <h3>¿Qué es un átomo?</h3>
+                    <p>El <strong>átomo</strong> es la unidad más pequeña de un elemento químico que mantiene sus propiedades. La palabra "átomo" proviene del griego: <strong>a = no</strong> y <strong>temmei = división</strong>, es decir, "que no se puede dividir".</p>
+                    
+                    <p>A lo largo de la historia, diferentes científicos han propuesto modelos para explicar la estructura del átomo:</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="scientist-card">
+                                <h4>🏛️ Demócrito y Leucipo (470-380 a.C.)</h4>
+                                <p><strong>Los primeros pensadores sobre el átomo</strong></p>
+                                <p>Estos filósofos griegos especulaban acerca de la naturaleza de la materia. Ellos enseñaban la teoría de que todo lo material que nos rodea está formado por partículas pequeñísimas e indivisibles que Demócrito llamó <strong>ÁTOMOS</strong>.</p>
+                                <ul>
+                                    <li><strong>Idea principal:</strong> La materia es discontinua (formada por partículas)</li>
+                                    <li><strong>Postulado:</strong> El átomo es la partícula más pequeña e indivisible</li>
+                                    <li><strong>Limitación:</strong> Era solo filosofía, sin evidencia experimental</li>
+                                </ul>
+                                <p><em>Demócrito fue el descubridor del concepto de átomo.</em></p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="scientist-card">
+                                <h4>⚪ John Dalton (1803)</h4>
+                                <p><strong>El modelo científico del átomo</strong></p>
+                                <p>Fue la base lógica de la existencia del átomo. Desarrolló un modelo científico y formuló una serie de postulados concerniente a la naturaleza de los átomos.</p>
+                                
+                                <h4 style="margin-top: 15px;">Postulados de Dalton:</h4>
+                                <ul>
+                                    <li>🔸 La materia está compuesta por partículas pequeñísimas llamadas <strong>átomos</strong></li>
+                                    <li>🔸 Los átomos son <strong>indivisibles</strong> y no pueden transformarse unos en otros</li>
+                                    <li>🔸 Los átomos <strong>no pueden ser creados ni destruidos</strong></li>
+                                    <li>🔸 Átomos del mismo elemento son idénticos</li>
+                                    <li>🔸 Los compuestos se forman por combinación de átomos de diferentes elementos en proporciones definidas</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Importancia:</strong> Sus postulados formaron la base experimental de:</p>
+                                <ul>
+                                    <li>✓ La Ley de Proporciones Múltiples</li>
+                                    <li>✓ La Ley de Conservación de la Materia</li>
+                                    <li>✓ La Ley de Proporciones Definidas</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><em>💡 Hoy en día se reconoce que estos postulados no son del todo correctos, pero fueron la primera formulación racional de la teoría atómica y las combinaciones químicas.</em></p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="scientist-card">
+                                <h4>🍇 Joseph J. Thomson (1897)</h4>
+                                <p><strong>El Modelo del "Budín de Pasas"</strong></p>
+                                <p>Demostró que los rayos podían ser desviados por la aplicación de un campo eléctrico, lo que hace que los rayos se alejen del electrodo negativo. Thomson midió la relación entre <strong>la carga (a)</strong> y <strong>la masa (m)</strong>, a/m de estas partículas.</p>
+                                
+                                <h4 style="margin-top: 15px;">Características del Modelo:</h4>
+                                <ul>
+                                    <li>🔹 El átomo está compuesto por <strong>electrones de carga negativa</strong> embebidos en un átomo positivo</li>
+                                    <li>🔹 Fue denominado <strong>"Modelo del budín de pasas"</strong></li>
+                                    <li>🔹 Los electrones se distribuyen <strong>uniformemente</strong> en el interior del átomo</li>
+                                    <li>🔹 Están suspendidos en una <strong>nube de carga positiva</strong></li>
+                                    <li>🔹 El átomo se consideraba como una <strong>esfera con carga positiva</strong></li>
+                                    <li>🔹 Los electrones están repartidos como <strong>pequeños gránulos</strong></li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Descubrimiento clave:</strong> Thomson descubrió el <strong>electrón</strong>, demostrando que los átomos SÍ tienen partes más pequeñas.</p>
+                                
+                                <p style="margin-top: 15px;"><em>💡 La herramienta principal con la que contó Thomson para su modelo atómico fue la electricidad.</em></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>📊 Comparación de los Modelos</h3>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                            <thead style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                                <tr>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Científico</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Año</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Modelo</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Aporte Principal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Demócrito y Leucipo</strong></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">470-380 a.C.</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Filosófico</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Concepto de átomo indivisible</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>John Dalton</strong></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">1803</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Esfera sólida</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Base científica del átomo</td>
+                                </tr>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>J.J. Thomson</strong></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">1897</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Budín de pasas</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Descubrimiento del electrón</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button class="btn" onclick="showSection('multiple')">Comenzar Examen →</button>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE OPCIÓN MÚLTIPLE -->
+            <div id="multiple" class="section">
+                <div class="question-box">
+                    <div class="question-title">A. OPCIÓN MÚLTIPLE - Valor: 10 puntos</div>
+                    <p><strong>Instrucciones:</strong> Selecciona la respuesta correcta para cada pregunta.</p>
+                    
+                    <div class="question-item">
+                        <strong>1. ¿Qué significa la palabra "átomo"?</strong>
+                        <label class="option">
+                            <input type="radio" name="q1" value="a"> a) Que se puede dividir infinitamente
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="b"> b) No división (que no se puede dividir)
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="c"> c) Partícula con carga eléctrica
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="d"> d) Unidad de energía
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. ¿Quién fue el descubridor del concepto de átomo?</strong>
+                        <label class="option">
+                            <input type="radio" name="q2" value="a"> a) John Dalton
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="b"> b) J.J. Thomson
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="c"> c) Demócrito
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="d"> d) Leucipo
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. Según Dalton, los átomos son:</strong>
+                        <label class="option">
+                            <input type="radio" name="q3" value="a"> a) Divisibles y pueden transformarse
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="b"> b) Indivisibles y no pueden transformarse unos en otros
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="c"> c) Contienen electrones
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="d"> d) Tienen carga positiva y negativa
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>4. ¿Cuál fue el aporte principal de J.J. Thomson?</strong>
+                        <label class="option">
+                            <input type="radio" name="q4" value="a"> a) Propuso que la materia es discontinua
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="b"> b) Descubrió el electrón y demostró que el átomo tiene partículas más pequeñas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="c"> c) Propuso que los átomos son indivisibles
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="d"> d) Creó la tabla periódica
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>5. ¿Cómo se llamó el modelo atómico de Thomson?</strong>
+                        <label class="option">
+                            <input type="radio" name="q5" value="a"> a) Modelo planetario
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="b"> b) Modelo del budín de pasas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="c"> c) Modelo de la esfera sólida
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="d"> d) Modelo atómico filosófico
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>6. Según el modelo de Thomson, los electrones están:</strong>
+                        <label class="option">
+                            <input type="radio" name="q6" value="a"> a) Girando alrededor del núcleo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="b"> b) Embebidos en una nube de carga positiva
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="c"> c) En el centro del átomo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="d"> d) Fuera del átomo
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>7. ¿Cuál de las siguientes leyes se basó en los postulados de Dalton?</strong>
+                        <label class="option">
+                            <input type="radio" name="q7" value="a"> a) Ley de la gravedad
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="b"> b) Ley de Conservación de la Materia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="c"> c) Ley de la inercia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="d"> d) Ley de acción y reacción
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>8. Thomson midió la relación entre:</strong>
+                        <label class="option">
+                            <input type="radio" name="q8" value="a"> a) La velocidad y el tiempo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="b"> b) La carga y la masa (a/m)
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="c"> c) La energía y la masa
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="d"> d) El volumen y la presión
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>9. ¿Qué herramienta principal utilizó Thomson para su modelo atómico?</strong>
+                        <label class="option">
+                            <input type="radio" name="q9" value="a"> a) El microscopio
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="b"> b) La electricidad
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="c"> c) El magnetismo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="d"> d) La radiación
+                        </label>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>10. Demócrito enseñaba que la materia es:</strong>
+                        <label class="option">
+                            <input type="radio" name="q10" value="a"> a) Continua (sin espacios)
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="b"> b) Discontinua (formada por partículas)
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="c"> c) Líquida
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="d"> d) Energética
+                        </label>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkMultiple()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetMultiple()">Reintentar</button>
+                    </div>
+                    
+                    <div id="multipleResult" class="result"></div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN DE RESPUESTA CORTA -->
+            <div id="short" class="section">
+                <div class="question-box">
+                    <div class="question-title">B. RESPUESTA CORTA - Valor: 6 puntos</div>
+                    <p><strong>Instrucciones:</strong> Responde las siguientes preguntas con tus propias palabras.</p>
+                    
+                    <div class="question-item">
+                        <strong>1. Explica con tus palabras qué significa que la materia es "discontinua" según Demócrito: (2 puntos)</strong>
+                        <textarea id="short1" placeholder="Escribe tu respuesta aquí..."></textarea>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>2. Menciona dos postulados de John Dalton sobre los átomos: (2 puntos)</strong>
+                        <textarea id="short2" placeholder="Escribe tu respuesta aquí..."></textarea>
+                    </div>
+                    
+                    <div class="question-item">
+                        <strong>3. Describe brevemente el modelo atómico de Thomson (modelo del budín de pasas): (2 puntos)</strong>
+                        <textarea id="short3" placeholder="Escribe tu respuesta aquí..."></textarea>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="btn" onclick="checkShort()">Verificar Respuestas</button>
+                        <button class="btn btn-secondary" onclick="resetShort()">Reintentar</button>
+                    </div>
+                    
+                    <div id="shortResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Respuestas correctas para opción múltiple
+        const multipleAnswers = {
+            q1: { correct: 'b', explanation: 'Átomo viene del griego: a = no y temmei = división, significa "que no se puede dividir".' },
+            q2: { correct: 'c', explanation: 'Demócrito fue el descubridor del concepto de átomo, junto con Leucipo desarrollaron esta teoría filosófica.' },
+            q3: { correct: 'b', explanation: 'Dalton postuló que los átomos son indivisibles y no pueden transformarse unos en otros.' },
+            q4: { correct: 'b', explanation: 'Thomson descubrió el electrón y demostró que los átomos tienen partículas más pequeñas, contradiciendo la idea de átomo indivisible.' },
+            q5: { correct: 'b', explanation: 'El modelo de Thomson se llamó "Modelo del budín de pasas" porque los electrones estaban embebidos como pasas en una masa positiva.' },
+            q6: { correct: 'b', explanation: 'En el modelo de Thomson, los electrones están embebidos (suspendidos) en una nube de carga positiva.' },
+            q7: { correct: 'b', explanation: 'Los postulados de Dalton formaron la base de la Ley de Conservación de la Materia, entre otras leyes.' },
+            q8: { correct: 'b', explanation: 'Thomson midió la relación entre la carga (a) y la masa (m), expresada como a/m de las partículas.' },
+            q9: { correct: 'b', explanation: 'La herramienta principal con la que contó Thomson para su modelo atómico fue la electricidad.' },
+            q10: { correct: 'b', explanation: 'Demócrito enseñaba que la materia es discontinua, es decir, formada por partículas separadas (átomos).' }
+        };
+        
+        // Guías para respuestas cortas
+        const shortGuides = {
+            q1: {
+                keywords: ['partículas', 'separadas', 'espacios', 'átomos', 'discontinua', 'no continua', 'dividida'],
+                answer: 'Que la materia está formada por partículas pequeñas (átomos) separadas entre sí, con espacios vacíos entre ellas, no es una masa continua sin divisiones.'
+            },
+            q2: {
+                keywords: ['indivisibles', 'pequeñísimas', 'no destruidos', 'no creados', 'transformarse', 'compuesta'],
+                answer: 'Ejemplos: 1) La materia está compuesta por partículas pequeñísimas llamadas átomos. 2) Los átomos son indivisibles. 3) Los átomos no pueden ser creados ni destruidos. 4) No pueden transformarse unos en otros.'
+            },
+            q3: {
+                keywords: ['electrones', 'carga positiva', 'embebidos', 'pasas', 'budín', 'esfera', 'distribuidos', 'uniformemente'],
+                answer: 'El átomo es como un budín o esfera con carga positiva, donde los electrones (carga negativa) están embebidos o distribuidos uniformemente como las pasas en un budín.'
+            }
+        };
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function checkMultiple() {
+            let correct = 0;
+            let total = 10;
+            let resultHTML = '';
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                const userAnswer = selected ? selected.value : null;
+                const correctAnswer = multipleAnswers[`q${i}`].correct;
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">✅</span>
+                        <strong>Pregunta ${i}:</strong> ¡Correcto!<br>
+                        <div class="explanation">${multipleAnswers[`q${i}`].explanation}</div>
+                    </div>`;
+                } else {
+                    resultHTML += `<div style="margin: 10px 0;">
+                        <span class="result-icon">❌</span>
+                        <strong>Pregunta ${i}:</strong> Incorrecto. 
+                        Seleccionaste: <strong>${userAnswer || 'ninguna'}</strong><br>
+                        <div class="explanation">Respuesta correcta: <strong>${correctAnswer.toUpperCase()}</strong><br>
+                        ${multipleAnswers[`q${i}`].explanation}</div>
+                    </div>`;
+                }
+            }
+            
+            const percentage = (correct / total) * 100;
+            const resultDiv = document.getElementById('multipleResult');
+            
+            if (correct === total) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Perfecto! ${correct}/${total} correctas (${percentage}%)</h3>` + resultHTML;
+            } else if (percentage >= 70) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${correct}/${total} correctas (${percentage}%)</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${correct}/${total} correctas (${percentage}%)</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function resetMultiple() {
+            for (let i = 1; i <= 10; i++) {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                radios.forEach(radio => radio.checked = false);
+            }
+            document.getElementById('multipleResult').classList.remove('show');
+        }
+        
+        function checkShort() {
+            let totalPoints = 0;
+            let maxPoints = 6;
+            let resultHTML = '';
+            
+            // Pregunta 1
+            const q1 = document.getElementById('short1').value.toLowerCase().trim();
+            let q1Points = 0;
+            const q1Matches = shortGuides.q1.keywords.filter(keyword => q1.includes(keyword)).length;
+            if (q1Matches >= 2 && q1.length > 20) {
+                q1Points = 2;
+            } else if (q1Matches >= 1 && q1.length > 10) {
+                q1Points = 1;
+            }
+            totalPoints += q1Points;
+            
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 1: Materia discontinua</strong><br>
+                Puntos obtenidos: ${q1Points}/2<br>
+                <div class="explanation">
+                    <strong>Respuesta esperada:</strong><br>
+                    ${shortGuides.q1.answer}
+                </div>
+            </div>`;
+            
+            // Pregunta 2
+            const q2 = document.getElementById('short2').value.toLowerCase().trim();
+            let q2Points = 0;
+            const q2Matches = shortGuides.q2.keywords.filter(keyword => q2.includes(keyword)).length;
+            if (q2Matches >= 3 && q2.length > 30) {
+                q2Points = 2;
+            } else if (q2Matches >= 2 && q2.length > 15) {
+                q2Points = 1;
+            }
+            totalPoints += q2Points;
+            
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 2: Postulados de Dalton</strong><br>
+                Puntos obtenidos: ${q2Points}/2<br>
+                <div class="explanation">
+                    <strong>Respuestas correctas:</strong><br>
+                    ${shortGuides.q2.answer}
+                </div>
+            </div>`;
+            
+            // Pregunta 3
+            const q3 = document.getElementById('short3').value.toLowerCase().trim();
+            let q3Points = 0;
+            const q3Matches = shortGuides.q3.keywords.filter(keyword => q3.includes(keyword)).length;
+            if (q3Matches >= 3 && q3.length > 25) {
+                q3Points = 2;
+            } else if (q3Matches >= 2 && q3.length > 15) {
+                q3Points = 1;
+            }
+            totalPoints += q3Points;
+            
+            resultHTML += `<div style="margin: 15px 0;">
+                <strong>Pregunta 3: Modelo de Thomson</strong><br>
+                Puntos obtenidos: ${q3Points}/2<br>
+                <div class="explanation">
+                    <strong>Respuesta esperada:</strong><br>
+                    ${shortGuides.q3.answer}
+                </div>
+            </div>`;
+            
+            // Mostrar resultado
+            const percentage = (totalPoints / maxPoints) * 100;
+            const resultDiv = document.getElementById('shortResult');
+            
+            if (percentage >= 80) {
+                resultDiv.className = 'result correct show';
+                resultHTML = `<h3><span class="result-icon">🎉</span> ¡Excelente! ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            } else if (percentage >= 60) {
+                resultDiv.className = 'result partial show';
+                resultHTML = `<h3><span class="result-icon">👍</span> Bien. ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            } else {
+                resultDiv.className = 'result incorrect show';
+                resultHTML = `<h3><span class="result-icon">📚</span> Necesitas repasar. ${totalPoints}/${maxPoints} puntos</h3>` + resultHTML;
+            }
+            
+            resultDiv.innerHTML = resultHTML;
+        }
+        
+        function resetShort() {
+            document.getElementById('short1').value = '';
+            document.getElementById('short2').value = '';
+            document.getElementById('short3').value = '';
+            document.getElementById('shortResult').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Exámenes de Práctica - Ciencias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.85;
+        }
+        
+        .header .stats {
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        /* Sección de Repaso General destacada */
+        .featured-exam {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: fadeInUp 0.8s;
+            border: 5px solid #fa709a;
+        }
+        
+        .featured-exam .badge {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .featured-exam h2 {
+            font-size: 2.5em;
+            color: #fa709a;
+            margin-bottom: 15px;
+        }
+        
+        .featured-exam .icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        
+        .featured-exam p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .featured-exam .btn-featured {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 6px 25px rgba(250, 112, 154, 0.5);
+        }
+        
+        .featured-exam .btn-featured:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(250, 112, 154, 0.7);
+        }
+        
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2em;
+            margin: 40px 0 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+        
+        .exam-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exam-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+        
+        .exam-card.cell::before {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .exam-card.atoms::before {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+        }
+        
+        .exam-card.elements::before {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+        }
+        
+        .exam-card.bio::before {
+            background: linear-gradient(90deg, #43e97b, #38f9d7);
+        }
+        
+        .exam-card.energy::before {
+            background: linear-gradient(90deg, #ffeaa7, #e17055);
+        }
+        
+        .exam-card.atomic::before {
+            background: linear-gradient(90deg, #a8edea, #fed6e3);
+        }
+        
+        .exam-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .exam-icon {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .exam-title {
+            font-size: 1.6em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        
+        .exam-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+        
+        .exam-topics {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+        
+        .exam-topics h4 {
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        
+        .cell .exam-topics h4 {
+            color: #667eea;
+        }
+        
+        .atoms .exam-topics h4 {
+            color: #f5576c;
+        }
+        
+        .elements .exam-topics h4 {
+            color: #00f2fe;
+        }
+        
+        .bio .exam-topics h4 {
+            color: #38f9d7;
+        }
+        
+        .exam-topics ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .exam-topics li {
+            padding: 4px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+        
+        .exam-topics li::before {
+            content: '✓ ';
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .cell .exam-topics li::before {
+            color: #667eea;
+        }
+        
+        .atoms .exam-topics li::before {
+            color: #f5576c;
+        }
+        
+        .elements .exam-topics li::before {
+            color: #00f2fe;
+        }
+        
+        .bio .exam-topics li::before {
+            color: #38f9d7;
+        }
+        
+        .energy .exam-topics h4 {
+            color: #e17055;
+        }
+        
+        .energy .exam-topics li::before {
+            color: #e17055;
+        }
+        
+        .atomic .exam-topics h4 {
+            color: #a8edea;
+        }
+        
+        .atomic .exam-topics li::before {
+            color: #a8edea;
+        }
+        
+        .exam-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 18px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .cell .stat-number {
+            color: #667eea;
+        }
+        
+        .atoms .stat-number {
+            color: #f5576c;
+        }
+        
+        .elements .stat-number {
+            color: #00f2fe;
+        }
+        
+        .bio .stat-number {
+            color: #38f9d7;
+        }
+        
+        .energy .stat-number {
+            color: #e17055;
+        }
+        
+        .atomic .stat-number {
+            color: #a8edea;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .btn-start {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.05em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cell .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .atoms .btn-start {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+        
+        .elements .btn-start {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+        }
+        
+        .bio .btn-start {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            box-shadow: 0 4px 15px rgba(56, 249, 215, 0.4);
+        }
+        
+        .energy .btn-start {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+            box-shadow: 0 4px 15px rgba(225, 112, 85, 0.4);
+        }
+        
+        .atomic .btn-start {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            box-shadow: 0 4px 15px rgba(168, 237, 234, 0.4);
+        }
+        
+        .btn-start:hover {
+            transform: translateY(-2px);
+        }
+        
+        .cell .btn-start:hover {
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .atoms .btn-start:hover {
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+        
+        .elements .btn-start:hover {
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+        }
+        
+        .energy .btn-start:hover {
+            box-shadow: 0 6px 20px rgba(225, 112, 85, 0.6);
+        }
+        
+        .bio .btn-start:hover {
+            box-shadow: 0 6px 20px rgba(56, 249, 215, 0.6);
+        }
+        
+        .atomic .btn-start:hover {
+            box-shadow: 0 6px 20px rgba(168, 237, 234, 0.6);
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            opacity: 0.9;
+            padding: 20px;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .featured-exam h2 {
+                font-size: 1.8em;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Portal de Exámenes de Práctica</h1>
+            <p>Ciencias - Preparación Completa para Exámenes</p>
+            <p class="subtitle">6 Exámenes Interactivos con Teoría y Práctica</p>
+            <p class="stats">📝 Más de 90 preguntas para practicar</p>
+        </div>
+        
+        <!-- Examen Destacado -->
+        <div class="featured-exam">
+            <div class="badge">⭐ RECOMENDADO - EXAMEN COMPLETO</div>
+            <div class="icon">🎓</div>
+            <h2>Examen de Repaso General</h2>
+            <p>
+                <strong>¡Pon a prueba todo tu conocimiento!</strong><br>
+                20 preguntas que integran todos los temas: División Celular, Modelos Atómicos, 
+                Elementos Químicos y Bioelementos. El examen perfecto para prepararte antes del examen real.
+            </p>
+            <a href="examen_repaso_general.html" class="btn-featured">Comenzar Repaso General →</a>
+        </div>
+        
+        <h2 class="section-title">📖 Exámenes por Tema Individual</h2>
+        
+        <div class="cards-container">
+            <!-- Tarjeta de División Celular -->
+            <div class="exam-card cell">
+                <div class="exam-icon">🧬</div>
+                <h2 class="exam-title">División Celular</h2>
+                <p class="exam-description">
+                    Practica todo sobre el ciclo celular, mitosis y estructuras celulares fundamentales.
+                </p>
+                
+                <div class="exam-topics">
+                    <h4>Temas incluidos:</h4>
+                    <ul>
+                        <li>Ciclo Celular e Interfase</li>
+                        <li>Fases de la Mitosis (IPMAT)</li>
+                        <li>Membrana Celular</li>
+                        <li>Citoplasma</li>
+                        <li>Núcleo Celular</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-stats">
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Correspondencia</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Resp. Corta</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Preguntas</div>
+                    </div>
+                </div>
+                
+                <a href="examen_practica_ciencias.html" class="btn-start">Comenzar Práctica →</a>
+            </div>
+            
+            <!-- Tarjeta de Modelos Atómicos -->
+            <div class="exam-card atoms">
+                <div class="exam-icon">⚛️</div>
+                <h2 class="exam-title">Modelos Atómicos</h2>
+                <p class="exam-description">
+                    Explora la historia de los modelos atómicos desde Demócrito hasta Thomson.
+                </p>
+                
+                <div class="exam-topics">
+                    <h4>Temas incluidos:</h4>
+                    <ul>
+                        <li>Demócrito y Leucipo</li>
+                        <li>Modelo de John Dalton</li>
+                        <li>Modelo de J.J. Thomson</li>
+                        <li>Budín de Pasas</li>
+                        <li>Descubrimiento del Electrón</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-stats">
+                    <div class="stat">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Opción Múltiple</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Resp. Corta</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Preguntas</div>
+                    </div>
+                </div>
+                
+                <a href="examen_practica_atomos.html" class="btn-start">Comenzar Práctica →</a>
+            </div>
+            
+            <!-- Tarjeta de Elementos Químicos -->
+            <div class="exam-card elements">
+                <div class="exam-icon">🧪</div>
+                <h2 class="exam-title">Elementos Químicos</h2>
+                <p class="exam-description">
+                    Aprende sobre la clasificación de elementos: metales, no metales y metaloides.
+                </p>
+                
+                <div class="exam-topics">
+                    <h4>Temas incluidos:</h4>
+                    <ul>
+                        <li>Metales y sus propiedades</li>
+                        <li>No Metales características</li>
+                        <li>Metaloides semiconductores</li>
+                        <li>Tabla Periódica</li>
+                        <li>Ejemplos de elementos</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-stats">
+                    <div class="stat">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Clasificación</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Completar</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Preguntas</div>
+                    </div>
+                </div>
+                
+                <a href="examen_practica_elementos.html" class="btn-start">Comenzar Práctica →</a>
+            </div>
+            
+            <!-- Tarjeta de Bioelementos y Modelos Atómicos Avanzados -->
+            <div class="exam-card bio">
+                <div class="exam-icon">🌿</div>
+                <h2 class="exam-title">Bioelementos</h2>
+                <p class="exam-description">
+                    Descubre los elementos esenciales para la vida y modelos atómicos avanzados.
+                </p>
+                
+                <div class="exam-topics">
+                    <h4>Temas incluidos:</h4>
+                    <ul>
+                        <li>Carbono, Calcio, Fósforo</li>
+                        <li>Funciones en el cuerpo</li>
+                        <li>Fuentes alimentarias</li>
+                        <li>Modelos de Rutherford y Bohr</li>
+                        <li>Identificación de modelos</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-stats">
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Identificación</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Correspondencia</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">11</div>
+                        <div class="stat-label">Preguntas</div>
+                    </div>
+                </div>
+                
+                <a href="examen_practica_bioelementos.html" class="btn-start">Comenzar Práctica →</a>
+            </div>
+            
+            <!-- Tarjeta de Energía -->
+            <div class="exam-card energy">
+                <div class="exam-icon">⚡</div>
+                <h2 class="exam-title">Tipos de Energía</h2>
+                <p class="exam-description">
+                    Estudia los diferentes tipos de energía, sus aplicaciones y transformaciones.
+                </p>
+                
+                <div class="exam-topics">
+                    <h4>Temas incluidos:</h4>
+                    <ul>
+                        <li>Energía natural y artificial</li>
+                        <li>Nuclear, hidroeléctrica, geotérmica</li>
+                        <li>Cinética y potencial</li>
+                        <li>Energías limpias</li>
+                        <li>Aplicaciones de la energía</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-stats">
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Opción Múltiple</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Relacionar</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Preguntas</div>
+                    </div>
+                </div>
+                
+                <a href="examen_energia.html" class="btn-start">Comenzar Práctica →</a>
+            </div>
+            
+            <!-- Tarjeta de Estructura Atómica -->
+            <div class="exam-card atomic">
+                <div class="exam-icon">⚛️</div>
+                <h2 class="exam-title">Estructura Atómica</h2>
+                <p class="exam-description">
+                    Domina el cálculo de protones, neutrones y electrones en átomos e iones.
+                </p>
+                
+                <div class="exam-topics">
+                    <h4>Temas incluidos:</h4>
+                    <ul>
+                        <li>Número atómico y masa atómica</li>
+                        <li>Protones, neutrones, electrones</li>
+                        <li>Cationes y aniones</li>
+                        <li>Fórmula A = Z + n</li>
+                        <li>Cálculos con iones</li>
+                    </ul>
+                </div>
+                
+                <div class="exam-stats">
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Cálculos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">11</div>
+                        <div class="stat-label">Conceptuales</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">Preguntas</div>
+                    </div>
+                </div>
+                
+                <a href="examen_estructura_atomica.html" class="btn-start">Comenzar Práctica →</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 <strong>Consejo:</strong> Estudia primero la teoría en cada examen</p>
+            <p>✨ Puedes repetir los exámenes cuantas veces necesites</p>
+            <p>📖 Cada examen incluye explicaciones detalladas de las respuestas</p>
+            <p>🎯 <strong>Estrategia recomendada:</strong> Temas individuales → Repaso General</p>
+            <p>📊 Total: <strong>7 exámenes completos</strong> con más de <strong>90 preguntas</strong></p>
+            <p>🧮 Incluye ejercicios prácticos de cálculo y resolución de problemas</p>
+        </div>
+    </div>
+</body>
+</html>
