@@ -184,6 +184,97 @@
             background: rgba(255,255,255,0.3);
         }
         
+        /* Estilos para Ruta de Aprendizaje */
+        .learning-path {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s 0.1s both;
+        }
+        
+        .learning-path h3 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .learning-path .intro {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+        
+        .path-levels {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .path-level {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 5px solid;
+        }
+        
+        .path-level.level-1 { border-left-color: #4caf50; }
+        .path-level.level-2 { border-left-color: #2196f3; }
+        .path-level.level-3 { border-left-color: #ff9800; }
+        .path-level.level-4 { border-left-color: #e91e63; }
+        
+        .path-level h4 {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .path-level ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .path-level li {
+            color: #555;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .path-level li::before {
+            content: '✓';
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        /* Badges de nivel en tarjetas */
+        .level-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .level-badge.nivel-1 { background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%); }
+        .level-badge.nivel-2 { background: linear-gradient(135deg, #2196f3 0%, #42a5f5 100%); }
+        .level-badge.nivel-3 { background: linear-gradient(135deg, #ff9800 0%, #ffa726 100%); }
+        .level-badge.nivel-4 { background: linear-gradient(135deg, #e91e63 0%, #ec407a 100%); }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -238,6 +329,50 @@
             <p>Primera Convocatoria - Prácticas y Examen Completo</p>
         </div>
         
+        <!-- Ruta de Aprendizaje Sugerida -->
+        <div class="learning-path">
+            <h3>🗺️ Ruta de Aprendizaje Sugerida</h3>
+            <p class="intro">
+                Para facilitar tu aprendizaje, hemos organizado las prácticas en <strong>4 niveles progresivos</strong>. 
+                Puedes seguir este orden para construir conocimiento de forma gradual, o navegar libremente entre las secciones 
+                según lo que necesites repasar. <em>¡La elección es tuya!</em>
+            </p>
+            
+            <div class="path-levels">
+                <div class="path-level level-1">
+                    <h4>🎯 Nivel 1: Fundamentos Numéricos</h4>
+                    <ul>
+                        <li>Tablas de Multiplicar - Automatiza multiplicaciones básicas</li>
+                        <li>Operaciones Combinadas - Domina el orden PEMDAS</li>
+                    </ul>
+                </div>
+                
+                <div class="path-level level-2">
+                    <h4>📖 Nivel 2: Vocabulario Algebraico</h4>
+                    <ul>
+                        <li>Términos Algebraicos - Aprende el "lenguaje" (coeficiente, variable, exponente)</li>
+                        <li>Monomios y Polinomios - Clasifica expresiones por número de términos</li>
+                    </ul>
+                </div>
+                
+                <div class="path-level level-3">
+                    <h4>🔢 Nivel 3: Operaciones Algebraicas</h4>
+                    <ul>
+                        <li>Multiplicación Algebraica - Opera con variables y exponentes</li>
+                        <li>Fórmulas Notables - Atajos para multiplicaciones especiales</li>
+                    </ul>
+                </div>
+                
+                <div class="path-level level-4">
+                    <h4>🎓 Nivel 4: Resolución y Aplicación</h4>
+                    <ul>
+                        <li>Ecuaciones Lineales - Despeja variables aplicando todo lo anterior</li>
+                        <li>Segmentos Proporcionales - Aplica ecuaciones a problemas del mundo real</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
         <!-- Examenes Principales -->
         <div class="section">
             <h2 class="section-title">🎯 Exámenes Principales</h2>
@@ -268,62 +403,37 @@
         
         <!-- Prácticas por Tema -->
         <div class="section">
-            <h2 class="section-title">📚 Prácticas por Tema</h2>
+            <h2 class="section-title">📚 Prácticas por Tema (Ordenadas por Nivel)</h2>
             <div class="exams-grid">
+                <!-- NIVEL 1: Fundamentos Numéricos -->
+                <a href="practica_tablas_multiplicar.html" class="exam-card">
+                    <span class="level-badge nivel-1">Nivel 1</span>
+                    <span class="exam-icon">✖️</span>
+                    <h3>Tablas de Multiplicar</h3>
+                    <p>Práctica interactiva de tablas del 1 al 10. Incluye modo práctica por tabla, modo prueba aleatoria, y visualización completa de todas las tablas. <strong>¡Comienza aquí!</strong></p>
+                    <div class="exam-meta">
+                        <div class="meta-item">🎮 <strong>3</strong> modos</div>
+                        <div class="meta-item">⚡ <strong>Interactivo</strong></div>
+                    </div>
+                </a>
+                
                 <a href="practica_operaciones_combinadas.html" class="exam-card">
+                    <span class="level-badge nivel-1">Nivel 1</span>
                     <span class="exam-icon">🔢</span>
                     <h3>Operaciones Combinadas</h3>
-                    <p>Practica el orden correcto de operaciones con fracciones, multiplicación, división, sumas y restas. 8 ejercicios con procedimiento.</p>
+                    <p>Practica el orden correcto de operaciones (PEMDAS) con fracciones, multiplicación, división, sumas y restas. 8 ejercicios con procedimiento.</p>
                     <div class="exam-meta">
                         <div class="meta-item">📝 <strong>8</strong> preguntas</div>
                         <div class="meta-item">⏱️ <strong>~15 min</strong></div>
                     </div>
                 </a>
                 
-                <a href="practica_segmentos_proporcionales.html" class="exam-card">
-                    <span class="exam-icon">📐</span>
-                    <h3>Segmentos Proporcionales</h3>
-                    <p>Teorema de Tales aplicado a segmentos proporcionales. Resuelve proporciones geométricas usando productos cruzados. Geometría básica.</p>
-                    <div class="exam-meta">
-                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
-                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
-                    </div>
-                </a>
-                
-                <a href="practica_formulas_notables.html" class="exam-card">
-                    <span class="exam-icon">✨</span>
-                    <h3>Fórmulas Notables</h3>
-                    <p>Productos notables: binomio al cuadrado y suma por diferencia. Desarrolla expresiones algebraicas aplicando las fórmulas.</p>
-                    <div class="exam-meta">
-                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
-                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
-                    </div>
-                </a>
-                
-                <a href="practica_ecuaciones_lineales.html" class="exam-card">
-                    <span class="exam-icon">⚖️</span>
-                    <h3>Ecuaciones Lineales</h3>
-                    <p>Resuelve ecuaciones despejando la variable x. Incluye ecuaciones simples y con paréntesis. Aprende a despejar correctamente.</p>
-                    <div class="exam-meta">
-                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
-                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
-                    </div>
-                </a>
-                
-                <a href="practica_multiplicacion_algebraica.html" class="exam-card">
-                    <span class="exam-icon">🧮</span>
-                    <h3>Multiplicación Algebraica</h3>
-                    <p>Multiplicación de monomios y binomios. Aplica la propiedad distributiva y combina términos semejantes correctamente.</p>
-                    <div class="exam-meta">
-                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
-                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
-                    </div>
-                </a>
-                
+                <!-- NIVEL 2: Vocabulario Algebraico -->
                 <a href="practica_terminos_algebraicos.html" class="exam-card">
-                    <span class="exam-icon">🔢</span>
+                    <span class="level-badge nivel-2">Nivel 2</span>
+                    <span class="exam-icon">🔤</span>
                     <h3>Términos Algebraicos y Exponentes</h3>
-                    <p>Operaciones con términos semejantes, leyes de exponentes, factor numérico y literal. Selección múltiple con explicaciones.</p>
+                    <p>Operaciones con términos semejantes, leyes de exponentes, factor numérico y literal. Aprende el vocabulario del álgebra. Selección múltiple.</p>
                     <div class="exam-meta">
                         <div class="meta-item">📝 <strong>8</strong> preguntas</div>
                         <div class="meta-item">⏱️ <strong>~12 min</strong></div>
@@ -331,22 +441,59 @@
                 </a>
                 
                 <a href="practica_monomios_polinomios.html" class="exam-card">
+                    <span class="level-badge nivel-2">Nivel 2</span>
                     <span class="exam-icon">📊</span>
                     <h3>Monomios y Polinomios</h3>
-                    <p>Identificación y clasificación de expresiones algebraicas. Diferencia entre monomios, binomios, trinomios y polinomios.</p>
+                    <p>Identificación y clasificación de expresiones algebraicas. Diferencia entre monomios, binomios, trinomios y polinomios según el número de términos.</p>
                     <div class="exam-meta">
                         <div class="meta-item">📝 <strong>8</strong> preguntas</div>
                         <div class="meta-item">⏱️ <strong>~10 min</strong></div>
                     </div>
                 </a>
-
-                <a href="practica_tablas_multiplicar.html" class="exam-card">
-                    <span class="exam-icon">✖️</span>
-                    <h3>Tablas de Multiplicar</h3>
-                    <p>Práctica interactiva de tablas del 1 al 10. Incluye modo práctica por tabla, modo prueba aleatoria, y visualización completa de todas las tablas.</p>
+                
+                <!-- NIVEL 3: Operaciones Algebraicas -->
+                <a href="practica_multiplicacion_algebraica.html" class="exam-card">
+                    <span class="level-badge nivel-3">Nivel 3</span>
+                    <span class="exam-icon">🧮</span>
+                    <h3>Multiplicación Algebraica</h3>
+                    <p>Multiplicación de monomios y binomios. Aplica la propiedad distributiva, multiplica coeficientes y suma exponentes. Combina términos semejantes.</p>
                     <div class="exam-meta">
-                        <div class="meta-item">🎮 <strong>3</strong> modos</div>
-                        <div class="meta-item">⚡ <strong>Interactivo</strong></div>
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_formulas_notables.html" class="exam-card">
+                    <span class="level-badge nivel-3">Nivel 3</span>
+                    <span class="exam-icon">✨</span>
+                    <h3>Fórmulas Notables</h3>
+                    <p>Productos notables: binomio al cuadrado y suma por diferencia. Desarrolla expresiones algebraicas aplicando las fórmulas. Atajos de multiplicación.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <!-- NIVEL 4: Resolución y Aplicación -->
+                <a href="practica_ecuaciones_lineales.html" class="exam-card">
+                    <span class="level-badge nivel-4">Nivel 4</span>
+                    <span class="exam-icon">⚖️</span>
+                    <h3>Ecuaciones Lineales</h3>
+                    <p>Resuelve ecuaciones despejando la variable x. Incluye ecuaciones simples y con paréntesis. Aprende a despejar correctamente aplicando todo lo anterior.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_segmentos_proporcionales.html" class="exam-card">
+                    <span class="level-badge nivel-4">Nivel 4</span>
+                    <span class="exam-icon">📐</span>
+                    <h3>Segmentos Proporcionales (Teorema de Tales)</h3>
+                    <p>Teorema de Tales aplicado a segmentos proporcionales. Resuelve proporciones geométricas usando productos cruzados. Aplicación práctica del álgebra.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
                     </div>
                 </a>
             </div>
