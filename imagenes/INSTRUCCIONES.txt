@@ -1,0 +1,29 @@
+INSTRUCCIONES PARA GUARDAR LAS IMÁGENES
+=========================================
+
+Por favor, guarda las imágenes de los ejercicios de Teorema de Tales en esta carpeta
+con los siguientes nombres exactos:
+
+1. tales_ejercicio_triangulo.jpg
+   → Triángulo con valores X, 7, 5, 8
+
+2. tales_ejercicio_paralelas.jpg
+   → Líneas paralelas con medidas 10cm, 4cm, x, 14cm
+
+3. tales_ejercicio_arbol_sombra.jpg
+   → Árbol con sombra: poste 1m, sombra 3m, sombra árbol 18m
+
+4. tales_ejercicio_edificio.jpg
+   → Edificio con árbol: árbol 4m, sombra 12m, sombra edificio 24m
+
+5. tales_ejercicio_poste.jpg
+   → Poste con persona: persona 1.4m, sombra 1.92m, sombra poste 11.6m
+
+6. tales_ejercicio_adicional.jpg
+   → Cualquier ejercicio adicional de Teorema de Tales
+
+
+NOTA: Los nombres deben ser exactamente como aparecen arriba (con minúsculas y guiones bajos)
+para que el examen imprimible pueda encontrarlas correctamente.
+
+Una vez guardadas las imágenes, el examen estará completo con las 6 prácticas adicionales.

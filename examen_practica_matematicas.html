@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Práctica - Matemáticas Primera Convocatoria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px 30px;
+            border-bottom: 3px solid #e17055;
+        }
+
+        .instructions h3 {
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: #2d3436;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .question-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .points {
+            display: inline-block;
+            background: #fdcb6e;
+            color: #2d3436;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .input-answer {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .input-answer:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea.input-answer {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            padding: 20px 0;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-excellent {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .score-good {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .score-needs-practice {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .result h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .result p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .correct {
+            border-color: #38ef7d !important;
+            background: #e8f8f5 !important;
+        }
+
+        .incorrect {
+            border-color: #ff6b6b !important;
+            background: #ffe5e5 !important;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.7rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📐 Examen de Práctica - Matemáticas</h1>
+            <p>Primera Convocatoria - Examen Completo</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 Instrucciones:</h3>
+            <p>Seleccione la respuesta correcta para cada pregunta. Lea con atención cada enunciado antes de responder. <strong>Solo una opción es correcta por pregunta.</strong></p>
+        </div>
+
+        <div class="content">
+            <form id="examForm">
+                <!-- SECCIÓN I: DESARROLLO -->
+                <div class="section">
+                    <div class="section-title">📝 Sección I: Problemas (45 puntos)</div>
+
+                    <!-- Pregunta 1 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 1a</span>
+                        <span class="points">4 pts</span>
+                        <div class="question-text">
+                            Resuelva las siguientes operaciones combinadas:
+                            <br><br>
+                            a) \( 7(5 - 7 \times 4) = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q1a" value="A" required>
+                                <span>\( -161 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1a" value="B">
+                                <span>\( -147 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1a" value="C">
+                                <span>\( 161 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1a" value="D">
+                                <span>\( -133 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 1b</span>
+                        <span class="points">4 pts</span>
+                        <div class="question-text">
+                            b) \( \frac{5}{3}(2 - 1) - 5 + 3 = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q1b" value="A" required>
+                                <span>\( -\frac{4}{3} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1b" value="B">
+                                <span>\( \frac{4}{3} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1b" value="C">
+                                <span>\( \frac{11}{3} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1b" value="D">
+                                <span>\( 0 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 2 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 2</span>
+                        <span class="points">4 pts</span>
+                        <div class="question-text">
+                            Determine el valor de x en el siguiente problema de segmentos proporcionales:
+                            <br><br>
+                            \( \frac{x}{4} = \frac{11}{75} \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q2" value="A" required>
+                                <span>\( 0.587 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="B">
+                                <span>\( 2.05 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="C">
+                                <span>\( 0.733 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="D">
+                                <span>\( 1.467 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 3 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 3a</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            Efectúe las siguientes multiplicaciones:
+                            <br><br>
+                            a) \( 2x(3x + 5) = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q3a" value="A" required>
+                                <span>\( 6x^2 + 10x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3a" value="B">
+                                <span>\( 6x + 10x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3a" value="C">
+                                <span>\( 5x^2 + 10x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3a" value="D">
+                                <span>\( 6x^2 + 5x \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 3b</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            b) \( (4x - 2)(3x + 5) = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q3b" value="A" required>
+                                <span>\( 12x^2 + 14x - 10 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3b" value="B">
+                                <span>\( 12x^2 + 14x + 10 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3b" value="C">
+                                <span>\( 12x^2 - 14x - 10 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3b" value="D">
+                                <span>\( 7x^2 + 14x - 10 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 4 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 4a</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            Determine el resultado de las siguientes fórmulas notables:
+                            <br><br>
+                            a) \( (3 + x)^2 = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q4a" value="A" required>
+                                <span>\( 9 + 6x + x^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4a" value="B">
+                                <span>\( 9 + x^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4a" value="C">
+                                <span>\( 9 + 3x + x^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4a" value="D">
+                                <span>\( 6 + 6x + x^2 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 4b</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            b) \( (2x + 1)(2x - 1) = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q4b" value="A" required>
+                                <span>\( 4x^2 - 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4b" value="B">
+                                <span>\( 4x^2 + 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4b" value="C">
+                                <span>\( 2x^2 - 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4b" value="D">
+                                <span>\( 4x^2 - 2x - 1 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 4c</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            c) \( (x - 2y)^2 = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q4c" value="A" required>
+                                <span>\( x^2 - 4xy + 4y^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4c" value="B">
+                                <span>\( x^2 - 2xy + 4y^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4c" value="C">
+                                <span>\( x^2 + 4xy + 4y^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4c" value="D">
+                                <span>\( x^2 - 4y^2 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 4d</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            d) \( (3x - 1)(3x + 1) = \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q4d" value="A" required>
+                                <span>\( 9x^2 - 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4d" value="B">
+                                <span>\( 9x^2 + 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4d" value="C">
+                                <span>\( 3x^2 - 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4d" value="D">
+                                <span>\( 9x^2 - 6x - 1 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 5 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 5a</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Encuentre la solución de las siguientes ecuaciones:
+                            <br><br>
+                            a) \( 4x = 12 \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q5a" value="A" required>
+                                <span>\( x = 3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5a" value="B">
+                                <span>\( x = 4 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5a" value="C">
+                                <span>\( x = 8 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5a" value="D">
+                                <span>\( x = 16 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 5b</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            b) \( 3x - 2 = 4 \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q5b" value="A" required>
+                                <span>\( x = 2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5b" value="B">
+                                <span>\( x = 6 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5b" value="C">
+                                <span>\( x = \frac{2}{3} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5b" value="D">
+                                <span>\( x = 3 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 5c</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            c) \( 2x + 5 = 4x - 3 \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q5c" value="A" required>
+                                <span>\( x = 4 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5c" value="B">
+                                <span>\( x = 2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5c" value="C">
+                                <span>\( x = 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5c" value="D">
+                                <span>\( x = -4 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 5d</span>
+                        <span class="points">3 pts</span>
+                        <div class="question-text">
+                            d) \( 3x - (2x - 4) = 4 + (2x + 3) \)
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q5d" value="A" required>
+                                <span>\( x = -3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5d" value="B">
+                                <span>\( x = 3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5d" value="C">
+                                <span>\( x = 7 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5d" value="D">
+                                <span>\( x = -7 \)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN II: SELECCIÓN MÚLTIPLE -->
+                <div class="section">
+                    <div class="section-title">✓ Sección II: Selección Múltiple (55 puntos)</div>
+
+                    <!-- Pregunta 6 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 6</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la potencia \( \left(\frac{4}{3}\right)^{-1} \) se obtiene como resultado:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q6" value="A" required>
+                                <span>\( -9 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q6" value="B">
+                                <span>\( 9 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q6" value="C">
+                                <span>\( \frac{3}{4} \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 7 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 7</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            El factor numérico de la expresión \( 13x^2y^3 \) es:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q7" value="A" required>
+                                <span>\( 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q7" value="B">
+                                <span>\( 2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q7" value="C">
+                                <span>\( 13 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 8 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 8</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            El factor literal de la expresión \( 13x^2y^3 \) es:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q8" value="A" required>
+                                <span>\( x^2y^3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q8" value="B">
+                                <span>\( x^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q8" value="C">
+                                <span>\( y^3 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 9 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 9</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            El factor literal de la expresión \( x^4y^3 \) es:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q9" value="A" required>
+                                <span>\( 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q9" value="B">
+                                <span>\( x^4y^3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q9" value="C">
+                                <span>\( xy \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 10 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 10</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la expresión \( x^3 \times x^{27} \) se obtiene como resultado:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q10" value="A" required>
+                                <span>\( x^{27} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q10" value="B">
+                                <span>\( x^{12} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q10" value="C">
+                                <span>\( x^{30} \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 11 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 11</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la expresión \( x^{11} \div x^5 \) se obtiene como resultado:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q11" value="A" required>
+                                <span>\( x^{55} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q11" value="B">
+                                <span>\( x^{11} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q11" value="C">
+                                <span>\( x^6 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 12 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 12</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la multiplicación expresión \( 3x(2x^3 - 4x) \) es:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q12" value="A" required>
+                                <span>\( 5x - 7 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q12" value="B">
+                                <span>\( 6x^3 - 12x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q12" value="C">
+                                <span>\( 6x^4 - 12x^2 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 13 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 13</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la multiplicación expresión \( 5(-3x + 2) \) se obtiene:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q13" value="A" required>
+                                <span>\( -15x + 10 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q13" value="B">
+                                <span>\( 15x - 10 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q13" value="C">
+                                <span>\( -15x - 10 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 14 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 14</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la multiplicación expresión \( x(2x - 2) \) se obtiene:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q14" value="A" required>
+                                <span>\( x^2 - 2x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q14" value="B">
+                                <span>\( 2x^2 - 2x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q14" value="C">
+                                <span>\( 2x^2 - 2x \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 15 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 15</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            La primera fórmula notable se presenta en la expresión:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q15" value="A" required>
+                                <span>\( (a - b)^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q15" value="B">
+                                <span>\( (a + b)^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q15" value="C">
+                                <span>\( (a + b)(a - b) \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 16 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 16</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            La segunda fórmula notable se presenta en la expresión:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q16" value="A" required>
+                                <span>\( (a + b)^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q16" value="B">
+                                <span>\( (a + b)(a - b) \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q16" value="C">
+                                <span>\( (a - b)^2 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 17 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 17</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            La tercera fórmula notable se presenta en la expresión:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q17" value="A" required>
+                                <span>\( (a + b)^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q17" value="B">
+                                <span>\( (a - b)^2 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q17" value="C">
+                                <span>\( (a + b)(a - b) \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 18 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 18</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            La solución de la ecuación \( 3x = 12 \) es el número:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q18" value="A" required>
+                                <span>\( 3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q18" value="B">
+                                <span>\( 4 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q18" value="C">
+                                <span>\( 8 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 19 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 19</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            La solución de la ecuación \( 4x = 4 \) es el número:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q19" value="A" required>
+                                <span>\( 1 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q19" value="B">
+                                <span>\( \frac{1}{4} \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q19" value="C">
+                                <span>\( \frac{1}{2} \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 20 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 20</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la operación \( 14x + 7x \) se obtiene:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q20" value="A" required>
+                                <span>\( 10x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q20" value="B">
+                                <span>\( 21x \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q20" value="C">
+                                <span>\( 17x^2 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 21 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 21</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Al efectuar la operación \( 12x + 2x^3 \) se obtiene:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q21" value="A" required>
+                                <span>\( 14x^3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q21" value="B">
+                                <span>No se pueden sumar (términos no semejantes)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q21" value="C">
+                                <span>\( 24x^6 \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 22 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 22</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Un binomio se encuentra en la opción:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q22" value="A" required>
+                                <span>\( 14x^3 + 2x - 10x^5 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q22" value="B">
+                                <span>\( 24x - 5y + 3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q22" value="C">
+                                <span>\( 2x - 6 - 8x \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 23 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 23</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Un trinomio se encuentra en la opción:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q23" value="A" required>
+                                <span>\( 14x^3 + 2x - 10x^5 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q23" value="B">
+                                <span>\( 24x - 5y + 3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q23" value="C">
+                                <span>\( 2x - 6x - 8x \)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 24 -->
+                    <div class="question-card">
+                        <span class="question-number">Pregunta 24</span>
+                        <span class="points">2 pts</span>
+                        <div class="question-text">
+                            Un monomio se encuentra en la opción:
+                        </div>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q24" value="A" required>
+                                <span>\( 14x^3 + 2x - 10x^5 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q24" value="B">
+                                <span>\( 24x - 5y + 3 \)</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q24" value="C">
+                                <span>\( 2x - 6x - 8x \)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn btn-primary">📊 Calificar Examen</button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">🔄 Reiniciar</button>
+                </div>
+            </form>
+
+            <div id="result" class="result"></div>
+
+            <div class="navigation">
+                <a href="index.html" class="nav-link">🏠 Inicio</a>
+                <a href="examen_matematicas_imprimible.html" class="nav-link">🖨️ Versión Imprimible</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script>
+        const answers = {
+            // Todas las preguntas ahora son selección múltiple
+            q1a: "A",  // -161
+            q1b: "A",  // -4/3
+            q2: "A",   // 0.587
+            q3a: "A",  // 6x^2+10x
+            q3b: "A",  // 12x^2+14x-10
+            q4a: "A",  // 9+6x+x^2
+            q4b: "A",  // 4x^2-1
+            q4c: "A",  // x^2-4xy+4y^2
+            q4d: "A",  // 9x^2-1
+            q5a: "A",  // x=3
+            q5b: "A",  // x=2
+            q5c: "A",  // x=4
+            q5d: "A",  // x=-3
+
+            // Selección Múltiple
+            q6: "C",  // 3/4
+            q7: "C",  // 13
+            q8: "A",  // x^2y^3
+            q9: "B",  // x^4y^3
+            q10: "C", // x^30
+            q11: "C", // x^6
+            q12: "C", // 6x^4-12x^2
+            q13: "A", // -15x+10
+            q14: "B", // 2x^2-2x
+            q15: "B", // (a+b)^2
+            q16: "C", // (a-b)^2
+            q17: "C", // (a+b)(a-b)
+            q18: "B", // 4
+            q19: "A", // 1
+            q20: "B", // 21x
+            q21: "B", // No se pueden sumar
+            q22: "C", // 2x-6-8x (binomio tras simplificar)
+            q23: "B", // 24x-5y+3 (trinomio)
+            q24: "C"  // 2x-6x-8x (monomio tras simplificar)
+        };
+
+        document.getElementById('examForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            let totalPoints = 100;
+            let earnedPoints = 0;
+            
+            // Puntos por pregunta para la sección I (45 puntos total)
+            const sectionIPoints = {
+                q1a: 4, q1b: 4, q2: 4,
+                q3a: 3, q3b: 3,
+                q4a: 3, q4b: 3, q4c: 3, q4d: 3,
+                q5a: 2, q5b: 3, q5c: 3, q5d: 3
+            };
+
+            // Calificar Sección I (ahora también son radio buttons)
+            for (let key in sectionIPoints) {
+                const selected = document.querySelector(`input[name="${key}"]:checked`);
+                const options = document.querySelectorAll(`input[name="${key}"]`);
+                const points = sectionIPoints[key];
+                
+                if (selected && selected.value === answers[key]) {
+                    earnedPoints += points;
+                    score++;
+                    selected.parentElement.classList.add('correct');
+                } else if (selected) {
+                    selected.parentElement.classList.add('incorrect');
+                    options.forEach(option => {
+                        if (option.value === answers[key]) {
+                            option.parentElement.classList.add('correct');
+                        }
+                    });
+                }
+            }
+
+            // Calificar Sección II: Selección múltiple (2 pts cada una, 19 preguntas = 38 pts)
+            // Nota: Con las 13 de sección I + 19 de sección II = 32 preguntas
+            // Puntos: 45 (sección I) + 38 (19×2) = 83... Ajustemos para 100 pts
+            const multipleChoiceQuestions = [
+                'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14',
+                'q15', 'q16', 'q17', 'q18', 'q19', 'q20', 'q21', 'q22', 'q23', 'q24'
+            ];
+            
+            // Ajustar puntos para llegar a 100: (100-45)/19 ≈ 2.89, usamos 3 pts por pregunta de sección II
+            const sectionIIPointsEach = Math.round((100 - 45) / multipleChoiceQuestions.length);
+
+            multipleChoiceQuestions.forEach(key => {
+                const selected = document.querySelector(`input[name="${key}"]:checked`);
+                const options = document.querySelectorAll(`input[name="${key}"]`);
+                
+                if (selected && selected.value === answers[key]) {
+                    earnedPoints += sectionIIPointsEach;
+                    score++;
+                    selected.parentElement.classList.add('correct');
+                } else if (selected) {
+                    selected.parentElement.classList.add('incorrect');
+                    options.forEach(option => {
+                        if (option.value === answers[key]) {
+                            option.parentElement.classList.add('correct');
+                        }
+                    });
+                }
+            });
+            
+            const totalQuestions = Object.keys(answers).length;
+            const percentage = (earnedPoints / totalPoints) * 100;
+            const resultDiv = document.getElementById('result');
+            
+            let resultClass = '';
+            let resultMessage = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                resultClass = 'score-excellent';
+                resultMessage = '¡Excelente trabajo!';
+                emoji = '🎉';
+            } else if (percentage >= 60) {
+                resultClass = 'score-good';
+                resultMessage = '¡Buen trabajo!';
+                emoji = '👍';
+            } else {
+                resultClass = 'score-needs-practice';
+                resultMessage = 'Sigue practicando';
+                emoji = '📚';
+            }
+            
+            resultDiv.className = `result show ${resultClass}`;
+            resultDiv.innerHTML = `
+                <h2>${emoji} ${resultMessage}</h2>
+                <p><strong>Puntuación:</strong> ${earnedPoints.toFixed(1)} de ${totalPoints} puntos</p>
+                <p><strong>Porcentaje:</strong> ${percentage.toFixed(1)}%</p>
+                <p><strong>Respuestas correctas:</strong> ${score} de ${totalQuestions}</p>
+            `;
+
+            // Scroll para ver resultado
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        function resetForm() {
+            document.getElementById('examForm').reset();
+            document.querySelectorAll('.input-answer, .option').forEach(elem => {
+                elem.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('result').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

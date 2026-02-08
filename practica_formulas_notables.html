@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica: Fórmulas Notables - Matemáticas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .theory-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .theory-section h2 {
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .theory-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .theory-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .theory-box p {
+            color: #2c3e50;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .theory-box ul {
+            margin-left: 20px;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        .example-box {
+            background: #e8f8f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .example-box .step {
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+
+        .highlight {
+            background: #ffeaa7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .formula-reference {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .formula-reference h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .formula-item {
+            background: white;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .question-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .input-answer {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .input-answer:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-excellent {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .score-good {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .score-needs-practice {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .correct {
+            border-color: #38ef7d !important;
+            background: #e8f8f5 !important;
+        }
+
+        .incorrect {
+            border-color: #ff6b6b !important;
+            background: #ffe5e5 !important;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Práctica: Fórmulas Notables</h1>
+            <p>Productos Notables - Binomio al cuadrado y suma por diferencia</p>
+        </div>
+
+        <div class="content">
+            <!-- Sección de Teoría -->
+            <div class="theory-section">
+                <h2>📚 Teoría: Fórmulas Notables</h2>
+                
+                <div class="theory-box">
+                    <h3>¿Qué son las fórmulas notables?</h3>
+                    <p>
+                        Las fórmulas notables son identidades algebraicas que nos permiten desarrollar o factorizar 
+                        expresiones rápidamente sin necesidad de hacer todas las multiplicaciones.
+                    </p>
+                </div>
+
+                <div class="theory-box">
+                    <h3>Las tres fórmulas principales</h3>
+                    <ul>
+                        <li><span class="highlight">Cuadrado de una suma:</span> \( (a + b)^2 = a^2 + 2ab + b^2 \)</li>
+                        <li><span class="highlight">Cuadrado de una diferencia:</span> \( (a - b)^2 = a^2 - 2ab + b^2 \)</li>
+                        <li><span class="highlight">Suma por diferencia:</span> \( (a + b)(a - b) = a^2 - b^2 \)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-box">
+                    <h3>Ejemplo 1: Cuadrado de una suma</h3>
+                    <p><strong>Desarrollar:</strong> \( (x + 3)^2 \)</p>
+                    
+                    <div class="example-box">
+                        <div class="step">
+                            <strong>Paso 1:</strong> Identificar \( a = x \) y \( b = 3 \)
+                        </div>
+                        <div class="step">
+                            <strong>Paso 2:</strong> Aplicar la fórmula \( a^2 + 2ab + b^2 \)<br>
+                            \( a^2 = x^2 \)<br>
+                            \( 2ab = 2(x)(3) = 6x \)<br>
+                            \( b^2 = 3^2 = 9 \)
+                        </div>
+                        <div class="step">
+                            <strong>Respuesta:</strong> \( x^2 + 6x + 9 \)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theory-box">
+                    <h3>Ejemplo 2: Suma por diferencia</h3>
+                    <p><strong>Desarrollar:</strong> \( (x + 4)(x - 4) \)</p>
+                    
+                    <div class="example-box">
+                        <div class="step">
+                            <strong>Paso 1:</strong> Identificar \( a = x \) y \( b = 4 \)
+                        </div>
+                        <div class="step">
+                            <strong>Paso 2:</strong> Aplicar la fórmula \( a^2 - b^2 \)<br>
+                            \( a^2 = x^2 \)<br>
+                            \( b^2 = 4^2 = 16 \)
+                        </div>
+                        <div class="step">
+                            <strong>Respuesta:</strong> \( x^2 - 16 \)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theory-box">
+                    <h3>💡 Consejos importantes</h3>
+                    <p>
+                        <strong>1. No olvides el término del medio:</strong> En \( (a+b)^2 \) siempre hay tres términos: \( a^2 + 2ab + b^2 \)<br>
+                        <strong>2. Cuidado con los signos:</strong> En \( (a-b)^2 \) el término del medio es negativo: \( -2ab \)<br>
+                        <strong>3. Suma por diferencia:</strong> Solo tiene dos términos: \( a^2 - b^2 \)
+                    </p>
+                </div>
+            </div>
+
+            <div class="formula-reference">
+                <h3>📚 Fórmulas que debes recordar:</h3>
+                <div class="formula-item">\( (a + b)^2 = a^2 + 2ab + b^2 \)</div>
+                <div class="formula-item">\( (a - b)^2 = a^2 - 2ab + b^2 \)</div>
+                <div class="formula-item">\( (a + b)(a - b) = a^2 - b^2 \)</div>
+            </div>
+
+            <form id="examForm">
+                <!-- Pregunta 1 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 1</span>
+                    <div class="question-text">
+                        Desarrolla: \( (3 + x)^2 = \)
+                    </div>
+                    <input type="text" name="q1" class="input-answer" placeholder="Ejemplo: 9 + 6x + x^2" required>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 2</span>
+                    <div class="question-text">
+                        Desarrolla: \( (2x + 1)(2x - 1) = \)
+                    </div>
+                    <input type="text" name="q2" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 3</span>
+                    <div class="question-text">
+                        Desarrolla: \( (x - 2y)^2 = \)
+                    </div>
+                    <input type="text" name="q3" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 4</span>
+                    <div class="question-text">
+                        Desarrolla: \( (3x - 1)(3x + 1) = \)
+                    </div>
+                    <input type="text" name="q4" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 5</span>
+                    <div class="question-text">
+                        Desarrolla: \( (5 + 2y)^2 = \)
+                    </div>
+                    <input type="text" name="q5" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 6</span>
+                    <div class="question-text">
+                        Desarrolla: \( (4x - 3)^2 = \)
+                    </div>
+                    <input type="text" name="q6" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <!-- Pregunta 7 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 7</span>
+                    <div class="question-text">
+                        Desarrolla: \( (x + 5)(x - 5) = \)
+                    </div>
+                    <input type="text" name="q7" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <!-- Pregunta 8 -->
+                <div class="question-card">
+                    <span class="question-number">Pregunta 8</span>
+                    <div class="question-text">
+                        Desarrolla: \( (7 - 3x)^2 = \)
+                    </div>
+                    <input type="text" name="q8" class="input-answer" placeholder="Tu respuesta" required>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn btn-primary">Calificar</button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">Reiniciar</button>
+                </div>
+            </form>
+
+            <div id="result" class="result"></div>
+
+            <div class="navigation">
+                <a href="index.html" class="nav-link">🏠 Inicio</a>
+                <a href="examen_practica_matematicas.html" class="nav-link">📝 Examen General</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script>
+        function normalizeAnswer(answer) {
+            return answer.toLowerCase()
+                .replace(/\s+/g, '')
+                .replace(/\*/g, '')
+                .replace(/\^/g, '')
+                .replace(/²/g, '2')
+                .replace(/\+\+/g, '+')
+                .replace(/--/g, '+');
+        }
+
+        function checkEquivalent(userAnswer, correctAnswers) {
+            const normalized = normalizeAnswer(userAnswer);
+            return correctAnswers.some(correct => normalizeAnswer(correct) === normalized);
+        }
+
+        const answers = {
+            q1: ["9+6x+x^2", "x^2+6x+9", "9+6x+x2", "x2+6x+9"],
+            q2: ["4x^2-1", "4x2-1", "-1+4x^2", "-1+4x2"],
+            q3: ["x^2-4xy+4y^2", "x2-4xy+4y2", "4y^2-4xy+x^2", "4y2-4xy+x2"],
+            q4: ["9x^2-1", "9x2-1", "-1+9x^2", "-1+9x2"],
+            q5: ["25+20y+4y^2", "4y^2+20y+25", "25+20y+4y2", "4y2+20y+25"],
+            q6: ["16x^2-24x+9", "16x2-24x+9", "9-24x+16x^2", "9-24x+16x2"],
+            q7: ["x^2-25", "x2-25", "-25+x^2", "-25+x2"],
+            q8: ["49-42x+9x^2", "9x^2-42x+49", "49-42x+9x2", "9x2-42x+49"]
+        };
+
+        document.getElementById('examForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            
+            for (let key in answers) {
+                const input = document.querySelector(`input[name="${key}"]`);
+                const userAnswer = input.value.trim();
+                
+                if (checkEquivalent(userAnswer, answers[key])) {
+                    score++;
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                }
+            }
+            
+            const percentage = (score / totalQuestions) * 100;
+            const resultDiv = document.getElementById('result');
+            
+            let resultClass = '';
+            let resultMessage = '';
+            
+            if (percentage >= 80) {
+                resultClass = 'score-excellent';
+                resultMessage = '🎉 ¡Excelente! Dominas las fórmulas notables. ';
+            } else if (percentage >= 60) {
+                resultClass = 'score-good';
+                resultMessage = '👍 ¡Bien! Continúa practicando. ';
+            } else {
+                resultClass = 'score-needs-practice';
+                resultMessage = '📚 Repasa las fórmulas y sigue practicando. ';
+            }
+            
+            resultDiv.className = `result show ${resultClass}`;
+            resultDiv.innerHTML = `${resultMessage}<br>Obtuviste ${score} de ${totalQuestions} respuestas correctas (${percentage.toFixed(1)}%)`;
+        });
+
+        function resetForm() {
+            document.getElementById('examForm').reset();
+            document.querySelectorAll('.input-answer').forEach(input => {
+                input.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('result').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

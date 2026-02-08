@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemáticas - Convocatoria 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-back {
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .nav-back a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 30px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-back a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s;
+        }
+        
+        .header .icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .exams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+        
+        .exam-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exam-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .exam-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .exam-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .exam-card h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .exam-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .exam-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #999;
+            font-size: 0.95em;
+        }
+        
+        .meta-item strong {
+            color: #667eea;
+        }
+        
+        .special-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .special-card h3 {
+            color: white;
+        }
+        
+        .special-card p {
+            color: rgba(255,255,255,0.95);
+        }
+        
+        .special-card .meta-item {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .special-card .meta-item strong {
+            color: white;
+        }
+        
+        .special-card::before {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .exams-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-card {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="convocatoria_2025.html">← Volver a Convocatoria 2025</a>
+        </div>
+        
+        <div class="header">
+            <div class="icon">📐</div>
+            <h1>Matemáticas</h1>
+            <p>Primera Convocatoria - Prácticas y Examen Completo</p>
+        </div>
+        
+        <!-- Examenes Principales -->
+        <div class="section">
+            <h2 class="section-title">🎯 Exámenes Principales</h2>
+            <div class="exams-grid">
+                <a href="examen_practica_matematicas.html" class="exam-card special-card">
+                    <span class="exam-icon">📝</span>
+                    <h3>Examen de Práctica General</h3>
+                    <p>Examen completo interactivo estilo primera convocatoria. Incluye operaciones combinadas, álgebra, fórmulas notables, ecuaciones y más. Calificación automática con retroalimentación detallada.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📊 <strong>24</strong> preguntas</div>
+                        <div class="meta-item">💯 <strong>100</strong> puntos</div>
+                        <div class="meta-item">⏱️ <strong>Interactivo</strong></div>
+                    </div>
+                </a>
+                
+                <a href="examen_matematicas_imprimible.html" class="exam-card">
+                    <span class="exam-icon">🖨️</span>
+                    <h3>Versión Imprimible</h3>
+                    <p>Examen completo en formato imprimible con diagramas del Teorema de Tales. Perfecto para practicar a mano múltiples veces. Incluye Sección IV con 6 ejercicios adicionales de práctica con imágenes reales de examen.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📄 <strong>35 preguntas</strong></div>
+                        <div class="meta-item">💯 <strong>144 puntos</strong></div>
+                        <div class="meta-item">📐 <strong>+Imágenes</strong></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Prácticas por Tema -->
+        <div class="section">
+            <h2 class="section-title">📚 Prácticas por Tema</h2>
+            <div class="exams-grid">
+                <a href="practica_operaciones_combinadas.html" class="exam-card">
+                    <span class="exam-icon">🔢</span>
+                    <h3>Operaciones Combinadas</h3>
+                    <p>Practica el orden correcto de operaciones con fracciones, multiplicación, división, sumas y restas. 8 ejercicios con procedimiento.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_segmentos_proporcionales.html" class="exam-card">
+                    <span class="exam-icon">📐</span>
+                    <h3>Segmentos Proporcionales</h3>
+                    <p>Teorema de Tales aplicado a segmentos proporcionales. Resuelve proporciones geométricas usando productos cruzados. Geometría básica.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_formulas_notables.html" class="exam-card">
+                    <span class="exam-icon">✨</span>
+                    <h3>Fórmulas Notables</h3>
+                    <p>Productos notables: binomio al cuadrado y suma por diferencia. Desarrolla expresiones algebraicas aplicando las fórmulas.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_ecuaciones_lineales.html" class="exam-card">
+                    <span class="exam-icon">⚖️</span>
+                    <h3>Ecuaciones Lineales</h3>
+                    <p>Resuelve ecuaciones despejando la variable x. Incluye ecuaciones simples y con paréntesis. Aprende a despejar correctamente.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_multiplicacion_algebraica.html" class="exam-card">
+                    <span class="exam-icon">🧮</span>
+                    <h3>Multiplicación Algebraica</h3>
+                    <p>Multiplicación de monomios y binomios. Aplica la propiedad distributiva y combina términos semejantes correctamente.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~15 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_terminos_algebraicos.html" class="exam-card">
+                    <span class="exam-icon">🔢</span>
+                    <h3>Términos Algebraicos y Exponentes</h3>
+                    <p>Operaciones con términos semejantes, leyes de exponentes, factor numérico y literal. Selección múltiple con explicaciones.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~12 min</strong></div>
+                    </div>
+                </a>
+                
+                <a href="practica_monomios_polinomios.html" class="exam-card">
+                    <span class="exam-icon">📊</span>
+                    <h3>Monomios y Polinomios</h3>
+                    <p>Identificación y clasificación de expresiones algebraicas. Diferencia entre monomios, binomios, trinomios y polinomios.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">📝 <strong>8</strong> preguntas</div>
+                        <div class="meta-item">⏱️ <strong>~10 min</strong></div>
+                    </div>
+                </a>
+
+                <a href="practica_tablas_multiplicar.html" class="exam-card">
+                    <span class="exam-icon">✖️</span>
+                    <h3>Tablas de Multiplicar</h3>
+                    <p>Práctica interactiva de tablas del 1 al 10. Incluye modo práctica por tabla, modo prueba aleatoria, y visualización completa de todas las tablas.</p>
+                    <div class="exam-meta">
+                        <div class="meta-item">🎮 <strong>3</strong> modos</div>
+                        <div class="meta-item">⚡ <strong>Interactivo</strong></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
