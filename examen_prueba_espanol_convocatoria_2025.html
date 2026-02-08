@@ -510,260 +510,277 @@
                     <strong>Indicaciones:</strong> Seleccione la letra que corresponde a cada personaje según sus características.
                 </p>
                 
-                <div style="background: #f0f4ff; padding: 20px; border-radius: 10px; margin-bottom: 25px; border-left: 5px solid #667eea;">
-                    <strong style="color: #667eea; font-size: 1.1em;">📋 Características de los Personajes:</strong>
-                    <div style="margin-top: 15px; display: grid; gap: 12px; font-size: 0.95em;">
-                        <div><strong>B:</strong> Malvado de entrañas, vendía marihuana, fama de sódomo</div>
-                        <div><strong>T:</strong> Cabo de Vara, mató al Chino Castro, escapó con 7 hombres</div>
-                        <div><strong>K:</strong> Implementó las esposas, látigo con punta de acero</div>
-                        <div><strong>Z:</strong> Escapó de la isla, hacía creer que no sabía nadar</div>
-                        <div><strong>Y:</strong> Horrorosa, regordete, sin dientes, fue violada a los 13 años</div>
-                        <div><strong>X:</strong> Verdugo oficial, Sargento, mulato</div>
-                        <div><strong>Ñ:</strong> "El Monstruo", "Matahijos", pena perpetua</div>
+                <!-- Diseño de dos columnas: Personajes a la izquierda, Características a la derecha -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                    <!-- COLUMNA IZQUIERDA: PERSONAJES -->
+                    <div style="background: #fff; padding: 25px; border-radius: 10px; border: 2px solid #667eea; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);">
+                        <h3 style="color: #667eea; margin-top: 0; margin-bottom: 20px; font-size: 1.2em; border-bottom: 2px solid #667eea; padding-bottom: 10px;">📝 Personajes</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">1. Jacinto</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1b" name="match1" value="B">
+                                        <label for="match1b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1t" name="match1" value="T">
+                                        <label for="match1t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1k" name="match1" value="K">
+                                        <label for="match1k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1z" name="match1" value="Z">
+                                        <label for="match1z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1y" name="match1" value="Y">
+                                        <label for="match1y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1x" name="match1" value="X">
+                                        <label for="match1x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match1n" name="match1" value="Ñ">
+                                        <label for="match1n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">2. Felipón</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2b" name="match2" value="B">
+                                        <label for="match2b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2t" name="match2" value="T">
+                                        <label for="match2t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2k" name="match2" value="K">
+                                        <label for="match2k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2z" name="match2" value="Z">
+                                        <label for="match2z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2y" name="match2" value="Y">
+                                        <label for="match2y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2x" name="match2" value="X">
+                                        <label for="match2x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match2n" name="match2" value="Ñ">
+                                        <label for="match2n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">3. Juanita</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3b" name="match3" value="B">
+                                        <label for="match3b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3t" name="match3" value="T">
+                                        <label for="match3t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3k" name="match3" value="K">
+                                        <label for="match3k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3z" name="match3" value="Z">
+                                        <label for="match3z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3y" name="match3" value="Y">
+                                        <label for="match3y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3x" name="match3" value="X">
+                                        <label for="match3x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match3n" name="match3" value="Ñ">
+                                        <label for="match3n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">4. Pepita</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4b" name="match4" value="B">
+                                        <label for="match4b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4t" name="match4" value="T">
+                                        <label for="match4t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4k" name="match4" value="K">
+                                        <label for="match4k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4z" name="match4" value="Z">
+                                        <label for="match4z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4y" name="match4" value="Y">
+                                        <label for="match4y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4x" name="match4" value="X">
+                                        <label for="match4x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match4n" name="match4" value="Ñ">
+                                        <label for="match4n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">5. Coronel Leoncio</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5b" name="match5" value="B">
+                                        <label for="match5b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5t" name="match5" value="T">
+                                        <label for="match5t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5k" name="match5" value="K">
+                                        <label for="match5k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5z" name="match5" value="Z">
+                                        <label for="match5z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5y" name="match5" value="Y">
+                                        <label for="match5y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5x" name="match5" value="X">
+                                        <label for="match5x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match5n" name="match5" value="Ñ">
+                                        <label for="match5n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">6. Emiliano</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6b" name="match6" value="B">
+                                        <label for="match6b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6t" name="match6" value="T">
+                                        <label for="match6t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6k" name="match6" value="K">
+                                        <label for="match6k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6z" name="match6" value="Z">
+                                        <label for="match6z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6y" name="match6" value="Y">
+                                        <label for="match6y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6x" name="match6" value="X">
+                                        <label for="match6x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match6n" name="match6" value="Ñ">
+                                        <label for="match6n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-block" style="margin-bottom: 0;">
+                                <div class="question-number" style="font-size: 1.1em;">7. Mitajuana</div>
+                                <div class="options" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7b" name="match7" value="B">
+                                        <label for="match7b">B</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7t" name="match7" value="T">
+                                        <label for="match7t">T</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7k" name="match7" value="K">
+                                        <label for="match7k">K</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7z" name="match7" value="Z">
+                                        <label for="match7z">Z</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7y" name="match7" value="Y">
+                                        <label for="match7y">Y</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7x" name="match7" value="X">
+                                        <label for="match7x">X</label>
+                                    </div>
+                                    <div class="option" style="min-width: 45px;">
+                                        <input type="radio" id="match7n" name="match7" value="Ñ">
+                                        <label for="match7n">Ñ</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Jacinto -->
-                <div class="question-block">
-                    <div class="question-number">Jacinto</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match1b" name="match1" value="B">
-                            <label for="match1b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match1t" name="match1" value="T">
-                            <label for="match1t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match1k" name="match1" value="K">
-                            <label for="match1k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match1z" name="match1" value="Z">
-                            <label for="match1z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match1y" name="match1" value="Y">
-                            <label for="match1y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match1x" name="match1" value="X">
-                            <label for="match1x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match1n" name="match1" value="Ñ">
-                            <label for="match1n">Ñ</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Felipón -->
-                <div class="question-block">
-                    <div class="question-number">Felipón</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match2b" name="match2" value="B">
-                            <label for="match2b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match2t" name="match2" value="T">
-                            <label for="match2t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match2k" name="match2" value="K">
-                            <label for="match2k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match2z" name="match2" value="Z">
-                            <label for="match2z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match2y" name="match2" value="Y">
-                            <label for="match2y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match2x" name="match2" value="X">
-                            <label for="match2x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match2n" name="match2" value="Ñ">
-                            <label for="match2n">Ñ</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Juanita -->
-                <div class="question-block">
-                    <div class="question-number">Juanita</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match3b" name="match3" value="B">
-                            <label for="match3b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match3t" name="match3" value="T">
-                            <label for="match3t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match3k" name="match3" value="K">
-                            <label for="match3k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match3z" name="match3" value="Z">
-                            <label for="match3z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match3y" name="match3" value="Y">
-                            <label for="match3y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match3x" name="match3" value="X">
-                            <label for="match3x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match3n" name="match3" value="Ñ">
-                            <label for="match3n">Ñ</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pepita -->
-                <div class="question-block">
-                    <div class="question-number">Pepita</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match4b" name="match4" value="B">
-                            <label for="match4b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match4t" name="match4" value="T">
-                            <label for="match4t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match4k" name="match4" value="K">
-                            <label for="match4k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match4z" name="match4" value="Z">
-                            <label for="match4z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match4y" name="match4" value="Y">
-                            <label for="match4y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match4x" name="match4" value="X">
-                            <label for="match4x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match4n" name="match4" value="Ñ">
-                            <label for="match4n">Ñ</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Coronel Leoncio -->
-                <div class="question-block">
-                    <div class="question-number">Coronel Leoncio</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match5b" name="match5" value="B">
-                            <label for="match5b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match5t" name="match5" value="T">
-                            <label for="match5t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match5k" name="match5" value="K">
-                            <label for="match5k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match5z" name="match5" value="Z">
-                            <label for="match5z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match5y" name="match5" value="Y">
-                            <label for="match5y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match5x" name="match5" value="X">
-                            <label for="match5x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match5n" name="match5" value="Ñ">
-                            <label for="match5n">Ñ</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Emiliano -->
-                <div class="question-block">
-                    <div class="question-number">Emiliano</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match6b" name="match6" value="B">
-                            <label for="match6b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match6t" name="match6" value="T">
-                            <label for="match6t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match6k" name="match6" value="K">
-                            <label for="match6k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match6z" name="match6" value="Z">
-                            <label for="match6z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match6y" name="match6" value="Y">
-                            <label for="match6y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match6x" name="match6" value="X">
-                            <label for="match6x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match6n" name="match6" value="Ñ">
-                            <label for="match6n">Ñ</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mitajuana -->
-                <div class="question-block">
-                    <div class="question-number">Mitajuana</div>
-                    <div class="options">
-                        <div class="option">
-                            <input type="radio" id="match7b" name="match7" value="B">
-                            <label for="match7b">B</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match7t" name="match7" value="T">
-                            <label for="match7t">T</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match7k" name="match7" value="K">
-                            <label for="match7k">K</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match7z" name="match7" value="Z">
-                            <label for="match7z">Z</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match7y" name="match7" value="Y">
-                            <label for="match7y">Y</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match7x" name="match7" value="X">
-                            <label for="match7x">X</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="match7n" name="match7" value="Ñ">
-                            <label for="match7n">Ñ</label>
+                    
+                    <!-- COLUMNA DERECHA: CARACTERÍSTICAS -->
+                    <div style="background: #f0f4ff; padding: 25px; border-radius: 10px; border: 2px solid #764ba2; box-shadow: 0 2px 8px rgba(118, 75, 162, 0.1);">
+                        <h3 style="color: #764ba2; margin-top: 0; margin-bottom: 20px; font-size: 1.2em; border-bottom: 2px solid #764ba2; padding-bottom: 10px;">📋 Características</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px; font-size: 0.95em; line-height: 1.6;">
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">B.</strong> Malvado de entrañas, corazón con sangre rancia. Vendía marihuana y tenía fama de sódomo.
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">T.</strong> Cabo de Vara, le quebró la columna vertebral a puros golpes al reo Chino Castro. Encontró la botella de ascs que arrastra la marea y se escapó con 7 hombres.
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">K.</strong> Implementó las esposas. Ataba a los reos por las manos detrás de la espalda hasta por un año. Utiliza un látigo con una punta de acero para castigar a los presos.
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">Z.</strong> Es uno de los reos que se pudo escapar de la isla. Mató a su mujer y esta estaba embarazada. Durante toda su estancia hacía creerse a los cabos y presos que no sabía nadar.
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">Y.</strong> Horrorosa, cuerpo regordete, flácido, baja, sin dientes, con los senos que le caían al ombligo, asmática. Fue violada, cuando tenía 13 años, por un compañero de escuela.
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">X.</strong> Es el verdugo oficial del penal con grado de Sargento. Lanza esos a diestra y siniestra. Es mulato.
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <strong style="color: #667eea; font-size: 1.1em;">Ñ.</strong> Fue apodado "El Monstruo" y "Matahijos". Vive una pena perpetua, afirma no haber sido feliz.
+                            </div>
                         </div>
                     </div>
                 </div>
