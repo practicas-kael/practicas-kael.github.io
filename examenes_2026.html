@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exámenes Regulares 2026 - Portal de Estudio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-back {
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .nav-back a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 30px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-back a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s;
+        }
+        
+        .header .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+        }
+        
+        .subject-card.espanol::before {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        
+        .subject-card .icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .subject-card h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .subject-card .description {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .subject-card .badge-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .subject-card .badge {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .subject-card .badge.special {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .subject-card .arrow {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            font-size: 2.5em;
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+        
+        .subject-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="index.html">
+                <span>←</span>
+                <span>Volver al Inicio</span>
+            </a>
+        </div>
+        
+        <div class="header">
+            <div class="year-badge">2026</div>
+            <h1>Exámenes Regulares</h1>
+            <p>Material de estudio para el ciclo escolar 2026</p>
+        </div>
+        
+        <div class="subjects-grid">
+            <!-- Español 4to Grado - Emiliano -->
+            <a href="guia_estudio_espanol_4to_grado.html" class="subject-card espanol">
+                <span class="icon">📚</span>
+                <h2>Español 4to Grado</h2>
+                <p class="description">
+                    Examen interactivo para Emiliano: Conectores, párrafo y texto expositivo, 
+                    técnicas de lectura (conjeturas y analogías), fuentes de información, 
+                    orden alfabético, el diccionario, familias de palabras, prefijos y sufijos.
+                </p>
+                <div class="badge-container">
+                    <span class="badge">✅ Examen Interactivo</span>
+                    <span class="badge">✅ Guía de Estudio</span>
+                    <span class="badge special">👨‍🎓 Emiliano</span>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+            
+            <!-- Aquí se añadirán más exámenes del 2026 -->
+        </div>
+    </div>
+</body>
+</html>
