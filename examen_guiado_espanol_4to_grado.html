@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Guiado por Temas - Español 4to Grado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.guia {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .student-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.3em;
+        }
+
+        .tabs-container {
+            display: flex;
+            overflow-x: auto;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e0e0e0;
+            padding: 10px 20px;
+        }
+
+        .tab-btn {
+            padding: 15px 25px;
+            background: white;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: #666;
+            margin-right: 5px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border: 2px solid transparent;
+        }
+
+        .tab-btn:hover {
+            background: #f0f0f0;
+            color: #4facfe;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-color: #4facfe;
+        }
+
+        .tab-btn.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .theory-section {
+            background: #e3f2fd;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2196f3;
+        }
+
+        .theory-section h2 {
+            color: #1976d2;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .theory-section h3 {
+            color: #1976d2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .theory-section p, .theory-section ul, .theory-section ol {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .theory-section ul, .theory-section ol {
+            margin-left: 30px;
+        }
+
+        .theory-section li {
+            margin-bottom: 10px;
+        }
+
+        .example-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .example-box strong {
+            color: #ff9800;
+        }
+
+        .practice-section {
+            background: #fff3e0;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff9800;
+        }
+
+        .practice-section h3 {
+            color: #f57c00;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .question {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            border-color: #4facfe;
+            background: #f0f9ff;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: slideIn 0.4s;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .feedback-title {
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .feedback-explanation {
+            line-height: 1.6;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-button {
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+
+        .nav-button.prev {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .nav-button.next {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 40px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .topic-summary {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .topic-summary h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .score-display {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tabs-container {
+                overflow-x: scroll;
+            }
+
+            .tab-btn {
+                font-size: 0.9em;
+                padding: 12px 15px;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="guia_estudio_espanol_4to_grado.html" class="nav-btn guia">📖 Guía de Estudio</a>
+            <a href="examen_guiado_espanol_4to_grado.html" class="nav-btn examen-guiado">🎯 Examen Guiado (actual)</a>
+            <a href="examen_espanol_4to_grado.html" class="nav-btn examen">✍️ Examen Completo</a>
+        </div>
+
+        <div class="header">
+            <h1>📚 Examen Guiado por Temas</h1>
+            <p>Aprende la teoría y practica inmediatamente</p>
+            <div class="student-badge">👨‍🎓 Emiliano</div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab('tema1')">1. Conectores</button>
+            <button class="tab-btn" onclick="openTab('tema2')">2. Párrafo</button>
+            <button class="tab-btn" onclick="openTab('tema3')">3. Lectura</button>
+            <button class="tab-btn" onclick="openTab('tema4')">4. Analogías</button>
+            <button class="tab-btn" onclick="openTab('tema5')">5. Fuentes</button>
+            <button class="tab-btn" onclick="openTab('tema6')">6. Alfabeto</button>
+            <button class="tab-btn" onclick="openTab('tema7')">7. Diccionario</button>
+            <button class="tab-btn" onclick="openTab('tema8')">8. Palabras</button>
+            <button class="tab-btn" onclick="openTab('tema9')">9. Texto Expositivo</button>
+        </div>
+
+        <!-- TEMA 1: CONECTORES -->
+        <div id="tema1" class="tab-content active">
+            <div class="theory-section">
+                <h2>🔗 1. Conectores</h2>
+                <p><strong>¿Qué son los conectores?</strong></p>
+                <p>Los conectores son palabras o expresiones que unen oraciones y le dan mayor sentido y fluidez al texto. Permiten relacionar ideas entre sí.</p>
+                
+                <h3>Tipos de conectores:</h3>
+                <ul>
+                    <li><strong>Adición:</strong> y, además, también, asimismo</li>
+                    <li><strong>Contraste:</strong> pero, sin embargo, aunque, no obstante</li>
+                    <li><strong>Causa:</strong> porque, ya que, debido a, puesto que</li>
+                    <li><strong>Consecuencia:</strong> por lo tanto, entonces, así que, por eso</li>
+                    <li><strong>Tiempo:</strong> antes, después, luego, finalmente</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo:</strong><br>
+                    "Me gusta leer <strong>y</strong> también disfruto escribir."<br>
+                    "Corrió mucho, <strong>sin embargo</strong> no llegó a tiempo."
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Conectores</h3>
+                
+                <div class="question" id="q1-1">
+                    <div class="question-text">
+                        1. Completa la oración: "Me gusta el fútbol _____ también me gusta el basketball."
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="a">
+                            <span>a) pero</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="b">
+                            <span>b) y</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="c">
+                            <span>c) porque</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="d">
+                            <span>d) entonces</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q1-1', 'b', '✅ ¡Correcto!', '&quot;Y&quot; es un conector de adición que une dos ideas similares: ambos deportes te gustan.', '❌ Incorrecto', 'El conector correcto es &quot;y&quot; porque estás añadiendo información similar (te gustan ambos deportes). &quot;Pero&quot; se usa para contrastar, &quot;porque&quot; para causa, y &quot;entonces&quot; para consecuencia.')">Verificar</button>
+                    <div class="feedback" id="feedback-q1-1"></div>
+                </div>
+
+                <div class="question" id="q1-2">
+                    <div class="question-text">
+                        2. ¿Qué conector usarías para mostrar contraste?: "Quería ir al parque _____ estaba lloviendo."
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="a">
+                            <span>a) y</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="b">
+                            <span>b) además</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="c">
+                            <span>c) pero</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="d">
+                            <span>d) entonces</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q1-2', 'c', '✅ ¡Perfecto!', '&quot;Pero&quot; es un conector de contraste que muestra una situación opuesta o que impide algo.', '❌ Intenta de nuevo', 'El conector correcto es &quot;pero&quot; porque hay un contraste: querías ir (idea positiva) pero llovía (situación que lo impide).')">Verificar</button>
+                    <div class="feedback" id="feedback-q1-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" disabled>← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema2')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 2: PÁRRAFO -->
+        <div id="tema2" class="tab-content">
+            <div class="theory-section">
+                <h2>📄 2. El Párrafo</h2>
+                <p><strong>¿Qué es un párrafo?</strong></p>
+                <p>Un párrafo es un conjunto de oraciones que desarrollan una idea principal. Comienza con mayúscula y termina con punto y aparte.</p>
+                
+                <h3>Partes del párrafo:</h3>
+                <ul>
+                    <li><strong>Oración principal:</strong> Expresa la idea central</li>
+                    <li><strong>Oraciones secundarias:</strong> Desarrollan y amplían la idea principal</li>
+                    <li><strong>Conclusión:</strong> Cierra la idea (opcional)</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo de párrafo:</strong><br><br>
+                    <em>"Los perros son animales muy leales. Siempre están felices de ver a sus dueños y los protegen de los peligros. Por estas razones, son considerados los mejores amigos del hombre."</em><br><br>
+                    <strong>Idea principal:</strong> Los perros son animales leales<br>
+                    <strong>Oraciones secundarias:</strong> Explicaciones de por qué son leales
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: El Párrafo</h3>
+                
+                <div class="question" id="q2-1">
+                    <div class="question-text">
+                        1. ¿Cuál es la idea principal del siguiente párrafo?<br><br>
+                        <em>"El agua es esencial para la vida. Sin ella, las plantas no pueden crecer y los animales no pueden sobrevivir. Por eso debemos cuidarla y no desperdiciarla."</em>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="a">
+                            <span>a) Las plantas necesitan agua</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="b">
+                            <span>b) El agua es esencial para la vida</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="c">
+                            <span>c) No debemos desperdiciar agua</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="d">
+                            <span>d) Los animales toman agua</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q2-1', 'b', '✅ ¡Excelente!', 'La primera oración generalmente presenta la idea principal: &quot;El agua es esencial para la vida&quot;. Las demás oraciones explican por qué.', '❌ Revisa tu respuesta', 'La idea principal es &quot;El agua es esencial para la vida&quot; porque es la idea general que se desarrolla en todo el párrafo. Las otras opciones son detalles secundarios.')">Verificar</button>
+                    <div class="feedback" id="feedback-q2-1"></div>
+                </div>
+
+                <div class="question" id="q2-2">
+                    <div class="question-text">
+                        2. ¿Con qué termina un párrafo?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="a">
+                            <span>a) Punto y seguido</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="b">
+                            <span>b) Punto y aparte</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="c">
+                            <span>c) Coma</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="d">
+                            <span>d) Punto y coma</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q2-2', 'b', '✅ ¡Correcto!', 'Un párrafo siempre termina con punto y aparte, que indica que se finalizó una idea y comienza otra en un nuevo párrafo.', '❌ Inténtalo de nuevo', 'La respuesta correcta es &quot;punto y aparte&quot;. El punto y seguido separa oraciones dentro del mismo párrafo, mientras que el punto y aparte separa párrafos completos.')">Verificar</button>
+                    <div class="feedback" id="feedback-q2-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema1')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema3')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 3: TÉCNICAS DE LECTURA -->
+        <div id="tema3" class="tab-content">
+            <div class="theory-section">
+                <h2>📖 3. Técnicas de Lectura: Conjeturas</h2>
+                <p><strong>¿Qué son las conjeturas?</strong></p>
+                <p>Las conjeturas son suposiciones o predicciones que hacemos sobre lo que va a pasar en un texto, basándonos en pistas y en nuestra experiencia.</p>
+                
+                <h3>¿Cómo hacer conjeturas?</h3>
+                <ul>
+                    <li>Lee el título y observa las imágenes</li>
+                    <li>Piensa en lo que ya sabes sobre el tema</li>
+                    <li>Busca pistas en el texto</li>
+                    <li>Haz predicciones sobre lo que puede pasar</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo:</strong><br>
+                    Si un texto se titula "El día del cumpleaños de Ana" y ves una imagen de un pastel, puedes hacer la conjetura de que el texto tratará sobre una fiesta de cumpleaños.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Conjeturas</h3>
+                
+                <div class="question" id="q3-1">
+                    <div class="question-text">
+                        1. Si ves un libro con el título "El viaje a la luna" y una imagen de un cohete, ¿qué puedes suponer?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="a">
+                            <span>a) El libro trata sobre animales</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="b">
+                            <span>b) El libro trata sobre el espacio y viajes espaciales</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="c">
+                            <span>c) El libro trata sobre deportes</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="d">
+                            <span>d) El libro trata sobre cocina</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q3-1', 'b', '✅ ¡Muy bien!', 'Usaste las pistas (título &quot;viaje a la luna&quot; + imagen de cohete) para hacer una conjetura acertada sobre el tema del libro.', '❌ Piensa mejor', 'Las pistas son: título &quot;El viaje a la luna&quot; + imagen de cohete. Ambas pistas nos dicen que el tema es sobre el espacio y viajes espaciales.')">Verificar</button>
+                    <div class="feedback" id="feedback-q3-1"></div>
+                </div>
+
+                <div class="question" id="q3-2">
+                    <div class="question-text">
+                        2. ¿Qué es una conjetura?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="a">
+                            <span>a) Una palabra nueva</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="b">
+                            <span>b) Un tipo de párrafo</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="c">
+                            <span>c) Una suposición sobre el contenido de un texto</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="d">
+                            <span>d) Un conector</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q3-2', 'c', '✅ ¡Exacto!', 'Una conjetura es una suposición o predicción que hacemos antes o durante la lectura, basándonos en pistas del texto.', '❌ Revisa la teoría', 'Una conjetura es una suposición o predicción sobre lo que tratará el texto, basada en pistas como el título, imágenes o lo que ya conocemos del tema.')">Verificar</button>
+                    <div class="feedback" id="feedback-q3-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema2')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema4')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 4: ANALOGÍAS -->
+        <div id="tema4" class="tab-content">
+            <div class="theory-section">
+                <h2>🔄 4. Analogías</h2>
+                <p><strong>¿Qué es una analogía?</strong></p>
+                <p>Una analogía es una comparación entre dos cosas diferentes que tienen algo en común. Se expresa así: A es a B como C es a D.</p>
+                
+                <h3>Tipos de relaciones en analogías:</h3>
+                <ul>
+                    <li><strong>Objeto-Función:</strong> Lápiz es a escribir como tijeras es a cortar</li>
+                    <li><strong>Parte-Todo:</strong> Hoja es a árbol como página es a libro</li>
+                    <li><strong>Sinónimos:</strong> Grande es a enorme como pequeño es a diminuto</li>
+                    <li><strong>Antónimos:</strong> Día es a noche como frío es a calor</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo:</strong><br>
+                    Perro es a cachorro como gato es a <strong>gatito</strong><br>
+                    (Ambos son la cría del animal adulto)
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Analogías</h3>
+                
+                <div class="question" id="q4-1">
+                    <div class="question-text">
+                        1. Completa la analogía: Médico es a hospital como maestro es a _____
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="a">
+                            <span>a) Casa</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="b">
+                            <span>b) Escuela</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="c">
+                            <span>c) Tienda</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="d">
+                            <span>d) Parque</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q4-1', 'b', '✅ ¡Perfecto!', 'La relación es profesión-lugar de trabajo: el médico trabaja en el hospital y el maestro trabaja en la escuela.', '❌ Piensa en la relación', 'La relación es: profesión → lugar donde trabaja. El médico trabaja en el hospital, por lo tanto el maestro trabaja en la escuela.')">Verificar</button>
+                    <div class="feedback" id="feedback-q4-1"></div>
+                </div>
+
+                <div class="question" id="q4-2">
+                    <div class="question-text">
+                        2. Día es a noche como calor es a _____
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="a">
+                            <span>a) Sol</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="b">
+                            <span>b) Verano</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="c">
+                            <span>c) Frío</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="d">
+                            <span>d) Fuego</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q4-2', 'c', '✅ ¡Excelente!', 'Esta es una analogía de antónimos: día es lo opuesto a noche, y calor es lo opuesto a frío.', '❌ Busca el opuesto', 'La relación es de antónimos (opuestos). Día es lo opuesto a noche, entonces calor es lo opuesto a frío.')">Verificar</button>
+                    <div class="feedback" id="feedback-q4-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema3')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema5')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 5: FUENTES DE INFORMACIÓN -->
+        <div id="tema5" class="tab-content">
+            <div class="theory-section">
+                <h2>📚 5. Fuentes de Información</h2>
+                <p><strong>¿Qué son las fuentes de información?</strong></p>
+                <p>Las fuentes de información son los lugares o medios donde podemos buscar datos y conocimientos sobre un tema.</p>
+                
+                <h3>Tipos de fuentes:</h3>
+                <ul>
+                    <li><strong>Libros:</strong> Enciclopedias, diccionarios, textos escolares</li>
+                    <li><strong>Revistas y periódicos:</strong> Noticias y artículos</li>
+                    <li><strong>Internet:</strong> Sitios web, videos educativos</li>
+                    <li><strong>Personas:</strong> Maestros, expertos, bibliotecarios</li>
+                    <li><strong>Bibliotecas:</strong> Colección de libros y recursos</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo:</strong><br>
+                    Si quieres investigar sobre los dinosaurios, puedes consultar:<br>
+                    • Una enciclopedia<br>
+                    • Un libro de ciencias<br>
+                    • Un sitio web educativo<br>
+                    • Preguntarle a tu maestro
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Fuentes de Información</h3>
+                
+                <div class="question" id="q5-1">
+                    <div class="question-text">
+                        1. Si necesitas saber el significado de una palabra, ¿qué fuente consultarías?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="a">
+                            <span>a) Un diccionario</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="b">
+                            <span>b) Un periódico</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="c">
+                            <span>c) Una revista de deportes</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="d">
+                            <span>d) Un mapa</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q5-1', 'a', '✅ ¡Correcto!', 'El diccionario es la fuente adecuada para buscar el significado de palabras, su ortografía y ejemplos de uso.', '❌ Piensa qué libro tiene definiciones', 'El diccionario es la fuente especializada en definir palabras, explicar su significado, ortografía y uso.')">Verificar</button>
+                    <div class="feedback" id="feedback-q5-1"></div>
+                </div>
+
+                <div class="question" id="q5-2">
+                    <div class="question-text">
+                        2. ¿Cuál NO es una fuente de información confiable para una tarea escolar?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="a">
+                            <span>a) Una enciclopedia</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="b">
+                            <span>b) Un libro de la biblioteca</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="c">
+                            <span>c) Tu maestro</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="d">
+                            <span>d) Un blog personal sin autor conocido</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q5-2', 'd', '✅ ¡Muy bien!', 'Es importante usar fuentes confiables. Un blog sin autor conocido puede tener información incorrecta. Siempre verifica quién escribió la información.', '❌ Revisa cuál fuente es menos confiable', 'Un blog personal sin autor conocido no es confiable porque no sabemos si la información es correcta. Las otras opciones son fuentes verificadas y confiables.')">Verificar</button>
+                    <div class="feedback" id="feedback-q5-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema4')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema6')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 6: ORDEN ALFABÉTICO -->
+        <div id="tema6" class="tab-content">
+            <div class="theory-section">
+                <h2>🔤 6. Orden Alfabético</h2>
+                <p><strong>¿Qué es el orden alfabético?</strong></p>
+                <p>El orden alfabético es la forma de organizar palabras siguiendo el orden de las letras del abecedario: A, B, C, D, E, F, G, H, I, J, K, L, M, N, Ñ, O, P, Q, R, S, T, U, V, W, X, Y, Z.</p>
+                
+                <h3>¿Cómo ordenar palabras?</h3>
+                <ol>
+                    <li>Observa la primera letra de cada palabra</li>
+                    <li>Si la primera letra es igual, mira la segunda</li>
+                    <li>Si la segunda también es igual, mira la tercera, y así sucesivamente</li>
+                </ol>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo:</strong><br>
+                    Ordenar: Perro, Árbol, Casa, Zapato<br>
+                    <strong>Orden alfabético:</strong> Árbol, Casa, Perro, Zapato<br><br>
+                    
+                    Si las primeras letras son iguales:<br>
+                    Casa, Cama, Carro<br>
+                    <strong>Orden:</strong> Cama (segunda letra: a), Carro (segunda letra: a, tercera: r), Casa (segunda letra: a, tercera: s)
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Orden Alfabético</h3>
+                
+                <div class="question" id="q6-1">
+                    <div class="question-text">
+                        1. ¿Cuál es el orden alfabético correcto de estas palabras?: Sol, Luna, Mar, Estrella
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="a">
+                            <span>a) Sol, Luna, Mar, Estrella</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="b">
+                            <span>b) Estrella, Luna, Mar, Sol</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="c">
+                            <span>c) Luna, Sol, Estrella, Mar</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="d">
+                            <span>d) Mar, Estrella, Luna, Sol</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q6-1', 'b', '✅ ¡Perfecto!', 'Correcto: E (Estrella), L (Luna), M (Mar), S (Sol). Recuerda seguir el orden del abecedario.', '❌ Revisa el abecedario', 'Orden correcto: Estrella (E), Luna (L), Mar (M), Sol (S). Sigue el orden de las letras en el abecedario.')">Verificar</button>
+                    <div class="feedback" id="feedback-q6-1"></div>
+                </div>
+
+                <div class="question" id="q6-2">
+                    <div class="question-text">
+                        2. Si tienes las palabras: Cama, Casa, Carro. ¿Cuál va primero en orden alfabético?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="a">
+                            <span>a) Casa</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="b">
+                            <span>b) Carro</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="c">
+                            <span>c) Cama</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="d">
+                            <span>d) Todas empiezan igual</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q6-2', 'c', '✅ ¡Excelente!', 'Como las tres empiezan con &quot;Ca&quot;, miramos la tercera letra: Cama (m), Carro (r), Casa (s). La M va antes que R y S.', '❌ Compara la tercera letra', 'Las tres empiezan con &quot;Ca&quot;, entonces vemos la tercera letra: Cama (m), Carro (r), Casa (s). En el abecedario, M va antes que R y S.')">Verificar</button>
+                    <div class="feedback" id="feedback-q6-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema5')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema7')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 7: EL DICCIONARIO -->
+        <div id="tema7" class="tab-content">
+            <div class="theory-section">
+                <h2>📖 7. El Diccionario</h2>
+                <p><strong>¿Qué es el diccionario?</strong></p>
+                <p>El diccionario es un libro que contiene las palabras de un idioma ordenadas alfabéticamente, con su significado, escritura correcta y ejemplos de uso.</p>
+                
+                <h3>¿Cómo buscar una palabra en el diccionario?</h3>
+                <ol>
+                    <li>Identifica la primera letra de la palabra</li>
+                    <li>Busca esa sección del diccionario (están organizadas alfabéticamente)</li>
+                    <li>Busca la palabra siguiendo el orden alfabético</li>
+                    <li>Lee la definición y ejemplos</li>
+                </ol>
+
+                <h3>¿Qué información encuentras?</h3>
+                <ul>
+                    <li><strong>Definición:</strong> Significado de la palabra</li>
+                    <li><strong>Ortografía:</strong> Cómo se escribe correctamente</li>
+                    <li><strong>Ejemplos:</strong> Cómo usar la palabra en oraciones</li>
+                    <li><strong>Tipo de palabra:</strong> Si es sustantivo, verbo, adjetivo, etc.</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo de entrada de diccionario:</strong><br><br>
+                    <strong>Libro:</strong> Sustantivo masculino. Conjunto de hojas de papel impresas y encuadernadas que forman un volumen.<br>
+                    <em>Ejemplo:</em> Me gusta leer un libro antes de dormir.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: El Diccionario</h3>
+                
+                <div class="question" id="q7-1">
+                    <div class="question-text">
+                        1. ¿Cómo están organizadas las palabras en el diccionario?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7-1" value="a">
+                            <span>a) Por tamaño</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7-1" value="b">
+                            <span>b) Por orden alfabético</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7-1" value="c">
+                            <span>c) Por temas</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7-1" value="d">
+                            <span>d) Al azar</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q7-1', 'b', '✅ ¡Correcto!', 'El diccionario organiza todas las palabras en orden alfabético, lo que facilita encontrar cualquier palabra rápidamente.', '❌ Piensa cómo encontrar palabras rápido', 'El diccionario organiza las palabras en orden alfabético (A-Z) para que sea fácil encontrarlas.')">Verificar</button>
+                    <div class="feedback" id="feedback-q7-1"></div>
+                </div>
+
+                <div class="question" id="q7-2">
+                    <div class="question-text">
+                        2. Si buscas la palabra "Zapato" en el diccionario, ¿en qué sección la encontrarías?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7-2" value="a">
+                            <span>a) Al principio (letras A-C)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7-2" value="b">
+                            <span>b) En medio (letras M-P)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7-2" value="c">
+                            <span>c) Al final (letras X-Z)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7-2" value="d">
+                            <span>d) En cualquier parte</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q7-2', 'c', '✅ ¡Perfecto!', 'La palabra &quot;Zapato&quot; empieza con Z, que es una de las últimas letras del abecedario, por lo tanto está al final del diccionario.', '❌ Revisa dónde está la Z', 'La palabra &quot;Zapato&quot; empieza con Z, que es casi la última letra del abecedario. Por eso la encontrarás al final del diccionario.')">Verificar</button>
+                    <div class="feedback" id="feedback-q7-2"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema6')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema8')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 8: PALABRAS (RAÍZ, PREFIJOS, SUFIJOS) -->
+        <div id="tema8" class="tab-content">
+            <div class="theory-section">
+                <h2>🔠 8. Las Palabras y su Significado</h2>
+                
+                <h3>La Raíz de las Palabras</h3>
+                <p>La <strong>raíz</strong> es la parte común de las palabras que no cambia. A partir de una raíz podemos formar muchas palabras relacionadas.</p>
+                <div class="example-box">
+                    <strong>📖 Ejemplo:</strong> Raíz FLOR → florido, florista, florero, floral
+                </div>
+
+                <h3>Prefijos</h3>
+                <p>Los <strong>prefijos</strong> son partes que se añaden <strong>al inicio</strong> de una palabra para modificar su significado.</p>
+                <ul>
+                    <li><strong>re-</strong> (repetir) → releer, rehacer</li>
+                    <li><strong>pre-</strong> (antes) → predecir, preescolar</li>
+                    <li><strong>sub-</strong> (debajo) → submarino, subterráneo</li>
+                    <li><strong>super-</strong> (superior) → superhéroe, supermercado</li>
+                </ul>
+
+                <h3>Sufijos</h3>
+                <p>Los <strong>sufijos</strong> se añaden <strong>al final</strong> de una palabra para cambiar su significado.</p>
+                <ul>
+                    <li><strong>-ito/-ita</strong> (diminutivo) → perrito, casita</li>
+                    <li><strong>-azo/-aza</strong> (aumentativo) → golpazo, barcaza</li>
+                    <li><strong>-oso/-osa</strong> (cualidad) → cariñoso, hermosa</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>💡 Importante:</strong> Los prefijos y sufijos NO tienen significado por sí mismos. Siempre necesitan estar unidos a una raíz.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Palabras</h3>
+                
+                <div class="question" id="q8-1">
+                    <div class="question-text">
+                        1. En la palabra "submarino", ¿cuál es el prefijo y qué significa?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8-1" value="a">
+                            <span>a) "sub-" que significa debajo</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-1" value="b">
+                            <span>b) "marino" que significa mar</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-1" value="c">
+                            <span>c) "ino" que significa barco</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-1" value="d">
+                            <span>d) No tiene prefijo</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q8-1', 'a', '✅ ¡Correcto!', 'El prefijo &quot;sub-&quot; significa debajo. Un submarino es un vehículo que va debajo del mar (agua).', '❌ Piensa en la primera parte', 'El prefijo es &quot;sub-&quot; que significa debajo. Por eso submarino es un vehículo que va debajo del mar.')">Verificar</button>
+                    <div class="feedback" id="feedback-q8-1"></div>
+                </div>
+
+                <div class="question" id="q8-2">
+                    <div class="question-text">
+                        2. ¿Qué tipo de sufijo tiene la palabra "perrito"?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8-2" value="a">
+                            <span>a) Aumentativo</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-2" value="b">
+                            <span>b) Diminutivo</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-2" value="c">
+                            <span>c) Despectivo</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-2" value="d">
+                            <span>d) No tiene sufijo</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q8-2', 'b', '✅ ¡Muy bien!', 'El sufijo &quot;-ito&quot; es diminutivo, indica que el perro es pequeño o expresa cariño.', '❌ Revisa los sufijos', 'El sufijo &quot;-ito&quot; es diminutivo, se usa para indicar que algo es pequeño. Perrito = perro pequeño.')">Verificar</button>
+                    <div class="feedback" id="feedback-q8-2"></div>
+                </div>
+
+                <div class="question" id="q8-3">
+                    <div class="question-text">
+                        3. Si la raíz de una familia de palabras es "CANT", ¿cuál palabra NO pertenece a esta familia?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8-3" value="a">
+                            <span>a) Cantar</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-3" value="b">
+                            <span>b) Canción</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-3" value="c">
+                            <span>c) Cantante</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8-3" value="d">
+                            <span>d) Camino</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q8-3', 'd', '✅ ¡Excelente!', '&quot;Camino&quot; no tiene la raíz CANT, tiene otra raíz (CAMIN). Las demás palabras sí comparten la raíz CANT relacionada con el canto.', '❌ Busca cuál tiene diferente raíz', '&quot;Camino&quot; no pertenece a la familia porque tiene una raíz diferente (CAMIN). Las otras tres comparten la raíz CANT relacionada con cantar.')">Verificar</button>
+                    <div class="feedback" id="feedback-q8-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema7')">← Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema9')">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 9: TEXTO EXPOSITIVO -->
+        <div id="tema9" class="tab-content">
+            <div class="theory-section">
+                <h2>📰 9. Texto Expositivo</h2>
+                <p><strong>¿Qué es un texto expositivo?</strong></p>
+                <p>El texto expositivo es aquel que presenta información de manera clara y organizada. Su objetivo es <strong>explicar o informar</strong> sobre un tema.</p>
+                
+                <h3>Características:</h3>
+                <ul>
+                    <li>Presenta información objetiva (hechos, no opiniones)</li>
+                    <li>Usa un lenguaje claro y preciso</li>
+                    <li>Está bien organizado en párrafos</li>
+                    <li>Puede incluir ejemplos y explicaciones</li>
+                </ul>
+
+                <h3>Partes de un texto expositivo:</h3>
+                <ol>
+                    <li><strong>Introducción:</strong> Presenta el tema</li>
+                    <li><strong>Desarrollo:</strong> Explica la información con detalles</li>
+                    <li><strong>Conclusión:</strong> Resume las ideas principales</li>
+                </ol>
+
+                <div class="example-box">
+                    <strong>📖 Ejemplo de texto expositivo:</strong><br><br>
+                    <strong>Los Delfines</strong><br><br>
+                    Los delfines son mamíferos marinos muy inteligentes. Viven en grupos llamados manadas y se comunican entre ellos usando sonidos especiales. Los delfines respiran aire, por eso deben salir a la superficie frecuentemente. Se alimentan principalmente de peces y calamares.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎯 Práctica: Texto Expositivo</h3>
+                
+                <div class="question" id="q9-1">
+                    <div class="question-text">
+                        1. Lee el siguiente texto:<br><br>
+                        <em>"El Sistema Solar está formado por el Sol y todos los cuerpos celestes que giran a su alrededor. Hay ocho planetas: Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano y Neptuno."</em><br><br>
+                        ¿Qué tipo de texto es?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9-1" value="a">
+                            <span>a) Narrativo (cuenta una historia)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9-1" value="b">
+                            <span>b) Expositivo (informa)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9-1" value="c">
+                            <span>c) Instructivo (da instrucciones)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9-1" value="d">
+                            <span>d) Poético (expresa sentimientos)</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q9-1', 'b', '✅ ¡Perfecto!', 'Es un texto expositivo porque presenta información objetiva sobre el Sistema Solar con el propósito de informar y explicar.', '❌ Piensa en el propósito', 'Es un texto expositivo porque su objetivo es informar y explicar datos sobre el Sistema Solar de manera clara y objetiva.')">Verificar</button>
+                    <div class="feedback" id="feedback-q9-1"></div>
+                </div>
+
+                <div class="question" id="q9-2">
+                    <div class="question-text">
+                        2. ¿Cuál es el objetivo principal de un texto expositivo?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9-2" value="a">
+                            <span>a) Entretener con historias divertidas</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9-2" value="b">
+                            <span>b) Explicar o informar sobre un tema</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9-2" value="c">
+                            <span>c) Dar instrucciones para hacer algo</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9-2" value="d">
+                            <span>d) Expresar sentimientos personales</span>
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkQuestion('q9-2', 'b', '✅ ¡Excelente trabajo!', 'Correcto, el texto expositivo tiene como objetivo principal explicar o informar sobre un tema de manera clara y objetiva.', '❌ Revisa la teoría', 'El objetivo del texto expositivo es explicar o informar sobre un tema. No busca entretener, dar instrucciones o expresar sentimientos.')">Verificar</button>
+                    <div class="feedback" id="feedback-q9-2"></div>
+                </div>
+            </div>
+
+            <div class="topic-summary">
+                <h3>🎉 ¡Felicidades! Has completado todos los temas</h3>
+                <p>Has estudiado los 9 temas principales de Español para 4to Grado. Ahora estás listo para el examen completo.</p>
+                <div style="margin-top: 20px;">
+                    <a href="examen_espanol_4to_grado.html" class="nav-btn examen" style="display: inline-block; margin-right: 10px;">✍️ Ir al Examen Completo</a>
+                    <a href="guia_estudio_espanol_4to_grado.html" class="nav-btn guia" style="display: inline-block;">📖 Repasar Guía</a>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema8')">← Anterior</button>
+                <button class="nav-button next" disabled style="opacity: 0.5;">Has terminado ✓</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let completedTopics = new Set();
+
+        // Función para abrir tabs
+        function openTab(tabId) {
+            // Ocultar todos los tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Desactivar todos los botones de tab
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Mostrar el tab seleccionado
+            document.getElementById(tabId).classList.add('active');
+
+            // Activar el botón correspondiente
+            const activeButton = Array.from(tabButtons).find(btn => 
+                btn.textContent.includes(tabId.replace('tema', ''))
+            );
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Scroll al inicio
+            window.scrollTo(0, 0);
+
+            // Actualizar barra de progreso
+            updateProgress();
+        }
+
+        // Función para verificar respuestas
+        function checkQuestion(questionId, correctAnswer, correctTitle, correctMsg, incorrectTitle, incorrectMsg) {
+            const question = document.getElementById(questionId);
+            const selectedOption = question.querySelector('input[type="radio"]:checked');
+            const feedback = document.getElementById('feedback-' + questionId);
+            const options = question.querySelectorAll('.option');
+            const button = question.querySelector('.check-btn');
+
+            if (!selectedOption) {
+                alert('Por favor selecciona una respuesta');
+                return;
+            }
+
+            // Deshabilitar todas las opciones
+            options.forEach(opt => {
+                opt.classList.add('disabled');
+                opt.querySelector('input').disabled = true;
+            });
+
+            // Marcar respuesta correcta
+            options.forEach(opt => {
+                const input = opt.querySelector('input');
+                if (input.value === correctAnswer) {
+                    opt.classList.add('correct');
+                }
+            });
+
+            // Mostrar feedback
+            feedback.classList.add('show');
+            if (selectedOption.value === correctAnswer) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = `
+                    <div class="feedback-title">${correctTitle}</div>
+                    <div class="feedback-explanation">${correctMsg}</div>
+                `;
+                
+                // Marcar tema como completado (si todas las preguntas del tema están correctas)
+                markTopicProgress(questionId);
+            } else {
+                selectedOption.parentElement.classList.add('incorrect');
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = `
+                    <div class="feedback-title">${incorrectTitle}</div>
+                    <div class="feedback-explanation">${incorrectMsg}</div>
+                `;
+            }
+
+            // Deshabilitar botón
+            button.disabled = true;
+            button.style.opacity = '0.5';
+        }
+
+        // Marcar progreso del tema
+        function markTopicProgress(questionId) {
+            const topicNumber = questionId.split('-')[0].replace('q', '');
+            completedTopics.add(topicNumber);
+            
+            // Marcar tab como completado
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                if (btn.textContent.includes(topicNumber + '.')) {
+                    btn.classList.add('completed');
+                }
+            });
+
+            updateProgress();
+        }
+
+        // Actualizar barra de progreso
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (completedTopics.size / 9) * 100;
+            progressBar.style.width = percentage + '%';
+        }
+
+        // Inicializar
+        window.onload = function() {
+            openTab('tema1');
+        };
+    </script>
+</body>
+</html>
