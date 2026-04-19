@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio - English 4th Grade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+        }
+
+        .nav-btn.guia {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .student-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.3em;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #f5576c;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f093fb;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #fa709a;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .section ul, .section ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            line-height: 2;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tip {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+            margin: 20px 0;
+        }
+
+        .tip strong {
+            color: #f57c00;
+        }
+
+        .example {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+            margin: 20px 0;
+        }
+
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vocab-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .vocab-card .english {
+            color: #d84315;
+            font-size: 1.3em;
+        }
+
+        .vocab-card .spanish {
+            color: #555;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .clothing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .clothing-table th, .clothing-table td {
+            padding: 12px;
+            border: 2px solid #f093fb;
+            text-align: left;
+        }
+
+        .clothing-table th {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .clothing-table tr:nth-child(even) {
+            background: #fce4ec;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .vocabulary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="guia_estudio_ingles_4to_grado.html" class="nav-btn guia">📖 Study Guide (actual)</a>
+            <a href="examen_guiado_ingles_4to_grado.html" class="nav-btn examen-guiado">🎯 Guided Test</a>
+            <a href="examen_ingles_4to_grado.html" class="nav-btn examen">✍️ Complete Test</a>
+        </div>
+
+        <div class="header">
+            <h1>📚 Study Guide - English</h1>
+            <p>Everything you need to know for the test</p>
+            <div class="student-badge">👧 Valentina - 4th Grade</div>
+        </div>
+
+        <div class="content">
+            <!-- WEATHER VOCABULARY -->
+            <div class="section">
+                <h2>☀️ 1. Weather - El Clima</h2>
+                <p><strong>What's the weather like?</strong> (¿Cómo está el clima?)</p>
+                
+                <h3>Weather Conditions (Condiciones del clima):</h3>
+                <div class="vocabulary-grid">
+                    <div class="vocab-card">
+                        <div class="english">☀️ Sunny</div>
+                        <div class="spanish">Soleado</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">☁️ Cloudy</div>
+                        <div class="spanish">Nublado</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">🌧️ Rainy</div>
+                        <div class="spanish">Lluvioso</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">💨 Windy</div>
+                        <div class="spanish">Ventoso</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">❄️ Snowy</div>
+                        <div class="spanish">Nevado</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">⛈️ Stormy</div>
+                        <div class="spanish">Tormentoso</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">🌫️ Foggy</div>
+                        <div class="spanish">Con niebla</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">🌡️ Hot</div>
+                        <div class="spanish">Caliente</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">🧊 Cold</div>
+                        <div class="spanish">Frío</div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 How to use it:</strong><br>
+                    • <strong>It's sunny.</strong> (Está soleado.)<br>
+                    • <strong>It's cloudy.</strong> (Está nublado.)<br>
+                    • <strong>It's rainy.</strong> (Está lluvioso.)<br>
+                    • <strong>It's windy.</strong> (Está ventoso.)<br>
+                    • <strong>It's cold.</strong> (Está frío.)
+                </div>
+
+                <div class="example">
+                    📖 <strong>Examples:</strong><br>
+                    • Question: <em>"What's the weather like?"</em><br>
+                    • Answer: <em>"It's sunny and hot."</em> (Está soleado y caliente.)<br><br>
+                    • Question: <em>"How is the weather in San José?"</em><br>
+                    • Answer: <em>"It's cloudy in San José."</em> (Está nublado en San José.)
+                </div>
+            </div>
+
+            <!-- SEASONS -->
+            <div class="section">
+                <h2>🍂 2. Seasons - Las Estaciones</h2>
+                <p>The four seasons of the year (Las cuatro estaciones del año):</p>
+
+                <div class="vocabulary-grid">
+                    <div class="vocab-card" style="background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);">
+                        <div class="english">☀️ Summer</div>
+                        <div class="spanish">Verano</div>
+                    </div>
+                    <div class="vocab-card" style="background: linear-gradient(135deg, #ffccbc 0%, #ff8a65 100%);">
+                        <div class="english">🍁 Fall / Autumn</div>
+                        <div class="spanish">Otoño</div>
+                    </div>
+                    <div class="vocab-card" style="background: linear-gradient(135deg, #e1f5fe 0%, #81d4fa 100%);">
+                        <div class="english">❄️ Winter</div>
+                        <div class="spanish">Invierno</div>
+                    </div>
+                    <div class="vocab-card" style="background: linear-gradient(135deg, #c8e6c9 0%, #66bb6a 100%);">
+                        <div class="english">🌸 Spring</div>
+                        <div class="spanish">Primavera</div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Characteristics of each season:</strong><br>
+                    • <strong>Summer:</strong> It's hot and sunny (Hace calor y está soleado)<br>
+                    • <strong>Fall:</strong> It's windy and cool (Hace viento y está fresco)<br>
+                    • <strong>Winter:</strong> It's cold and snowy (Hace frío y nieva)<br>
+                    • <strong>Spring:</strong> It's rainy and warm (Es lluvioso y cálido)
+                </div>
+
+                <div class="example">
+                    📖 <strong>Examples:</strong><br>
+                    • <em>"What's your favorite season?"</em> (¿Cuál es tu estación favorita?)<br>
+                    • <em>"I love winter!"</em> (¡Me encanta el invierno!)<br>
+                    • <em>"I don't like fall."</em> (No me gusta el otoño.)
+                </div>
+            </div>
+
+            <!-- CLOTHING VOCABULARY -->
+            <div class="section">
+                <h2>👗 3. Clothing - La Ropa</h2>
+                <p>Vocabulary about clothes (Vocabulario sobre ropa):</p>
+
+                <h3>Basic Clothing:</h3>
+                <table class="clothing-table">
+                    <tr>
+                        <th>English</th>
+                        <th>Español</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Dress</strong></td>
+                        <td>Vestido</td>
+                    </tr>
+                    <tr>
+                        <td><strong>T-shirt</strong></td>
+                        <td>Camiseta</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shirt</strong></td>
+                        <td>Camisa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pants</strong></td>
+                        <td>Pantalones</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shorts</strong></td>
+                        <td>Pantalones cortos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Skirt</strong></td>
+                        <td>Falda</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Socks</strong></td>
+                        <td>Calcetines / Medias</td>
+                    </tr>
+                </table>
+
+                <h3>Accessories & Winter Clothing:</h3>
+                <table class="clothing-table">
+                    <tr>
+                        <th>English</th>
+                        <th>Español</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Hat</strong></td>
+                        <td>Sombrero</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cap</strong></td>
+                        <td>Gorra</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scarf</strong></td>
+                        <td>Bufanda</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gloves</strong></td>
+                        <td>Guantes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mittens</strong></td>
+                        <td>Manoplas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sweater</strong></td>
+                        <td>Suéter</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coat</strong></td>
+                        <td>Abrigo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Boots</strong></td>
+                        <td>Botas</td>
+                    </tr>
+                </table>
+
+                <h3>Summer & Rainy Day Clothing:</h3>
+                <table class="clothing-table">
+                    <tr>
+                        <th>English</th>
+                        <th>Español</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Sunglasses</strong></td>
+                        <td>Lentes de sol</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Swimsuit</strong></td>
+                        <td>Traje de baño</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flip flops</strong></td>
+                        <td>Chancletas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Raincoat</strong></td>
+                        <td>Impermeable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Umbrella</strong></td>
+                        <td>Paraguas</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- DESCRIBING CLOTHING -->
+            <div class="section">
+                <h2>🎨 4. Describing Clothing - Describir la Ropa</h2>
+                
+                <h3>Structure (Estructura):</h3>
+                <p><strong>Subject + am/is/are + wearing + article + adjective + clothing</strong></p>
+
+                <div class="tip">
+                    <strong>💡 Common phrases:</strong><br>
+                    • <strong>I am wearing...</strong> (Yo estoy usando...)<br>
+                    • <strong>He is wearing...</strong> (Él está usando...)<br>
+                    • <strong>She is wearing...</strong> (Ella está usando...)<br>
+                    • <strong>They are wearing...</strong> (Ellos están usando...)<br>
+                    • <strong>What are you wearing?</strong> (¿Qué estás usando?)
+                </div>
+
+                <h3>Adjectives for Clothing (Adjetivos para la ropa):</h3>
+                <div class="vocabulary-grid">
+                    <div class="vocab-card">
+                        <div class="english">Red</div>
+                        <div class="spanish">Rojo/a</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">Blue</div>
+                        <div class="spanish">Azul</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">Yellow</div>
+                        <div class="spanish">Amarillo/a</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">Green</div>
+                        <div class="spanish">Verde</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">Black</div>
+                        <div class="spanish">Negro/a</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">White</div>
+                        <div class="spanish">Blanco/a</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">Pink</div>
+                        <div class="spanish">Rosado/a</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="english">Brown</div>
+                        <div class="spanish">Café/Marrón</div>
+                    </div>
+                </div>
+
+                <div class="example">
+                    📖 <strong>Complete Examples:</strong><br><br>
+                    <strong>Example 1:</strong><br>
+                    "Mike is wearing a <strong>red</strong> woolly <strong>hat</strong>, a <strong>green</strong> scarf, a <strong>black</strong> sweater, a <strong>yellow</strong> coat, green gloves, <strong>blue</strong> jeans and <strong>brown</strong> shoes."<br><br>
+                    
+                    <strong>Example 2:</strong><br>
+                    "I am wearing a <strong>blue</strong> dress and <strong>white</strong> socks."<br><br>
+                    
+                    <strong>Example 3:</strong><br>
+                    "She is wearing a <strong>pink</strong> skirt and a <strong>yellow</strong> t-shirt."
+                </div>
+            </div>
+
+            <!-- WEATHER AND CLOTHING -->
+            <div class="section">
+                <h2>🌤️ 5. Weather and Appropriate Clothing</h2>
+                <p>¿Qué ropa usar según el clima? (What clothing to wear according to the weather?)</p>
+
+                <h3>Sunny Day ☀️</h3>
+                <p><strong>What to wear:</strong> t-shirt, shorts, sunglasses, hat, flip flops, swimsuit</p>
+                <div class="example">
+                    📖 <em>"Today is a sunny day. I use a blue pants, yellow t-shirt, and green hat."</em>
+                </div>
+
+                <h3>Rainy Day 🌧️</h3>
+                <p><strong>What to wear:</strong> raincoat, umbrella, boots</p>
+                <div class="example">
+                    📖 <em>"It's rainy today. I am wearing a raincoat, boots and I have an umbrella."</em>
+                </div>
+
+                <h3>Cold/Snowy Day ❄️</h3>
+                <p><strong>What to wear:</strong> coat, sweater, scarf, gloves, mittens, hat, boots</p>
+                <div class="example">
+                    📖 <em>"It's cold and snowy. I am wearing a warm coat, a scarf, gloves and boots."</em>
+                </div>
+
+                <h3>Windy Day 💨</h3>
+                <p><strong>What to wear:</strong> sweater, pants, jacket</p>
+                <div class="example">
+                    📖 <em>"It's windy. I am wearing a sweater and pants."</em>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Important:</strong> We choose our clothing based on the weather to be comfortable!<br>
+                    (¡Elegimos nuestra ropa según el clima para estar cómodos!)
+                </div>
+            </div>
+
+            <!-- COSTA RICA WEATHER -->
+            <div class="section">
+                <h2>🇨🇷 6. Weather in Costa Rica</h2>
+                <p>Different cities in Costa Rica have different weather conditions:</p>
+
+                <h3>Cities and their typical weather:</h3>
+                <ul>
+                    <li><strong>San José:</strong> It's cloudy in San José (Está nublado en San José)</li>
+                    <li><strong>Alajuela:</strong> It's stormy in Alajuela (Está tormentoso en Alajuela)</li>
+                    <li><strong>Cartago:</strong> It's cold in Cartago (Está frío en Cartago)</li>
+                    <li><strong>Guanacaste:</strong> It's hot and sunny (Está caliente y soleado)</li>
+                    <li><strong>Limón:</strong> It's rainy (Está lluvioso)</li>
+                    <li><strong>Puntarenas:</strong> It's sunny (Está soleado)</li>
+                </ul>
+
+                <div class="example">
+                    📖 <strong>Conversation Example:</strong><br><br>
+                    Person 1: <em>"What's the weather like in San José?"</em><br>
+                    Person 2: <em>"It is cloudy in San José."</em><br><br>
+                    
+                    Person 1: <em>"What's the weather like in Alajuela?"</em><br>
+                    Person 2: <em>"It's stormy in Alajuela."</em>
+                </div>
+            </div>
+
+            <!-- QUESTIONS AND ANSWERS -->
+            <div class="section">
+                <h2>❓ 7. Common Questions and Answers</h2>
+                
+                <h3>About Weather:</h3>
+                <ul>
+                    <li><strong>Q:</strong> What's the weather like? → <strong>A:</strong> It's sunny/cloudy/rainy</li>
+                    <li><strong>Q:</strong> How is the weather? → <strong>A:</strong> It is hot/cold/windy</li>
+                    <li><strong>Q:</strong> What's the weather like in [city]? → <strong>A:</strong> It's [weather] in [city]</li>
+                </ul>
+
+                <h3>About Seasons:</h3>
+                <ul>
+                    <li><strong>Q:</strong> What's your favorite season? → <strong>A:</strong> I love winter/summer/spring/fall</li>
+                    <li><strong>Q:</strong> What's your least favorite season? → <strong>A:</strong> I don't like fall/winter</li>
+                </ul>
+
+                <h3>About Clothing:</h3>
+                <ul>
+                    <li><strong>Q:</strong> What are you wearing? → <strong>A:</strong> I am wearing a blue dress</li>
+                    <li><strong>Q:</strong> What are you wearing today? → <strong>A:</strong> I am wearing pants and a t-shirt</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>💡 Remember:</strong><br>
+                    • Use <strong>"It is"</strong> or <strong>"It's"</strong> for weather<br>
+                    • Use <strong>"I am"</strong> or <strong>"I'm"</strong> for what you're wearing<br>
+                    • Adjectives go BEFORE the noun: a <strong>blue</strong> shirt (not "a shirt blue")
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Guiado - English 4th Grade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn.guia {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(161, 140, 209, 0.4);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .student-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.3em;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            overflow-x: auto;
+            border-bottom: 3px solid #a18cd1;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            background: #e0e0e0;
+            color: #666;
+            font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: #d0d0d0;
+        }
+
+        .tab.active {
+            background: white;
+            color: #a18cd1;
+            border-bottom: 3px solid #a18cd1;
+        }
+
+        .tab.completed {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .theory-section {
+            background: #e1f5fe;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #0288d1;
+        }
+
+        .theory-section h2 {
+            color: #01579b;
+            margin-bottom: 20px;
+        }
+
+        .theory-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .theory-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .theory-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .practice-section {
+            background: #fff3e0;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #f57c00;
+        }
+
+        .practice-section h2 {
+            color: #e65100;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .options {
+            margin-top: 15px;
+        }
+
+        .option {
+            display: block;
+            padding: 12px;
+            margin: 10px 0;
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .option.correct {
+            background: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .option.incorrect {
+            background: #ffcdd2;
+            border-color: #f44336;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+            border-left: 5px solid #4caf50;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+            border-left: 5px solid #f44336;
+        }
+
+        .verify-btn {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(161, 140, 209, 0.4);
+        }
+
+        .verify-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-button {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-button.prev {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .nav-button.next {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .vocab-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #a18cd1;
+        }
+
+        .vocab-item .english {
+            font-weight: bold;
+            color: #6a1b9a;
+            font-size: 1.1em;
+        }
+
+        .vocab-item .spanish {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="guia_estudio_ingles_4to_grado.html" class="nav-btn guia">📖 Study Guide</a>
+            <a href="examen_guiado_ingles_4to_grado.html" class="nav-btn examen-guiado">🎯 Guided Test (actual)</a>
+            <a href="examen_ingles_4to_grado.html" class="nav-btn examen">✍️ Complete Test</a>
+        </div>
+
+        <div class="header">
+            <h1>🎯 Guided Test - English</h1>
+            <p>Learn the theory, then practice!</p>
+            <div class="student-badge">👧 Valentina - 4th Grade</div>
+        </div>
+
+        <div class="progress-container">
+            <p><strong>Progress:</strong> <span id="progress-text">0 of 6 topics completed</span></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill">0%</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab('tema1')">1. Weather</button>
+            <button class="tab" onclick="openTab('tema2')">2. Seasons</button>
+            <button class="tab" onclick="openTab('tema3')">3. Clothing</button>
+            <button class="tab" onclick="openTab('tema4')">4. Describing</button>
+            <button class="tab" onclick="openTab('tema5')">5. Weather + Clothes</button>
+            <button class="tab" onclick="openTab('tema6')">6. Costa Rica</button>
+        </div>
+
+        <!-- TEMA 1: WEATHER -->
+        <div id="tema1" class="tab-content active">
+            <div class="theory-section">
+                <h2>☀️ Weather - El Clima</h2>
+                <p><strong>Question:</strong> What's the weather like? (¿Cómo está el clima?)</p>
+                <p><strong>Answer:</strong> It's + [weather condition]</p>
+                
+                <h3>Weather vocabulary:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <div class="english">☀️ Sunny</div>
+                        <div class="spanish">Soleado</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">☁️ Cloudy</div>
+                        <div class="spanish">Nublado</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">🌧️ Rainy</div>
+                        <div class="spanish">Lluvioso</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">💨 Windy</div>
+                        <div class="spanish">Ventoso</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">❄️ Snowy</div>
+                        <div class="spanish">Nevado</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">⛈️ Stormy</div>
+                        <div class="spanish">Tormentoso</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">🌫️ Foggy</div>
+                        <div class="spanish">Con niebla</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">🌡️ Hot</div>
+                        <div class="spanish">Caliente</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">🧊 Cold</div>
+                        <div class="spanish">Frío</div>
+                    </div>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li>It's sunny. (Está soleado)</li>
+                    <li>It's rainy. (Está lluvioso)</li>
+                    <li>It's cold. (Está frío)</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: Look at the picture: ☀️. What's the weather like?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="a">
+                            A) It's rainy
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="b">
+                            B) It's sunny
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="c">
+                            C) It's snowy
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="d">
+                            D) It's cloudy
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-1', 'b', &quot;Correct! ☀️ means sunny&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;Look at the sun icon. It means 'sunny' (soleado).&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q1-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: Complete: "_____ cold today."</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="a">
+                            A) I'm
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="b">
+                            B) It's
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="c">
+                            C) You're
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="d">
+                            D) We're
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-2', 'b', &quot;Correct! We use 'It's' for weather&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;For weather, we always use 'It's' (not I'm or You're). Example: It's cold, It's sunny.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q1-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: Which weather word describes this: 💨?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="a">
+                            A) Foggy
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="b">
+                            B) Stormy
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="c">
+                            C) Windy
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="d">
+                            D) Rainy
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-3', 'c', &quot;Correct! 💨 is windy&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;The wind icon 💨 represents 'windy' (ventoso).&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q1-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema1')" disabled>← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema2')">Next →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 2: SEASONS -->
+        <div id="tema2" class="tab-content">
+            <div class="theory-section">
+                <h2>🍂 Seasons - Las Estaciones</h2>
+                <p>There are four seasons in a year:</p>
+                
+                <div class="vocab-grid">
+                    <div class="vocab-item" style="background: #fff9c4;">
+                        <div class="english">☀️ Summer</div>
+                        <div class="spanish">Verano</div>
+                    </div>
+                    <div class="vocab-item" style="background: #ffccbc;">
+                        <div class="english">🍁 Fall</div>
+                        <div class="spanish">Otoño</div>
+                    </div>
+                    <div class="vocab-item" style="background: #e1f5fe;">
+                        <div class="english">❄️ Winter</div>
+                        <div class="spanish">Invierno</div>
+                    </div>
+                    <div class="vocab-item" style="background: #c8e6c9;">
+                        <div class="english">🌸 Spring</div>
+                        <div class="spanish">Primavera</div>
+                    </div>
+                </div>
+
+                <p><strong>Characteristics:</strong></p>
+                <ul>
+                    <li><strong>Summer:</strong> It's hot and sunny</li>
+                    <li><strong>Fall:</strong> It's windy and cool</li>
+                    <li><strong>Winter:</strong> It's cold and snowy</li>
+                    <li><strong>Spring:</strong> It's rainy and warm</li>
+                </ul>
+
+                <p><strong>Questions and answers:</strong></p>
+                <ul>
+                    <li>Q: What's your favorite season? → A: I love winter!</li>
+                    <li>Q: What's your least favorite season? → A: I don't like fall.</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: Which season is typically cold and snowy?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="a">
+                            A) Summer
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="b">
+                            B) Spring
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="c">
+                            C) Winter
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="d">
+                            D) Fall
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-1', 'c', &quot;Correct! Winter is cold and snowy&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;Winter (invierno) is the season when it's cold and snowy. Summer is hot, Spring is rainy, Fall is windy.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q2-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: Complete: "_____ your favorite season?"</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="a">
+                            A) What
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="b">
+                            B) What's
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="c">
+                            C) Which
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="d">
+                            D) How
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-2', 'b', &quot;Correct! 'What's' is the contraction of 'What is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;The correct question is 'What's your favorite season?' (What's = What is)&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q2-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: Answer this question: "What's your favorite season?"</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="a">
+                            A) I am winter
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="b">
+                            B) I love summer
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="c">
+                            C) It's spring
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="d">
+                            D) Summer it's
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-3', 'b', &quot;Correct! 'I love summer' is the right answer&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;To answer 'What's your favorite season?' you say 'I love [season]' or 'My favorite season is [season]'.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q2-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema1')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema3')">Next →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 3: CLOTHING -->
+        <div id="tema3" class="tab-content">
+            <div class="theory-section">
+                <h2>👗 Clothing - La Ropa</h2>
+                <p>Vocabulary about clothes:</p>
+                
+                <div class="vocab-grid">
+                    <div class="vocab-item"><div class="english">Dress</div><div class="spanish">Vestido</div></div>
+                    <div class="vocab-item"><div class="english">T-shirt</div><div class="spanish">Camiseta</div></div>
+                    <div class="vocab-item"><div class="english">Pants</div><div class="spanish">Pantalones</div></div>
+                    <div class="vocab-item"><div class="english">Shorts</div><div class="spanish">Pantalones cortos</div></div>
+                    <div class="vocab-item"><div class="english">Skirt</div><div class="spanish">Falda</div></div>
+                    <div class="vocab-item"><div class="english">Socks</div><div class="spanish">Calcetines</div></div>
+                    <div class="vocab-item"><div class="english">Hat</div><div class="spanish">Sombrero</div></div>
+                    <div class="vocab-item"><div class="english">Cap</div><div class="spanish">Gorra</div></div>
+                    <div class="vocab-item"><div class="english">Scarf</div><div class="spanish">Bufanda</div></div>
+                    <div class="vocab-item"><div class="english">Gloves</div><div class="spanish">Guantes</div></div>
+                    <div class="vocab-item"><div class="english">Sweater</div><div class="spanish">Suéter</div></div>
+                    <div class="vocab-item"><div class="english">Coat</div><div class="spanish">Abrigo</div></div>
+                    <div class="vocab-item"><div class="english">Boots</div><div class="spanish">Botas</div></div>
+                    <div class="vocab-item"><div class="english">Raincoat</div><div class="spanish">Impermeable</div></div>
+                    <div class="vocab-item"><div class="english">Umbrella</div><div class="spanish">Paraguas</div></div>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: What do you wear on your feet?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="a">
+                            A) Gloves
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="b">
+                            B) Hat
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="c">
+                            C) Socks and boots
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-1" value="d">
+                            D) Scarf
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q3-1', 'c', &quot;Correct! Socks and boots go on your feet&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;We wear socks and boots on our feet. Gloves go on hands, hat on head, scarf on neck.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q3-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: What's the difference between a HAT and a CAP?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="a">
+                            A) They are the same
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="b">
+                            B) A cap has a visor, a hat has a brim all around
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="c">
+                            C) A hat is for winter only
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-2" value="d">
+                            D) A cap is only for sports
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q3-2', 'b', &quot;Correct! A cap has a visor (like a baseball cap), a hat has a brim all around&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;A CAP (gorra) has a visor in front like a baseball cap. A HAT (sombrero) has a brim all around it.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q3-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: What do you need on a rainy day?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3-3" value="a">
+                            A) Swimsuit and flip flops
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-3" value="b">
+                            B) Raincoat and umbrella
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-3" value="c">
+                            C) Sunglasses and hat
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3-3" value="d">
+                            D) Shorts and t-shirt
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q3-3', 'b', &quot;Correct! Raincoat and umbrella protect you from rain&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;On a rainy day, you need a raincoat (impermeable) and umbrella (paraguas) to stay dry.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q3-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema2')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema4')">Next →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 4: DESCRIBING CLOTHING -->
+        <div id="tema4" class="tab-content">
+            <div class="theory-section">
+                <h2>🎨 Describing Clothing</h2>
+                <p><strong>Structure:</strong> Subject + am/is/are + wearing + article + adjective + clothing</p>
+                
+                <p><strong>Common phrases:</strong></p>
+                <ul>
+                    <li>I am wearing... (Yo estoy usando...)</li>
+                    <li>He is wearing... (Él está usando...)</li>
+                    <li>She is wearing... (Ella está usando...)</li>
+                    <li>What are you wearing? (¿Qué estás usando?)</li>
+                </ul>
+
+                <p><strong>Important rule:</strong> Adjective + Noun</p>
+                <ul>
+                    <li>✅ Correct: a <strong>blue</strong> dress</li>
+                    <li>❌ Incorrect: a dress blue</li>
+                </ul>
+
+                <p><strong>Color vocabulary:</strong></p>
+                <div class="vocab-grid">
+                    <div class="vocab-item" style="background: #ffcdd2;"><div class="english">Red</div></div>
+                    <div class="vocab-item" style="background: #bbdefb;"><div class="english">Blue</div></div>
+                    <div class="vocab-item" style="background: #fff9c4;"><div class="english">Yellow</div></div>
+                    <div class="vocab-item" style="background: #c8e6c9;"><div class="english">Green</div></div>
+                    <div class="vocab-item" style="background: #f8bbd0;"><div class="english">Pink</div></div>
+                    <div class="vocab-item" style="background: #d7ccc8;"><div class="english">Brown</div></div>
+                    <div class="vocab-item" style="background: #e0e0e0;"><div class="english">White</div></div>
+                    <div class="vocab-item" style="background: #9e9e9e;"><div class="english">Black</div></div>
+                </div>
+
+                <p><strong>Example:</strong></p>
+                <p>"I am wearing a <strong>red</strong> hat, a <strong>green</strong> scarf, and <strong>blue</strong> jeans."</p>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: What's the correct order?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="a">
+                            A) I am wearing a dress blue
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="b">
+                            B) I am wearing a blue dress
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="c">
+                            C) I wearing a blue dress
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-1" value="d">
+                            D) I am wear a blue dress
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q4-1', 'b', &quot;Correct! Adjective comes BEFORE the noun&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;In English, the adjective (blue) always goes BEFORE the noun (dress). Structure: I am wearing a + adjective + noun.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q4-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: Complete: "She _____ wearing a red sweater."</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="a">
+                            A) am
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="b">
+                            B) is
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="c">
+                            C) are
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-2" value="d">
+                            D) be
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q4-2', 'b', &quot;Correct! Use 'is' with she/he&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;With 'She' or 'He', we use 'IS'. I am, You are, She/He IS, We are, They are.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q4-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: Which sentence is correct?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4-3" value="a">
+                            A) He wearing green pants
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-3" value="b">
+                            B) He is wearing green pants
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-3" value="c">
+                            C) He wears green pants
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4-3" value="d">
+                            D) He wear green pants
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q4-3', 'b', &quot;Correct! 'He is wearing' is the right structure&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;When describing what someone is wearing RIGHT NOW, use: He IS WEARING (present continuous).&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q4-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema3')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema5')">Next →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 5: WEATHER AND CLOTHING -->
+        <div id="tema5" class="tab-content">
+            <div class="theory-section">
+                <h2>🌤️ Weather and Appropriate Clothing</h2>
+                <p>We choose different clothes for different weather:</p>
+                
+                <p><strong>☀️ Sunny/Hot Day:</strong></p>
+                <ul>
+                    <li>Wear: t-shirt, shorts, sunglasses, hat, flip flops, swimsuit</li>
+                    <li>Example: "Today is a sunny day. I am wearing shorts and a t-shirt."</li>
+                </ul>
+
+                <p><strong>🌧️ Rainy Day:</strong></p>
+                <ul>
+                    <li>Wear: raincoat, umbrella, boots</li>
+                    <li>Example: "It's rainy. I am wearing a raincoat and boots."</li>
+                </ul>
+
+                <p><strong>❄️ Cold/Snowy Day:</strong></p>
+                <ul>
+                    <li>Wear: coat, sweater, scarf, gloves, hat, boots</li>
+                    <li>Example: "It's cold. I am wearing a coat, scarf, and gloves."</li>
+                </ul>
+
+                <p><strong>💨 Windy Day:</strong></p>
+                <ul>
+                    <li>Wear: sweater, pants, jacket</li>
+                    <li>Example: "It's windy. I am wearing a sweater."</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: It's hot and sunny. What should you wear?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="a">
+                            A) Coat and gloves
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="b">
+                            B) Raincoat and umbrella
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="c">
+                            C) T-shirt and shorts
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-1" value="d">
+                            D) Sweater and scarf
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q5-1', 'c', &quot;Correct! Light clothes for hot weather&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;When it's hot and sunny, wear light clothes like t-shirt and shorts to stay cool.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q5-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: It's raining outside. What do you need?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="a">
+                            A) Sunglasses
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="b">
+                            B) Umbrella and raincoat
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="c">
+                            C) Flip flops
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-2" value="d">
+                            D) Swimsuit
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q5-2', 'b', &quot;Correct! Umbrella and raincoat keep you dry&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;For rainy weather, you need an umbrella and raincoat to protect you from the rain.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q5-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: Complete the sentence: "It's cold today. I use blue pants, yellow _____, green hat."</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5-3" value="a">
+                            A) swimsuit
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-3" value="b">
+                            B) t-shirt
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-3" value="c">
+                            C) shorts
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5-3" value="d">
+                            D) sweater
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q5-3', 'd', &quot;Correct! Sweater is for cold weather&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;When it's cold, you wear warm clothes like a sweater. T-shirt and shorts are for hot weather.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q5-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema4')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema6')">Next →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 6: COSTA RICA -->
+        <div id="tema6" class="tab-content">
+            <div class="theory-section">
+                <h2>🇨🇷 Weather in Costa Rica</h2>
+                <p>Different cities in Costa Rica have different weather conditions:</p>
+                
+                <p><strong>Common questions:</strong></p>
+                <ul>
+                    <li>"What's the weather like in [city]?"</li>
+                    <li>"How is the weather in [city]?"</li>
+                </ul>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li><strong>San José:</strong> It's cloudy in San José</li>
+                    <li><strong>Alajuela:</strong> It's stormy in Alajuela</li>
+                    <li><strong>Cartago:</strong> It's cold in Cartago</li>
+                    <li><strong>Guanacaste:</strong> It's hot and sunny in Guanacaste</li>
+                    <li><strong>Limón:</strong> It's rainy in Limón</li>
+                    <li><strong>Puntarenas:</strong> It's sunny in Puntarenas</li>
+                </ul>
+
+                <p><strong>Example conversation:</strong></p>
+                <p>Person 1: "What's the weather like in San José?"<br>
+                Person 2: "It is cloudy in San José."</p>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: Answer this question: "What's the weather like in San José?"</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="a">
+                            A) It's sunny in San José
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="b">
+                            B) It's cloudy in San José
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="c">
+                            C) It's snowy in San José
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-1" value="d">
+                            D) It's hot in San José
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q6-1', 'b', &quot;Correct! San José is typically cloudy&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;According to the study material, it's typically CLOUDY in San José.&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q6-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: Which city is typically hot and sunny?</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="a">
+                            A) Cartago
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="b">
+                            B) Limón
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="c">
+                            C) Guanacaste
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-2" value="d">
+                            D) Alajuela
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q6-2', 'c', &quot;Correct! Guanacaste is hot and sunny&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;Guanacaste is on the Pacific coast and is typically hot and sunny (great for beaches!).&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q6-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: Complete: "_____ the weather like in Alajuela?" "It's stormy."</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6-3" value="a">
+                            A) How
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-3" value="b">
+                            B) What
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-3" value="c">
+                            C) What's
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6-3" value="d">
+                            D) Where
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q6-3', 'c', &quot;Correct! 'What's' is the question word for weather&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;To ask about weather, we say 'What's the weather like?' (What's = What is)&quot;)">Verify</button>
+                    <div class="feedback" id="feedback-q6-3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema5')">← Previous</button>
+                <button class="nav-button next" onclick="window.location.href='examen_ingles_4to_grado.html'">Go to Complete Test →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let completedTopics = new Set();
+
+        function openTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Add active class to clicked tab
+            const activeTab = Array.from(tabs).find(tab => 
+                tab.getAttribute('onclick').includes(tabId)
+            );
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function checkQuestion(questionId, correctAnswer, correctMsg, correctTitle, incorrectTitle, incorrectMsg) {
+            const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
+            
+            if (!selectedOption) {
+                alert('Please select an answer first!');
+                return;
+            }
+
+            const feedback = document.getElementById(`feedback-${questionId}`);
+            const options = document.querySelectorAll(`input[name="${questionId}"]`);
+            
+            // Disable all options after answering
+            options.forEach(option => {
+                option.disabled = true;
+                const label = option.parentElement;
+                label.style.cursor = 'not-allowed';
+            });
+
+            if (selectedOption.value === correctAnswer) {
+                selectedOption.parentElement.classList.add('correct');
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = `<strong>✅ ${correctTitle}</strong><br>${correctMsg}`;
+                
+                // Mark topic as completed
+                const currentTab = document.querySelector('.tab-content.active').id;
+                completedTopics.add(currentTab);
+                
+                // Mark tab as completed
+                const tabs = document.querySelectorAll('.tab');
+                tabs.forEach(tab => {
+                    if (tab.getAttribute('onclick').includes(currentTab)) {
+                        tab.classList.add('completed');
+                    }
+                });
+                
+                updateProgress();
+            } else {
+                selectedOption.parentElement.classList.add('incorrect');
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = `<strong>❌ ${incorrectTitle}</strong><br>${incorrectMsg}`;
+            }
+
+            // Disable verify button
+            event.target.disabled = true;
+        }
+
+        function updateProgress() {
+            const total = 6;
+            const completed = completedTopics.size;
+            const percentage = (completed / total) * 100;
+            
+            document.getElementById('progress-text').textContent = `${completed} of ${total} topics completed`;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+            document.getElementById('progress-fill').textContent = `${Math.round(percentage)}%`;
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

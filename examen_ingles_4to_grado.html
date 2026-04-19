@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Completo - English 4th Grade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+        }
+
+        .nav-btn.guia {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .student-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.3em;
+        }
+
+        .score-container {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f5576c;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .instructions {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+            margin-bottom: 30px;
+        }
+
+        .instructions h2 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #f093fb;
+        }
+
+        .question h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .options {
+            margin-top: 15px;
+        }
+
+        .option {
+            display: block;
+            padding: 12px;
+            margin: 10px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background: #fce4ec;
+            border-color: #f093fb;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .option.correct {
+            background: #c8e6c9;
+            border-color: #4caf50;
+            pointer-events: none;
+        }
+
+        .option.incorrect {
+            background: #ffcdd2;
+            border-color: #f44336;
+            pointer-events: none;
+        }
+
+        .option.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .final-score {
+            display: none;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .final-score.show {
+            display: block;
+        }
+
+        .final-score h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .final-score .emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 233, 123, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="guia_estudio_ingles_4to_grado.html" class="nav-btn guia">📖 Study Guide</a>
+            <a href="examen_guiado_ingles_4to_grado.html" class="nav-btn examen-guiado">🎯 Guided Test</a>
+            <a href="examen_ingles_4to_grado.html" class="nav-btn examen">✍️ Complete Test (actual)</a>
+        </div>
+
+        <div class="header">
+            <h1>✍️ Complete Test - English</h1>
+            <p>Test your knowledge!</p>
+            <div class="student-badge">👧 Valentina - 4th Grade</div>
+        </div>
+
+        <div class="score-container">
+            Score: <span id="score">0/20</span>
+        </div>
+
+        <div class="content">
+            <div class="instructions">
+                <h2>📋 Instructions</h2>
+                <p>• Read each question carefully</p>
+                <p>• Select the best answer</p>
+                <p>• You will get instant feedback</p>
+                <p>• Your score is shown at the top</p>
+            </div>
+
+            <!-- WEATHER QUESTIONS (1-5) -->
+            <div class="question">
+                <h3>1. Look at the symbol: ☀️. What's the weather like?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="a" onclick="checkAnswer('q1', 'c', 1)">
+                        A) It's rainy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="b" onclick="checkAnswer('q1', 'c', 1)">
+                        B) It's cloudy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="c" onclick="checkAnswer('q1', 'c', 1)">
+                        C) It's sunny
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="d" onclick="checkAnswer('q1', 'c', 1)">
+                        D) It's snowy
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. Complete the sentence: "_____ cold today."</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="a" onclick="checkAnswer('q2', 'b', 2)">
+                        A) I'm
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="b" onclick="checkAnswer('q2', 'b', 2)">
+                        B) It's
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="c" onclick="checkAnswer('q2', 'b', 2)">
+                        C) You're
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="d" onclick="checkAnswer('q2', 'b', 2)">
+                        D) They're
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. What does this symbol mean? 🌧️</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3" value="a" onclick="checkAnswer('q3', 'c', 3)">
+                        A) Sunny
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="b" onclick="checkAnswer('q3', 'c', 3)">
+                        B) Windy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="c" onclick="checkAnswer('q3', 'c', 3)">
+                        C) Rainy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="d" onclick="checkAnswer('q3', 'c', 3)">
+                        D) Foggy
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. Which word describes wind blowing? 💨</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4" value="a" onclick="checkAnswer('q4', 'b', 4)">
+                        A) Stormy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="b" onclick="checkAnswer('q4', 'b', 4)">
+                        B) Windy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="c" onclick="checkAnswer('q4', 'b', 4)">
+                        C) Snowy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="d" onclick="checkAnswer('q4', 'b', 4)">
+                        D) Cloudy
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. What's the correct question about weather?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5" value="a" onclick="checkAnswer('q5', 'c', 5)">
+                        A) How the weather?
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="b" onclick="checkAnswer('q5', 'c', 5)">
+                        B) What weather?
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="c" onclick="checkAnswer('q5', 'c', 5)">
+                        C) What's the weather like?
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="d" onclick="checkAnswer('q5', 'c', 5)">
+                        D) Weather what?
+                    </label>
+                </div>
+            </div>
+
+            <!-- SEASONS QUESTIONS (6-9) -->
+            <div class="question">
+                <h3>6. Which season is cold and snowy? ❄️</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6" value="a" onclick="checkAnswer('q6', 'd', 6)">
+                        A) Summer
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="b" onclick="checkAnswer('q6', 'd', 6)">
+                        B) Spring
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="c" onclick="checkAnswer('q6', 'd', 6)">
+                        C) Fall
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="d" onclick="checkAnswer('q6', 'd', 6)">
+                        D) Winter
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. What season comes after winter?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7" value="a" onclick="checkAnswer('q7', 'b', 7)">
+                        A) Summer
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="b" onclick="checkAnswer('q7', 'b', 7)">
+                        B) Spring
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="c" onclick="checkAnswer('q7', 'b', 7)">
+                        C) Fall
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="d" onclick="checkAnswer('q7', 'b', 7)">
+                        D) Winter
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. Complete: "What's your favorite season?" "I _____ summer."</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8" value="a" onclick="checkAnswer('q8', 'c', 8)">
+                        A) am
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="b" onclick="checkAnswer('q8', 'c', 8)">
+                        B) is
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="c" onclick="checkAnswer('q8', 'c', 8)">
+                        C) love
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="d" onclick="checkAnswer('q8', 'c', 8)">
+                        D) like it
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. Which season is hot and sunny? ☀️</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q9" value="a" onclick="checkAnswer('q9', 'a', 9)">
+                        A) Summer
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="b" onclick="checkAnswer('q9', 'a', 9)">
+                        B) Winter
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="c" onclick="checkAnswer('q9', 'a', 9)">
+                        C) Fall
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="d" onclick="checkAnswer('q9', 'a', 9)">
+                        D) Spring
+                    </label>
+                </div>
+            </div>
+
+            <!-- CLOTHING QUESTIONS (10-13) -->
+            <div class="question">
+                <h3>10. What do you wear on your feet?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q10" value="a" onclick="checkAnswer('q10', 'c', 10)">
+                        A) Gloves
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="b" onclick="checkAnswer('q10', 'c', 10)">
+                        B) Hat
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="c" onclick="checkAnswer('q10', 'c', 10)">
+                        C) Socks
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="d" onclick="checkAnswer('q10', 'c', 10)">
+                        D) Scarf
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>11. What's the difference between a HAT and a CAP?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q11" value="a" onclick="checkAnswer('q11', 'b', 11)">
+                        A) They are the same
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q11" value="b" onclick="checkAnswer('q11', 'b', 11)">
+                        B) A cap has a visor, a hat has a brim
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q11" value="c" onclick="checkAnswer('q11', 'b', 11)">
+                        C) A hat is bigger
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q11" value="d" onclick="checkAnswer('q11', 'b', 11)">
+                        D) A cap is for boys only
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>12. What do you need to protect yourself from rain?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q12" value="a" onclick="checkAnswer('q12', 'b', 12)">
+                        A) Sunglasses
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q12" value="b" onclick="checkAnswer('q12', 'b', 12)">
+                        B) Raincoat and umbrella
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q12" value="c" onclick="checkAnswer('q12', 'b', 12)">
+                        C) Flip flops
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q12" value="d" onclick="checkAnswer('q12', 'b', 12)">
+                        D) Swimsuit
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>13. What do you wear around your neck when it's cold?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q13" value="a" onclick="checkAnswer('q13', 'd', 13)">
+                        A) Gloves
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q13" value="b" onclick="checkAnswer('q13', 'd', 13)">
+                        B) Boots
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q13" value="c" onclick="checkAnswer('q13', 'd', 13)">
+                        C) Hat
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q13" value="d" onclick="checkAnswer('q13', 'd', 13)">
+                        D) Scarf
+                    </label>
+                </div>
+            </div>
+
+            <!-- DESCRIBING CLOTHING QUESTIONS (14-17) -->
+            <div class="question">
+                <h3>14. What's the correct order?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q14" value="a" onclick="checkAnswer('q14', 'b', 14)">
+                        A) I am wearing a dress blue
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q14" value="b" onclick="checkAnswer('q14', 'b', 14)">
+                        B) I am wearing a blue dress
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q14" value="c" onclick="checkAnswer('q14', 'b', 14)">
+                        C) I wearing a blue dress
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q14" value="d" onclick="checkAnswer('q14', 'b', 14)">
+                        D) I wear blue dress
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>15. Complete: "She _____ wearing a red sweater."</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q15" value="a" onclick="checkAnswer('q15', 'b', 15)">
+                        A) am
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q15" value="b" onclick="checkAnswer('q15', 'b', 15)">
+                        B) is
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q15" value="c" onclick="checkAnswer('q15', 'b', 15)">
+                        C) are
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q15" value="d" onclick="checkAnswer('q15', 'b', 15)">
+                        D) be
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>16. Which sentence describes clothing correctly?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q16" value="a" onclick="checkAnswer('q16', 'c', 16)">
+                        A) He wearing green pants
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q16" value="b" onclick="checkAnswer('q16', 'c', 16)">
+                        B) He wear green pants
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q16" value="c" onclick="checkAnswer('q16', 'c', 16)">
+                        C) He is wearing green pants
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q16" value="d" onclick="checkAnswer('q16', 'c', 16)">
+                        D) He green pants wearing
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>17. Complete: "What _____ you wearing today?"</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q17" value="a" onclick="checkAnswer('q17', 'd', 17)">
+                        A) is
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q17" value="b" onclick="checkAnswer('q17', 'd', 17)">
+                        B) am
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q17" value="c" onclick="checkAnswer('q17', 'd', 17)">
+                        C) do
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q17" value="d" onclick="checkAnswer('q17', 'd', 17)">
+                        D) are
+                    </label>
+                </div>
+            </div>
+
+            <!-- WEATHER + CLOTHING & COSTA RICA (18-20) -->
+            <div class="question">
+                <h3>18. It's hot and sunny outside. What should you wear?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q18" value="a" onclick="checkAnswer('q18', 'c', 18)">
+                        A) Coat and gloves
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q18" value="b" onclick="checkAnswer('q18', 'c', 18)">
+                        B) Raincoat and boots
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q18" value="c" onclick="checkAnswer('q18', 'c', 18)">
+                        C) T-shirt and shorts
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q18" value="d" onclick="checkAnswer('q18', 'c', 18)">
+                        D) Sweater and scarf
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>19. Answer this question: "What's the weather like in San José?"</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q19" value="a" onclick="checkAnswer('q19', 'b', 19)">
+                        A) It's sunny in San José
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q19" value="b" onclick="checkAnswer('q19', 'b', 19)">
+                        B) It's cloudy in San José
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q19" value="c" onclick="checkAnswer('q19', 'b', 19)">
+                        C) It's snowy in San José
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q19" value="d" onclick="checkAnswer('q19', 'b', 19)">
+                        D) It's foggy in San José
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>20. Which Costa Rican city is typically hot and sunny?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q20" value="a" onclick="checkAnswer('q20', 'c', 20)">
+                        A) Cartago
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q20" value="b" onclick="checkAnswer('q20', 'c', 20)">
+                        B) Limón
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q20" value="c" onclick="checkAnswer('q20', 'c', 20)">
+                        C) Guanacaste
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q20" value="d" onclick="checkAnswer('q20', 'c', 20)">
+                        D) San José
+                    </label>
+                </div>
+            </div>
+
+            <button class="submit-btn" onclick="showFinalScore()">📊 Show Final Score</button>
+
+            <div class="final-score" id="finalScore">
+                <div class="emoji" id="scoreEmoji">🎉</div>
+                <h2 id="scoreMessage">Great job!</h2>
+                <p id="scoreDetails" style="font-size: 1.5em; margin-top: 20px;"></p>
+                <p style="margin-top: 20px;">Keep practicing to improve your English!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+        let totalQuestions = 20;
+
+        function checkAnswer(questionName, correctOption, questionNumber) {
+            const options = document.querySelectorAll(`input[name="${questionName}"]`);
+            let selectedOption = null;
+
+            // Find selected option
+            options.forEach(option => {
+                if (option.checked) {
+                    selectedOption = option;
+                }
+            });
+
+            if (!selectedOption) return;
+
+            // Disable all options for this question
+            options.forEach(option => {
+                option.disabled = true;
+                option.parentElement.classList.add('disabled');
+            });
+
+            // Check if answer is correct
+            if (selectedOption.value === correctOption) {
+                selectedOption.parentElement.classList.add('correct');
+                correctAnswers++;
+            } else {
+                selectedOption.parentElement.classList.add('incorrect');
+                // Highlight the correct answer
+                options.forEach(option => {
+                    if (option.value === correctOption) {
+                        option.parentElement.classList.add('correct');
+                    }
+                });
+            }
+
+            // Update score display
+            document.getElementById('score').textContent = `${correctAnswers}/${totalQuestions}`;
+        }
+
+        function showFinalScore() {
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            const finalScoreDiv = document.getElementById('finalScore');
+            const emojiDiv = document.getElementById('scoreEmoji');
+            const messageDiv = document.getElementById('scoreMessage');
+            const detailsDiv = document.getElementById('scoreDetails');
+
+            // Set emoji and message based on score
+            if (percentage >= 90) {
+                emojiDiv.textContent = '🌟';
+                messageDiv.textContent = 'Excellent!';
+            } else if (percentage >= 75) {
+                emojiDiv.textContent = '🎉';
+                messageDiv.textContent = 'Great Job!';
+            } else if (percentage >= 60) {
+                emojiDiv.textContent = '👍';
+                messageDiv.textContent = 'Good Work!';
+            } else {
+                emojiDiv.textContent = '📚';
+                messageDiv.textContent = 'Keep Practicing!';
+            }
+
+            detailsDiv.textContent = `You got ${correctAnswers} out of ${totalQuestions} correct (${percentage.toFixed(1)}%)`;
+            finalScoreDiv.classList.add('show');
+
+            // Scroll to final score
+            finalScoreDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
