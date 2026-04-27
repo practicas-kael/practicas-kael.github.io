@@ -207,8 +207,6 @@
         }
 
         .score-board {
-            position: sticky;
-            top: 20px;
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             color: white;
             padding: 20px;
@@ -216,17 +214,77 @@
             text-align: center;
             margin-bottom: 30px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .score-item {
+            flex: 1;
+            min-width: 150px;
         }
 
         .score-board h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
+            font-size: 1.5em;
+            margin-bottom: 10px;
         }
 
         .score-display {
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 5px 0;
+        }
+
+        .progress-display {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .question-block {
+            display: none;
+        }
+
+        .question-block.active {
+            display: block;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-question-btn {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .nav-question-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(67, 233, 123, 0.4);
+        }
+
+        .nav-question-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-question-btn.prev {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .submit-all-btn {
@@ -303,13 +361,18 @@
 
         <div class="content">
             <div class="score-board">
-                <h2>🎯 Tu Puntuación</h2>
-                <div class="score-display" id="score">0/25</div>
-                <p>¡Demuestra lo que has aprendido!</p>
+                <div class="score-item">
+                    <h2>📊 Progreso</h2>
+                    <div class="progress-display" id="progress">1/25</div>
+                </div>
+                <div class="score-item">
+                    <h2>🎯 Puntuación</h2>
+                    <div class="score-display" id="score">0/25</div>
+                </div>
             </div>
 
             <!-- PREGUNTA 1 -->
-            <div class="question-block">
+            <div class="question-block active" data-question="1">
                 <h3>1️⃣ Ubicación de Costa Rica</h3>
                 <div class="question-text">
                     ¿En qué región de América se encuentra Costa Rica?
@@ -334,10 +397,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q1', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q1"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()" disabled>⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 2 -->
-            <div class="question-block">
+            <div class="question-block" data-question="2">
                 <h3>2️⃣ Cinturón de fuego del Pacífico</h3>
                 <div class="question-text">
                     ¿Por qué América Central es conocida como el "Cinturón de fuego del Pacífico"?
@@ -362,10 +429,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q2', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q2"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 3 -->
-            <div class="question-block">
+            <div class="question-block" data-question="3">
                 <h3>3️⃣ Países de América Central</h3>
                 <div class="question-text">
                     ¿Cuántos países forman América Central?
@@ -390,10 +461,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q3', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q3"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 4 -->
-            <div class="question-block">
+            <div class="question-block" data-question="4">
                 <h3>4️⃣ Superficie de Costa Rica</h3>
                 <div class="question-text">
                     ¿Cuál es la superficie terrestre de Costa Rica?
@@ -418,10 +493,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q4', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q4"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 5 -->
-            <div class="question-block">
+            <div class="question-block" data-question="5">
                 <h3>5️⃣ Cerro Chirripó</h3>
                 <div class="question-text">
                     ¿Cuál es el punto más alto de Costa Rica?
@@ -446,10 +525,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q5', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q5"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 6 -->
-            <div class="question-block">
+            <div class="question-block" data-question="6">
                 <h3>6️⃣ Límites de Costa Rica</h3>
                 <div class="question-text">
                     ¿Con qué países limita Costa Rica?
@@ -474,10 +557,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q6', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q6"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 7 -->
-            <div class="question-block">
+            <div class="question-block" data-question="7">
                 <h3>7️⃣ Océanos que rodean a Costa Rica</h3>
                 <div class="question-text">
                     ¿Qué océanos bañan a Costa Rica?
@@ -502,10 +589,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q7', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q7"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 8 -->
-            <div class="question-block">
+            <div class="question-block" data-question="8">
                 <h3>8️⃣ Puente Biológico</h3>
                 <div class="question-text">
                     ¿Por qué Costa Rica tiene gran variedad de plantas y animales?
@@ -530,10 +621,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q8', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q8"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 9 -->
-            <div class="question-block">
+            <div class="question-block" data-question="9">
                 <h3>9️⃣ Ventaja de tener dos océanos</h3>
                 <div class="question-text">
                     ¿Qué ventaja tiene Costa Rica al tener acceso a dos océanos?
@@ -558,10 +653,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q9', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q9"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 10 -->
-            <div class="question-block">
+            <div class="question-block" data-question="10">
                 <h3>🔟 Suelos fértiles</h3>
                 <div class="question-text">
                     ¿Por qué los suelos fértiles son una ventaja para Costa Rica?
@@ -586,10 +685,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q10', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q10"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 11 -->
-            <div class="question-block">
+            <div class="question-block" data-question="11">
                 <h3>1️⃣1️⃣ Terremotos</h3>
                 <div class="question-text">
                     ¿Qué son los terremotos?
@@ -614,10 +717,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q11', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q11"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 12 -->
-            <div class="question-block">
+            <div class="question-block" data-question="12">
                 <h3>1️⃣2️⃣ Erupciones volcánicas</h3>
                 <div class="question-text">
                     ¿Qué es una erupción volcánica?
@@ -642,10 +749,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q12', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q12"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 13 -->
-            <div class="question-block">
+            <div class="question-block" data-question="13">
                 <h3>1️⃣3️⃣ Sequía</h3>
                 <div class="question-text">
                     ¿Qué es una sequía?
@@ -670,10 +781,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q13', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q13"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 14 -->
-            <div class="question-block">
+            <div class="question-block" data-question="14">
                 <h3>1️⃣4️⃣ Inundaciones</h3>
                 <div class="question-text">
                     ¿Qué son las inundaciones?
@@ -698,10 +813,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q14', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q14"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 15 -->
-            <div class="question-block">
+            <div class="question-block" data-question="15">
                 <h3>1️⃣5️⃣ Tornados y Trombas</h3>
                 <div class="question-text">
                     ¿Qué son los tornados o trombas?
@@ -726,10 +845,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q15', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q15"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 16 -->
-            <div class="question-block">
+            <div class="question-block" data-question="16">
                 <h3>1️⃣6️⃣ ¿Qué son los Estudios Sociales?</h3>
                 <div class="question-text">
                     ¿Qué son los Estudios Sociales?
@@ -754,10 +877,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q16', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q16"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 17 -->
-            <div class="question-block">
+            <div class="question-block" data-question="17">
                 <h3>1️⃣7️⃣ Objetivo de los Estudios Sociales</h3>
                 <div class="question-text">
                     ¿Cuál es uno de los objetivos de los Estudios Sociales?
@@ -782,10 +909,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q17', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q17"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 18 -->
-            <div class="question-block">
+            <div class="question-block" data-question="18">
                 <h3>1️⃣8️⃣ Educación Cívica</h3>
                 <div class="question-text">
                     ¿Qué promueve la Educación Cívica?
@@ -810,10 +941,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q18', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q18"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 19 -->
-            <div class="question-block">
+            <div class="question-block" data-question="19">
                 <h3>1️⃣9️⃣ Objetivo de la Educación Cívica</h3>
                 <div class="question-text">
                     ¿Qué busca la Educación Cívica en los ciudadanos?
@@ -838,10 +973,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q19', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q19"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 20 -->
-            <div class="question-block">
+            <div class="question-block" data-question="20">
                 <h3>2️⃣0️⃣ Geografía</h3>
                 <div class="question-text">
                     ¿Qué estudia la Geografía?
@@ -866,10 +1005,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q20', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q20"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 21 -->
-            <div class="question-block">
+            <div class="question-block" data-question="21">
                 <h3>2️⃣1️⃣ Historia</h3>
                 <div class="question-text">
                     ¿Qué disciplina usa líneas del tiempo como herramienta?
@@ -894,10 +1037,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q21', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q21"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 22 -->
-            <div class="question-block">
+            <div class="question-block" data-question="22">
                 <h3>2️⃣2️⃣ Antropología</h3>
                 <div class="question-text">
                     ¿Qué estudia la Antropología?
@@ -922,10 +1069,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q22', 'c')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q22"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 23 -->
-            <div class="question-block">
+            <div class="question-block" data-question="23">
                 <h3>2️⃣3️⃣ Importancia desde la infancia</h3>
                 <div class="question-text">
                     ¿Por qué es importante la Educación Cívica desde la infancia?
@@ -950,10 +1101,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q23', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q23"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 24 -->
-            <div class="question-block">
+            <div class="question-block" data-question="24">
                 <h3>2️⃣4️⃣ Impacto en el hogar</h3>
                 <div class="question-text">
                     En el hogar, ¿cómo impactan los Estudios Sociales y Educación Cívica?
@@ -978,10 +1133,14 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q24', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q24"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()">Siguiente ➡️</button>
+                </div>
             </div>
 
             <!-- PREGUNTA 25 -->
-            <div class="question-block">
+            <div class="question-block" data-question="25">
                 <h3>2️⃣5️⃣ Pensamiento crítico</h3>
                 <div class="question-text">
                     ¿Qué fomentan los Estudios Sociales en los estudiantes?
@@ -1006,9 +1165,13 @@
                 </div>
                 <button class="check-btn" onclick="checkAnswer('q25', 'b')">Verificar Respuesta</button>
                 <div class="feedback" id="feedback-q25"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-question-btn prev" onclick="previousQuestion()">⬅️ Anterior</button>
+                    <button class="nav-question-btn" onclick="nextQuestion()" id="lastNextBtn">Ver Resultado Final ➡️</button>
+                </div>
             </div>
 
-            <button class="submit-all-btn" onclick="submitAll()">🎯 Ver Resultado Final</button>
+            <button class="submit-all-btn" onclick="submitAll()" style="display: none;" id="submitBtn">🎯 Ver Resultado Final</button>
 
             <div class="final-result" id="finalResult">
                 <h2>🎉 ¡Examen Completado!</h2>
@@ -1023,6 +1186,8 @@
 
     <script>
         let score = 0;
+        let currentQuestion = 1;
+        const totalQuestions = 25;
         let answeredQuestions = new Set();
         const correctAnswers = {
             'q1': 'b', 'q2': 'c', 'q3': 'c', 'q4': 'b', 'q5': 'c',
@@ -1031,6 +1196,63 @@
             'q16': 'c', 'q17': 'b', 'q18': 'b', 'q19': 'b', 'q20': 'b',
             'q21': 'b', 'q22': 'c', 'q23': 'b', 'q24': 'b', 'q25': 'b'
         };
+
+        function showQuestion(questionNumber) {
+            // Ocultar todas las preguntas
+            document.querySelectorAll('.question-block').forEach(block => {
+                block.classList.remove('active');
+            });
+            
+            // Mostrar la pregunta actual
+            const currentBlock = document.querySelector(`[data-question="${questionNumber}"]`);
+            if (currentBlock) {
+                currentBlock.classList.add('active');
+                
+                // Actualizar botones de navegación
+                const prevBtn = currentBlock.querySelector('.nav-question-btn.prev');
+                const nextBtn = currentBlock.querySelector('.nav-question-btn:not(.prev)');
+                
+                if (prevBtn) {
+                    prevBtn.disabled = (questionNumber === 1);
+                }
+                
+                if (nextBtn && questionNumber === totalQuestions) {
+                    nextBtn.textContent = 'Ver Resultado Final ➡️';
+                } else if (nextBtn) {
+                    nextBtn.textContent = 'Siguiente ➡️';
+                }
+            }
+            
+            // Actualizar progreso
+            updateProgress();
+            
+            // Scroll al inicio
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function updateProgress() {
+            document.getElementById('progress').textContent = currentQuestion + '/' + totalQuestions;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                // Última pregunta - mostrar resultado
+                submitAll();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
 
         function checkAnswer(questionId, correctAnswer) {
             const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
@@ -1114,6 +1336,12 @@
                 radio.checked = true;
                 this.classList.add('selected');
             });
+        });
+
+        // Inicializar mostrando la primera pregunta
+        document.addEventListener('DOMContentLoaded', function() {
+            showQuestion(1);
+            updateProgress();
         });
     </script>
 </body>
