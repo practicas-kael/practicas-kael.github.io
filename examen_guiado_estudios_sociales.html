@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Guiado por Temas - Estudios Sociales 4to Grado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border-color: #fff;
+        }
+
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .student-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.3em;
+        }
+
+        .tabs-container {
+            display: flex;
+            overflow-x: auto;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e0e0e0;
+            padding: 10px 20px;
+        }
+
+        .tab-btn {
+            padding: 15px 25px;
+            background: white;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: #666;
+            margin-right: 5px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border: 2px solid transparent;
+        }
+
+        .tab-btn:hover {
+            background: #f0f0f0;
+            color: #43e97b;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border-color: #43e97b;
+        }
+
+        .tab-btn.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .theory-section {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #43e97b;
+        }
+
+        .theory-section h2 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .theory-section h3 {
+            color: #388e3c;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .theory-section p, .theory-section ul, .theory-section ol {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .theory-section ul, .theory-section ol {
+            padding-left: 30px;
+        }
+
+        .theory-section li {
+            margin-bottom: 10px;
+        }
+
+        .example-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #43e97b;
+            margin: 20px 0;
+        }
+
+        .practice-section {
+            margin-top: 30px;
+        }
+
+        .practice-section h3 {
+            color: #43e97b;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+
+        .question-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .option:hover {
+            border-color: #43e97b;
+            background: #f0fff4;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .option.selected {
+            background: #e8f5e9;
+            border-color: #43e97b;
+            font-weight: bold;
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 233, 123, 0.6);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: slideIn 0.4s;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .feedback-title {
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .feedback-explanation {
+            line-height: 1.6;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-button {
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+
+        .nav-button.prev {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .nav-button.next {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 40px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .topic-summary {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .topic-summary h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .score-display {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tabs-container {
+                overflow-x: scroll;
+            }
+
+            .tab-btn {
+                font-size: 0.9em;
+                padding: 12px 15px;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="examen_guiado_estudios_sociales.html" class="nav-btn examen-guiado">🎯 Examen Guiado (actual)</a>
+            <a href="examen_estudios_sociales.html" class="nav-btn examen">✍️ Examen Completo</a>
+        </div>
+
+        <div class="header">
+            <h1>🌎 Examen Guiado por Temas</h1>
+            <p>Estudios Sociales - Aprende la teoría y practica inmediatamente</p>
+            <div class="student-badge">👨‍🎓 Emiliano</div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab('tema1')">1. Ubicación</button>
+            <button class="tab-btn" onclick="openTab('tema2')">2. Características</button>
+            <button class="tab-btn" onclick="openTab('tema3')">3. Ventajas</button>
+            <button class="tab-btn" onclick="openTab('tema4')">4. Desventajas</button>
+            <button class="tab-btn" onclick="openTab('tema5')">5. Estudios Sociales</button>
+            <button class="tab-btn" onclick="openTab('tema6')">6. Educación Cívica</button>
+            <button class="tab-btn" onclick="openTab('tema7')">7. Disciplinas</button>
+            <button class="tab-btn" onclick="openTab('tema8')">8. Importancia</button>
+        </div>
+
+        <!-- TEMA 1: UBICACIÓN DE COSTA RICA -->
+        <div id="tema1" class="tab-content active">
+            <div class="theory-section">
+                <h2>🌎 1. Ubicación de Costa Rica en América Central</h2>
+                
+                <h3>América Central:</h3>
+                <p>Esta región es conocida como el <strong>"Cinturón de fuego del Pacífico"</strong>, ya que es atravesada por las placas tectónicas.</p>
+                
+                <p><strong>Características de América Central:</strong></p>
+                <ul>
+                    <li>Tiene una superficie de 800,000 kilómetros cuadrados</li>
+                    <li>Limita al norte con el Océano Atlántico</li>
+                    <li>Limita al sur con el Océano Pacífico</li>
+                    <li>Conecta a América del Norte con América del Sur</li>
+                </ul>
+
+                <h3>Países de América Central:</h3>
+                <ol>
+                    <li>Belice</li>
+                    <li>Guatemala</li>
+                    <li>El Salvador</li>
+                    <li>Honduras</li>
+                    <li>Nicaragua</li>
+                    <li>Costa Rica</li>
+                    <li>Panamá</li>
+                </ol>
+
+                <h3>Costa Rica en el continente americano:</h3>
+                <p>Costa Rica se encuentra en el continente de América, el cual se divide en tres regiones principales:</p>
+                <ul>
+                    <li>América del Norte</li>
+                    <li>América del Sur</li>
+                    <li>América Central (donde está ubicado nuestro país)</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>📖 Dato importante:</strong><br>
+                    América Central es un puente entre América del Norte y América del Sur, lo que hace que Costa Rica tenga una posición estratégica muy importante.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">1. ¿Cómo se llama la región donde se encuentra Costa Rica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1" value="a">
+                            América del Norte
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="b">
+                            América Central
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="c">
+                            América del Sur
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="d">
+                            América Latina
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q1', 'b', 1)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q1"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">2. ¿Cómo se llama la región de América Central conocida por las placas tectónicas?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2" value="a">
+                            Anillo de fuego
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="b">
+                            Cinturón volcánico
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="c">
+                            Cinturón de fuego del Pacífico
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="d">
+                            Zona de terremotos
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q2', 'c', 1)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q2"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">3. ¿Cuántos países forman América Central?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3" value="a">
+                            5 países
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="b">
+                            6 países
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="c">
+                            7 países
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="d">
+                            8 países
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q3', 'c', 1)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q3"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" disabled>⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema2')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 2: CARACTERÍSTICAS DE COSTA RICA -->
+        <div id="tema2" class="tab-content">
+            <div class="theory-section">
+                <h2>🇨🇷 2. Características de Costa Rica</h2>
+                
+                <h3>Datos importantes de nuestro país:</h3>
+                <ul>
+                    <li><strong>Superficie terrestre:</strong> La superficie terrestre de Costa Rica abarca 51,100 km²</li>
+                    <li><strong>Ubicación climática:</strong> De acuerdo con su ubicación climática, Costa Rica se ubica en la zona intertropical, entre el Trópico de Cáncer y el Trópico de Capricornio</li>
+                    <li><strong>Orientación:</strong> La orientación del país es de noroeste a sureste</li>
+                    <li><strong>Mares:</strong> Nuestro país se encuentra bañado por el Mar Caribe y por el Océano Pacífico</li>
+                    <li><strong>Punto más alto:</strong> La máxima altura del país es el Cerro Chirripó con 3821 m de altura</li>
+                </ul>
+
+                <h3>Límites de Costa Rica:</h3>
+                <ul>
+                    <li>✓ Al norte con Nicaragua</li>
+                    <li>✓ Al este con el Mar Caribe</li>
+                    <li>✓ Al sur con el Océano Pacífico</li>
+                    <li>✓ Al sureste con Panamá</li>
+                    <li>✓ Al oeste con el Océano Pacífico</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>🏔️ Dato interesante:</strong><br>
+                    El Cerro Chirripó es el punto más alto de Costa Rica y desde su cumbre se pueden ver tanto el Océano Pacífico como el Mar Caribe en días despejados.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">4. ¿Cuál es la superficie terrestre de Costa Rica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4" value="a">
+                            41,100 km²
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="b">
+                            51,100 km²
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="c">
+                            61,100 km²
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="d">
+                            71,100 km²
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q4', 'b', 2)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q4"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">5. ¿Cuál es el punto más alto de Costa Rica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5" value="a">
+                            Volcán Irazú
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="b">
+                            Volcán Poás
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="c">
+                            Cerro Chirripó
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="d">
+                            Cerro de la Muerte
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q5', 'c', 2)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q5"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">6. ¿Qué países limitan con Costa Rica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6" value="a">
+                            Nicaragua y Honduras
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="b">
+                            Nicaragua y Panamá
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="c">
+                            Panamá y Colombia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="d">
+                            Guatemala y Nicaragua
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q6', 'b', 2)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q6"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema1')">⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema3')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 3: VENTAJAS DE LA UBICACIÓN -->
+        <div id="tema3" class="tab-content">
+            <div class="theory-section">
+                <h2>✅ 3. Ventajas de la Ubicación Geográfica de Costa Rica</h2>
+                
+                <p>Costa Rica posee múltiples ventajas debido a su ubicación geográfica:</p>
+
+                <h3>1. Suelos Fértiles</h3>
+                <p>Los suelos son muy fértiles, lo que permite la existencia de gran variedad de flora y suelos para la agricultura.</p>
+
+                <h3>2. Puente Biológico</h3>
+                <p>CR es un puente biológico entre América del Norte y América del Sur, por lo que hay muchas especies de plantas y de animales, lo que genera turismo.</p>
+
+                <h3>3. Puente Cultural</h3>
+                <p>CR es un puente cultural por lo cual hay diversidad de culturas.</p>
+
+                <h3>4. Poseer dos Océanos</h3>
+                <p>Poseer entradas a dos océanos distintos del Océano Pacífico y el Océano Atlántico, esto es importante ya que incrementa la biodiversidad marina y favorece el comercio con el resto del mundo.</p>
+
+                <h3>5. Clima Tropical</h3>
+                <p>El clima estropical lo que permite la biodiversidad del país de cultivos. Además la temperatura es fresca y favorece la calidad de vida de sus habitantes.</p>
+
+                <h3>6. Poca Extensión Territorial</h3>
+                <p>Posee poca extensión territorial se puede viajar de una costa a otra, el mismo día. Además los pueden disfrutar de un volcán y una playa el mismo día sin necesidad de realizar grandes traslados.</p>
+
+                <div class="example-box">
+                    <strong>🌟 Ventaja Principal:</strong><br>
+                    La ubicación de Costa Rica le da acceso a dos océanos, lo que facilita el comercio internacional y aumenta la biodiversidad del país.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">7. ¿Por qué Costa Rica tiene gran variedad de plantas y animales?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7" value="a">
+                            Por ser un país grande
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="b">
+                            Por ser un puente biológico entre América del Norte y del Sur
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="c">
+                            Por tener muchas montañas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="d">
+                            Por estar cerca del Ecuador
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q7', 'b', 3)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q7"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">8. ¿Qué ventaja tiene Costa Rica al tener acceso a dos océanos?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8" value="a">
+                            Más playas para turismo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="b">
+                            Incrementa la biodiversidad marina y favorece el comercio con el resto del mundo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="c">
+                            Mejor clima
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="d">
+                            Más lluvia
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q8', 'b', 3)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q8"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">9. ¿Por qué los suelos fértiles son una ventaja para Costa Rica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9" value="a">
+                            Permiten construir edificios
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="b">
+                            Permiten la existencia de gran variedad de flora y suelos para la agricultura
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="c">
+                            Son buenos para hacer carreteras
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="d">
+                            Atraen más turistas
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q9', 'b', 3)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q9"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema2')">⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema4')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 4: DESVENTAJAS DE LA UBICACIÓN -->
+        <div id="tema4" class="tab-content">
+            <div class="theory-section">
+                <h2>⚠️ 4. Desventajas de la Ubicación Geográfica de Costa Rica</h2>
+                
+                <p>CR se ve expuesta a algunas fenómenos naturales que afectan a su población. Por ejemplo:</p>
+
+                <h3>Fenómenos Naturales que afectan a Costa Rica:</h3>
+                
+                <p><strong>1. Erupciones volcánicas:</strong> Es una emisión violenta en la superficie terrestre de materias procedentes del interior del volcán.</p>
+
+                <p><strong>2. Terremotos:</strong> Son movimientos de la corteza terrestre ocasionados por las placas tectónicas.</p>
+
+                <p><strong>3. Tornados/Trombas:</strong> Son columnas de aire que giran violentamente y que se extienden desde la tormenta eléctrica hasta el suelo.</p>
+
+                <p><strong>4. Deslizamientos:</strong> Suceden cuando grandes cantidades de rocas, tierra o detritos bajan por una pendiente.</p>
+
+                <p><strong>5. Sequía:</strong> Es la falta de lluvias durante un periodo prolongado de tiempo. En CR afecta Guanacaste.</p>
+
+                <p><strong>6. Tormentas tropicales:</strong> Son tormentas tropicales que producen lluvias y vientos fuertes a más de 250 km por hora.</p>
+
+                <p><strong>7. Inundaciones:</strong> Se presentan cuando un exceso de lluvia satura los suelos y desborda los ríos.</p>
+
+                <div class="example-box">
+                    <strong>⚠️ Importante saber:</strong><br>
+                    Aunque Costa Rica enfrenta estos fenómenos naturales, el país ha desarrollado sistemas de prevención y respuesta para proteger a su población.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">10. ¿Qué son los terremotos?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q10" value="a">
+                            Movimientos del aire
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="b">
+                            Movimientos de la corteza terrestre ocasionados por las placas tectónicas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="c">
+                            Lluvias muy fuertes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="d">
+                            Erupciones volcánicas
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q10', 'b', 4)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q10"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">11. ¿Qué es una sequía?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q11" value="a">
+                            Exceso de lluvias
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="b">
+                            Vientos muy fuertes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="c">
+                            Falta de lluvias durante un periodo prolongado de tiempo
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="d">
+                            Temperatura muy alta
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q11', 'c', 4)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q11"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">12. ¿Qué son las inundaciones?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q12" value="a">
+                            Cuando hay mucho sol
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="b">
+                            Cuando se mueve la tierra
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="c">
+                            Se presentan cuando un exceso de lluvia satura los suelos y desborda los ríos
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="d">
+                            Cuando hay viento fuerte
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q12', 'c', 4)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q12"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema3')">⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema5')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 5: ¿QUÉ SON LOS ESTUDIOS SOCIALES? -->
+        <div id="tema5" class="tab-content">
+            <div class="theory-section">
+                <h2>📖 5. ¿Qué son los Estudios Sociales?</h2>
+                
+                <p>Los Estudios Sociales permiten analizar al ser humano desde diferentes disciplinas, como la historia, la geografía, la política, entre otras. Estas áreas nos ayudan a entender cómo las personas viven en sociedad, en un lugar y tiempo específicos, y desde diversas perspectivas.</p>
+
+                <h3>Objetivos de los Estudios Sociales:</h3>
+                <ul>
+                    <li>Proporcionar una visión general sobre la sociedad en la que vivimos, incluyendo su ubicación, desarrollo en el espacio, su origen y evolución histórica</li>
+                    <li>Fomentar la identificación con la patria y el reconocimiento de valores como la democracia y la ciudadanía</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>💡 Recuerda:</strong><br>
+                    Los Estudios Sociales nos ayudan a entender el mundo de hoy, aprendiendo del pasado y comprendiendo cómo viven las personas en diferentes lugares.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">13. ¿Qué son los Estudios Sociales?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q13" value="a">
+                            Solo el estudio de la historia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="b">
+                            Solo el estudio de la geografía
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="c">
+                            Análisis del ser humano desde diferentes disciplinas como historia, geografía y política
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="d">
+                            El estudio de las matemáticas
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q13', 'c', 5)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q13"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">14. ¿Cuál es uno de los objetivos de los Estudios Sociales?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q14" value="a">
+                            Enseñar matemáticas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="b">
+                            Fomentar la identificación con la patria y reconocimiento de valores como la democracia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="c">
+                            Aprender idiomas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="d">
+                            Estudiar ciencias naturales
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q14', 'b', 5)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q14"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema4')">⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema6')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 6: EDUCACIÓN CÍVICA -->
+        <div id="tema6" class="tab-content">
+            <div class="theory-section">
+                <h2>🎓 6. Educación Cívica</h2>
+                
+                <h3>¿Qué es la Educación Cívica?</h3>
+                <p>Promueve la enseñanza de valores, principios y actitudes que impulsan la formación de ciudadanos activos, capaces de contribuir a una sociedad democrática, solidaria, crítica y comprometida con el fortalecimiento de su comunidad.</p>
+
+                <h3>Objetivos de la Educación Cívica:</h3>
+                <ul>
+                    <li>Busca generar en las personas una comprensión clara sobre la <strong>conducta adecuada</strong> como ciudadanos conscientes y participativos</li>
+                    <li>Fomenta el respeto hacia las instituciones democráticas del Estado costarricense, cuya función es servir a la ciudadanía</li>
+                    <li>Impulsa el conocimiento y la valoración de los símbolos nacionales</li>
+                    <li>Forma ciudadanos con una visión clara de la dignidad humana y los fundamentos de una democracia auténtica, basada en la justicia social y la libertad individual</li>
+                </ul>
+
+                <div class="example-box">
+                    <strong>🌟 Importante:</strong><br>
+                    La Educación Cívica nos enseña a ser buenos ciudadanos, respetar las leyes, participar en nuestra comunidad y valorar la democracia.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">15. ¿Qué promueve la Educación Cívica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q15" value="a">
+                            Solo el estudio de las leyes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="b">
+                            La enseñanza de valores, principios y actitudes para formar ciudadanos activos
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="c">
+                            Solo el respeto a los políticos
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="d">
+                            El estudio de la historia
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q15', 'b', 6)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q15"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">16. ¿Qué busca la Educación Cívica en los ciudadanos?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q16" value="a">
+                            Que sean ricos
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q16" value="b">
+                            Una comprensión clara sobre la conducta adecuada como ciudadanos conscientes y participativos
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q16" value="c">
+                            Que estudien mucho
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q16" value="d">
+                            Que viajen al extranjero
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q16', 'b', 6)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q16"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema5')">⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema7')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 7: DISCIPLINAS QUE APORTAN -->
+        <div id="tema7" class="tab-content">
+            <div class="theory-section">
+                <h2>📚 7. Disciplinas que Aportan a los Estudios Sociales</h2>
+                
+                <p>Los Estudios Sociales reciben conocimientos de varias disciplinas importantes:</p>
+
+                <h3>Geografía:</h3>
+                <p>Examina la superficie terrestre y su relación con el ser humano. Para ubicar lugares se utilizan herramientas como mapas.</p>
+
+                <h3>Historia:</h3>
+                <p>Se enfoca en los acontecimientos del pasado que influyeron en la vida humana. Una herramienta útil para este estudio son líneas del tiempo.</p>
+
+                <h3>Economía:</h3>
+                <p>Analiza cómo las sociedades gestionan recursos para satisfacer sus necesidades mediante el consumo de bienes y servicios.</p>
+
+                <h3>Ciencias Políticas:</h3>
+                <p>Estudia las dinámicas políticas desde el nivel local hasta el internacional. Promueve una comprensión crítica de las sociedades.</p>
+
+                <h3>Antropología:</h3>
+                <p>Investiga al ser humano considerando sus características físicas, su cultura y civilización. Su nombre proviene del griego "anthropos" (hombre) y "logos" (conocimiento), lo que se define como el estudio de la humanidad.</p>
+
+                <h3>Sociología:</h3>
+                <p>Explora cómo la sociedad influye en los individuos y cómo estos contribuyen a transformar la sociedad. Aborda temas como las migraciones, los cambios en la población, los conflictos y el desarrollo económico.</p>
+
+                <div class="example-box">
+                    <strong>💡 Recuerda:</strong><br>
+                    Los Estudios Sociales combinan diferentes disciplinas para darnos una visión completa de cómo funciona la sociedad y cómo han vivido las personas a lo largo del tiempo.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">17. ¿Qué estudia la Geografía?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q17" value="a">
+                            Los acontecimientos del pasado
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q17" value="b">
+                            La superficie terrestre y su relación con el ser humano
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q17" value="c">
+                            La economía
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q17" value="d">
+                            La cultura
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q17', 'b', 7)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q17"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">18. ¿Qué disciplina usa líneas del tiempo como herramienta?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q18" value="a">
+                            Geografía
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q18" value="b">
+                            Historia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q18" value="c">
+                            Economía
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q18" value="d">
+                            Sociología
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q18', 'b', 7)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q18"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">19. ¿Qué estudia la Antropología?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q19" value="a">
+                            Solo la economía
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q19" value="b">
+                            Solo la política
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q19" value="c">
+                            Al ser humano considerando sus características físicas, su cultura y civilización
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q19" value="d">
+                            Solo la geografía
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q19', 'c', 7)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q19"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema6')">⬅ Tema Anterior</button>
+                <button class="nav-button next" onclick="openTab('tema8')">Siguiente Tema ➡</button>
+            </div>
+        </div>
+
+        <!-- TEMA 8: IMPORTANCIA DE LOS ESTUDIOS SOCIALES -->
+        <div id="tema8" class="tab-content">
+            <div class="theory-section">
+                <h2>⭐ 8. Importancia de los Estudios Sociales y la Educación Cívica</h2>
+                
+                <h3>Aspectos que determinan la importancia:</h3>
+                
+                <p><strong>1.</strong> Los estudiantes adquieren conocimientos, debaten y reflexionan sobre la sociedad, explorándola desde el ámbito local hasta el nacional e internacional.</p>
+
+                <p><strong>2.</strong> Fomenta la formación de ciudadanos informados y promueve el desarrollo del pensamiento crítico desde temprana edad.</p>
+
+                <p><strong>3.</strong> La Educación Cívica nos anima a comprender y ejercer nuestra ciudadanía desde la infancia, contribuyendo al disfrute y fortalecimiento de la democracia.</p>
+
+                <p><strong>4.</strong> Además, nos impulsa a analizar nuestra sociedad a lo largo del tiempo, considerando sus cambios, transformaciones y perspectivas futuras.</p>
+
+                <h3>Áreas de la vida cotidiana en las que impacta los Estudios Sociales y la Educación Cívica:</h3>
+                
+                <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+                    <tr style="background: #43e97b; color: white;">
+                        <th style="padding: 15px; border: 1px solid #ddd;">País</th>
+                        <th style="padding: 15px; border: 1px solid #ddd;">Comunidad</th>
+                        <th style="padding: 15px; border: 1px solid #ddd;">Escuela</th>
+                        <th style="padding: 15px; border: 1px solid #ddd;">Hogar</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Hace que las personas sean conscientes de sus derechos y deberes políticos, así como la historia y geografía del país</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Incentiva a conocer la historia de la comunidad, entre ella su origen, las costumbres y tradiciones de la localidad</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Enseña la importancia del trabajo en equipo, y ayuda a resolver problemas en el aula, por ejemplo, mantener el orden y la limpieza en el aula</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Propicia la práctica de valores como el respeto, la responsabilidad y la solidaridad, los cuales ayudan a mantener una sana convivencia en el hogar</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <strong>🌟 Mensaje importante:</strong><br>
+                    Los Estudios Sociales y la Educación Cívica son fundamentales para formar ciudadanos responsables que contribuyan al bienestar de su país, su comunidad, su escuela y su hogar.
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h3>✏️ Practica lo aprendido:</h3>
+                
+                <div class="question-container">
+                    <div class="question-text">20. ¿Por qué es importante la Educación Cívica desde la infancia?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q20" value="a">
+                            Para aprender a leer mejor
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q20" value="b">
+                            Para comprender y ejercer nuestra ciudadanía y contribuir al fortalecimiento de la democracia
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q20" value="c">
+                            Para ser más inteligentes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q20" value="d">
+                            Para ganar dinero
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q20', 'b', 8)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">21. En el hogar, ¿cómo impactan los Estudios Sociales y Educación Cívica?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q21" value="a">
+                            Enseñan a cocinar
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q21" value="b">
+                            Propician la práctica de valores como respeto, responsabilidad y solidaridad
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q21" value="c">
+                            Enseñan matemáticas
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q21" value="d">
+                            Enseñan a jugar deportes
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q21', 'b', 8)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q21"></div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text">22. ¿Qué fomentan los Estudios Sociales en los estudiantes?</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q22" value="a">
+                            Solo memorizar datos
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q22" value="b">
+                            La formación de ciudadanos informados y el desarrollo del pensamiento crítico
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q22" value="c">
+                            Solo estudiar geografía
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q22" value="d">
+                            Solo aprender fechas históricas
+                        </label>
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer('q22', 'b', 8)">Verificar Respuesta</button>
+                    <div class="feedback" id="feedback-q22"></div>
+                </div>
+            </div>
+
+            <div class="topic-summary">
+                <h3>🎉 ¡Felicitaciones, Emiliano!</h3>
+                <p>Has completado todos los temas del examen guiado de Estudios Sociales.</p>
+                <p class="score-display">Puntuación total: <span id="totalScore">0/22</span></p>
+                <p style="margin-top: 15px;">
+                    <strong>Temas dominados:</strong> <span id="topicsCompleted">0/8</span>
+                </p>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button prev" onclick="openTab('tema7')">⬅ Tema Anterior</button>
+                <a href="examen_estudios_sociales.html" class="nav-button next">📝 Ir al Examen Completo →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let topicScores = {
+            1: { correct: 0, total: 3 },
+            2: { correct: 0, total: 3 },
+            3: { correct: 0, total: 3 },
+            4: { correct: 0, total: 3 },
+            5: { correct: 0, total: 2 },
+            6: { correct: 0, total: 2 },
+            7: { correct: 0, total: 3 },
+            8: { correct: 0, total: 3 }
+        };
+
+        let answeredQuestions = new Set();
+
+        function openTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            
+            const tabIndex = parseInt(tabId.replace('tema', ''));
+            btns[tabIndex - 1].classList.add('active');
+            
+            updateProgressBar();
+            window.scrollTo(0, 0);
+        }
+
+        function checkAnswer(questionId, correctAnswer, topicNumber) {
+            const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
+            const feedback = document.getElementById(`feedback-${questionId}`);
+            const checkBtn = event.target;
+            
+            if (!selectedOption) {
+                alert('Por favor, selecciona una respuesta antes de verificar.');
+                return;
+            }
+            
+            const userAnswer = selectedOption.value;
+            const isCorrect = userAnswer === correctAnswer;
+            
+            feedback.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+            
+            if (!answeredQuestions.has(questionId)) {
+                answeredQuestions.add(questionId);
+                if (isCorrect) {
+                    topicScores[topicNumber].correct++;
+                }
+            }
+            
+            if (isCorrect) {
+                feedback.innerHTML = `
+                    <div class="feedback-title">✅ ¡Correcto! ¡Excelente trabajo, Emiliano!</div>
+                    <div class="feedback-explanation">Has respondido correctamente. ¡Sigue así!</div>
+                `;
+            } else {
+                const explanations = getExplanation(questionId);
+                feedback.innerHTML = `
+                    <div class="feedback-title">❌ Respuesta incorrecta</div>
+                    <div class="feedback-explanation">${explanations}</div>
+                `;
+            }
+            
+            checkBtn.disabled = true;
+            updateTopicStatus(topicNumber);
+            updateTotalScore();
+        }
+
+        function getExplanation(questionId) {
+            const explanations = {
+                'q1': 'La respuesta correcta es <strong>América Central</strong>. Costa Rica está ubicada en América Central, que es la región que conecta América del Norte con América del Sur.',
+                'q2': 'La respuesta correcta es <strong>Cinturón de fuego del Pacífico</strong>. Esta región es conocida así porque es atravesada por las placas tectónicas.',
+                'q3': 'La respuesta correcta es <strong>7 países</strong>. América Central está formada por Belice, Guatemala, El Salvador, Honduras, Nicaragua, Costa Rica y Panamá.',
+                'q4': 'La respuesta correcta es <strong>51,100 km²</strong>. Esta es la superficie terrestre de Costa Rica.',
+                'q5': 'La respuesta correcta es <strong>Cerro Chirripó</strong>. Con 3821 m de altura, es el punto más alto de Costa Rica.',
+                'q6': 'La respuesta correcta es <strong>Nicaragua y Panamá</strong>. Costa Rica limita al norte con Nicaragua y al sureste con Panamá.',
+                'q7': 'La respuesta correcta es <strong>Por ser un puente biológico entre América del Norte y del Sur</strong>. Esta posición permite que muchas especies transiten por el país.',
+                'q8': 'La respuesta correcta es <strong>Incrementa la biodiversidad marina y favorece el comercio con el resto del mundo</strong>. Tener acceso a dos océanos es una gran ventaja comercial y ecológica.',
+                'q9': 'La respuesta correcta es <strong>Permiten la existencia de gran variedad de flora y suelos para la agricultura</strong>. Los suelos fértiles son fundamentales para la agricultura.',
+                'q10': 'La respuesta correcta es <strong>Movimientos de la corteza terrestre ocasionados por las placas tectónicas</strong>. Los terremotos son causados por el movimiento de las placas tectónicas.',
+                'q11': 'La respuesta correcta es <strong>Falta de lluvias durante un periodo prolongado de tiempo</strong>. La sequía es la ausencia de lluvias por mucho tiempo.',
+                'q12': 'La respuesta correcta es <strong>Se presentan cuando un exceso de lluvia satura los suelos y desborda los ríos</strong>. Las inundaciones ocurren cuando hay demasiada lluvia.',
+                'q13': 'La respuesta correcta es <strong>Análisis del ser humano desde diferentes disciplinas como historia, geografía y política</strong>. Los Estudios Sociales integran varias disciplinas.',
+                'q14': 'La respuesta correcta es <strong>Fomentar la identificación con la patria y reconocimiento de valores como la democracia</strong>. Este es uno de los objetivos principales de los Estudios Sociales.',
+                'q15': 'La respuesta correcta es <strong>La enseñanza de valores, principios y actitudes para formar ciudadanos activos</strong>. La Educación Cívica forma ciudadanos responsables.',
+                'q16': 'La respuesta correcta es <strong>Una comprensión clara sobre la conducta adecuada como ciudadanos conscientes y participativos</strong>. La Educación Cívica enseña a ser buenos ciudadanos.',
+                'q17': 'La respuesta correcta es <strong>La superficie terrestre y su relación con el ser humano</strong>. La Geografía estudia la tierra y cómo la usamos.',
+                'q18': 'La respuesta correcta es <strong>Historia</strong>. La Historia usa líneas del tiempo para organizar los acontecimientos del pasado.',
+                'q19': 'La respuesta correcta es <strong>Al ser humano considerando sus características físicas, su cultura y civilización</strong>. La Antropología estudia al ser humano de manera integral.',
+                'q20': 'La respuesta correcta es <strong>Para comprender y ejercer nuestra ciudadanía y contribuir al fortalecimiento de la democracia</strong>. Es importante aprender desde pequeños a ser buenos ciudadanos.',
+                'q21': 'La respuesta correcta es <strong>Propician la práctica de valores como respeto, responsabilidad y solidaridad</strong>. Los valores aprendidos se practican en casa.',
+                'q22': 'La respuesta correcta es <strong>La formación de ciudadanos informados y el desarrollo del pensamiento crítico</strong>. Los Estudios Sociales desarrollan el pensamiento crítico.'
+            };
+            return explanations[questionId] || 'Revisa la teoría nuevamente.';
+        }
+
+        function updateTopicStatus(topicNumber) {
+            const topic = topicScores[topicNumber];
+            const tabBtn = document.querySelectorAll('.tab-btn')[topicNumber - 1];
+            
+            if (topic.correct === topic.total) {
+                tabBtn.classList.add('completed');
+            }
+        }
+
+        function updateTotalScore() {
+            let totalCorrect = 0;
+            let totalQuestions = 0;
+            let topicsCompleted = 0;
+            
+            for (let topic in topicScores) {
+                totalCorrect += topicScores[topic].correct;
+                totalQuestions += topicScores[topic].total;
+                if (topicScores[topic].correct === topicScores[topic].total) {
+                    topicsCompleted++;
+                }
+            }
+            
+            document.getElementById('totalScore').textContent = `${totalCorrect}/${totalQuestions}`;
+            document.getElementById('topicsCompleted').textContent = `${topicsCompleted}/8`;
+        }
+
+        function updateProgressBar() {
+            let totalCorrect = 0;
+            let totalQuestions = 22;
+            
+            for (let topic in topicScores) {
+                totalCorrect += topicScores[topic].correct;
+            }
+            
+            const percentage = (totalCorrect / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                const name = radio.name;
+                
+                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                    r.parentElement.classList.remove('selected');
+                });
+                
+                radio.checked = true;
+                this.classList.add('selected');
+            });
+        });
+
+        updateTotalScore();
+    </script>
+</body>
+</html>
