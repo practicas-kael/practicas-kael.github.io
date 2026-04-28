@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Práctica - Inglés Johanna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        .content-area {
+            padding: 40px;
+        }
+
+        .progress-section {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question-counter {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar-container {
+            background: #e0e0e0;
+            height: 35px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .score-display {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .question-card {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .topic-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 18px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            font-size: 1.1em;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateX(8px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 15px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .check-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .next-btn {
+            flex: 1;
+            background: white;
+            color: #667eea;
+            border: 3px solid #667eea;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1em;
+            display: none;
+            animation: slideDown 0.5s;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 3px solid #28a745;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 3px solid #dc3545;
+            display: block;
+        }
+
+        .results-container {
+            text-align: center;
+            display: none;
+        }
+
+        .results-score {
+            font-size: 4em;
+            color: #667eea;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+
+        .results-message {
+            font-size: 1.5em;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .results-breakdown {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 1.1em;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .top-nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .top-nav-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .top-nav-btn.practice {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .top-nav-btn.practice:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="top-nav">
+                <a href="index.html" class="top-nav-btn">⬅️ Volver al Inicio</a>
+                <a href="practica_guiada_johanna.html" class="top-nav-btn practice">📚 Ir a Práctica Guiada</a>
+            </div>
+            <h1>📝 Examen de Práctica</h1>
+            <div class="student-name">👩‍🎓 Estudiante: Johanna</div>
+        </div>
+
+        <div class="content-area">
+            <!-- PROGRESS SECTION -->
+            <div class="progress-section">
+                <div class="question-counter">
+                    Pregunta <span id="current-question">1</span> de <span id="total-questions">35</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar">0%</div>
+                </div>
+                <div class="score-display">
+                    Puntuación: <span id="score">0</span> / <span id="answered">0</span>
+                </div>
+            </div>
+
+            <!-- QUESTION DISPLAY -->
+            <div id="question-container" class="question-card">
+                <span class="topic-badge" id="topic-badge">Cargando...</span>
+                <div class="question-text" id="question-text">Cargando pregunta...</div>
+                <div class="options-container" id="options-container">
+                    <!-- Options will be loaded here -->
+                </div>
+                <div class="button-container">
+                    <button class="check-btn" id="check-btn" onclick="checkAnswer()">Verificar Respuesta</button>
+                    <button class="next-btn" id="next-btn" onclick="nextQuestion()" disabled>Siguiente ➡️</button>
+                </div>
+                <div class="feedback" id="feedback"></div>
+            </div>
+
+            <!-- RESULTS DISPLAY -->
+            <div id="results-container" class="results-container">
+                <h2>🎉 ¡Examen Completado!</h2>
+                <div class="results-score" id="final-score">0/35</div>
+                <div class="results-message" id="results-message">¡Buen trabajo!</div>
+                <div class="results-breakdown" id="results-breakdown">
+                    <!-- Will be filled with JavaScript -->
+                </div>
+                <button class="restart-btn" onclick="restartExam()">🔄 Volver a Intentar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // QUESTIONS DATABASE - EASY TO EXPAND WITH MORE TOPICS
+        const questions = [
+            // NÚMEROS (5 questions)
+            {
+                topic: '🔢 Números',
+                question: 'How do you say "ocho" in English?',
+                options: ['Seven', 'Eight', 'Nine'],
+                correct: 1
+            },
+            {
+                topic: '🔢 Números',
+                question: 'What number is "twelve"?',
+                options: ['2', '12', '20'],
+                correct: 1
+            },
+            {
+                topic: '🔢 Números',
+                question: 'Complete: I have ___ cats. (3)',
+                options: ['three', 'thirty', 'thirteen'],
+                correct: 0
+            },
+            {
+                topic: '🔢 Números',
+                question: 'What is "cuarenta" in English?',
+                options: ['Four', 'Fourteen', 'Forty'],
+                correct: 2
+            },
+            {
+                topic: '🔢 Números',
+                question: 'How do you write "16" in letters?',
+                options: ['Sixteen', 'Sixty', 'Six'],
+                correct: 0
+            },
+            
+            // ABECEDARIO (5 questions)
+            {
+                topic: '🔤 Abecedario',
+                question: 'Which letter comes before "P"?',
+                options: ['N', 'O', 'Q'],
+                correct: 1
+            },
+            {
+                topic: '🔤 Abecedario',
+                question: 'How many consonants are in the English alphabet?',
+                options: ['21', '20', '26'],
+                correct: 0
+            },
+            {
+                topic: '🔤 Abecedario',
+                question: 'Which is NOT a vowel?',
+                options: ['A', 'B', 'O'],
+                correct: 1
+            },
+            {
+                topic: '🔤 Abecedario',
+                question: 'What is the first letter of the alphabet?',
+                options: ['A', 'B', 'C'],
+                correct: 0
+            },
+            {
+                topic: '🔤 Abecedario',
+                question: 'Which letter comes after "T"?',
+                options: ['S', 'U', 'V'],
+                correct: 1
+            },
+            
+            // PREPOSICIONES (5 questions)
+            {
+                topic: '📍 Preposiciones',
+                question: 'The picture is ___ the wall.',
+                options: ['on', 'in', 'under'],
+                correct: 0
+            },
+            {
+                topic: '📍 Preposiciones',
+                question: 'The keys are ___ my pocket. (dentro)',
+                options: ['on', 'in', 'at'],
+                correct: 1
+            },
+            {
+                topic: '📍 Preposiciones',
+                question: 'The ball is ___ the table. (debajo)',
+                options: ['on', 'between', 'under'],
+                correct: 2
+            },
+            {
+                topic: '📍 Preposiciones',
+                question: 'She is sitting ___ me. (al lado)',
+                options: ['next to', 'in', 'behind'],
+                correct: 0
+            },
+            {
+                topic: '📍 Preposiciones',
+                question: 'The store is ___ the bank and the school. (entre)',
+                options: ['next to', 'between', 'behind'],
+                correct: 1
+            },
+            
+            // A / AN (5 questions)
+            {
+                topic: '✏️ A / An',
+                question: 'I need ___ pencil.',
+                options: ['a', 'an', 'the'],
+                correct: 0
+            },
+            {
+                topic: '✏️ A / An',
+                question: 'She has ___ orange.',
+                options: ['a', 'an', 'the'],
+                correct: 1
+            },
+            {
+                topic: '✏️ A / An',
+                question: 'This is ___ elephant.',
+                options: ['a', 'an', 'the'],
+                correct: 1
+            },
+            {
+                topic: '✏️ A / An',
+                question: 'He is ___ doctor.',
+                options: ['a', 'an', 'the'],
+                correct: 0
+            },
+            {
+                topic: '✏️ A / An',
+                question: 'I saw ___ eagle.',
+                options: ['a', 'an', 'the'],
+                correct: 1
+            },
+            
+            // ARTÍCULOS (5 questions)
+            {
+                topic: '📝 Artículos',
+                question: '___ sun is bright today.',
+                options: ['A', 'An', 'The'],
+                correct: 2
+            },
+            {
+                topic: '📝 Artículos',
+                question: 'I bought ___ car. (general)',
+                options: ['a', 'an', 'the'],
+                correct: 0
+            },
+            {
+                topic: '📝 Artículos',
+                question: '___ car I bought is red. (específico)',
+                options: ['A', 'An', 'The'],
+                correct: 2
+            },
+            {
+                topic: '📝 Artículos',
+                question: 'She wants ___ ice cream.',
+                options: ['a', 'an', 'the'],
+                correct: 1
+            },
+            {
+                topic: '📝 Artículos',
+                question: '___ Earth is round.',
+                options: ['A', 'An', 'The'],
+                correct: 2
+            },
+            
+            // PRONOMBRES (5 questions)
+            {
+                topic: '👤 Pronombres',
+                question: '___ is my friend. (Él)',
+                options: ['He', 'She', 'It'],
+                correct: 0
+            },
+            {
+                topic: '👤 Pronombres',
+                question: 'My sister and I are students. ___ study English.',
+                options: ['They', 'We', 'You'],
+                correct: 1
+            },
+            {
+                topic: '👤 Pronombres',
+                question: 'The dog is brown. ___ is big.',
+                options: ['He', 'She', 'It'],
+                correct: 2
+            },
+            {
+                topic: '👤 Pronombres',
+                question: 'My parents are doctors. ___ work in a hospital.',
+                options: ['We', 'You', 'They'],
+                correct: 2
+            },
+            {
+                topic: '👤 Pronombres',
+                question: 'Ana is a teacher. ___ teaches math.',
+                options: ['He', 'She', 'It'],
+                correct: 1
+            },
+            
+            // TO BE (5 questions)
+            {
+                topic: '✅ To Be',
+                question: 'I ___ happy today.',
+                options: ['am', 'is', 'are'],
+                correct: 0
+            },
+            {
+                topic: '✅ To Be',
+                question: 'They ___ my friends.',
+                options: ['am', 'is', 'are'],
+                correct: 2
+            },
+            {
+                topic: '✅ To Be',
+                question: 'She ___ a good student.',
+                options: ['am', 'is', 'are'],
+                correct: 1
+            },
+            {
+                topic: '✅ To Be',
+                question: 'We ___ in the classroom.',
+                options: ['am', 'is', 'are'],
+                correct: 2
+            },
+            {
+                topic: '✅ To Be',
+                question: 'The cat ___ sleeping.',
+                options: ['am', 'is', 'are'],
+                correct: 1
+            }
+        ];
+
+        // EXAM STATE
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answeredCount = 0;
+        let currentAnswer = null;
+        let hasAnswered = false;
+
+        // INITIALIZE
+        document.getElementById('total-questions').textContent = questions.length;
+        loadQuestion();
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            // Update question counter
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / questions.length) * 100;
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+            
+            // Load question content
+            document.getElementById('topic-badge').textContent = question.topic;
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Load options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const label = document.createElement('label');
+                label.className = 'option';
+                label.innerHTML = `
+                    <input type="radio" name="answer" value="${index}">
+                    <span>${String.fromCharCode(97 + index)}) ${option}</span>
+                `;
+                optionsContainer.appendChild(label);
+            });
+            
+            // Reset buttons and feedback
+            document.getElementById('check-btn').disabled = false;
+            document.getElementById('next-btn').disabled = true;
+            document.getElementById('feedback').style.display = 'none';
+            hasAnswered = false;
+        }
+
+        function checkAnswer() {
+            if (hasAnswered) return;
+            
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                alert('Por favor selecciona una respuesta');
+                return;
+            }
+            
+            hasAnswered = true;
+            answeredCount++;
+            currentAnswer = parseInt(selected.value);
+            const question = questions[currentQuestionIndex];
+            const feedback = document.getElementById('feedback');
+            
+            if (currentAnswer === question.correct) {
+                score++;
+                feedback.textContent = '✅ ¡Correcto! Excelente trabajo, Johanna.';
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.textContent = `❌ Incorrecto. La respuesta correcta es: ${String.fromCharCode(97 + question.correct)}) ${question.options[question.correct]}`;
+                feedback.className = 'feedback incorrect';
+            }
+            
+            // Update score display
+            document.getElementById('score').textContent = score;
+            document.getElementById('answered').textContent = answeredCount;
+            
+            // Disable check button and enable next button
+            document.getElementById('check-btn').disabled = true;
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('question-container').classList.add('hidden');
+            document.getElementById('results-container').style.display = 'block';
+            
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('final-score').textContent = `${score}/${questions.length}`;
+            
+            let message = '';
+            if (percentage === 100) {
+                message = '🌟 ¡PERFECTO, JOHANNA! ¡Dominas todos los temas!';
+            } else if (percentage >= 90) {
+                message = '🎉 ¡EXCELENTE, JOHANNA! Muy buen desempeño.';
+            } else if (percentage >= 80) {
+                message = '👏 ¡MUY BIEN, JOHANNA! Vas por buen camino.';
+            } else if (percentage >= 70) {
+                message = '👍 ¡BIEN, JOHANNA! Sigue practicando.';
+            } else {
+                message = '💪 ¡SIGUE INTENTANDO, JOHANNA! La práctica hace al maestro.';
+            }
+            document.getElementById('results-message').textContent = message;
+            
+            // Calculate breakdown by topic
+            const topicScores = {};
+            questions.forEach((q, index) => {
+                if (!topicScores[q.topic]) {
+                    topicScores[q.topic] = { correct: 0, total: 0 };
+                }
+                topicScores[q.topic].total++;
+            });
+            
+            let currentIndex = 0;
+            questions.forEach((q, index) => {
+                const selected = currentIndex === index ? currentAnswer : null;
+                if (selected === q.correct || (currentIndex <= score - 1)) {
+                    // This is a simplification - in a real scenario you'd track each answer
+                }
+                currentIndex++;
+            });
+            
+            // For now, show overall percentage
+            const breakdown = document.getElementById('results-breakdown');
+            breakdown.innerHTML = `
+                <div class="breakdown-item">
+                    <span><strong>Total de Preguntas:</strong></span>
+                    <span>${questions.length}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span><strong>Respuestas Correctas:</strong></span>
+                    <span style="color: #28a745; font-weight: bold;">${score}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span><strong>Respuestas Incorrectas:</strong></span>
+                    <span style="color: #dc3545; font-weight: bold;">${questions.length - score}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span><strong>Porcentaje:</strong></span>
+                    <span style="color: #667eea; font-weight: bold;">${Math.round(percentage)}%</span>
+                </div>
+            `;
+        }
+
+        function restartExam() {
+            currentQuestionIndex = 0;
+            score = 0;
+            answeredCount = 0;
+            currentAnswer = null;
+            hasAnswered = false;
+            
+            document.getElementById('question-container').classList.remove('hidden');
+            document.getElementById('results-container').style.display = 'none';
+            document.getElementById('score').textContent = '0';
+            document.getElementById('answered').textContent = '0';
+            
+            loadQuestion();
+        }
+    </script>
+</body>
+</html>

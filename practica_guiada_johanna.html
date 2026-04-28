@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica Guiada - Inglés Johanna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        .tabs-container {
+            display: flex;
+            overflow-x: auto;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+            padding: 0 20px;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+
+        .tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+
+        .content-area {
+            padding: 40px;
+        }
+
+        .topic-section {
+            display: none;
+        }
+
+        .topic-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .theory-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .theory-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .theory-content {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .example-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .example-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .example-english {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .example-spanish {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .example-card.vowel {
+            background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+            border: 2px solid #f093fb;
+        }
+
+        .example-card.vowel:hover {
+            border-color: #f5576c;
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+        }
+
+        .example-card.vowel .example-english {
+            color: #f5576c;
+        }
+
+        .example-card.tens {
+            background: linear-gradient(135deg, #ffa72615 0%, #ff6f0015 100%);
+            border: 2px solid #ffa726;
+        }
+
+        .example-card.tens:hover {
+            border-color: #ff6f00;
+            box-shadow: 0 5px 15px rgba(255, 167, 38, 0.3);
+        }
+
+        .example-card.tens .example-english {
+            color: #ff6f00;
+        }
+
+        .example-card.hundreds {
+            background: linear-gradient(135deg, #4caf5015 0%, #2e7d3215 100%);
+            border: 2px solid #4caf50;
+        }
+
+        .example-card.hundreds:hover {
+            border-color: #2e7d32;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .example-card.hundreds .example-english {
+            color: #2e7d32;
+        }
+
+        .practice-section {
+            margin-top: 30px;
+        }
+
+        .practice-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .question-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .question-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .option {
+            display: block;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .verify-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+            display: block;
+        }
+
+        .progress-indicator {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .progress-text {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-container {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .top-nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .top-nav-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .top-nav-btn.exam {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .top-nav-btn.exam:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .tabs-container, .navigation-buttons, .verify-btn {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="top-nav">
+                <a href="index.html" class="top-nav-btn">⬅️ Volver al Inicio</a>
+                <a href="examen_practica_johanna.html" class="top-nav-btn exam">📝 Ir al Examen de Práctica</a>
+            </div>
+            <h1>📚 Práctica Guiada de Inglés</h1>
+            <div class="student-name">👩‍🎓 Estudiante: Johanna</div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab active" onclick="showTopic('numeros')">🔢 Números</button>
+            <button class="tab" onclick="showTopic('abecedario')">🔤 Abecedario</button>
+            <button class="tab" onclick="showTopic('preposiciones')">📍 Preposiciones</button>
+            <button class="tab" onclick="showTopic('a-an')">✏️ A / An</button>
+            <button class="tab" onclick="showTopic('articulos')">📝 Artículos</button>
+            <button class="tab" onclick="showTopic('pronombres')">👤 Pronombres</button>
+            <button class="tab" onclick="showTopic('to-be')">✅ To Be</button>
+        </div>
+
+        <div class="content-area">
+            <!-- TEMA 1: NÚMEROS -->
+            <div id="numeros" class="topic-section active">
+                <div class="theory-box">
+                    <h3>📊 Números en Inglés (Numbers)</h3>
+                    <div class="theory-content">
+                        <p><strong>Los números son fundamentales para comunicarse en inglés.</strong></p>
+                        <p>Se dividen en números cardinales (1, 2, 3...) y ordinales (1st, 2nd, 3rd...).</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-english">0 - Zero</div>
+                        <div class="example-spanish">Cero</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">1 - One</div>
+                        <div class="example-spanish">Uno</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">2 - Two</div>
+                        <div class="example-spanish">Dos</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">3 - Three</div>
+                        <div class="example-spanish">Tres</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">4 - Four</div>
+                        <div class="example-spanish">Cuatro</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">5 - Five</div>
+                        <div class="example-spanish">Cinco</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">6 - Six</div>
+                        <div class="example-spanish">Seis</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">7 - Seven</div>
+                        <div class="example-spanish">Siete</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">8 - Eight</div>
+                        <div class="example-spanish">Ocho</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">9 - Nine</div>
+                        <div class="example-spanish">Nueve</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">10 - Ten</div>
+                        <div class="example-spanish">Diez</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">11 - Eleven</div>
+                        <div class="example-spanish">Once</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">12 - Twelve</div>
+                        <div class="example-spanish">Doce</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">13 - Thirteen</div>
+                        <div class="example-spanish">Trece</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">14 - Fourteen</div>
+                        <div class="example-spanish">Catorce</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">15 - Fifteen</div>
+                        <div class="example-spanish">Quince</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">16 - Sixteen</div>
+                        <div class="example-spanish">Dieciséis</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">17 - Seventeen</div>
+                        <div class="example-spanish">Diecisiete</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">18 - Eighteen</div>
+                        <div class="example-spanish">Dieciocho</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">19 - Nineteen</div>
+                        <div class="example-spanish">Diecinueve</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">20 - Twenty</div>
+                        <div class="example-spanish">Veinte</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">30 - Thirty</div>
+                        <div class="example-spanish">Treinta</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">40 - Forty</div>
+                        <div class="example-spanish">Cuarenta</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">50 - Fifty</div>
+                        <div class="example-spanish">Cincuenta</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">60 - Sixty</div>
+                        <div class="example-spanish">Sesenta</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">70 - Seventy</div>
+                        <div class="example-spanish">Setenta</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">80 - Eighty</div>
+                        <div class="example-spanish">Ochenta</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">90 - Ninety</div>
+                        <div class="example-spanish">Noventa</div>
+                    </div>
+                    <div class="example-card hundreds">
+                        <div class="example-english">100 - One Hundred</div>
+                        <div class="example-spanish">Cien</div>
+                    </div>
+                    <div class="example-card hundreds">
+                        <div class="example-english">1000 - One Thousand</div>
+                        <div class="example-spanish">Mil</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. How do you say "cinco" in English?</div>
+                        <label class="option">
+                            <input type="radio" name="num1" value="a">
+                            <span>a) Four</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num1" value="b">
+                            <span>b) Five</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num1" value="c">
+                            <span>c) Six</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('num1', 'b', 'numeros')">Verificar</button>
+                        <div class="feedback" id="feedback-num1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. What number is "fifteen"?</div>
+                        <label class="option">
+                            <input type="radio" name="num2" value="a">
+                            <span>a) 50</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num2" value="b">
+                            <span>b) 15</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num2" value="c">
+                            <span>c) 5</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('num2', 'b', 'numeros')">Verificar</button>
+                        <div class="feedback" id="feedback-num2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. Complete: I have ___ apples. (7)</div>
+                        <label class="option">
+                            <input type="radio" name="num3" value="a">
+                            <span>a) seven</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num3" value="b">
+                            <span>b) seventy</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num3" value="c">
+                            <span>c) seventeen</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('num3', 'a', 'numeros')">Verificar</button>
+                        <div class="feedback" id="feedback-num3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. What is "treinta" in English?</div>
+                        <label class="option">
+                            <input type="radio" name="num4" value="a">
+                            <span>a) Three</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num4" value="b">
+                            <span>b) Thirteen</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num4" value="c">
+                            <span>c) Thirty</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('num4', 'c', 'numeros')">Verificar</button>
+                        <div class="feedback" id="feedback-num4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. How do you write "100" in letters?</div>
+                        <label class="option">
+                            <input type="radio" name="num5" value="a">
+                            <span>a) One hundred</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num5" value="b">
+                            <span>b) One thousand</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="num5" value="c">
+                            <span>c) Ten</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('num5', 'a', 'numeros')">Verificar</button>
+                        <div class="feedback" id="feedback-num5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-numeros">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-numeros">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 2: ABECEDARIO -->
+            <div id="abecedario" class="topic-section">
+                <div class="theory-box">
+                    <h3>🔤 El Abecedario (The Alphabet)</h3>
+                    <div class="theory-content">
+                        <p><strong>El alfabeto inglés tiene 26 letras.</strong></p>
+                        <p>Conocer su pronunciación correcta es esencial para deletrear y comprender palabras.</p>
+                        <p><strong>Vocales:</strong> A, E, I, O, U (y a veces Y)</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card vowel">
+                        <div class="example-english">A [ei]</div>
+                        <div class="example-spanish">Pronunciación: "ei"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">B [bi:]</div>
+                        <div class="example-spanish">Pronunciación: "bi"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">C [si:]</div>
+                        <div class="example-spanish">Pronunciación: "si"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">D [di:]</div>
+                        <div class="example-spanish">Pronunciación: "di"</div>
+                    </div>
+                    <div class="example-card vowel">
+                        <div class="example-english">E [i:]</div>
+                        <div class="example-spanish">Pronunciación: "i"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">F [ef]</div>
+                        <div class="example-spanish">Pronunciación: "ef"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">G [dʒi:]</div>
+                        <div class="example-spanish">Pronunciación: "yi"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">H [eɪtʃ]</div>
+                        <div class="example-spanish">Pronunciación: "eich"</div>
+                    </div>
+                    <div class="example-card vowel">
+                        <div class="example-english">I [aɪ]</div>
+                        <div class="example-spanish">Pronunciación: "ai"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">J [dʒeɪ]</div>
+                        <div class="example-spanish">Pronunciación: "yei"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">K [keɪ]</div>
+                        <div class="example-spanish">Pronunciación: "kei"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">L [el]</div>
+                        <div class="example-spanish">Pronunciación: "el"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">M [em]</div>
+                        <div class="example-spanish">Pronunciación: "em"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">N [en]</div>
+                        <div class="example-spanish">Pronunciación: "en"</div>
+                    </div>
+                    <div class="example-card vowel">
+                        <div class="example-english">O [oʊ]</div>
+                        <div class="example-spanish">Pronunciación: "ou"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">P [pi:]</div>
+                        <div class="example-spanish">Pronunciación: "pi"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">Q [kju:]</div>
+                        <div class="example-spanish">Pronunciación: "kiu"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">R [ɑːr]</div>
+                        <div class="example-spanish">Pronunciación: "ar"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">S [es]</div>
+                        <div class="example-spanish">Pronunciación: "es"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">T [ti:]</div>
+                        <div class="example-spanish">Pronunciación: "ti"</div>
+                    </div>
+                    <div class="example-card vowel">
+                        <div class="example-english">U [ju:]</div>
+                        <div class="example-spanish">Pronunciación: "iu"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">V [vi:]</div>
+                        <div class="example-spanish">Pronunciación: "vi"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">W [ˈdʌbəl.ju:]</div>
+                        <div class="example-spanish">Pronunciación: "dábol-iu"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">X [eks]</div>
+                        <div class="example-spanish">Pronunciación: "eks"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">Y [waɪ]</div>
+                        <div class="example-spanish">Pronunciación: "uai"</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">Z [zi:]</div>
+                        <div class="example-spanish">Pronunciación: "zi"</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. How many letters are in the English alphabet?</div>
+                        <label class="option">
+                            <input type="radio" name="abc1" value="a">
+                            <span>a) 26</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc1" value="b">
+                            <span>b) 27</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc1" value="c">
+                            <span>c) 25</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('abc1', 'a', 'abecedario')">Verificar</button>
+                        <div class="feedback" id="feedback-abc1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. Which letter comes after "M"?</div>
+                        <label class="option">
+                            <input type="radio" name="abc2" value="a">
+                            <span>a) L</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc2" value="b">
+                            <span>b) N</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc2" value="c">
+                            <span>c) O</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('abc2', 'b', 'abecedario')">Verificar</button>
+                        <div class="feedback" id="feedback-abc2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. How many vowels are in English?</div>
+                        <label class="option">
+                            <input type="radio" name="abc3" value="a">
+                            <span>a) 4</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc3" value="b">
+                            <span>b) 5</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc3" value="c">
+                            <span>c) 6</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('abc3', 'b', 'abecedario')">Verificar</button>
+                        <div class="feedback" id="feedback-abc3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. Which is a vowel?</div>
+                        <label class="option">
+                            <input type="radio" name="abc4" value="a">
+                            <span>a) B</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc4" value="b">
+                            <span>b) I</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc4" value="c">
+                            <span>c) K</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('abc4', 'b', 'abecedario')">Verificar</button>
+                        <div class="feedback" id="feedback-abc4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. What is the last letter of the alphabet?</div>
+                        <label class="option">
+                            <input type="radio" name="abc5" value="a">
+                            <span>a) Y</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc5" value="b">
+                            <span>b) Z</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="abc5" value="c">
+                            <span>c) X</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('abc5', 'b', 'abecedario')">Verificar</button>
+                        <div class="feedback" id="feedback-abc5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-abecedario">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-abecedario">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 3: PREPOSICIONES -->
+            <div id="preposiciones" class="topic-section">
+                <div class="theory-box">
+                    <h3>📍 Preposiciones de Lugar (Prepositions of Place)</h3>
+                    <div class="theory-content">
+                        <p><strong>Las preposiciones indican la posición de objetos o personas.</strong></p>
+                        <p>Son palabras pequeñas pero muy importantes para describir ubicaciones.</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-english">in</div>
+                        <div class="example-spanish">en (dentro de)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">on</div>
+                        <div class="example-spanish">en (sobre)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">under</div>
+                        <div class="example-spanish">debajo de</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">next to</div>
+                        <div class="example-spanish">al lado de</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">between</div>
+                        <div class="example-spanish">entre</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">behind</div>
+                        <div class="example-spanish">detrás de</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. The book is ___ the table.</div>
+                        <label class="option">
+                            <input type="radio" name="prep1" value="a">
+                            <span>a) on</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep1" value="b">
+                            <span>b) at</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep1" value="c">
+                            <span>c) to</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('prep1', 'a', 'preposiciones')">Verificar</button>
+                        <div class="feedback" id="feedback-prep1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. The cat is ___ the box. (dentro)</div>
+                        <label class="option">
+                            <input type="radio" name="prep2" value="a">
+                            <span>a) on</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep2" value="b">
+                            <span>b) in</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep2" value="c">
+                            <span>c) at</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('prep2', 'b', 'preposiciones')">Verificar</button>
+                        <div class="feedback" id="feedback-prep2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. The dog is ___ the table. (debajo)</div>
+                        <label class="option">
+                            <input type="radio" name="prep3" value="a">
+                            <span>a) between</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep3" value="b">
+                            <span>b) behind</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep3" value="c">
+                            <span>c) under</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('prep3', 'c', 'preposiciones')">Verificar</button>
+                        <div class="feedback" id="feedback-prep3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. The chair is ___ the door. (detrás)</div>
+                        <label class="option">
+                            <input type="radio" name="prep4" value="a">
+                            <span>a) behind</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep4" value="b">
+                            <span>b) in front of</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep4" value="c">
+                            <span>c) next to</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('prep4', 'a', 'preposiciones')">Verificar</button>
+                        <div class="feedback" id="feedback-prep4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. I am ___ Mary and John. (entre)</div>
+                        <label class="option">
+                            <input type="radio" name="prep5" value="a">
+                            <span>a) next to</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep5" value="b">
+                            <span>b) between</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="prep5" value="c">
+                            <span>c) behind</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('prep5', 'b', 'preposiciones')">Verificar</button>
+                        <div class="feedback" id="feedback-prep5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-preposiciones">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-preposiciones">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 4: A / AN -->
+            <div id="a-an" class="topic-section">
+                <div class="theory-box">
+                    <h3>✏️ Artículos Indefinidos: A / An</h3>
+                    <div class="theory-content">
+                        <p><strong>"A" y "An" significan "un" o "una".</strong></p>
+                        <p><strong>⚠️ REGLA IMPORTANTE: Se usa según el SONIDO, no según cómo se escribe:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>A</strong> - Se usa antes de sonido de consonante: a book, a car, a <u>university</u> (suena "yu")</li>
+                            <li><strong>An</strong> - Se usa antes de sonido de vocal: an apple, an egg, an <u>hour</u> (la "h" es silenciosa)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>💡 Casos especiales:</strong> Algunas palabras que empiezan con vocal usan "a" (university, European), y algunas que empiezan con consonante usan "an" (hour, honest).</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-english">a dog</div>
+                        <div class="example-spanish">un perro (sonido: d)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">an elephant</div>
+                        <div class="example-spanish">un elefante (sonido: e)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">a book</div>
+                        <div class="example-spanish">un libro (sonido: b)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">an orange</div>
+                        <div class="example-spanish">una naranja (sonido: o)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">a cat</div>
+                        <div class="example-spanish">un gato (sonido: k)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">an apple</div>
+                        <div class="example-spanish">una manzana (sonido: a)</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">a university ⚠️</div>
+                        <div class="example-spanish">una universidad (suena "yu-")</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">an hour ⚠️</div>
+                        <div class="example-spanish">una hora (h silenciosa)</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">a hospital ⚠️</div>
+                        <div class="example-spanish">un hospital (h aspirada)</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">a European ⚠️</div>
+                        <div class="example-spanish">un europeo (suena "yu-")</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">an honest person ⚠️</div>
+                        <div class="example-spanish">una persona honesta (h silenciosa)</div>
+                    </div>
+                    <div class="example-card tens">
+                        <div class="example-english">a uniform ⚠️</div>
+                        <div class="example-spanish">un uniforme (suena "yu-")</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. I have ___ apple.</div>
+                        <label class="option">
+                            <input type="radio" name="aan1" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan1" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan1" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('aan1', 'b', 'a-an')">Verificar</button>
+                        <div class="feedback" id="feedback-aan1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. She is ___ teacher.</div>
+                        <label class="option">
+                            <input type="radio" name="aan2" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan2" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan2" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('aan2', 'a', 'a-an')">Verificar</button>
+                        <div class="feedback" id="feedback-aan2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. This is ___ orange.</div>
+                        <label class="option">
+                            <input type="radio" name="aan3" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan3" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan3" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('aan3', 'b', 'a-an')">Verificar</button>
+                        <div class="feedback" id="feedback-aan3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. He has ___ car.</div>
+                        <label class="option">
+                            <input type="radio" name="aan4" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan4" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan4" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('aan4', 'a', 'a-an')">Verificar</button>
+                        <div class="feedback" id="feedback-aan4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. I need ___ umbrella.</div>
+                        <label class="option">
+                            <input type="radio" name="aan5" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan5" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="aan5" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('aan5', 'b', 'a-an')">Verificar</button>
+                        <div class="feedback" id="feedback-aan5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-a-an">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-a-an">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 5: ARTÍCULOS -->
+            <div id="articulos" class="topic-section">
+                <div class="theory-box">
+                    <h3>📝 Artículos Definidos e Indefinidos</h3>
+                    <div class="theory-content">
+                        <p><strong>En inglés hay 3 artículos principales:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>THE</strong> (el, la, los, las) - Artículo definido, para algo específico</li>
+                            <li><strong>A / AN</strong> (un, una) - Artículos indefinidos, para algo general</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Ejemplo:</strong> I have <strong>a</strong> cat. (general) / <strong>The</strong> cat is black. (específico)</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-english">the sun</div>
+                        <div class="example-spanish">el sol (único)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">a book</div>
+                        <div class="example-spanish">un libro (cualquiera)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">the book</div>
+                        <div class="example-spanish">el libro (específico)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">an idea</div>
+                        <div class="example-spanish">una idea</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. ___ moon is beautiful tonight. (la luna - específica)</div>
+                        <label class="option">
+                            <input type="radio" name="art1" value="a">
+                            <span>a) A</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art1" value="b">
+                            <span>b) An</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art1" value="c">
+                            <span>c) The</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('art1', 'c', 'articulos')">Verificar</button>
+                        <div class="feedback" id="feedback-art1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. I saw ___ movie yesterday. (una película - general)</div>
+                        <label class="option">
+                            <input type="radio" name="art2" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art2" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art2" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('art2', 'a', 'articulos')">Verificar</button>
+                        <div class="feedback" id="feedback-art2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. ___ movie was great! (la película que mencioné)</div>
+                        <label class="option">
+                            <input type="radio" name="art3" value="a">
+                            <span>a) A</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art3" value="b">
+                            <span>b) An</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art3" value="c">
+                            <span>c) The</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('art3', 'c', 'articulos')">Verificar</button>
+                        <div class="feedback" id="feedback-art3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. She bought ___ umbrella.</div>
+                        <label class="option">
+                            <input type="radio" name="art4" value="a">
+                            <span>a) a</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art4" value="b">
+                            <span>b) an</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art4" value="c">
+                            <span>c) the</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('art4', 'b', 'articulos')">Verificar</button>
+                        <div class="feedback" id="feedback-art4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. ___ president will speak today. (el presidente específico)</div>
+                        <label class="option">
+                            <input type="radio" name="art5" value="a">
+                            <span>a) A</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art5" value="b">
+                            <span>b) An</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="art5" value="c">
+                            <span>c) The</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('art5', 'c', 'articulos')">Verificar</button>
+                        <div class="feedback" id="feedback-art5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-articulos">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-articulos">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 6: PRONOMBRES -->
+            <div id="pronombres" class="topic-section">
+                <div class="theory-box">
+                    <h3>👤 Pronombres Personales (Personal Pronouns)</h3>
+                    <div class="theory-content">
+                        <p><strong>Los pronombres reemplazan a los sustantivos (nombres).</strong></p>
+                        <p>En inglés, los pronombres personales son esenciales para la conjugación de verbos.</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-english">I</div>
+                        <div class="example-spanish">Yo</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">You</div>
+                        <div class="example-spanish">Tú / Usted</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">He</div>
+                        <div class="example-spanish">Él</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">She</div>
+                        <div class="example-spanish">Ella</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">It</div>
+                        <div class="example-spanish">Eso (animal/cosa)</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">We</div>
+                        <div class="example-spanish">Nosotros/as</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">You</div>
+                        <div class="example-spanish">Ustedes</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">They</div>
+                        <div class="example-spanish">Ellos/as</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. ___ am a student. (Yo)</div>
+                        <label class="option">
+                            <input type="radio" name="pron1" value="a">
+                            <span>a) I</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron1" value="b">
+                            <span>b) You</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron1" value="c">
+                            <span>c) He</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('pron1', 'a', 'pronombres')">Verificar</button>
+                        <div class="feedback" id="feedback-pron1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. María is my friend. ___ is nice. (Ella)</div>
+                        <label class="option">
+                            <input type="radio" name="pron2" value="a">
+                            <span>a) He</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron2" value="b">
+                            <span>b) She</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron2" value="c">
+                            <span>c) It</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('pron2', 'b', 'pronombres')">Verificar</button>
+                        <div class="feedback" id="feedback-pron2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. My friends and I go to school. ___ are students. (Nosotros)</div>
+                        <label class="option">
+                            <input type="radio" name="pron3" value="a">
+                            <span>a) They</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron3" value="b">
+                            <span>b) We</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron3" value="c">
+                            <span>c) You</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('pron3', 'b', 'pronombres')">Verificar</button>
+                        <div class="feedback" id="feedback-pron3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. The cat is sleeping. ___ is tired. (el gato)</div>
+                        <label class="option">
+                            <input type="radio" name="pron4" value="a">
+                            <span>a) He</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron4" value="b">
+                            <span>b) She</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron4" value="c">
+                            <span>c) It</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('pron4', 'c', 'pronombres')">Verificar</button>
+                        <div class="feedback" id="feedback-pron4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. John and Mary are happy. ___ are friends. (Ellos)</div>
+                        <label class="option">
+                            <input type="radio" name="pron5" value="a">
+                            <span>a) We</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron5" value="b">
+                            <span>b) You</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="pron5" value="c">
+                            <span>c) They</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('pron5', 'c', 'pronombres')">Verificar</button>
+                        <div class="feedback" id="feedback-pron5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-pronombres">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-pronombres">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 7: TO BE -->
+            <div id="to-be" class="topic-section">
+                <div class="theory-box">
+                    <h3>✅ Verbo To Be (Ser / Estar)</h3>
+                    <div class="theory-content">
+                        <p><strong>El verbo "To Be" es el más importante en inglés.</strong></p>
+                        <p>Tiene tres formas en presente: <strong>am, is, are</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>I am</strong> (Yo soy/estoy)</li>
+                            <li><strong>You are</strong> (Tú eres/estás)</li>
+                            <li><strong>He/She/It is</strong> (Él/Ella/Eso es/está)</li>
+                            <li><strong>We are</strong> (Nosotros somos/estamos)</li>
+                            <li><strong>You are</strong> (Ustedes son/están)</li>
+                            <li><strong>They are</strong> (Ellos son/están)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-english">I am happy</div>
+                        <div class="example-spanish">Yo estoy feliz</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">You are tall</div>
+                        <div class="example-spanish">Tú eres alto</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">He is a doctor</div>
+                        <div class="example-spanish">Él es doctor</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">We are friends</div>
+                        <div class="example-spanish">Somos amigos</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">They are students</div>
+                        <div class="example-spanish">Ellos son estudiantes</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-english">It is cold</div>
+                        <div class="example-spanish">Está frío</div>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>💪 Práctica</h3>
+                    
+                    <div class="question-item">
+                        <div class="question-text">1. I ___ a teacher.</div>
+                        <label class="option">
+                            <input type="radio" name="tobe1" value="a">
+                            <span>a) am</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe1" value="b">
+                            <span>b) is</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe1" value="c">
+                            <span>c) are</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('tobe1', 'a', 'to-be')">Verificar</button>
+                        <div class="feedback" id="feedback-tobe1"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">2. She ___ my sister.</div>
+                        <label class="option">
+                            <input type="radio" name="tobe2" value="a">
+                            <span>a) am</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe2" value="b">
+                            <span>b) is</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe2" value="c">
+                            <span>c) are</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('tobe2', 'b', 'to-be')">Verificar</button>
+                        <div class="feedback" id="feedback-tobe2"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">3. We ___ happy.</div>
+                        <label class="option">
+                            <input type="radio" name="tobe3" value="a">
+                            <span>a) am</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe3" value="b">
+                            <span>b) is</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe3" value="c">
+                            <span>c) are</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('tobe3', 'c', 'to-be')">Verificar</button>
+                        <div class="feedback" id="feedback-tobe3"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">4. The book ___ on the table.</div>
+                        <label class="option">
+                            <input type="radio" name="tobe4" value="a">
+                            <span>a) am</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe4" value="b">
+                            <span>b) is</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe4" value="c">
+                            <span>c) are</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('tobe4', 'b', 'to-be')">Verificar</button>
+                        <div class="feedback" id="feedback-tobe4"></div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-text">5. You ___ very smart.</div>
+                        <label class="option">
+                            <input type="radio" name="tobe5" value="a">
+                            <span>a) am</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe5" value="b">
+                            <span>b) is</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="tobe5" value="c">
+                            <span>c) are</span>
+                        </label>
+                        <button class="verify-btn" onclick="checkAnswer('tobe5', 'c', 'to-be')">Verificar</button>
+                        <div class="feedback" id="feedback-tobe5"></div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-text">Progreso del tema: <span id="progress-to-be">0/5</span></div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="bar-to-be">0%</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Track correct answers for each topic
+        const topicProgress = {
+            'numeros': 0,
+            'abecedario': 0,
+            'preposiciones': 0,
+            'a-an': 0,
+            'articulos': 0,
+            'pronombres': 0,
+            'to-be': 0
+        };
+
+        const topicTotal = 5; // Each topic has 5 questions
+
+        function showTopic(topicId) {
+            // Hide all topics
+            document.querySelectorAll('.topic-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected topic
+            document.getElementById(topicId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function checkAnswer(questionName, correctAnswer, topic) {
+            const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+            const feedback = document.getElementById(`feedback-${questionName}`);
+            
+            if (!selected) {
+                alert('Por favor selecciona una respuesta');
+                return;
+            }
+            
+            // Check if already answered correctly
+            const wasCorrect = feedback.classList.contains('correct');
+            
+            if (selected.value === correctAnswer) {
+                feedback.textContent = '✅ ¡Correcto! Excelente trabajo.';
+                feedback.className = 'feedback correct';
+                
+                // Only increment if it wasn't correct before
+                if (!wasCorrect) {
+                    topicProgress[topic]++;
+                    updateProgress(topic);
+                }
+            } else {
+                feedback.textContent = '❌ Incorrecto. Intenta de nuevo.';
+                feedback.className = 'feedback incorrect';
+                
+                // If it was correct before and now wrong, decrement
+                if (wasCorrect) {
+                    topicProgress[topic]--;
+                    updateProgress(topic);
+                }
+            }
+        }
+
+        function updateProgress(topic) {
+            const progress = topicProgress[topic];
+            const percentage = (progress / topicTotal) * 100;
+            
+            document.getElementById(`progress-${topic}`).textContent = `${progress}/${topicTotal}`;
+            const bar = document.getElementById(`bar-${topic}`);
+            bar.style.width = percentage + '%';
+            bar.textContent = Math.round(percentage) + '%';
+        }
+    </script>
+</body>
+</html>
