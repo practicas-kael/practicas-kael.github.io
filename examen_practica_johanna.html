@@ -662,7 +662,9 @@
             // Reset buttons and feedback
             document.getElementById('check-btn').disabled = false;
             document.getElementById('next-btn').disabled = true;
-            document.getElementById('feedback').style.display = 'none';
+            const feedback = document.getElementById('feedback');
+            feedback.className = 'feedback';
+            feedback.textContent = '';
             hasAnswered = false;
         }
 
