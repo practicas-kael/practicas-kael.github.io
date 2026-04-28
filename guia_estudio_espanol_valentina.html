@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Guía de Estudio - Español 4to Grado - Valentina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.guia {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .student-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        .topic {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #764ba2;
+        }
+        
+        .topic h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .topic h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .topic ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .topic li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .vocab-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .vocab-item .word {
+            font-weight: bold;
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .vocab-item .meaning {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .example-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .example-box strong {
+            color: #856404;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box strong {
+            color: #0c5460;
+        }
+        
+        .table-simple {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .table-simple th {
+            background: #764ba2;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .table-simple td {
+            background: white;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="guia_estudio_espanol_valentina.html" class="nav-btn guia">📖 Study Guide (actual)</a>
+            <a href="examen_guiado_espanol_valentina.html" class="nav-btn examen-guiado">🎯 Guided Test</a>
+            <a href="examen_espanol_valentina.html" class="nav-btn examen">✍️ Complete Test</a>
+        </div>
+
+        <div class="header">
+            <h1>📚 Guía de Estudio - Español</h1>
+            <p>Todos los temas para tu examen</p>
+            <div class="student-badge">👩‍🎓 Valentina - 4to Grado</div>
+        </div>
+
+        <!-- TEMA 1: LA INFORMACIÓN Y SU IMPORTANCIA -->
+        <div class="topic">
+            <h2>📚 Tema 1: La Información y su Importancia</h2>
+            
+            <p><strong>¿Qué es la información?</strong></p>
+            <p>La información es todo aquello que permite aprender y conocer sobre un tema. Se encuentra en libros, internet, entrevistas y muchas otras fuentes. Es importante saber cómo buscar y seleccionar información confiable para aprender y respaldar las ideas.</p>
+            
+            <h3>🎯 Conocimientos previos y nuevas ideas</h3>
+            <p>Antes de investigar un tema, se debe pensar en lo que ya se sabe.</p>
+            <ul>
+                <li>Al leer y escuchar nueva información, es importante relacionarla con los <span class="highlight">conocimientos previos</span> para comprender mejor el tema.</li>
+                <li>Además, se debe diferenciar entre <span class="highlight">ideas útiles</span> y <span class="highlight">datos que no aportan</span> a la investigación.</li>
+            </ul>
+            
+            <h3>📖 Fuentes de Información: ¿Dónde buscar?</h3>
+            
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="word">📚 Biblioteca</div>
+                    <div class="meaning">Contiene libros, revistas y enciclopedias</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">💻 Internet</div>
+                    <div class="meaning">Mucha información, pero no toda es confiable</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">🎤 Entrevistas</div>
+                    <div class="meaning">Conversaciones con personas expertas</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">📺 Documentales</div>
+                    <div class="meaning">Videos educativos con imágenes y sonidos</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">📞 Guía Telefónica</div>
+                    <div class="meaning">Directorios con información de contacto</div>
+                </div>
+            </div>
+            
+            <h3>Biblioteca:</h3>
+            <ul>
+                <li>Contiene libros, revistas y enciclopedias.</li>
+                <li>Los ficheros ayudan a encontrar libros por temas o autores.</li>
+                <li>El índice de un libro facilita la búsqueda de información específica.</li>
+            </ul>
+            
+            <h3>Internet:</h3>
+            <ul>
+                <li>Contiene mucha información, pero no toda es confiable.</li>
+                <li>Se deben elegir sitios web seguros y educativos.</li>
+                <li>Se debe verificar la fuente y comparar información en varias páginas.</li>
+            </ul>
+            
+            <h3>Entrevistas:</h3>
+            <ul>
+                <li>Conversar con una persona experta en el tema permite obtener información directa.</li>
+                <li>Es importante preparar preguntas antes.</li>
+                <li>Se pueden tomar notas o grabar la conversación (con permiso).</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>💡 Recuerda:</strong> Siempre debes comparar información de diferentes fuentes para asegurarte de que es correcta y confiable.
+            </div>
+        </div>
+
+        <!-- TEMA 2: EL ARTE Y SU INTERPRETACIÓN -->
+        <div class="topic">
+            <h2>🎨 Tema 2: El Arte y su Interpretación</h2>
+            
+            <p>El arte plástico es una forma de comunicación visual que permite transmitir ideas, emociones y conceptos sin el uso de palabras. Las imágenes han sido utilizadas a lo largo de la historia para representar escenas de la vida cotidiana, creencias, sentimientos y pensamientos.</p>
+            
+            <p>Comprender una obra de arte requiere atención, análisis y reflexión, ya que cada observador puede percibirla de manera distinta según su experiencia y conocimientos previos.</p>
+            
+            <h3>🔍 Conocimientos previos y su influencia en la interpretación</h3>
+            <p>Al observar una imagen, la mente asocia lo que se ve con información ya conocida.</p>
+            <p>Esta relación entre lo nuevo y lo aprendido facilita la interpretación, pero también puede generar suposiciones incorrectas si no se analiza con profundidad.</p>
+            
+            <h3>👁️ La observación como primer paso</h3>
+            <p>En una obra de arte, los colores, las formas, la disposición de los elementos y los detalles pequeños pueden aportar información clave sobre su significado.</p>
+            
+            <h3>🔎 La indagación como estrategia de aprendizaje</h3>
+            <p>Formular preguntas ayuda a profundizar en el significado:</p>
+            <ul>
+                <li>¿Quién creó esta imagen?</li>
+                <li>¿En qué contexto fue elaborada?</li>
+                <li>¿Qué intención o mensaje quería transmitir el autor?</li>
+            </ul>
+            <p>Además, investigar sobre el artista, la época y el estilo de la obra ayuda a comprender su mensaje de manera más precisa.</p>
+            
+            <h3>💬 El diálogo y la comparación de ideas</h3>
+            <p>El intercambio de opiniones enriquece la comprensión, ya que permite contrastar ideas y descubrir detalles que podrían haber desapercibidos.</p>
+            <p>Respetar las opiniones ajenas y argumentar con fundamentos fortalece el proceso de análisis y aprendizaje.</p>
+            
+            <div class="example-box">
+                <strong>Ejemplo:</strong> Si ves una pintura de un paisaje, puedes preguntarte: ¿Qué hora del día es? ¿Qué estación del año? ¿Qué sentimientos transmite? ¿Por qué el artista eligió esos colores?
+            </div>
+        </div>
+
+        <!-- TEMA 3: TÉCNICAS PERSONALES DE LECTURA -->
+        <div class="topic">
+            <h2>📖 Tema 3: Técnicas Personales de Lectura</h2>
+            
+            <p>La lectura se realiza tanto para disfrutarla como para aprender nueva información. Algunas técnicas son:</p>
+            
+            <h3>Técnicas de lectura:</h3>
+            <ol>
+                <li>Leer el tema y observar las ilustraciones.</li>
+                <li>Identificar el tipo de texto: poema, receta, noticia, cuento, etc.</li>
+                <li>Establecer conclusiones o conjeturas según lo que se observa en el texto.</li>
+                <li>Definir palabras desconocidas.</li>
+                <li>Relacionar el texto con conocimientos previos.</li>
+            </ol>
+            
+            <h3>📝 Procesos importantes</h3>
+            
+            <h4>Conjetura:</h4>
+            <p>Se refiere a una suposición que se forma a partir de observaciones. En lectura, las conjeturas permiten anticipar el desarrollo de un texto o tema.</p>
+            
+            <h4>Analogías:</h4>
+            <p>Las analogías comparan elementos con relaciones similares, como en "perro: hueso; gato: pescador", donde ambos pares de animales tienen alimentos característicos.</p>
+            <p>En lectura, ayudan a comprender conceptos mediante experiencias cotidianas, identificando similitudes y diferencias entre ideas o elementos.</p>
+            
+            <h3>🔗 Tipos de analogías</h3>
+            
+            <table class="table-simple">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Ejemplo</th>
+                </tr>
+                <tr>
+                    <td><strong>Sinónimo</strong></td>
+                    <td>Las palabras que se comparan tienen un significado similar.</td>
+                    <td>Delgado es a flaco, así como grueso es a gordo.</td>
+                </tr>
+                <tr>
+                    <td><strong>Antónimo</strong></td>
+                    <td>Las palabras que se comparan tienen un significado opuesto.</td>
+                    <td>Delgado es a gordo, así como alto es a bajo.</td>
+                </tr>
+                <tr>
+                    <td><strong>Causa - afecto</strong></td>
+                    <td>Las palabras que se comparan tienen una relación de causa consecuencia.</td>
+                    <td>Lluvia es a mojado, así como calor es a seco.</td>
+                </tr>
+            </table>
+            
+            <div class="example-box">
+                <strong>Ejemplo de analogía:</strong><br>
+                LIBRO es a LEER como CANCIÓN es a ESCUCHAR<br>
+                (Ambos pares relacionan un objeto con la acción que se hace con él)
+            </div>
+        </div>
+
+        <!-- TEMA 4: FAMILIAS DE PALABRAS -->
+        <div class="topic">
+            <h2>🌳 Tema 4: Las Palabras son como Árboles - Familias de Palabras</h2>
+            
+            <p><strong>La raíz</strong> es su origen, <strong>el tronco</strong> es la palabra base y <strong>las ramas</strong> son los prefijos y sufijos que la hacen crecer y cambiar.</p>
+            
+            <h3>¿Qué es la raíz de una palabra?</h3>
+            <p>La raíz es la parte principal de una palabra, que contiene su significado básico. Saber reconocer la raíz ayuda a identificar palabras nuevas que pertenecen a la misma familia.</p>
+            
+            <div class="example-box">
+                <strong>Ejemplo:</strong><br>
+                "Mar" es la raíz en palabras como <span class="highlight">marino</span>, <span class="highlight">marítimo</span>, <span class="highlight">marea</span>.
+            </div>
+            
+            <h3>🌿 Las Familias de palabras</h3>
+            <p>Están formadas por palabras que comparten una misma raíz, aunque tengan significados ligeramente diferentes. Estas palabras se forman añadiendo prefijos o sufijos a la raíz.</p>
+            
+            <p>Las palabras tienen relaciones entre sí, como los miembros de una familia. Una <span class="highlight">familia de palabras</span> está formada por un grupo de palabras que comparten una misma raíz y tienen significados relacionados.</p>
+            
+            <div class="example-box">
+                <strong>Ejemplo de familia de palabras:</strong><br>
+                <span class="highlight">Pan</span> → Panadero → Panadería → Panecillo
+            </div>
+            
+            <h3>Si la palabra 'Feliz' es la raíz, ¿cómo cambia su significado si agregamos los prefijos 'in-' o 're-' y los sufijos '-mente' o '-idad'?</h3>
+            
+            <p><em>"Si encuentro mi raíz, mi significado podrá hallar:</em></p>
+            <ul>
+                <li>Con un prefijo cambio de rumbo,</li>
+                <li>y con un sufijo me hago más formal.</li>
+                <li>¿Qué soy?"</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>Respuesta:</strong><br>
+                • <span class="highlight">In-</span> + feliz = <strong>Infeliz</strong> (no feliz)<br>
+                • Feliz + <span class="highlight">-mente</span> = <strong>Felizmente</strong> (de manera feliz)<br>
+                • Feliz + <span class="highlight">-idad</span> = <strong>Felicidad</strong> (estado de ser feliz)
+            </div>
+        </div>
+
+        <!-- TEMA 5: PREFIJOS -->
+        <div class="topic">
+            <h2>🔤 Tema 5: Prefijos</h2>
+            
+            <p>El <span class="highlight">prefijo</span> es un morfema (grupo de letras) que se pone al <span class="highlight">principio de la palabra</span> y que permite <span class="highlight">formar una palabra nueva</span> con un significado diferente.</p>
+            
+            <p>Los prefijos son numerosos y cada uno de ellos tiene un <span class="highlight">significado específico</span>. A continuación se incluyen algunos de ellos:</p>
+            
+            <h3>📋 Lista de Prefijos Comunes:</h3>
+            
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="word">ante-</div>
+                    <div class="meaning">Anterioridad en el tiempo<br>Ej: antesala - antemano</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">auto-</div>
+                    <div class="meaning">Por sí mismo<br>Ej: automóvil - autocontrol</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">a-</div>
+                    <div class="meaning">Negación o falta de algo<br>Ej: amorfo - anormal</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">bi-</div>
+                    <div class="meaning">Dos o doble<br>Ej: bilingüe - bipartidismo</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">extra-</div>
+                    <div class="meaning">Fuera de algo<br>Ej: extraclase - extraterrestre</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">hiper-</div>
+                    <div class="meaning">Mayor, superior<br>Ej: hipermercado - hiperactivo</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">hipo-</div>
+                    <div class="meaning">Menor, inferior<br>Ej: hipotermia - hipotiroidismo</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">inter-</div>
+                    <div class="meaning">En medio<br>Ej: internacional - intercambiar</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">mono-</div>
+                    <div class="meaning">Uno<br>Ej: monosílabo - monotipo</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">pre-</div>
+                    <div class="meaning">Que ocurre antes<br>Ej: predestinado - preestablecido</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">re-</div>
+                    <div class="meaning">Volver a hacer, repetir<br>Ej: repasar - reconstruir</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">sobre-</div>
+                    <div class="meaning">Encima de, por encima de<br>Ej: sobresalto - sobresalir</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">sub-</div>
+                    <div class="meaning">Por debajo de<br>Ej: submarino - subterráneo</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">super-</div>
+                    <div class="meaning">En grado máximo<br>Ej: superhéroe - supermercado</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">bio-</div>
+                    <div class="meaning">Vida<br>Ej: biología - biotecnología</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">geo-</div>
+                    <div class="meaning">Relativo a la tierra<br>Ej: geología - geocéntrico</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">hexa-</div>
+                    <div class="meaning">Seis<br>Ej: hexágono - hexasílabo</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="word">multi-</div>
+                    <div class="meaning">Numeroso<br>Ej: multinacional - multiétnico</div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>💡 Tip:</strong> Los prefijos ayudan a entender palabras desconocidas al cambiar su sentido original.
+            </div>
+        </div>
+
+        <!-- TEMA 6: SUFIJOS -->
+        <div class="topic">
+            <h2>🔡 Tema 6: Sufijos</h2>
+            
+            <p>El <span class="highlight">sufijo</span> es una terminación (morfema) que se pone <span class="highlight">al final de la palabra</span> y permite formar una palabra nueva con un significado diferente.</p>
+            
+            <h3>📋 Sufijos Aumentativos</h3>
+            <p>Hay sufijos que se utilizan para formar el <span class="highlight">aumentativo</span> de algunos sustantivos, entre ellos:</p>
+            <p><strong>"-on", "-ona", "-azo", "-aza", "-oto", "-ota"</strong></p>
+            
+            <div class="example-box">
+                <strong>Por ejemplo:</strong><br>
+                • Muchacho → <span class="highlight">muchachote</span><br>
+                • Barco → <span class="highlight">barcaza</span><br>
+                • Butaca → <span class="highlight">butacón</span><br>
+                • Golpe → <span class="highlight">golpetazo</span><br>
+                • Casa → <span class="highlight">caseta</span><br>
+                • Oreja → <span class="highlight">orejona</span>
+            </div>
+            
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="word">🍎 manzana</div>
+                    <div class="meaning">🍎 manzanota</div>
+                </div>
+            </div>
+            
+            <h3>📋 Sufijos Diminutivos</h3>
+            <p>Otros sufijos se utilizan para formar el <span class="highlight">diminutivo</span>, entre ellos:</p>
+            <p><strong>"-ito", "-ita", "-illo", "-illa"</strong></p>
+            
+            <div class="example-box">
+                <strong>Por ejemplo:</strong><br>
+                • Camión → <span class="highlight">camioncito</span><br>
+                • Pelota → <span class="highlight">pelotita</span><br>
+                • Palo → <span class="highlight">palillo</span><br>
+                • Mesa → <span class="highlight">mesilla</span>
+            </div>
+            
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <div class="word">🍎 manzana</div>
+                    <div class="meaning">🍎 manzanita</div>
+                </div>
+            </div>
+            
+            <h3>📋 Sufijos Despectivos</h3>
+            <p>Mientras que otros sufijos se utilizan con un <span class="highlight">significado despectivo</span>, entre ellos se encuentran:</p>
+            <p><strong>"-ejo", "-eja", "-aco", "-aca", "-ucho", "-ucha", "-ato", "-ata"</strong></p>
+            
+            <div class="example-box">
+                <strong>Por ejemplo:</strong><br>
+                • Tipo → <span class="highlight">tipejo</span><br>
+                • Pájaro → <span class="highlight">pajarraco</span><br>
+                • Casa → <span class="highlight">casucha</span><br>
+                • Niño → <span class="highlight">niñato</span>
+            </div>
+            
+            <div class="vocab-grid">
+                <div class="vocab-item" style="background: #ffe0e0;">
+                    <div class="word">🏠 casa</div>
+                    <div class="meaning">🏚️ casucha</div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>💡 Recuerda:</strong> Reconocer los sufijos ayuda a inferir el significado de palabras nuevas.
+            </div>
+        </div>
+
+        <!-- TEMA 7: EL DICCIONARIO -->
+        <div class="topic">
+            <h2>📕 Tema 7: El Diccionario y Vocabulario Nuevo</h2>
+            
+            <p>El diccionario es como un mapa del tesoro: cada palabra es un tesoro escondido y el orden alfabético es la brújula que guía para encontrarlo rápidamente.</p>
+            
+            <h3>📚 ¿Qué es el diccionario?</h3>
+            <p>Un diccionario es un libro que contiene palabras organizadas en <span class="highlight">orden alfabético</span> junto con su significado. Existen diferentes tipos de diccionarios: algunos explican significados, otros muestran sinónimos o antónimos, y algunos incluyen ilustraciones.</p>
+            
+            <p>Cuando dos palabras empiezan por la misma letra, se ordenan por la segunda. Y si las dos primeras letras son iguales, se ordenan por la siguiente.</p>
+            
+            <h3>📖 Partes del diccionario</h3>
+            
+            <table class="table-simple">
+                <tr>
+                    <th>Parte</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td><strong>Palabras guía</strong></td>
+                    <td>Indican la primera y última palabra de la página.</td>
+                </tr>
+                <tr>
+                    <td><strong>Entrada por definir</strong></td>
+                    <td>Palabra que se explica.</td>
+                </tr>
+                <tr>
+                    <td><strong>Definición</strong></td>
+                    <td>Aparece después de cada entrada, es la explicación.</td>
+                </tr>
+            </table>
+            
+            <div class="example-box">
+                <strong>Ejemplo de entrada del diccionario:</strong><br>
+                <strong>tugurio - tutear</strong><br><br>
+                <strong>tugurio.</strong> m. 1. Choza o casilla de pastores. || 2. Habitación o establecimiento pequeño de mal aspecto.<br><br>
+                <strong>tuición.</strong> f. Acción y efecto de guardar o defender.<br><br>
+                <strong>tuitear.</strong> intr. Comunicarse por medio de tuits. || tr. Enviar algo por medio de un tuit.
+            </div>
+            
+            <h3>🔤 ¿Qué es el orden alfabético?</h3>
+            <p>El orden alfabético es una forma de organizar palabras siguiendo el orden de las letras del alfabeto: A, B, C, D, y así sucesivamente. Se utiliza en diccionarios, guías telefónicas, índices de libros y listas para facilitar la búsqueda de información.</p>
+            
+            <h3>❓ Preguntas sobre el diccionario</h3>
+            <div class="info-box">
+                <strong>¿Qué pasaría si el diccionario no estuviera en orden alfabético?</strong><br>
+                Sería muy difícil encontrar las palabras. ¡Sería como buscar un tesoro sin mapa!<br><br>
+                
+                <strong>¿Cómo cambiaría la forma de buscar una palabra desconocida?</strong><br>
+                Tendríamos que leer todo el diccionario página por página hasta encontrarla, lo cual tomaría mucho tiempo.
+            </div>
+            
+            <h3>📚 ¿Por qué es importante conocer nuevas palabras?</h3>
+            <p>El vocabulario es el conjunto de palabras que una persona conoce y utiliza. Aprender nuevas palabras ayuda a comprender mejor los textos, expresarse con claridad y enriquecer la comunicación.</p>
+            
+            <p>Cuando se encuentra una palabra desconocida, se pueden aplicar estrategias como usar el contexto o buscar en el diccionario para entender su significado.</p>
+            
+            <h3>🔍 Estrategias para comprender palabras nuevas</h3>
+            
+            <table class="table-simple">
+                <tr>
+                    <th>Estrategia</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td><strong>Identificar la raíz</strong></td>
+                    <td>Para ver si se parece a otra palabra conocida.</td>
+                </tr>
+                <tr>
+                    <td><strong>Observar si tiene prefijo o sufijo</strong></td>
+                    <td>Para entender cómo cambió su significado.</td>
+                </tr>
+                <tr>
+                    <td><strong>Leer la oración completa</strong></td>
+                    <td>Para ver cómo se usa la palabra en el texto.</td>
+                </tr>
+                <tr>
+                    <td><strong>Relacionar con palabras similares</strong></td>
+                    <td>Que se conocen.</td>
+                </tr>
+            </table>
+            
+            <div class="example-box">
+                <strong>Ejemplo en un texto:</strong> "La tienda ofrece descuentos en productos reutilizables."<br><br>
+                <strong>Raíz:</strong> usar → relacionado con el uso de algo.<br>
+                <strong>Prefijo:</strong> re- (volver a) → algo que se puede usar de nuevo.<br>
+                <strong>Conclusión:</strong> "Reutilizable" significa que se puede volver a usar.
+            </div>
+        </div>
+
+        <!-- TEMA 8: ORGANIZACIÓN DE LA INFORMACIÓN -->
+        <div class="topic">
+            <h2>📊 Tema 8: Organización de la Información</h2>
+            
+            <h3>📺 Documentales y Videos Educativos</h3>
+            <ul>
+                <li>Presentan información con imágenes y sonidos.</li>
+                <li>Se pueden anotar datos importantes mientras se observan.</li>
+                <li>Es útil comparar la información del documental con otras fuentes.</li>
+            </ul>
+            
+            <h3>📞 Guía Telefónica y Directorios</h3>
+            <ul>
+                <li>Presentan información con imágenes y sonidos.</li>
+                <li>Se pueden anotar datos importantes mientras se observan.</li>
+                <li>Es útil comparar la información del documental con otras fuentes.</li>
+            </ul>
+            
+            <h3>🗂️ Herramientas para organizar la información</h3>
+            
+            <table class="table-simple">
+                <tr>
+                    <th>Herramienta</th>
+                    <th>Descripción</th>
+                    <th>Utilidad</th>
+                </tr>
+                <tr>
+                    <td><strong>Índice</strong></td>
+                    <td>Es una lista de temas en un libro o documento.</td>
+                    <td>Ayuda a encontrar información más rápidamente.</td>
+                </tr>
+                <tr>
+                    <td><strong>Bibliografía</strong></td>
+                    <td>Lista de libros, sitios web y otras fuentes utilizadas.</td>
+                    <td>Debe incluir el autor, título y año de publicación.</td>
+                </tr>
+                <tr>
+                    <td><strong>Notas o Fichas</strong></td>
+                    <td>Permiten resumir los datos importantes.</td>
+                    <td>Se pueden organizar por temas para facilitar el estudio.</td>
+                </tr>
+            </table>
+            
+            <h3>🔍 Comparación y selección de información</h3>
+            <p>No toda la información encontrada es confiable. Para elegir las mejores fuentes, se deben hacer preguntas como:</p>
+            <ul>
+                <li>¿Quién escribió esta información?</li>
+                <li>¿De dónde proviene?</li>
+                <li>¿Coincide con otras fuentes confiables?</li>
+            </ul>
+            
+            <p>También es importante diferenciar entre <span class="highlight">opiniones</span> y <span class="highlight">hechos</span>. Los hechos son datos comprobables, mientras que las opiniones son ideas personales que pueden variar.</p>
+            
+            <div class="info-box">
+                <strong>💡 Recuerda:</strong> Siempre organiza tu información de manera clara para que sea fácil de estudiar y recordar.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

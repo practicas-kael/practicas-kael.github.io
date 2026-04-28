@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✍️ Examen Completo - Español - Valentina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.guia {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .nav-btn.examen-guiado {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .nav-btn.examen {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .student-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .topic-section {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #764ba2;
+        }
+        
+        .topic-section h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
+        
+        .question {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .question h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .option {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option:hover {
+            border-color: #764ba2;
+            background: #f5f5f5;
+        }
+        
+        .option input[type="radio"] {
+            cursor: pointer;
+        }
+        
+        .verify-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: transform 0.2s;
+        }
+        
+        .verify-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .feedback.show {
+            display: block;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .submit-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-radius: 15px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .final-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .final-result.show {
+            display: block;
+        }
+        
+        .final-result.excellent {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .final-result.good {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .final-result.needs-improvement {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-btn" style="background: #e0e0e0; color: #333;">← Inicio</a>
+            <a href="guia_estudio_espanol_valentina.html" class="nav-btn guia">📖 Study Guide</a>
+            <a href="examen_guiado_espanol_valentina.html" class="nav-btn examen-guiado">🎯 Guided Test</a>
+            <a href="examen_espanol_valentina.html" class="nav-btn examen">✍️ Complete Test (actual)</a>
+        </div>
+
+        <div class="header">
+            <h1>✍️ Examen Completo - Español</h1>
+            <p>¡Pon a prueba todos tus conocimientos!</p>
+            <div class="student-badge">👩‍🎓 Valentina - 4to Grado</div>
+        </div>
+
+        <div class="progress-container">
+            <p><strong>Progreso:</strong> <span id="progress-text">0 de 40 preguntas respondidas</span></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill">0%</div>
+            </div>
+        </div>
+
+        <!-- TEMA 1: LA INFORMACIÓN -->
+        <div class="topic-section">
+            <h2>📚 Tema 1: La Información y su Importancia</h2>
+            
+            <div class="question">
+                <h3>Pregunta 1: ¿Cuál de las siguientes fuentes es más confiable para investigar un tema científico?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1-1" value="a" onchange="updateProgress()">
+                        A) Una publicación en redes sociales
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-1" value="b" onchange="updateProgress()">
+                        B) Un libro de la biblioteca sobre ciencias
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-1" value="c" onchange="updateProgress()">
+                        C) Un blog personal
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-1" value="d" onchange="updateProgress()">
+                        D) Un comentario de un amigo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q1-1', 'b', '¡Correcto! Los libros de la biblioteca son fuentes confiables.', 'Los libros de la biblioteca son revisados por expertos y son fuentes confiables.')">Verificar</button>
+                <div class="feedback" id="feedback-q1-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 2: ¿Por qué es importante relacionar los conocimientos previos con la nueva información?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1-2" value="a" onchange="updateProgress()">
+                        A) Para memorizar mejor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-2" value="b" onchange="updateProgress()">
+                        B) Para comprender mejor el tema
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-2" value="c" onchange="updateProgress()">
+                        C) Para terminar más rápido
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-2" value="d" onchange="updateProgress()">
+                        D) Para impresionar al profesor
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q1-2', 'b', '¡Correcto! Relacionar conocimientos previos ayuda a comprender mejor.', 'Relacionar lo que ya sabes con lo nuevo ayuda a comprender mejor el tema.')">Verificar</button>
+                <div class="feedback" id="feedback-q1-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 3: En una biblioteca, ¿qué herramienta ayuda a encontrar libros por temas o autores?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1-3" value="a" onchange="updateProgress()">
+                        A) El diccionario
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-3" value="b" onchange="updateProgress()">
+                        B) Los ficheros
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-3" value="c" onchange="updateProgress()">
+                        C) Las revistas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-3" value="d" onchange="updateProgress()">
+                        D) Las entrevistas
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q1-3', 'b', '¡Correcto! Los ficheros ayudan a organizar y encontrar libros.', 'Los ficheros son sistemas de organización en la biblioteca que ayudan a encontrar libros por temas o autores.')">Verificar</button>
+                <div class="feedback" id="feedback-q1-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 4: Al buscar información en Internet, ¿qué debes hacer?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1-4" value="a" onchange="updateProgress()">
+                        A) Creer todo lo que encuentres
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-4" value="b" onchange="updateProgress()">
+                        B) Elegir sitios web seguros y verificar la información
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-4" value="c" onchange="updateProgress()">
+                        C) Copiar exactamente lo que dice
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-4" value="d" onchange="updateProgress()">
+                        D) Usar solo la primera página que aparezca
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q1-4', 'b', '¡Correcto! Siempre debes verificar que la información en Internet sea confiable.', 'En Internet no toda la información es confiable. Debes elegir sitios web seguros y educativos, y comparar la información.')">Verificar</button>
+                <div class="feedback" id="feedback-q1-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 5: ¿Qué es una entrevista como fuente de información?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1-5" value="a" onchange="updateProgress()">
+                        A) Leer un libro sobre el tema
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-5" value="b" onchange="updateProgress()">
+                        B) Conversar con una persona experta en el tema
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-5" value="c" onchange="updateProgress()">
+                        C) Ver un documental en la televisión
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1-5" value="d" onchange="updateProgress()">
+                        D) Buscar información en el diccionario
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q1-5', 'b', '¡Correcto! Una entrevista es conversar con un experto para obtener información directa.', 'Una entrevista es cuando conversas con una persona experta en el tema para obtener información directa.')">Verificar</button>
+                <div class="feedback" id="feedback-q1-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 2: EL ARTE -->
+        <div class="topic-section">
+            <h2>🎨 Tema 2: El Arte y su Interpretación</h2>
+            
+            <div class="question">
+                <h3>Pregunta 6: ¿Qué es el arte plástico?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2-1" value="a" onchange="updateProgress()">
+                        A) Una forma de comunicación escrita
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-1" value="b" onchange="updateProgress()">
+                        B) Una forma de comunicación visual
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-1" value="c" onchange="updateProgress()">
+                        C) Un tipo de música
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-1" value="d" onchange="updateProgress()">
+                        D) Una fuente de información científica
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q2-1', 'b', '¡Correcto! El arte plástico es comunicación visual.', 'El arte plástico es una forma de comunicación visual que transmite ideas y emociones sin palabras.')">Verificar</button>
+                <div class="feedback" id="feedback-q2-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 7: ¿Cuál es el primer paso para interpretar una obra de arte?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2-2" value="a" onchange="updateProgress()">
+                        A) Leer sobre el artista
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-2" value="b" onchange="updateProgress()">
+                        B) La observación de colores, formas y detalles
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-2" value="c" onchange="updateProgress()">
+                        C) Preguntarle a un experto
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-2" value="d" onchange="updateProgress()">
+                        D) Copiar la imagen
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q2-2', 'b', '¡Correcto! La observación es el primer paso.', 'La observación de colores, formas, disposición de elementos y detalles es el primer paso para interpretar una obra de arte.')">Verificar</button>
+                <div class="feedback" id="feedback-q2-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 8: ¿Por qué es importante hacer preguntas al observar una obra de arte?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2-3" value="a" onchange="updateProgress()">
+                        A) Para profundizar en el significado
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-3" value="b" onchange="updateProgress()">
+                        B) Para terminar más rápido
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-3" value="c" onchange="updateProgress()">
+                        C) Para criticar al artista
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-3" value="d" onchange="updateProgress()">
+                        D) No es importante hacer preguntas
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q2-3', 'a', '¡Correcto! Las preguntas ayudan a profundizar en el significado.', 'Formular preguntas como ¿Quién lo creó? ¿En qué contexto? ayuda a profundizar en el significado de la obra.')">Verificar</button>
+                <div class="feedback" id="feedback-q2-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 9: ¿Cómo influyen los conocimientos previos en la interpretación del arte?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2-4" value="a" onchange="updateProgress()">
+                        A) No influyen en nada
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-4" value="b" onchange="updateProgress()">
+                        B) La mente asocia lo que ve con información ya conocida
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-4" value="c" onchange="updateProgress()">
+                        C) Hacen que todos interpretemos igual
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-4" value="d" onchange="updateProgress()">
+                        D) Impiden comprender la obra
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q2-4', 'b', '¡Correcto! Los conocimientos previos ayudan a interpretar lo que vemos.', 'Al observar una obra, la mente asocia lo que ve con información ya conocida, lo que facilita la interpretación.')">Verificar</button>
+                <div class="feedback" id="feedback-q2-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 10: ¿Por qué es útil el diálogo al interpretar arte?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2-5" value="a" onchange="updateProgress()">
+                        A) Permite descubrir detalles desapercibidos
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-5" value="b" onchange="updateProgress()">
+                        B) Es una pérdida de tiempo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-5" value="c" onchange="updateProgress()">
+                        C) Confunde más
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2-5" value="d" onchange="updateProgress()">
+                        D) Solo sirve para discutir
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q2-5', 'a', '¡Correcto! El diálogo enriquece la comprensión.', 'El intercambio de opiniones enriquece la comprensión y permite descubrir detalles que podrían haber pasado desapercibidos.')">Verificar</button>
+                <div class="feedback" id="feedback-q2-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 3: TÉCNICAS DE LECTURA -->
+        <div class="topic-section">
+            <h2>📖 Tema 3: Técnicas Personales de Lectura</h2>
+            
+            <div class="question">
+                <h3>Pregunta 11: ¿Qué es una conjetura en lectura?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3-1" value="a" onchange="updateProgress()">
+                        A) Una suposición que se forma a partir de observaciones
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-1" value="b" onchange="updateProgress()">
+                        B) Un resumen del texto
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-1" value="c" onchange="updateProgress()">
+                        C) Una pregunta sobre el autor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-1" value="d" onchange="updateProgress()">
+                        D) Un tipo de texto
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q3-1', 'a', '¡Correcto! Una conjetura es una suposición basada en observaciones.', 'Una conjetura es una suposición que se forma a partir de observaciones. Permite anticipar el desarrollo de un texto.')">Verificar</button>
+                <div class="feedback" id="feedback-q3-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 12: Completa la analogía: "LIBRO es a LEER como CANCIÓN es a _____"</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3-2" value="a" onchange="updateProgress()">
+                        A) Bailar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-2" value="b" onchange="updateProgress()">
+                        B) Escuchar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-2" value="c" onchange="updateProgress()">
+                        C) Escribir
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-2" value="d" onchange="updateProgress()">
+                        D) Cantar
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q3-2', 'b', '¡Correcto! LIBRO es a LEER como CANCIÓN es a ESCUCHAR.', 'Ambos pares relacionan un objeto con la acción que se hace con él: un libro se lee, una canción se escucha.')">Verificar</button>
+                <div class="feedback" id="feedback-q3-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 13: ¿Qué tipo de analogía es: "Delgado es a gordo, así como alto es a bajo"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3-3" value="a" onchange="updateProgress()">
+                        A) Sinónimo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-3" value="b" onchange="updateProgress()">
+                        B) Antónimo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-3" value="c" onchange="updateProgress()">
+                        C) Causa-efecto
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-3" value="d" onchange="updateProgress()">
+                        D) Ninguna de las anteriores
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q3-3', 'b', '¡Correcto! Es una analogía de antónimos (palabras opuestas).', 'Es una analogía de antónimos porque compara palabras con significados opuestos: delgado/gordo, alto/bajo.')">Verificar</button>
+                <div class="feedback" id="feedback-q3-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 14: ¿Qué tipo de analogía es: "Lluvia es a mojado, así como calor es a seco"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3-4" value="a" onchange="updateProgress()">
+                        A) Sinónimo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-4" value="b" onchange="updateProgress()">
+                        B) Antónimo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-4" value="c" onchange="updateProgress()">
+                        C) Causa-efecto
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-4" value="d" onchange="updateProgress()">
+                        D) Familia de palabras
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q3-4', 'c', '¡Correcto! Es una analogía de causa-efecto.', 'Es una analogía de causa-efecto porque muestra una relación de causa y consecuencia: la lluvia causa que esté mojado, el calor causa que esté seco.')">Verificar</button>
+                <div class="feedback" id="feedback-q3-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 15: ¿Cuál es el primer paso de las técnicas de lectura?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3-5" value="a" onchange="updateProgress()">
+                        A) Definir palabras desconocidas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-5" value="b" onchange="updateProgress()">
+                        B) Leer el tema y observar las ilustraciones
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-5" value="c" onchange="updateProgress()">
+                        C) Establecer conclusiones
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3-5" value="d" onchange="updateProgress()">
+                        D) Relacionar con conocimientos previos
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q3-5', 'b', '¡Correcto! El primer paso es leer el tema y observar las ilustraciones.', 'El primer paso de las técnicas de lectura es leer el tema y observar las ilustraciones.')">Verificar</button>
+                <div class="feedback" id="feedback-q3-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 4: FAMILIAS DE PALABRAS -->
+        <div class="topic-section">
+            <h2>🌳 Tema 4: Familias de Palabras</h2>
+            
+            <div class="question">
+                <h3>Pregunta 16: ¿Qué es la raíz de una palabra?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4-1" value="a" onchange="updateProgress()">
+                        A) La parte final de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-1" value="b" onchange="updateProgress()">
+                        B) La parte principal que contiene su significado básico
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-1" value="c" onchange="updateProgress()">
+                        C) Un sinónimo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-1" value="d" onchange="updateProgress()">
+                        D) Un prefijo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q4-1', 'b', '¡Correcto! La raíz es la parte principal que contiene el significado básico.', 'La raíz es la parte principal de una palabra que contiene su significado básico.')">Verificar</button>
+                <div class="feedback" id="feedback-q4-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 17: ¿Cuál de estas palabras pertenece a la familia de "Pan"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4-2" value="a" onchange="updateProgress()">
+                        A) Pantera
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-2" value="b" onchange="updateProgress()">
+                        B) Panadería
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-2" value="c" onchange="updateProgress()">
+                        C) Pañuelo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-2" value="d" onchange="updateProgress()">
+                        D) Pana
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q4-2', 'b', '¡Correcto! Panadería pertenece a la familia de Pan.', 'Panadería pertenece a la familia de Pan: Pan, Panadero, Panadería, Panecillo.')">Verificar</button>
+                <div class="feedback" id="feedback-q4-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 18: Si "Mar" es la raíz, ¿cuál palabra NO pertenece a su familia?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4-3" value="a" onchange="updateProgress()">
+                        A) Marino
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-3" value="b" onchange="updateProgress()">
+                        B) Marea
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-3" value="c" onchange="updateProgress()">
+                        C) Martes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-3" value="d" onchange="updateProgress()">
+                        D) Marítimo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q4-3', 'c', '¡Correcto! Martes NO pertenece a la familia de Mar.', 'Martes no pertenece a la familia de Mar. Las palabras de la familia son: Mar, Marino, Marea, Marítimo.')">Verificar</button>
+                <div class="feedback" id="feedback-q4-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 19: ¿Qué palabra se forma al agregar el prefijo "in-" a "feliz"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4-4" value="a" onchange="updateProgress()">
+                        A) Felizmente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-4" value="b" onchange="updateProgress()">
+                        B) Infeliz
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-4" value="c" onchange="updateProgress()">
+                        C) Felicidad
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-4" value="d" onchange="updateProgress()">
+                        D) Feliz
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q4-4', 'b', '¡Correcto! In- + feliz = Infeliz (que no es feliz).', 'Al agregar el prefijo in- (que significa negación) a feliz, se forma Infeliz (no feliz).')">Verificar</button>
+                <div class="feedback" id="feedback-q4-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 20: ¿Qué se forma al agregar el sufijo "-mente" a "feliz"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4-5" value="a" onchange="updateProgress()">
+                        A) Infeliz
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-5" value="b" onchange="updateProgress()">
+                        B) Felicidad
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-5" value="c" onchange="updateProgress()">
+                        C) Felizmente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4-5" value="d" onchange="updateProgress()">
+                        D) Feliz
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q4-5', 'c', '¡Correcto! Feliz + -mente = Felizmente (de manera feliz).', 'Al agregar el sufijo -mente a feliz, se forma Felizmente (de manera feliz).')">Verificar</button>
+                <div class="feedback" id="feedback-q4-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 5: PREFIJOS -->
+        <div class="topic-section">
+            <h2>🔤 Tema 5: Prefijos</h2>
+            
+            <div class="question">
+                <h3>Pregunta 21: ¿Qué es un prefijo?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5-1" value="a" onchange="updateProgress()">
+                        A) Una terminación al final de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-1" value="b" onchange="updateProgress()">
+                        B) Un morfema que se pone al principio de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-1" value="c" onchange="updateProgress()">
+                        C) La raíz de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-1" value="d" onchange="updateProgress()">
+                        D) Un sinónimo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q5-1', 'b', '¡Correcto! Un prefijo se pone al principio de la palabra.', 'Un prefijo es un morfema (grupo de letras) que se pone al principio de la palabra para formar una palabra nueva.')">Verificar</button>
+                <div class="feedback" id="feedback-q5-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 22: ¿Qué significa el prefijo "re-"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5-2" value="a" onchange="updateProgress()">
+                        A) Antes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-2" value="b" onchange="updateProgress()">
+                        B) Volver a hacer, repetir
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-2" value="c" onchange="updateProgress()">
+                        C) Negación
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-2" value="d" onchange="updateProgress()">
+                        D) Debajo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q5-2', 'b', '¡Correcto! Re- significa volver a hacer o repetir.', 'El prefijo re- significa volver a hacer o repetir. Ejemplo: repasar, reconstruir.')">Verificar</button>
+                <div class="feedback" id="feedback-q5-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 23: Si "sub-" significa "por debajo de", ¿qué es un submarino?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5-3" value="a" onchange="updateProgress()">
+                        A) Un barco que va por encima del mar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-3" value="b" onchange="updateProgress()">
+                        B) Un barco que va por debajo del mar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-3" value="c" onchange="updateProgress()">
+                        C) Un barco muy grande
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-3" value="d" onchange="updateProgress()">
+                        D) Un barco que repite el recorrido
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q5-3', 'b', '¡Correcto! Un submarino va por debajo del mar.', 'Sub- significa por debajo de, entonces submarino es un barco que va por debajo del mar.')">Verificar</button>
+                <div class="feedback" id="feedback-q5-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 24: ¿Qué significa el prefijo "in-" en la palabra "injusto"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5-4" value="a" onchange="updateProgress()">
+                        A) Muy justo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-4" value="b" onchange="updateProgress()">
+                        B) Que no es justo (negación)
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-4" value="c" onchange="updateProgress()">
+                        C) Antes de ser justo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-4" value="d" onchange="updateProgress()">
+                        D) Repetir la justicia
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q5-4', 'b', '¡Correcto! In- indica negación (que no es justo).', 'El prefijo in- indica negación o falta de algo. Injusto = que no es justo.')">Verificar</button>
+                <div class="feedback" id="feedback-q5-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 25: ¿Qué palabra significa "que ocurre antes" usando el prefijo correcto?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5-5" value="a" onchange="updateProgress()">
+                        A) Reestablecer
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-5" value="b" onchange="updateProgress()">
+                        B) Predestinado
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-5" value="c" onchange="updateProgress()">
+                        C) Superhéroe
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5-5" value="d" onchange="updateProgress()">
+                        D) Extraclase
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q5-5', 'b', '¡Correcto! Pre- significa que ocurre antes.', 'El prefijo pre- significa que ocurre antes. Predestinado = destinado antes de que ocurra.')">Verificar</button>
+                <div class="feedback" id="feedback-q5-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 6: SUFIJOS -->
+        <div class="topic-section">
+            <h2>🔡 Tema 6: Sufijos</h2>
+            
+            <div class="question">
+                <h3>Pregunta 26: ¿Qué es un sufijo?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6-1" value="a" onchange="updateProgress()">
+                        A) Una letra al principio de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-1" value="b" onchange="updateProgress()">
+                        B) Una terminación al final de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-1" value="c" onchange="updateProgress()">
+                        C) La raíz de la palabra
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-1" value="d" onchange="updateProgress()">
+                        D) Un antónimo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q6-1', 'b', '¡Correcto! Un sufijo se pone al final de la palabra.', 'Un sufijo es una terminación que se pone al final de la palabra para formar una palabra nueva.')">Verificar</button>
+                <div class="feedback" id="feedback-q6-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 27: ¿Qué tipo de sufijo es "-ito" en "camioncito"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6-2" value="a" onchange="updateProgress()">
+                        A) Aumentativo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-2" value="b" onchange="updateProgress()">
+                        B) Diminutivo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-2" value="c" onchange="updateProgress()">
+                        C) Despectivo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-2" value="d" onchange="updateProgress()">
+                        D) Prefijo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q6-2', 'b', '¡Correcto! -ito es un sufijo diminutivo.', '-ito es un sufijo diminutivo. Los diminutivos hacen que la palabra se refiera a algo más pequeño.')">Verificar</button>
+                <div class="feedback" id="feedback-q6-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 28: ¿Qué palabra se forma al agregar un aumentativo a "manzana"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6-3" value="a" onchange="updateProgress()">
+                        A) Manzanita
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-3" value="b" onchange="updateProgress()">
+                        B) Manzanota
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-3" value="c" onchange="updateProgress()">
+                        C) Manzanejo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-3" value="d" onchange="updateProgress()">
+                        D) Premanzana
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q6-3', 'b', '¡Correcto! Manzanota es el aumentativo de manzana.', 'Manzanota es el aumentativo de manzana. Los aumentativos usan sufijos como -ota, -on, -azo.')">Verificar</button>
+                <div class="feedback" id="feedback-q6-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 29: ¿Qué indica el sufijo "-ucha" en "casucha"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6-4" value="a" onchange="updateProgress()">
+                        A) Es una casa muy grande
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-4" value="b" onchange="updateProgress()">
+                        B) Es una casa muy bonita
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-4" value="c" onchange="updateProgress()">
+                        C) Es despectivo (casa en mal estado)
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-4" value="d" onchange="updateProgress()">
+                        D) Es una casa pequeña y linda
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q6-4', 'c', '¡Correcto! -ucha es un sufijo despectivo.', '-ucha es un sufijo despectivo. Casucha se refiere a una casa en mal estado o de mala calidad.')">Verificar</button>
+                <div class="feedback" id="feedback-q6-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 30: ¿Cuál sufijo usarías para hacer diminutivo de "mesa"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6-5" value="a" onchange="updateProgress()">
+                        A) -ota
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-5" value="b" onchange="updateProgress()">
+                        B) -illa
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-5" value="c" onchange="updateProgress()">
+                        C) -ucha
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6-5" value="d" onchange="updateProgress()">
+                        D) -azo
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q6-5', 'b', '¡Correcto! Mesa + -illa = Mesilla (diminutivo).', '-illa es un sufijo diminutivo. Mesa + -illa = Mesilla (una mesa pequeña).')">Verificar</button>
+                <div class="feedback" id="feedback-q6-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 7: EL DICCIONARIO -->
+        <div class="topic-section">
+            <h2>📕 Tema 7: El Diccionario</h2>
+            
+            <div class="question">
+                <h3>Pregunta 31: ¿Qué es el orden alfabético?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7-1" value="a" onchange="updateProgress()">
+                        A) Organizar palabras por tamaño
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-1" value="b" onchange="updateProgress()">
+                        B) Organizar palabras siguiendo el orden de las letras A, B, C...
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-1" value="c" onchange="updateProgress()">
+                        C) Organizar palabras por tema
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-1" value="d" onchange="updateProgress()">
+                        D) Organizar palabras por color
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q7-1', 'b', '¡Correcto! El orden alfabético sigue A, B, C, D...', 'El orden alfabético organiza las palabras siguiendo el orden de las letras del alfabeto: A, B, C, D...')">Verificar</button>
+                <div class="feedback" id="feedback-q7-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 32: ¿Para qué sirven las palabras guía en el diccionario?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7-2" value="a" onchange="updateProgress()">
+                        A) Para decorar la página
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-2" value="b" onchange="updateProgress()">
+                        B) Para indicar la primera y última palabra de la página
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-2" value="c" onchange="updateProgress()">
+                        C) Para dar sinónimos
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-2" value="d" onchange="updateProgress()">
+                        D) Para mostrar dibujos
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q7-2', 'b', '¡Correcto! Las palabras guía indican la primera y última palabra de la página.', 'Las palabras guía indican la primera y última palabra de la página para ayudarte a encontrar palabras más rápido.')">Verificar</button>
+                <div class="feedback" id="feedback-q7-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 33: ¿Qué pasaría si el diccionario no estuviera en orden alfabético?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7-3" value="a" onchange="updateProgress()">
+                        A) Sería más fácil encontrar palabras
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-3" value="b" onchange="updateProgress()">
+                        B) Sería muy difícil encontrar palabras
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-3" value="c" onchange="updateProgress()">
+                        C) No cambiaría nada
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-3" value="d" onchange="updateProgress()">
+                        D) Tendría más palabras
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q7-3', 'b', '¡Correcto! Sin orden alfabético sería muy difícil encontrar palabras.', 'Sin el orden alfabético, tendríamos que leer todo el diccionario página por página. ¡Sería como buscar un tesoro sin mapa!')">Verificar</button>
+                <div class="feedback" id="feedback-q7-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 34: ¿Cuál es una buena estrategia para entender una palabra desconocida?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7-4" value="a" onchange="updateProgress()">
+                        A) Ignorarla y seguir leyendo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-4" value="b" onchange="updateProgress()">
+                        B) Identificar su raíz y ver si tiene prefijos o sufijos
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-4" value="c" onchange="updateProgress()">
+                        C) Adivinar sin pensar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-4" value="d" onchange="updateProgress()">
+                        D) Saltarla completamente
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q7-4', 'b', '¡Correcto! Identificar raíz, prefijos y sufijos ayuda a entender palabras nuevas.', 'Una buena estrategia es identificar la raíz, observar si tiene prefijos o sufijos, y leer la oración completa para entender el contexto.')">Verificar</button>
+                <div class="feedback" id="feedback-q7-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 35: ¿Por qué es importante aprender nuevas palabras?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7-5" value="a" onchange="updateProgress()">
+                        A) Para comprender mejor los textos y expresarse con claridad
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-5" value="b" onchange="updateProgress()">
+                        B) Solo para aprobar exámenes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-5" value="c" onchange="updateProgress()">
+                        C) No es importante
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7-5" value="d" onchange="updateProgress()">
+                        D) Para impresionar a otros
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q7-5', 'a', '¡Correcto! Aprender nuevas palabras mejora comprensión y comunicación.', 'Aprender nuevas palabras ayuda a comprender mejor los textos, expresarse con claridad y enriquecer la comunicación.')">Verificar</button>
+                <div class="feedback" id="feedback-q7-5"></div>
+            </div>
+        </div>
+
+        <!-- TEMA 8: ORGANIZACIÓN -->
+        <div class="topic-section">
+            <h2>📊 Tema 8: Organización de la Información</h2>
+            
+            <div class="question">
+                <h3>Pregunta 36: ¿Qué es un índice en un libro?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8-1" value="a" onchange="updateProgress()">
+                        A) La portada del libro
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-1" value="b" onchange="updateProgress()">
+                        B) Una lista de temas para encontrar información rápidamente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-1" value="c" onchange="updateProgress()">
+                        C) El autor del libro
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-1" value="d" onchange="updateProgress()">
+                        D) Un resumen del libro
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q8-1', 'b', '¡Correcto! El índice es una lista de temas.', 'El índice es una lista de temas en un libro que ayuda a encontrar información más rápidamente.')">Verificar</button>
+                <div class="feedback" id="feedback-q8-1"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 37: ¿Qué debe incluir una bibliografía?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8-2" value="a" onchange="updateProgress()">
+                        A) Solo el título del libro
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-2" value="b" onchange="updateProgress()">
+                        B) El autor, título y año de publicación
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-2" value="c" onchange="updateProgress()">
+                        C) Solo el nombre del autor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-2" value="d" onchange="updateProgress()">
+                        D) Dibujos y fotos
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q8-2', 'b', '¡Correcto! La bibliografía incluye autor, título y año.', 'Una bibliografía debe incluir el autor, título y año de publicación de las fuentes utilizadas.')">Verificar</button>
+                <div class="feedback" id="feedback-q8-2"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 38: ¿Para qué sirven las notas o fichas?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8-3" value="a" onchange="updateProgress()">
+                        A) Para decorar el cuaderno
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-3" value="b" onchange="updateProgress()">
+                        B) Para resumir datos importantes y organizar por temas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-3" value="c" onchange="updateProgress()">
+                        C) Para copiar exactamente todo el texto
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-3" value="d" onchange="updateProgress()">
+                        D) Para hacer dibujos
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q8-3', 'b', '¡Correcto! Las notas sirven para resumir y organizar información.', 'Las notas o fichas permiten resumir los datos importantes y organizarlos por temas para facilitar el estudio.')">Verificar</button>
+                <div class="feedback" id="feedback-q8-3"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 39: ¿Cuál es la diferencia entre un hecho y una opinión?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8-4" value="a" onchange="updateProgress()">
+                        A) Son lo mismo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-4" value="b" onchange="updateProgress()">
+                        B) Los hechos son comprobables, las opiniones son ideas personales
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-4" value="c" onchange="updateProgress()">
+                        C) Las opiniones son más importantes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-4" value="d" onchange="updateProgress()">
+                        D) Los hechos cambian según la persona
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q8-4', 'b', '¡Correcto! Los hechos son comprobables, las opiniones son ideas personales.', 'Los hechos son datos comprobables, mientras que las opiniones son ideas personales que pueden variar.')">Verificar</button>
+                <div class="feedback" id="feedback-q8-4"></div>
+            </div>
+
+            <div class="question">
+                <h3>Pregunta 40: Al buscar información, ¿qué pregunta debes hacerte?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8-5" value="a" onchange="updateProgress()">
+                        A) ¿Es bonito el texto?
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-5" value="b" onchange="updateProgress()">
+                        B) ¿Quién escribió esta información y de dónde proviene?
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-5" value="c" onchange="updateProgress()">
+                        C) ¿Tiene muchas páginas?
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8-5" value="d" onchange="updateProgress()">
+                        D) ¿Está en mi libro favorito?
+                    </label>
+                </div>
+                <button class="verify-btn" onclick="checkQuestion('q8-5', 'b', '¡Correcto! Debes verificar quién escribió la información y de dónde proviene.', 'Para elegir fuentes confiables, debes preguntar: ¿Quién escribió esto? ¿De dónde proviene? ¿Coincide con otras fuentes confiables?')">Verificar</button>
+                <div class="feedback" id="feedback-q8-5"></div>
+            </div>
+        </div>
+
+        <!-- SUBMIT SECTION -->
+        <div class="submit-container">
+            <h2>¿Terminaste el examen?</h2>
+            <p>Revisa tus respuestas y presiona el botón para ver tu calificación final</p>
+            <button class="submit-btn" onclick="submitExam()">Enviar Examen</button>
+            <div class="final-result" id="final-result"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const totalQuestions = 40;
+        let answeredQuestions = new Set();
+        let correctAnswers = new Set();
+
+        // All correct answers
+        const answers = {
+            'q1-1': 'b', 'q1-2': 'b', 'q1-3': 'b', 'q1-4': 'b', 'q1-5': 'b',
+            'q2-1': 'b', 'q2-2': 'b', 'q2-3': 'a', 'q2-4': 'b', 'q2-5': 'a',
+            'q3-1': 'a', 'q3-2': 'b', 'q3-3': 'b', 'q3-4': 'c', 'q3-5': 'b',
+            'q4-1': 'b', 'q4-2': 'b', 'q4-3': 'c', 'q4-4': 'b', 'q4-5': 'c',
+            'q5-1': 'b', 'q5-2': 'b', 'q5-3': 'b', 'q5-4': 'b', 'q5-5': 'b',
+            'q6-1': 'b', 'q6-2': 'b', 'q6-3': 'b', 'q6-4': 'c', 'q6-5': 'b',
+            'q7-1': 'b', 'q7-2': 'b', 'q7-3': 'b', 'q7-4': 'b', 'q7-5': 'a',
+            'q8-1': 'b', 'q8-2': 'b', 'q8-3': 'b', 'q8-4': 'b', 'q8-5': 'b'
+        };
+
+        function updateProgress() {
+            // Count answered questions
+            answeredQuestions.clear();
+            for (let i = 1; i <= 8; i++) {
+                for (let j = 1; j <= 5; j++) {
+                    const questionName = `q${i}-${j}`;
+                    if (document.querySelector(`input[name="${questionName}"]:checked`)) {
+                        answeredQuestions.add(questionName);
+                    }
+                }
+            }
+
+            const progress = (answeredQuestions.size / totalQuestions) * 100;
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+
+            progressFill.style.width = progress + '%';
+            progressFill.textContent = Math.round(progress) + '%';
+            progressText.textContent = `${answeredQuestions.size} de ${totalQuestions} preguntas respondidas`;
+        }
+
+        function checkQuestion(questionId, correctAnswer, correctMsg, incorrectMsg) {
+            const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
+            const feedback = document.getElementById(`feedback-${questionId}`);
+
+            if (!selectedOption) {
+                alert('Por favor selecciona una respuesta');
+                return;
+            }
+
+            const isCorrect = selectedOption.value === correctAnswer;
+
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+            feedback.classList.add('show');
+
+            if (isCorrect) {
+                feedback.innerHTML = `<strong>¡Correcto!</strong> ${correctMsg}`;
+                correctAnswers.add(questionId);
+            } else {
+                feedback.innerHTML = `<strong>Incorrecto:</strong> ${incorrectMsg}`;
+                correctAnswers.delete(questionId);
+            }
+        }
+
+        function submitExam() {
+            // Check if all questions are answered
+            if (answeredQuestions.size < totalQuestions) {
+                alert(`Por favor responde todas las preguntas. Te faltan ${totalQuestions - answeredQuestions.size} preguntas.`);
+                return;
+            }
+
+            // Calculate score
+            correctAnswers.clear();
+            for (let qId in answers) {
+                const selectedOption = document.querySelector(`input[name="${qId}"]:checked`);
+                if (selectedOption && selectedOption.value === answers[qId]) {
+                    correctAnswers.add(qId);
+                }
+            }
+
+            const score = (correctAnswers.size / totalQuestions) * 100;
+            const finalResult = document.getElementById('final-result');
+
+            finalResult.classList.remove('excellent', 'good', 'needs-improvement');
+            finalResult.classList.add('show');
+
+            if (score >= 90) {
+                finalResult.classList.add('excellent');
+                finalResult.innerHTML = `🎉 ¡Excelente! 🎉<br>Calificación: ${score.toFixed(0)}% (${correctAnswers.size}/${totalQuestions})<br>¡Dominas muy bien el tema!`;
+            } else if (score >= 70) {
+                finalResult.classList.add('good');
+                finalResult.innerHTML = `👍 ¡Muy bien! 👍<br>Calificación: ${score.toFixed(0)}% (${correctAnswers.size}/${totalQuestions})<br>Vas por buen camino. Repasa algunos temas.`;
+            } else {
+                finalResult.classList.add('needs-improvement');
+                finalResult.innerHTML = `📚 Necesitas repasar 📚<br>Calificación: ${score.toFixed(0)}% (${correctAnswers.size}/${totalQuestions})<br>Revisa la guía de estudio y vuelve a intentar.`;
+            }
+
+            // Scroll to result
+            finalResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
