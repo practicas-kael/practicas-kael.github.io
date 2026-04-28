@@ -301,6 +301,10 @@
             border-top: 2px solid #e0e0e0;
         }
 
+        .navigation-buttons:has(.nav-button:only-child) {
+            justify-content: flex-end;
+        }
+
         .nav-button {
             padding: 12px 25px;
             border-radius: 8px;
@@ -480,7 +484,7 @@
                             D) She
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q1-1', 'a', &quot;Correct! 'I' means 'yo' in Spanish&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'I' es el pronombre para 'yo'. Siempre se escribe con mayúscula.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q1-1', 'a', &quot;Correct! 'I' means 'yo' in Spanish&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'I' es el pronombre para 'yo'. Siempre se escribe con mayúscula.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q1-1"></div>
                 </div>
 
@@ -504,7 +508,7 @@
                             D) They
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q1-2', 'b', &quot;Correct! Use 'He' for boys and men&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'He' (él) se usa para niños y hombres. Tom es un niño.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q1-2', 'b', &quot;Correct! Use 'He' for boys and men&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'He' (él) se usa para niños y hombres. Tom es un niño.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q1-2"></div>
                 </div>
 
@@ -528,7 +532,7 @@
                             D) They
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q1-3', 'c', &quot;Correct! Use 'It' for animals and things&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'It' se usa para animales (cuando no sabemos si son macho o hembra) y cosas.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q1-3', 'c', &quot;Correct! Use 'It' for animals and things&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'It' se usa para animales (cuando no sabemos si son macho o hembra) y cosas.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q1-3"></div>
                 </div>
 
@@ -552,7 +556,7 @@
                             D) They
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q1-4', 'c', &quot;Correct! 'We' means 'nosotros'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'We' (nosotros) se usa cuando hablamos de un grupo que nos incluye a nosotros mismos.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q1-4', 'c', &quot;Correct! 'We' means 'nosotros'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'We' (nosotros) se usa cuando hablamos de un grupo que nos incluye a nosotros mismos.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q1-4"></div>
                 </div>
 
@@ -576,13 +580,13 @@
                             D) It
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q1-5', 'c', &quot;Correct! 'They' means 'ellos/ellas'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'They' (ellos/ellas) se usa para dos o más personas.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q1-5', 'c', &quot;Correct! 'They' means 'ellos/ellas'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'They' (ellos/ellas) se usa para dos o más personas.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q1-5"></div>
                 </div>
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-btn" onclick="openTab('tema2')" style="margin-left: auto;">Next Topic: Verb "to Be" →</button>
+                <button class="nav-button next" onclick="openTab('tema2')">Next Topic: Verb "to Be" →</button>
             </div>
         </div>
 
@@ -657,7 +661,7 @@
                             C) are
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q2-1', 'a', &quot;Correct! 'I' always uses 'am'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'I' siempre usa 'am'. Regla: I am.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q2-1', 'a', &quot;Correct! 'I' always uses 'am'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'I' siempre usa 'am'. Regla: I am.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q2-1"></div>
                 </div>
 
@@ -677,7 +681,7 @@
                             C) are
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q2-2', 'b', &quot;Correct! 'She' uses 'is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'She' usa 'is'. Regla: He, She, It → is.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q2-2', 'b', &quot;Correct! 'She' uses 'is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'She' usa 'is'. Regla: He, She, It → is.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q2-2"></div>
                 </div>
 
@@ -697,7 +701,7 @@
                             C) are
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q2-3', 'c', &quot;Correct! 'We' uses 'are'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'We' usa 'are'. Regla: You, We, They → are.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q2-3', 'c', &quot;Correct! 'We' uses 'are'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'We' usa 'are'. Regla: You, We, They → are.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q2-3"></div>
                 </div>
 
@@ -717,7 +721,7 @@
                             C) are
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q2-4', 'b', &quot;Correct! The dog = It, and 'It' uses 'is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'The dog' = 'It', y 'It' usa 'is'. Regla: He, She, It → is.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q2-4', 'b', &quot;Correct! The dog = It, and 'It' uses 'is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'The dog' = 'It', y 'It' usa 'is'. Regla: He, She, It → is.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q2-4"></div>
                 </div>
 
@@ -737,14 +741,14 @@
                             C) are
                         </label>
                     </div>
-                    <button class="verify-btn" onclick="checkQuestion('q2-5', 'c', &quot;Correct! 'They' uses 'are'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'They' usa 'are'. Regla: You, We, They → are.&quot;)>Verify</button>
+                    <button class="verify-btn" onclick="checkQuestion('q2-5', 'c', &quot;Correct! 'They' uses 'are'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'They' usa 'are'. Regla: You, We, They → are.&quot;)">Verify</button>
                     <div class="feedback" id="feedback-q2-5"></div>
                 </div>
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-btn" onclick="openTab('tema1')">← Previous Topic</button>
-                <button class="nav-btn" onclick="openTab('tema3')">Next Topic: Weather →</button>
+                <button class="nav-button prev" onclick="openTab('tema1')">← Previous Topic</button>
+                <button class="nav-button next" onclick="openTab('tema3')">Next Topic: Weather →</button>
             </div>
         </div>
 
