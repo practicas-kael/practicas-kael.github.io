@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de Inglés - Selección Única</title>
+    <style>
+        @media print {
+            body {
+                margin: 1cm;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 21cm;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+
+        .student-info div {
+            flex: 1;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #3498db;
+        }
+
+        .question-number {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-right: 8px;
+        }
+
+        .question-text {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .options {
+            margin-left: 25px;
+            margin-top: 8px;
+        }
+
+        .option-item {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-item input[type="radio"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .instructions {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        @media print {
+            button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 PRÁCTICA DE INGLÉS - SELECCIÓN ÚNICA</h1>
+        
+        <div class="student-info">
+            <div>
+                <strong>Nombre:</strong> _________________________________
+            </div>
+            <div>
+                <strong>Fecha:</strong> _________________________________
+            </div>
+        </div>
+
+        <button onclick="window.print()" class="no-print">🖨️ Imprimir Práctica</button>
+
+        <!-- PART 1 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">👤</span> PART 1: PERSONAL PRONOUNS (1–20)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Choose the correct pronoun
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">1.</span> Maria is my friend →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q1" id="q1a"><label for="q1a">a) I</label></div>
+                    <div class="option-item"><input type="radio" name="q1" id="q1b"><label for="q1b">b) He</label></div>
+                    <div class="option-item"><input type="radio" name="q1" id="q1c"><label for="q1c">c) She</label></div>
+                    <div class="option-item"><input type="radio" name="q1" id="q1d"><label for="q1d">d) They</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">2.</span> John is tall →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q2" id="q2a"><label for="q2a">a) She</label></div>
+                    <div class="option-item"><input type="radio" name="q2" id="q2b"><label for="q2b">b) He</label></div>
+                    <div class="option-item"><input type="radio" name="q2" id="q2c"><label for="q2c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q2" id="q2d"><label for="q2d">d) We</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">3.</span> My parents → ___ are happy</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q3" id="q3a"><label for="q3a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q3" id="q3b"><label for="q3b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q3" id="q3c"><label for="q3c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q3" id="q3d"><label for="q3d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">4.</span> The dog → ___ is brown</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q4" id="q4a"><label for="q4a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q4" id="q4b"><label for="q4b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q4" id="q4c"><label for="q4c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q4" id="q4d"><label for="q4d">d) They</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">5.</span> My friends → ___ are here</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q5" id="q5a"><label for="q5a">a) We</label></div>
+                    <div class="option-item"><input type="radio" name="q5" id="q5b"><label for="q5b">b) They</label></div>
+                    <div class="option-item"><input type="radio" name="q5" id="q5c"><label for="q5c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q5" id="q5d"><label for="q5d">d) He</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">6.</span> Anna → ___ is nice</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q6" id="q6a"><label for="q6a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q6" id="q6b"><label for="q6b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q6" id="q6c"><label for="q6c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q6" id="q6d"><label for="q6d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">7.</span> My brother and I → ___ are playing</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q7" id="q7a"><label for="q7a">a) They</label></div>
+                    <div class="option-item"><input type="radio" name="q7" id="q7b"><label for="q7b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q7" id="q7c"><label for="q7c">c) You</label></div>
+                    <div class="option-item"><input type="radio" name="q7" id="q7d"><label for="q7d">d) He</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">8.</span> The cat → ___ is sleeping</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q8" id="q8a"><label for="q8a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q8" id="q8b"><label for="q8b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q8" id="q8c"><label for="q8c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q8" id="q8d"><label for="q8d">d) They</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">9.</span> Tom and Alex → ___ are classmates</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q9" id="q9a"><label for="q9a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q9" id="q9b"><label for="q9b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q9" id="q9c"><label for="q9c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q9" id="q9d"><label for="q9d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">10.</span> My teacher → ___ is kind</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q10" id="q10a"><label for="q10a">a) He/She</label></div>
+                    <div class="option-item"><input type="radio" name="q10" id="q10b"><label for="q10b">b) They</label></div>
+                    <div class="option-item"><input type="radio" name="q10" id="q10c"><label for="q10c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q10" id="q10d"><label for="q10d">d) We</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">11.</span> My mom → ___ is cooking</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q11" id="q11a"><label for="q11a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q11" id="q11b"><label for="q11b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q11" id="q11c"><label for="q11c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q11" id="q11d"><label for="q11d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">12.</span> My dad and I → ___ are watching TV</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q12" id="q12a"><label for="q12a">a) They</label></div>
+                    <div class="option-item"><input type="radio" name="q12" id="q12b"><label for="q12b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q12" id="q12c"><label for="q12c">c) You</label></div>
+                    <div class="option-item"><input type="radio" name="q12" id="q12d"><label for="q12d">d) He</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">13.</span> The book → ___ is new</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q13" id="q13a"><label for="q13a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q13" id="q13b"><label for="q13b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q13" id="q13c"><label for="q13c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q13" id="q13d"><label for="q13d">d) They</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">14.</span> My cousins → ___ are funny</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q14" id="q14a"><label for="q14a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q14" id="q14b"><label for="q14b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q14" id="q14c"><label for="q14c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q14" id="q14d"><label for="q14d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">15.</span> Sarah → ___ is my friend</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q15" id="q15a"><label for="q15a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q15" id="q15b"><label for="q15b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q15" id="q15c"><label for="q15c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q15" id="q15d"><label for="q15d">d) We</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">16.</span> The car → ___ is fast</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q16" id="q16a"><label for="q16a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q16" id="q16b"><label for="q16b">b) She</label></div>
+                    <div class="option-item"><input type="radio" name="q16" id="q16c"><label for="q16c">c) It</label></div>
+                    <div class="option-item"><input type="radio" name="q16" id="q16d"><label for="q16d">d) They</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">17.</span> My family → ___ are happy</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q17" id="q17a"><label for="q17a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q17" id="q17b"><label for="q17b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q17" id="q17c"><label for="q17c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q17" id="q17d"><label for="q17d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">18.</span> My dog and cat → ___ are playing</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q18" id="q18a"><label for="q18a">a) It</label></div>
+                    <div class="option-item"><input type="radio" name="q18" id="q18b"><label for="q18b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q18" id="q18c"><label for="q18c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q18" id="q18d"><label for="q18d">d) He</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">19.</span> My sister and brother → ___ are at school</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q19" id="q19a"><label for="q19a">a) He</label></div>
+                    <div class="option-item"><input type="radio" name="q19" id="q19b"><label for="q19b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q19" id="q19c"><label for="q19c">c) They</label></div>
+                    <div class="option-item"><input type="radio" name="q19" id="q19d"><label for="q19d">d) It</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">20.</span> My friend and I → ___ are studying</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q20" id="q20a"><label for="q20a">a) They</label></div>
+                    <div class="option-item"><input type="radio" name="q20" id="q20b"><label for="q20b">b) We</label></div>
+                    <div class="option-item"><input type="radio" name="q20" id="q20c"><label for="q20c">c) You</label></div>
+                    <div class="option-item"><input type="radio" name="q20" id="q20d"><label for="q20d">d) He</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 2 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🔤</span> PART 2: VERB "TO BE" (21–40)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Choose the correct form of the verb "to be" (am / is / are)
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">21.</span> I ___ happy</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q21" id="q21a"><label for="q21a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q21" id="q21b"><label for="q21b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q21" id="q21c"><label for="q21c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">22.</span> She ___ my teacher</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q22" id="q22a"><label for="q22a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q22" id="q22b"><label for="q22b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q22" id="q22c"><label for="q22c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">23.</span> They ___ playing</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q23" id="q23a"><label for="q23a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q23" id="q23b"><label for="q23b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q23" id="q23c"><label for="q23c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">24.</span> He ___ tall</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q24" id="q24a"><label for="q24a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q24" id="q24b"><label for="q24b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q24" id="q24c"><label for="q24c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">25.</span> We ___ friends</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q25" id="q25a"><label for="q25a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q25" id="q25b"><label for="q25b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q25" id="q25c"><label for="q25c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">26.</span> It ___ hot today</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q26" id="q26a"><label for="q26a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q26" id="q26b"><label for="q26b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q26" id="q26c"><label for="q26c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">27.</span> You ___ my friend</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q27" id="q27a"><label for="q27a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q27" id="q27b"><label for="q27b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q27" id="q27c"><label for="q27c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">28.</span> My mom ___ at home</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q28" id="q28a"><label for="q28a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q28" id="q28b"><label for="q28b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q28" id="q28c"><label for="q28c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">29.</span> The dogs ___ barking</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q29" id="q29a"><label for="q29a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q29" id="q29b"><label for="q29b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q29" id="q29c"><label for="q29c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">30.</span> I ___ 10 years old</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q30" id="q30a"><label for="q30a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q30" id="q30b"><label for="q30b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q30" id="q30c"><label for="q30c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">31.</span> She ___ tired</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q31" id="q31a"><label for="q31a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q31" id="q31b"><label for="q31b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q31" id="q31c"><label for="q31c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">32.</span> They ___ at school</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q32" id="q32a"><label for="q32a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q32" id="q32b"><label for="q32b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q32" id="q32c"><label for="q32c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">33.</span> He ___ my brother</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q33" id="q33a"><label for="q33a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q33" id="q33b"><label for="q33b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q33" id="q33c"><label for="q33c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">34.</span> We ___ learning English</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q34" id="q34a"><label for="q34a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q34" id="q34b"><label for="q34b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q34" id="q34c"><label for="q34c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">35.</span> It ___ cold outside</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q35" id="q35a"><label for="q35a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q35" id="q35b"><label for="q35b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q35" id="q35c"><label for="q35c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">36.</span> You ___ very nice</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q36" id="q36a"><label for="q36a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q36" id="q36b"><label for="q36b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q36" id="q36c"><label for="q36c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">37.</span> My dad ___ working</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q37" id="q37a"><label for="q37a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q37" id="q37b"><label for="q37b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q37" id="q37c"><label for="q37c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">38.</span> The cats ___ sleeping</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q38" id="q38a"><label for="q38a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q38" id="q38b"><label for="q38b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q38" id="q38c"><label for="q38c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">39.</span> I ___ ready</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q39" id="q39a"><label for="q39a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q39" id="q39b"><label for="q39b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q39" id="q39c"><label for="q39c">c) are</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">40.</span> They ___ happy</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q40" id="q40a"><label for="q40a">a) am</label></div>
+                    <div class="option-item"><input type="radio" name="q40" id="q40b"><label for="q40b">b) is</label></div>
+                    <div class="option-item"><input type="radio" name="q40" id="q40c"><label for="q40c">c) are</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🌦️</span> PART 3: SEASONS (41–60)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Choose the correct season
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">41.</span> It is very hot →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q41" id="q41a"><label for="q41a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q41" id="q41b"><label for="q41b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q41" id="q41c"><label for="q41c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q41" id="q41d"><label for="q41d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">42.</span> Snow is falling →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q42" id="q42a"><label for="q42a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q42" id="q42b"><label for="q42b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q42" id="q42c"><label for="q42c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q42" id="q42d"><label for="q42d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">43.</span> Flowers grow →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q43" id="q43a"><label for="q43a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q43" id="q43b"><label for="q43b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q43" id="q43c"><label for="q43c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q43" id="q43d"><label for="q43d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">44.</span> Leaves fall →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q44" id="q44a"><label for="q44a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q44" id="q44b"><label for="q44b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q44" id="q44c"><label for="q44c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q44" id="q44d"><label for="q44d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">45.</span> It is sunny and hot →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q45" id="q45a"><label for="q45a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q45" id="q45b"><label for="q45b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q45" id="q45c"><label for="q45c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q45" id="q45d"><label for="q45d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">46.</span> You see snowmen →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q46" id="q46a"><label for="q46a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q46" id="q46b"><label for="q46b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q46" id="q46c"><label for="q46c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q46" id="q46d"><label for="q46d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">47.</span> Trees are green →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q47" id="q47a"><label for="q47a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q47" id="q47b"><label for="q47b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q47" id="q47c"><label for="q47c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q47" id="q47d"><label for="q47d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">48.</span> Leaves are orange →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q48" id="q48a"><label for="q48a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q48" id="q48b"><label for="q48b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q48" id="q48c"><label for="q48c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q48" id="q48d"><label for="q48d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">49.</span> You wear shorts →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q49" id="q49a"><label for="q49a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q49" id="q49b"><label for="q49b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q49" id="q49c"><label for="q49c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q49" id="q49d"><label for="q49d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">50.</span> You wear coats →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q50" id="q50a"><label for="q50a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q50" id="q50b"><label for="q50b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q50" id="q50c"><label for="q50c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q50" id="q50d"><label for="q50d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">51.</span> It rains a lot →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q51" id="q51a"><label for="q51a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q51" id="q51b"><label for="q51b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q51" id="q51c"><label for="q51c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q51" id="q51d"><label for="q51d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">52.</span> It is windy and cool →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q51" id="q52a"><label for="q52a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q52" id="q52b"><label for="q52b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q52" id="q52c"><label for="q52c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q52" id="q52d"><label for="q52d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">53.</span> School starts →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q53" id="q53a"><label for="q53a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q53" id="q53b"><label for="q53b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q53" id="q53c"><label for="q53c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q53" id="q53d"><label for="q53d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">54.</span> You go to the beach →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q54" id="q54a"><label for="q54a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q54" id="q54b"><label for="q54b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q54" id="q54c"><label for="q54c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q54" id="q54d"><label for="q54d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">55.</span> You drink hot chocolate →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q55" id="q55a"><label for="q55a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q55" id="q55b"><label for="q55b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q55" id="q55c"><label for="q55c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q55" id="q55d"><label for="q55d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">56.</span> Birds come back →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q56" id="q56a"><label for="q56a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q56" id="q56b"><label for="q56b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q56" id="q56c"><label for="q56c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q56" id="q56d"><label for="q56d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">57.</span> Leaves fall down →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q57" id="q57a"><label for="q57a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q57" id="q57b"><label for="q57b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q57" id="q57c"><label for="q57c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q57" id="q57d"><label for="q57d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">58.</span> Days are long and hot →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q58" id="q58a"><label for="q58a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q58" id="q58b"><label for="q58b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q58" id="q58c"><label for="q58c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q58" id="q58d"><label for="q58d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">59.</span> You wear boots →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q59" id="q59a"><label for="q59a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q59" id="q59b"><label for="q59b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q59" id="q59c"><label for="q59c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q59" id="q59d"><label for="q59d">d) Winter</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">60.</span> You see flowers →</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q60" id="q60a"><label for="q60a">a) Spring</label></div>
+                    <div class="option-item"><input type="radio" name="q60" id="q60b"><label for="q60b">b) Summer</label></div>
+                    <div class="option-item"><input type="radio" name="q60" id="q60c"><label for="q60c">c) Fall</label></div>
+                    <div class="option-item"><input type="radio" name="q60" id="q60d"><label for="q60d">d) Winter</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 4 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">👕</span> PART 4: CLOTHES & WEATHER (61–80)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Choose the correct answer
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">61.</span> It is cold → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q61" id="q61a"><label for="q61a">a) T-shirt</label></div>
+                    <div class="option-item"><input type="radio" name="q61" id="q61b"><label for="q61b">b) Jacket</label></div>
+                    <div class="option-item"><input type="radio" name="q61" id="q61c"><label for="q61c">c) Shorts</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">62.</span> It is hot → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q62" id="q62a"><label for="q62a">a) Coat</label></div>
+                    <div class="option-item"><input type="radio" name="q62" id="q62b"><label for="q62b">b) T-shirt</label></div>
+                    <div class="option-item"><input type="radio" name="q62" id="q62c"><label for="q62c">c) Boots</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">63.</span> It is rainy → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q63" id="q63a"><label for="q63a">a) Sandals</label></div>
+                    <div class="option-item"><input type="radio" name="q63" id="q63b"><label for="q63b">b) Raincoat</label></div>
+                    <div class="option-item"><input type="radio" name="q63" id="q63c"><label for="q63c">c) Hat</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">64.</span> It is snowy → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q64" id="q64a"><label for="q64a">a) Shorts</label></div>
+                    <div class="option-item"><input type="radio" name="q64" id="q64b"><label for="q64b">b) Gloves</label></div>
+                    <div class="option-item"><input type="radio" name="q64" id="q64c"><label for="q64c">c) T-shirt</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">65.</span> It is sunny → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q65" id="q65a"><label for="q65a">a) Coat</label></div>
+                    <div class="option-item"><input type="radio" name="q65" id="q65b"><label for="q65b">b) Hat</label></div>
+                    <div class="option-item"><input type="radio" name="q65" id="q65c"><label for="q65c">c) Boots</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">66.</span> It is windy → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q66" id="q66a"><label for="q66a">a) Jacket</label></div>
+                    <div class="option-item"><input type="radio" name="q66" id="q66b"><label for="q66b">b) Swimsuit</label></div>
+                    <div class="option-item"><input type="radio" name="q66" id="q66c"><label for="q66c">c) Shorts</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">67.</span> It is very cold → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q67" id="q67a"><label for="q67a">a) Scarf</label></div>
+                    <div class="option-item"><input type="radio" name="q67" id="q67b"><label for="q67b">b) Sandals</label></div>
+                    <div class="option-item"><input type="radio" name="q67" id="q67c"><label for="q67c">c) T-shirt</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">68.</span> At the beach → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q68" id="q68a"><label for="q68a">a) Boots</label></div>
+                    <div class="option-item"><input type="radio" name="q68" id="q68b"><label for="q68b">b) Swimsuit</label></div>
+                    <div class="option-item"><input type="radio" name="q68" id="q68c"><label for="q68c">c) Jacket</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">69.</span> It is raining → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q69" id="q69a"><label for="q69a">a) Raincoat</label></div>
+                    <div class="option-item"><input type="radio" name="q69" id="q69b"><label for="q69b">b) Shorts</label></div>
+                    <div class="option-item"><input type="radio" name="q69" id="q69c"><label for="q69c">c) Hat</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">70.</span> It is hot → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q70" id="q70a"><label for="q70a">a) Shorts</label></div>
+                    <div class="option-item"><input type="radio" name="q70" id="q70b"><label for="q70b">b) Coat</label></div>
+                    <div class="option-item"><input type="radio" name="q70" id="q70c"><label for="q70c">c) Gloves</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">71.</span> It is winter → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q71" id="q71a"><label for="q71a">a) Jacket</label></div>
+                    <div class="option-item"><input type="radio" name="q71" id="q71b"><label for="q71b">b) Swimsuit</label></div>
+                    <div class="option-item"><input type="radio" name="q71" id="q71c"><label for="q71c">c) Sandals</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">72.</span> It is summer → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q72" id="q72a"><label for="q72a">a) Shorts</label></div>
+                    <div class="option-item"><input type="radio" name="q72" id="q72b"><label for="q72b">b) Boots</label></div>
+                    <div class="option-item"><input type="radio" name="q72" id="q72c"><label for="q72c">c) Coat</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">73.</span> It is cold → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q73" id="q73a"><label for="q73a">a) Gloves</label></div>
+                    <div class="option-item"><input type="radio" name="q73" id="q73b"><label for="q73b">b) T-shirt</label></div>
+                    <div class="option-item"><input type="radio" name="q73" id="q73c"><label for="q73c">c) Sandals</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">74.</span> It is sunny → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q74" id="q74a"><label for="q74a">a) Hat</label></div>
+                    <div class="option-item"><input type="radio" name="q74" id="q74b"><label for="q74b">b) Boots</label></div>
+                    <div class="option-item"><input type="radio" name="q74" id="q74c"><label for="q74c">c) Coat</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">75.</span> It is rainy → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q75" id="q75a"><label for="q75a">a) Rain boots</label></div>
+                    <div class="option-item"><input type="radio" name="q75" id="q75b"><label for="q75b">b) Shorts</label></div>
+                    <div class="option-item"><input type="radio" name="q75" id="q75c"><label for="q75c">c) T-shirt</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">76.</span> It is windy → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q76" id="q76a"><label for="q76a">a) Jacket</label></div>
+                    <div class="option-item"><input type="radio" name="q76" id="q76b"><label for="q76b">b) Swimsuit</label></div>
+                    <div class="option-item"><input type="radio" name="q76" id="q76c"><label for="q76c">c) Sandals</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">77.</span> It is hot → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q77" id="q77a"><label for="q77a">a) T-shirt</label></div>
+                    <div class="option-item"><input type="radio" name="q77" id="q77b"><label for="q77b">b) Coat</label></div>
+                    <div class="option-item"><input type="radio" name="q77" id="q77c"><label for="q77c">c) Gloves</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">78.</span> It is snowy → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q78" id="q78a"><label for="q78a">a) Boots</label></div>
+                    <div class="option-item"><input type="radio" name="q78" id="q78b"><label for="q78b">b) Shorts</label></div>
+                    <div class="option-item"><input type="radio" name="q78" id="q78c"><label for="q78c">c) Hat</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">79.</span> It is cold → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q79" id="q79a"><label for="q79a">a) Scarf</label></div>
+                    <div class="option-item"><input type="radio" name="q79" id="q79b"><label for="q79b">b) Sandals</label></div>
+                    <div class="option-item"><input type="radio" name="q79" id="q79c"><label for="q79c">c) T-shirt</label></div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">80.</span> It is summer → wear</div>
+                <div class="options">
+                    <div class="option-item"><input type="radio" name="q80" id="q80a"><label for="q80a">a) Swimsuit</label></div>
+                    <div class="option-item"><input type="radio" name="q80" id="q80b"><label for="q80b">b) Coat</label></div>
+                    <div class="option-item"><input type="radio" name="q80" id="q80c"><label for="q80c">c) Boots</label></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background-color: #e8f5e9; border-radius: 5px;">
+            <h2 style="color: #2e7d32;">🎉 ¡Excelente trabajo! 🎉</h2>
+            <p style="color: #555;">Total de preguntas: <strong>80</strong></p>
+        </div>
+    </div>
+</body>
+</html>

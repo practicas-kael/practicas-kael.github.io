@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de Inglés - Pronombres, Verb to Be, Estaciones y Ropa</title>
+    <style>
+        @media print {
+            body {
+                margin: 1cm;
+            }
+            .no-print {
+                display: none;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 21cm;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+
+        .student-info div {
+            flex: 1;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #3498db;
+        }
+
+        .question-number {
+            min-width: 35px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .question-text {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .answer-line {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+        
+        .answer-line::before {
+            content: "____________________";
+            letter-spacing: 2px;
+        }
+
+        .options {
+            margin-left: 50px;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .instructions {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        @media print {
+            button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 PRÁCTICA DE INGLÉS</h1>
+        
+        <div class="student-info">
+            <div>
+                <strong>Nombre:</strong> _________________________________
+            </div>
+            <div>
+                <strong>Fecha:</strong> _________________________________
+            </div>
+        </div>
+
+        <button onclick="window.print()" class="no-print">🖨️ Imprimir Práctica</button>
+
+        <!-- PART 1 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">👤</span> PART 1: PERSONAL PRONOUNS (1–20)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Write the correct pronoun (I, you, he, she, it, we, they)
+            </div>
+
+            <div class="question">
+                <span class="question-number">1.</span>
+                <span class="question-text">Maria is my friend →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">2.</span>
+                <span class="question-text">John is tall →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">3.</span>
+                <span class="question-text">My parents →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are happy</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">4.</span>
+                <span class="question-text">The dog →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is brown</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">5.</span>
+                <span class="question-text">My friends →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are here</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">6.</span>
+                <span class="question-text">Anna →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is nice</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">7.</span>
+                <span class="question-text">My brother and I →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are playing</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">8.</span>
+                <span class="question-text">The cat →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is sleeping</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">9.</span>
+                <span class="question-text">Tom and Alex →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are classmates</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">10.</span>
+                <span class="question-text">My teacher →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is kind</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">11.</span>
+                <span class="question-text">My mom →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is cooking</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">12.</span>
+                <span class="question-text">My dad and I →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are watching TV</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">13.</span>
+                <span class="question-text">The book →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is new</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">14.</span>
+                <span class="question-text">My cousins →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are funny</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">15.</span>
+                <span class="question-text">Sarah →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is my friend</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">16.</span>
+                <span class="question-text">The car →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">is fast</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">17.</span>
+                <span class="question-text">My family →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are happy</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">18.</span>
+                <span class="question-text">My dog and cat →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are playing</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">19.</span>
+                <span class="question-text">My sister and brother →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are at school</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">20.</span>
+                <span class="question-text">My friend and I →</span>
+                <span class="answer-line"></span>
+                <span class="question-text">are studying</span>
+            </div>
+        </div>
+
+        <!-- PART 2 -->
+        <div class="section page-break">
+            <div class="section-title">
+                <span class="emoji">🔤</span> PART 2: VERB "TO BE" (21–40)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Complete with am / is / are
+            </div>
+
+            <div class="question">
+                <span class="question-number">21.</span>
+                <span class="question-text">I</span>
+                <span class="answer-line"></span>
+                <span class="question-text">happy</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">22.</span>
+                <span class="question-text">She</span>
+                <span class="answer-line"></span>
+                <span class="question-text">my teacher</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">23.</span>
+                <span class="question-text">They</span>
+                <span class="answer-line"></span>
+                <span class="question-text">playing</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">24.</span>
+                <span class="question-text">He</span>
+                <span class="answer-line"></span>
+                <span class="question-text">tall</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">25.</span>
+                <span class="question-text">We</span>
+                <span class="answer-line"></span>
+                <span class="question-text">friends</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">26.</span>
+                <span class="question-text">It</span>
+                <span class="answer-line"></span>
+                <span class="question-text">hot today</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">27.</span>
+                <span class="question-text">You</span>
+                <span class="answer-line"></span>
+                <span class="question-text">my friend</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">28.</span>
+                <span class="question-text">My mom</span>
+                <span class="answer-line"></span>
+                <span class="question-text">at home</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">29.</span>
+                <span class="question-text">The dogs</span>
+                <span class="answer-line"></span>
+                <span class="question-text">barking</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">30.</span>
+                <span class="question-text">I</span>
+                <span class="answer-line"></span>
+                <span class="question-text">10 years old</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">31.</span>
+                <span class="question-text">She</span>
+                <span class="answer-line"></span>
+                <span class="question-text">tired</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">32.</span>
+                <span class="question-text">They</span>
+                <span class="answer-line"></span>
+                <span class="question-text">at school</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">33.</span>
+                <span class="question-text">He</span>
+                <span class="answer-line"></span>
+                <span class="question-text">my brother</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">34.</span>
+                <span class="question-text">We</span>
+                <span class="answer-line"></span>
+                <span class="question-text">learning English</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">35.</span>
+                <span class="question-text">It</span>
+                <span class="answer-line"></span>
+                <span class="question-text">cold outside</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">36.</span>
+                <span class="question-text">You</span>
+                <span class="answer-line"></span>
+                <span class="question-text">very nice</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">37.</span>
+                <span class="question-text">My dad</span>
+                <span class="answer-line"></span>
+                <span class="question-text">working</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">38.</span>
+                <span class="question-text">The cats</span>
+                <span class="answer-line"></span>
+                <span class="question-text">sleeping</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">39.</span>
+                <span class="question-text">I</span>
+                <span class="answer-line"></span>
+                <span class="question-text">ready</span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">40.</span>
+                <span class="question-text">They</span>
+                <span class="answer-line"></span>
+                <span class="question-text">happy</span>
+            </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div class="section page-break">
+            <div class="section-title">
+                <span class="emoji">🌦️</span> PART 3: SEASONS (41–60)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Choose the correct season (Spring, Summer, Fall/Autumn, Winter)
+            </div>
+
+            <div class="question">
+                <span class="question-number">41.</span>
+                <span class="question-text">It is very hot →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">42.</span>
+                <span class="question-text">Snow is falling →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">43.</span>
+                <span class="question-text">Flowers grow →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">44.</span>
+                <span class="question-text">Leaves fall →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">45.</span>
+                <span class="question-text">It is sunny and hot →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">46.</span>
+                <span class="question-text">You see snowmen →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">47.</span>
+                <span class="question-text">Trees are green →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">48.</span>
+                <span class="question-text">Leaves are orange →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">49.</span>
+                <span class="question-text">You wear shorts →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">50.</span>
+                <span class="question-text">You wear coats →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">51.</span>
+                <span class="question-text">It rains a lot →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">52.</span>
+                <span class="question-text">It is windy and cool →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">53.</span>
+                <span class="question-text">School starts →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">54.</span>
+                <span class="question-text">You go to the beach →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">55.</span>
+                <span class="question-text">You drink hot chocolate →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">56.</span>
+                <span class="question-text">Birds come back →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">57.</span>
+                <span class="question-text">Leaves fall down →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">58.</span>
+                <span class="question-text">Days are long and hot →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">59.</span>
+                <span class="question-text">You wear boots →</span>
+                <span class="answer-line"></span>
+            </div>
+
+            <div class="question">
+                <span class="question-number">60.</span>
+                <span class="question-text">You see flowers →</span>
+                <span class="answer-line"></span>
+            </div>
+        </div>
+
+        <!-- PART 4 -->
+        <div class="section page-break">
+            <div class="section-title">
+                <span class="emoji">👕</span> PART 4: CLOTHES & WEATHER (61–80)
+            </div>
+            <div class="instructions">
+                <strong>Instructions:</strong> Choose the correct answer (a, b, or c)
+            </div>
+
+            <div class="question">
+                <span class="question-number">61.</span>
+                <span class="question-text">It is cold → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) T-shirt &nbsp;&nbsp; b) Jacket &nbsp;&nbsp; c) Shorts</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">62.</span>
+                <span class="question-text">It is hot → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Coat &nbsp;&nbsp; b) T-shirt &nbsp;&nbsp; c) Boots</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">63.</span>
+                <span class="question-text">It is rainy → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Sandals &nbsp;&nbsp; b) Raincoat &nbsp;&nbsp; c) Hat</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">64.</span>
+                <span class="question-text">It is snowy → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Shorts &nbsp;&nbsp; b) Gloves &nbsp;&nbsp; c) T-shirt</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">65.</span>
+                <span class="question-text">It is sunny → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Coat &nbsp;&nbsp; b) Hat &nbsp;&nbsp; c) Boots</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">66.</span>
+                <span class="question-text">It is windy → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Jacket &nbsp;&nbsp; b) Swimsuit &nbsp;&nbsp; c) Shorts</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">67.</span>
+                <span class="question-text">It is very cold → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Scarf &nbsp;&nbsp; b) Sandals &nbsp;&nbsp; c) T-shirt</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">68.</span>
+                <span class="question-text">At the beach → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Boots &nbsp;&nbsp; b) Swimsuit &nbsp;&nbsp; c) Jacket</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">69.</span>
+                <span class="question-text">It is raining → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Raincoat &nbsp;&nbsp; b) Shorts &nbsp;&nbsp; c) Hat</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">70.</span>
+                <span class="question-text">It is hot → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Shorts &nbsp;&nbsp; b) Coat &nbsp;&nbsp; c) Gloves</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">71.</span>
+                <span class="question-text">It is winter → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Jacket &nbsp;&nbsp; b) Swimsuit &nbsp;&nbsp; c) Sandals</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">72.</span>
+                <span class="question-text">It is summer → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Shorts &nbsp;&nbsp; b) Boots &nbsp;&nbsp; c) Coat</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">73.</span>
+                <span class="question-text">It is cold → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Gloves &nbsp;&nbsp; b) T-shirt &nbsp;&nbsp; c) Sandals</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">74.</span>
+                <span class="question-text">It is sunny → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Hat &nbsp;&nbsp; b) Boots &nbsp;&nbsp; c) Coat</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">75.</span>
+                <span class="question-text">It is rainy → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Rain boots &nbsp;&nbsp; b) Shorts &nbsp;&nbsp; c) T-shirt</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">76.</span>
+                <span class="question-text">It is windy → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Jacket &nbsp;&nbsp; b) Swimsuit &nbsp;&nbsp; c) Sandals</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">77.</span>
+                <span class="question-text">It is hot → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) T-shirt &nbsp;&nbsp; b) Coat &nbsp;&nbsp; c) Gloves</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">78.</span>
+                <span class="question-text">It is snowy → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Boots &nbsp;&nbsp; b) Shorts &nbsp;&nbsp; c) Hat</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">79.</span>
+                <span class="question-text">It is cold → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Scarf &nbsp;&nbsp; b) Sandals &nbsp;&nbsp; c) T-shirt</div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">80.</span>
+                <span class="question-text">It is summer → wear</span>
+                <span class="answer-line"></span>
+                <div class="options">a) Swimsuit &nbsp;&nbsp; b) Coat &nbsp;&nbsp; c) Boots</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background-color: #e8f5e9; border-radius: 5px;">
+            <h2 style="color: #2e7d32;">🎉 ¡Excelente trabajo! 🎉</h2>
+            <p style="color: #555;">Total de preguntas: <strong>80</strong></p>
+        </div>
+    </div>
+</body>
+</html>

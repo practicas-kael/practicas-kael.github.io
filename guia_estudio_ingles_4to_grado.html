@@ -218,6 +218,12 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Hover effect for practice links */
+        a[href^="practica_"]:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -227,6 +233,8 @@
             <a href="guia_estudio_ingles_4to_grado.html" class="nav-btn guia">📖 Study Guide (actual)</a>
             <a href="examen_guiado_ingles_4to_grado.html" class="nav-btn examen-guiado">🎯 Guided Test</a>
             <a href="examen_ingles_4to_grado.html" class="nav-btn examen">✍️ Complete Test</a>
+            <a href="practica_ingles_completa.html" class="nav-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">📝 Practice (Write)</a>
+            <a href="practica_ingles_seleccion_unica.html" class="nav-btn" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white;">☑️ Practice (Multiple Choice)</a>
         </div>
 
         <div class="header">
@@ -602,6 +610,40 @@
                     • Use <strong>"It is"</strong> or <strong>"It's"</strong> for weather<br>
                     • Use <strong>"I am"</strong> or <strong>"I'm"</strong> for what you're wearing<br>
                     • Adjectives go BEFORE the noun: a <strong>blue</strong> shirt (not "a shirt blue")
+                </div>
+            </div>
+
+            <!-- PRACTICE EXERCISES -->
+            <div class="section" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); border: 3px solid #667eea;">
+                <h2 style="color: #330867;">🖨️ Prácticas Imprimibles</h2>
+                <p>¡Practica lo que has aprendido con estas hojas de ejercicios! Puedes verlas en pantalla o imprimirlas.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); text-align: center;">
+                        <div style="font-size: 3em; margin-bottom: 15px;">📝</div>
+                        <h3 style="color: #667eea; margin-bottom: 15px;">Práctica con Escritura</h3>
+                        <p style="font-size: 0.95em; color: #666; margin-bottom: 20px;">80 preguntas con líneas para escribir tus respuestas. Ideal para practicar escritura.</p>
+                        <a href="practica_ingles_completa.html" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.3s;">
+                            Ver y/o Imprimir →
+                        </a>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); text-align: center;">
+                        <div style="font-size: 3em; margin-bottom: 15px;">☑️</div>
+                        <h3 style="color: #30cfd0; margin-bottom: 15px;">Práctica con Selección Múltiple</h3>
+                        <p style="font-size: 0.95em; color: #666; margin-bottom: 20px;">80 preguntas con opciones de respuesta. Marca la correcta y verifica tus conocimientos.</p>
+                        <a href="practica_ingles_seleccion_unica.html" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.3s;">
+                            Ver y/o Imprimir →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tip" style="margin-top: 30px; background: #fff9c4; border-left-color: #fbc02d;">
+                    <strong>💡 Tip:</strong> Cada práctica tiene 80 preguntas divididas en 4 secciones:<br>
+                    • <strong>Personal Pronouns</strong> (1-20): I, you, he, she, it, we, they<br>
+                    • <strong>Verb "to Be"</strong> (21-40): am, is, are<br>
+                    • <strong>Seasons</strong> (41-60): Spring, Summer, Fall, Winter<br>
+                    • <strong>Clothes & Weather</strong> (61-80): What to wear in different conditions
                 </div>
             </div>
         </div>
