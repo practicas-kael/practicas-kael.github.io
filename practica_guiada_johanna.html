@@ -399,6 +399,72 @@
                 display: none !important;
             }
         }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .tabs-container {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .tab {
+                font-size: 0.85em;
+                padding: 10px 12px;
+                flex: 1 1 calc(50% - 8px);
+                min-width: 140px;
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .verify-btn {
+                width: 100%;
+            }
+
+            .top-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .top-nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .tab {
+                font-size: 0.8em;
+                padding: 8px 10px;
+                flex: 1 1 100%;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .question-text {
+                font-size: 1em;
+            }
+
+            .option {
+                padding: 10px 15px;
+            }
+        }
     </style>
 </head>
 <body>

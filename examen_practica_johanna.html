@@ -336,6 +336,65 @@
             transform: translateY(-2px) scale(1.05);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .check-btn, .next-btn {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .top-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .top-nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .progress-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .option span {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .check-btn, .next-btn {
+                font-size: 1em;
+                padding: 12px;
+            }
+
+            .option {
+                padding: 10px 15px;
+            }
+
+            .question-text {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
