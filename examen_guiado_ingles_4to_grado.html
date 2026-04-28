@@ -383,23 +383,373 @@
         </div>
 
         <div class="progress-container">
-            <p><strong>Progress:</strong> <span id="progress-text">0 of 6 topics completed</span></p>
+            <p><strong>Progress:</strong> <span id="progress-text">0 of 8 topics completed</span></p>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill">0%</div>
             </div>
         </div>
 
         <div class="tabs">
-            <button class="tab active" onclick="openTab('tema1')">1. Weather</button>
-            <button class="tab" onclick="openTab('tema2')">2. Seasons</button>
-            <button class="tab" onclick="openTab('tema3')">3. Clothing</button>
-            <button class="tab" onclick="openTab('tema4')">4. Describing</button>
-            <button class="tab" onclick="openTab('tema5')">5. Weather + Clothes</button>
-            <button class="tab" onclick="openTab('tema6')">6. Costa Rica</button>
+            <button class="tab active" onclick="openTab('tema1')">1. Personal Pronouns</button>
+            <button class="tab" onclick="openTab('tema2')">2. Verb "to Be"</button>
+            <button class="tab" onclick="openTab('tema3')">3. Weather</button>
+            <button class="tab" onclick="openTab('tema4')">4. Seasons</button>
+            <button class="tab" onclick="openTab('tema5')">5. Clothing</button>
+            <button class="tab" onclick="openTab('tema6')">6. Describing</button>
+            <button class="tab" onclick="openTab('tema7')">7. Weather + Clothes</button>
+            <button class="tab" onclick="openTab('tema8')">8. Costa Rica</button>
         </div>
 
-        <!-- TEMA 1: WEATHER -->
+        <!-- TEMA 1: PERSONAL PRONOUNS -->
         <div id="tema1" class="tab-content active">
+            <div class="theory-section">
+                <h2>👤 Personal Pronouns - Los Pronombres Personales</h2>
+                <p>Los pronombres personales son palabras que usamos en lugar de los nombres de las personas, animales o cosas.</p>
+                
+                <h3>Los Pronombres Personales:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <div class="english">I</div>
+                        <div class="spanish">yo</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">You</div>
+                        <div class="spanish">tú / usted</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">He</div>
+                        <div class="spanish">él</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">She</div>
+                        <div class="spanish">ella</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">It</div>
+                        <div class="spanish">eso (animales/cosas)</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">We</div>
+                        <div class="spanish">nosotros/nosotras</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">They</div>
+                        <div class="spanish">ellos/ellas</div>
+                    </div>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li><strong>I</strong> am Emi. (Yo soy Emi)</li>
+                    <li><strong>You</strong> are my friend. (Tú eres mi amigo/a)</li>
+                    <li><strong>He</strong> is my brother. (Él es mi hermano)</li>
+                    <li><strong>She</strong> is my sister. (Ella es mi hermana)</li>
+                    <li><strong>It</strong> is a dog. (Es un perro)</li>
+                    <li><strong>We</strong> are students. (Nosotros somos estudiantes)</li>
+                    <li><strong>They</strong> are happy. (Ellos están felices)</li>
+                </ul>
+
+                <p><strong>💡 Recuerda:</strong></p>
+                <ul>
+                    <li><strong>He</strong> = para niños, hombres y animales machos</li>
+                    <li><strong>She</strong> = para niñas, mujeres y animales hembras</li>
+                    <li><strong>It</strong> = para cosas, objetos, animales cuando no sabemos si son macho o hembra</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: _____ am a student. (yo)</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="a">
+                            A) I
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="b">
+                            B) You
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="c">
+                            C) He
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-1" value="d">
+                            D) She
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-1', 'a', &quot;Correct! 'I' means 'yo' in Spanish&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'I' es el pronombre para 'yo'. Siempre se escribe con mayúscula.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q1-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: This is Tom. _____ is my brother. (él)</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="a">
+                            A) She
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="b">
+                            B) He
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="c">
+                            C) It
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-2" value="d">
+                            D) They
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-2', 'b', &quot;Correct! Use 'He' for boys and men&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'He' (él) se usa para niños y hombres. Tom es un niño.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q1-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: This is a cat. _____ is black.</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="a">
+                            A) He
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="b">
+                            B) She
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="c">
+                            C) It
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-3" value="d">
+                            D) They
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-3', 'c', &quot;Correct! Use 'It' for animals and things&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'It' se usa para animales (cuando no sabemos si son macho o hembra) y cosas.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q1-3"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 4: My friends and I study together. _____ are classmates. (nosotros)</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-4" value="a">
+                            A) I
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-4" value="b">
+                            B) You
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-4" value="c">
+                            C) We
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-4" value="d">
+                            D) They
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-4', 'c', &quot;Correct! 'We' means 'nosotros'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'We' (nosotros) se usa cuando hablamos de un grupo que nos incluye a nosotros mismos.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q1-4"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 5: Tom and Ana are playing. _____ are happy. (ellos)</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1-5" value="a">
+                            A) We
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-5" value="b">
+                            B) You
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-5" value="c">
+                            C) They
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1-5" value="d">
+                            D) It
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q1-5', 'c', &quot;Correct! 'They' means 'ellos/ellas'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'They' (ellos/ellas) se usa para dos o más personas.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q1-5"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="openTab('tema2')" style="margin-left: auto;">Next Topic: Verb "to Be" →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 2: VERB TO BE -->
+        <div id="tema2" class="tab-content">
+            <div class="theory-section">
+                <h2>✨ Verb "to Be" - El Verbo Ser/Estar</h2>
+                <p>El verbo "to be" es el más importante en inglés. Lo usamos para decir quiénes somos, cómo estamos, dónde estamos, etc.</p>
+                
+                <h3>Las Formas del Verbo "to Be":</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <div class="english">am</div>
+                        <div class="spanish">soy / estoy</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">is</div>
+                        <div class="spanish">es / está</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="english">are</div>
+                        <div class="spanish">eres / estás / son / están</div>
+                    </div>
+                </div>
+
+                <p><strong>¿Cuándo usar cada forma?</strong></p>
+                <ul>
+                    <li><strong>I</strong> → <strong>am</strong> → I am happy (Yo estoy feliz)</li>
+                    <li><strong>You</strong> → <strong>are</strong> → You are smart (Tú eres inteligente)</li>
+                    <li><strong>He</strong> → <strong>is</strong> → He is tall (Él es alto)</li>
+                    <li><strong>She</strong> → <strong>is</strong> → She is kind (Ella es amable)</li>
+                    <li><strong>It</strong> → <strong>is</strong> → It is a cat (Es un gato)</li>
+                    <li><strong>We</strong> → <strong>are</strong> → We are friends (Somos amigos)</li>
+                    <li><strong>They</strong> → <strong>are</strong> → They are students (Ellos son estudiantes)</li>
+                </ul>
+
+                <p><strong>💡 Regla Fácil:</strong></p>
+                <ul>
+                    <li><strong>I</strong> → siempre usa <strong>am</strong></li>
+                    <li><strong>He, She, It</strong> → siempre usan <strong>is</strong></li>
+                    <li><strong>You, We, They</strong> → siempre usan <strong>are</strong></li>
+                </ul>
+
+                <p><strong>Formas Cortas:</strong></p>
+                <ul>
+                    <li>I am = I'm</li>
+                    <li>You are = You're</li>
+                    <li>He is = He's</li>
+                    <li>She is = She's</li>
+                    <li>It is = It's</li>
+                    <li>We are = We're</li>
+                    <li>They are = They're</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h2>📝 Practice</h2>
+                
+                <div class="question">
+                    <h3>Question 1: I _____ a student.</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="a">
+                            A) am
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="b">
+                            B) is
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-1" value="c">
+                            C) are
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-1', 'a', &quot;Correct! 'I' always uses 'am'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'I' siempre usa 'am'. Regla: I am.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q2-1"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 2: She _____ happy.</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="a">
+                            A) am
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="b">
+                            B) is
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-2" value="c">
+                            C) are
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-2', 'b', &quot;Correct! 'She' uses 'is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'She' usa 'is'. Regla: He, She, It → is.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q2-2"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 3: We _____ friends.</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="a">
+                            A) am
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="b">
+                            B) is
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-3" value="c">
+                            C) are
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-3', 'c', &quot;Correct! 'We' uses 'are'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'We' usa 'are'. Regla: You, We, They → are.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q2-3"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 4: The dog _____ brown. (It)</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-4" value="a">
+                            A) am
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-4" value="b">
+                            B) is
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-4" value="c">
+                            C) are
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-4', 'b', &quot;Correct! The dog = It, and 'It' uses 'is'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'The dog' = 'It', y 'It' usa 'is'. Regla: He, She, It → is.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q2-4"></div>
+                </div>
+
+                <div class="question">
+                    <h3>Question 5: They _____ students.</h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2-5" value="a">
+                            A) am
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-5" value="b">
+                            B) is
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2-5" value="c">
+                            C) are
+                        </label>
+                    </div>
+                    <button class="verify-btn" onclick="checkQuestion('q2-5', 'c', &quot;Correct! 'They' uses 'are'&quot;, &quot;¡Correcto!&quot;, &quot;Incorrect&quot;, &quot;'They' usa 'are'. Regla: You, We, They → are.&quot;)>Verify</button>
+                    <div class="feedback" id="feedback-q2-5"></div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="openTab('tema1')">← Previous Topic</button>
+                <button class="nav-btn" onclick="openTab('tema3')">Next Topic: Weather →</button>
+            </div>
+        </div>
+
+        <!-- TEMA 3: WEATHER -->
+        <div id="tema3" class="tab-content">
             <div class="theory-section">
                 <h2>☀️ Weather - El Clima</h2>
                 <p><strong>Question:</strong> What's the weather like? (¿Cómo está el clima?)</p>
@@ -530,13 +880,13 @@
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-button prev" onclick="openTab('tema1')" disabled>← Previous</button>
-                <button class="nav-button next" onclick="openTab('tema2')">Next →</button>
+                <button class="nav-button prev" onclick="openTab('tema2')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema4')">Next →</button>
             </div>
         </div>
 
-        <!-- TEMA 2: SEASONS -->
-        <div id="tema2" class="tab-content">
+        <!-- TEMA 4: SEASONS -->
+        <div id="tema4" class="tab-content">
             <div class="theory-section">
                 <h2>🍂 Seasons - Las Estaciones</h2>
                 <p>There are four seasons in a year:</p>
@@ -652,13 +1002,13 @@
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-button prev" onclick="openTab('tema1')">← Previous</button>
-                <button class="nav-button next" onclick="openTab('tema3')">Next →</button>
+                <button class="nav-button prev" onclick="openTab('tema3')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema5')">Next →</button>
             </div>
         </div>
 
-        <!-- TEMA 3: CLOTHING -->
-        <div id="tema3" class="tab-content">
+        <!-- TEMA 5: CLOTHING -->
+        <div id="tema5" class="tab-content">
             <div class="theory-section">
                 <h2>👗 Clothing - La Ropa</h2>
                 <p>Vocabulary about clothes:</p>
@@ -759,13 +1109,13 @@
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-button prev" onclick="openTab('tema2')">← Previous</button>
-                <button class="nav-button next" onclick="openTab('tema4')">Next →</button>
+                <button class="nav-button prev" onclick="openTab('tema4')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema6')">Next →</button>
             </div>
         </div>
 
-        <!-- TEMA 4: DESCRIBING CLOTHING -->
-        <div id="tema4" class="tab-content">
+        <!-- TEMA 6: DESCRIBING CLOTHING -->
+        <div id="tema6" class="tab-content">
             <div class="theory-section">
                 <h2>🎨 Describing Clothing</h2>
                 <p><strong>Structure:</strong> Subject + am/is/are + wearing + article + adjective + clothing</p>
@@ -877,13 +1227,13 @@
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-button prev" onclick="openTab('tema3')">← Previous</button>
-                <button class="nav-button next" onclick="openTab('tema5')">Next →</button>
+                <button class="nav-button prev" onclick="openTab('tema5')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema7')">Next →</button>
             </div>
         </div>
 
-        <!-- TEMA 5: WEATHER AND CLOTHING -->
-        <div id="tema5" class="tab-content">
+        <!-- TEMA 7: WEATHER AND CLOTHING -->
+        <div id="tema7" class="tab-content">
             <div class="theory-section">
                 <h2>🌤️ Weather and Appropriate Clothing</h2>
                 <p>We choose different clothes for different weather:</p>
@@ -990,13 +1340,13 @@
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-button prev" onclick="openTab('tema4')">← Previous</button>
-                <button class="nav-button next" onclick="openTab('tema6')">Next →</button>
+                <button class="nav-button prev" onclick="openTab('tema6')">← Previous</button>
+                <button class="nav-button next" onclick="openTab('tema8')">Next →</button>
             </div>
         </div>
 
-        <!-- TEMA 6: COSTA RICA -->
-        <div id="tema6" class="tab-content">
+        <!-- TEMA 8: COSTA RICA -->
+        <div id="tema8" class="tab-content">
             <div class="theory-section">
                 <h2>🇨🇷 Weather in Costa Rica</h2>
                 <p>Different cities in Costa Rica have different weather conditions:</p>
@@ -1099,7 +1449,7 @@
             </div>
 
             <div class="navigation-buttons">
-                <button class="nav-button prev" onclick="openTab('tema5')">← Previous</button>
+                <button class="nav-button prev" onclick="openTab('tema7')">← Previous</button>
                 <button class="nav-button next" onclick="window.location.href='examen_ingles_4to_grado.html'">Go to Complete Test →</button>
             </div>
         </div>
@@ -1179,7 +1529,7 @@
         }
 
         function updateProgress() {
-            const total = 6;
+            const total = 8;
             const completed = completedTopics.size;
             const percentage = (completed / total) * 100;
             

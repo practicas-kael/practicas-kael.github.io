@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica Interactiva de Inglés - Emi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .progress-bar-bg {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #d84315;
+        }
+
+        .question-container {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            min-height: 300px;
+        }
+
+        .question-number {
+            font-size: 1.1em;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .answer-option {
+            background: white;
+            border: 3px solid #ddd;
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .answer-option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .answer-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+        }
+
+        .answer-option.correct {
+            border-color: #4caf50;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .answer-option.incorrect {
+            border-color: #f44336;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        }
+
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .answer-option.correct .option-letter {
+            background: #4caf50;
+        }
+
+        .answer-option.incorrect .option-letter {
+            background: #f44336;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-back {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-back:hover {
+            background: #d0d0d0;
+            transform: translateY(-3px);
+        }
+
+        .results-container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results-container h2 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .score-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 40px auto;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .score-number {
+            font-size: 4em;
+            color: white;
+            font-weight: bold;
+        }
+
+        .score-total {
+            font-size: 1.5em;
+            color: white;
+        }
+
+        .percentage {
+            font-size: 2.5em;
+            color: #667eea;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .message {
+            font-size: 1.5em;
+            color: #555;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .confetti {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            margin-top: 30px;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 5px solid #4caf50;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 5px solid #f44336;
+        }
+
+        .btn-guide {
+            display: inline-block;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-guide:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(250, 112, 154, 0.4);
+        }
+
+        @media print {
+            body {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Interactive English Practice</h1>
+            <div class="student-name">👧 Emi</div>
+            <a href="guia_estudio_ingles_4to_grado.html" class="btn-guide">📖 Study Guide</a>
+        </div>
+
+        <div id="quiz-area">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>Question <span id="current-q">1</span> of 80</span>
+                    <span id="progress-percent">1%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progress-bar" style="width: 1.25%;">1%</div>
+                </div>
+            </div>
+
+            <div class="section-badge" id="section-badge">Personal Pronouns</div>
+
+            <div class="question-container">
+                <div class="question-number" id="question-number">Question 1</div>
+                <div class="question-text" id="question-text"></div>
+                <div class="answer-options" id="answer-options"></div>
+                <div class="feedback" id="feedback"></div>
+            </div>
+
+            <div class="button-container">
+                <button class="btn btn-back" id="btn-back" onclick="previousQuestion()" style="display: none;">← Back</button>
+                <button class="btn btn-next" id="btn-next" onclick="checkAnswer()">Check Answer</button>
+            </div>
+        </div>
+
+        <div id="results-area" style="display: none;">
+            <div class="results-container">
+                <h2>🎉 ¡Excelente trabajo, Emi! 🎉</h2>
+                <div class="confetti">🎊 ⭐ 🎈 ✨ 🎊</div>
+                
+                <div class="score-circle">
+                    <div class="score-number" id="score-number">0</div>
+                    <div class="score-total">/ 80</div>
+                </div>
+
+                <div class="percentage" id="percentage">0%</div>
+                <div class="message" id="message"></div>
+
+                <button class="btn btn-restart" onclick="restartQuiz()">🔄 Try Again</button>
+                <button class="btn btn-next" onclick="window.location.href='guia_estudio_ingles_4to_grado.html'" style="margin-left: 15px;">← Back to Guide</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // PERSONAL PRONOUNS (1-20)
+            { section: "Personal Pronouns", question: "_____ am a student. (yo)", options: ["I", "You", "He", "She"], answer: 0 },
+            { section: "Personal Pronouns", question: "_____ are my friend. (tú)", options: ["I", "You", "We", "They"], answer: 1 },
+            { section: "Personal Pronouns", question: "_____ is a boy. (él)", options: ["She", "He", "It", "We"], answer: 1 },
+            { section: "Personal Pronouns", question: "_____ is a girl. (ella)", options: ["He", "She", "It", "They"], answer: 1 },
+            { section: "Personal Pronouns", question: "_____ is a dog. (eso/animal)", options: ["He", "She", "It", "They"], answer: 2 },
+            { section: "Personal Pronouns", question: "_____ are happy. (nosotros)", options: ["You", "We", "They", "It"], answer: 1 },
+            { section: "Personal Pronouns", question: "_____ are students. (ellos)", options: ["We", "You", "They", "It"], answer: 2 },
+            { section: "Personal Pronouns", question: "My name is Ana. _____ am 10 years old.", options: ["I", "You", "She", "He"], answer: 0 },
+            { section: "Personal Pronouns", question: "This is Tom. _____ is my brother.", options: ["I", "He", "She", "They"], answer: 1 },
+            { section: "Personal Pronouns", question: "This is Maria. _____ is my sister.", options: ["He", "She", "It", "They"], answer: 1 },
+            { section: "Personal Pronouns", question: "This is a cat. _____ is black.", options: ["He", "She", "It", "They"], answer: 2 },
+            { section: "Personal Pronouns", question: "My parents and I live here. _____ are a family.", options: ["You", "We", "They", "It"], answer: 1 },
+            { section: "Personal Pronouns", question: "Tom and Ana are friends. _____ play together.", options: ["We", "You", "They", "It"], answer: 2 },
+            { section: "Personal Pronouns", question: "Are _____ a teacher? (tú)", options: ["I", "you", "he", "they"], answer: 1 },
+            { section: "Personal Pronouns", question: "_____ is my favorite book. (libro)", options: ["He", "She", "It", "They"], answer: 2 },
+            { section: "Personal Pronouns", question: "My friends and _____ study English. (yo)", options: ["I", "you", "he", "we"], answer: 0 },
+            { section: "Personal Pronouns", question: "_____ and I are classmates. (tú)", options: ["You", "He", "She", "They"], answer: 0 },
+            { section: "Personal Pronouns", question: "The boys are playing. _____ are happy.", options: ["We", "You", "They", "It"], answer: 2 },
+            { section: "Personal Pronouns", question: "My dog is cute. _____ likes to play.", options: ["He", "She", "It", "They"], answer: 2 },
+            { section: "Personal Pronouns", question: "_____ am learning English. (yo)", options: ["I", "You", "He", "We"], answer: 0 },
+
+            // VERB TO BE (21-40)
+            { section: "Verb 'to Be'", question: "I _____ a student.", options: ["am", "is", "are"], answer: 0 },
+            { section: "Verb 'to Be'", question: "You _____ my friend.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "He _____ tall.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "She _____ happy.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "It _____ a cat.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "We _____ friends.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "They _____ students.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "I _____ 10 years old.", options: ["am", "is", "are"], answer: 0 },
+            { section: "Verb 'to Be'", question: "The dog _____ brown.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "My parents _____ doctors.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "This book _____ interesting.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "You and I _____ classmates.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "The weather _____ nice today.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "My sister _____ very smart.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "The flowers _____ beautiful.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "I _____ hungry.", options: ["am", "is", "are"], answer: 0 },
+            { section: "Verb 'to Be'", question: "My teacher _____ kind.", options: ["am", "is", "are"], answer: 1 },
+            { section: "Verb 'to Be'", question: "We _____ ready.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "The children _____ playing.", options: ["am", "is", "are"], answer: 2 },
+            { section: "Verb 'to Be'", question: "This _____ my house.", options: ["am", "is", "are"], answer: 1 },
+
+            // SEASONS (41-60)
+            { section: "Seasons", question: "Which season comes after winter?", options: ["Spring", "Summer", "Fall", "Winter"], answer: 0 },
+            { section: "Seasons", question: "Which season is the hottest?", options: ["Spring", "Summer", "Fall", "Winter"], answer: 1 },
+            { section: "Seasons", question: "In which season do leaves fall?", options: ["Spring", "Summer", "Fall", "Winter"], answer: 2 },
+            { section: "Seasons", question: "Which season is the coldest?", options: ["Spring", "Summer", "Fall", "Winter"], answer: 3 },
+            { section: "Seasons", question: "Flowers bloom in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 0 },
+            { section: "Seasons", question: "We go to the beach in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 1 },
+            { section: "Seasons", question: "Trees lose their leaves in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 2 },
+            { section: "Seasons", question: "It snows in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 3 },
+            { section: "Seasons", question: "What season comes before summer?", options: ["Spring", "Fall", "Winter", "Summer"], answer: 0 },
+            { section: "Seasons", question: "What season comes after summer?", options: ["Spring", "Fall", "Winter", "Summer"], answer: 1 },
+            { section: "Seasons", question: "Which season has warm weather and flowers?", options: ["Spring", "Summer", "Fall", "Winter"], answer: 0 },
+            { section: "Seasons", question: "Which season is perfect for swimming?", options: ["Spring", "Summer", "Fall", "Winter"], answer: 1 },
+            { section: "Seasons", question: "Leaves turn orange and red in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 2 },
+            { section: "Seasons", question: "We build snowmen in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 3 },
+            { section: "Seasons", question: "Easter is usually in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 0 },
+            { section: "Seasons", question: "School vacation is in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 1 },
+            { section: "Seasons", question: "Halloween is in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 2 },
+            { section: "Seasons", question: "Christmas is in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 3 },
+            { section: "Seasons", question: "Birds come back in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 0 },
+            { section: "Seasons", question: "It's very hot and sunny in _____.", options: ["Spring", "Summer", "Fall", "Winter"], answer: 1 },
+
+            // CLOTHES & WEATHER (61-80)
+            { section: "Clothes & Weather", question: "It's sunny. What do you wear?", options: ["coat", "t-shirt", "sweater", "boots"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's cold. What do you wear?", options: ["shorts", "t-shirt", "coat", "dress"], answer: 2 },
+            { section: "Clothes & Weather", question: "It's raining. What do you need?", options: ["sunglasses", "umbrella", "shorts", "sandals"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's hot. What do you wear?", options: ["coat", "sweater", "shorts", "boots"], answer: 2 },
+            { section: "Clothes & Weather", question: "What do you wear on your feet?", options: ["hat", "gloves", "shirt", "shoes"], answer: 3 },
+            { section: "Clothes & Weather", question: "What do you wear on your head?", options: ["hat", "shoes", "pants", "socks"], answer: 0 },
+            { section: "Clothes & Weather", question: "It's winter. You wear a _____.", options: ["t-shirt", "coat", "shorts", "sandals"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's summer. You wear _____.", options: ["coat", "boots", "shorts", "gloves"], answer: 2 },
+            { section: "Clothes & Weather", question: "When it's cold, you wear _____.", options: ["sandals", "t-shirt", "sweater", "shorts"], answer: 2 },
+            { section: "Clothes & Weather", question: "What do you wear on your hands when it's cold?", options: ["socks", "gloves", "shoes", "hat"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's snowing. What do you wear?", options: ["dress", "shorts", "boots", "sandals"], answer: 2 },
+            { section: "Clothes & Weather", question: "What do you wear to swim?", options: ["coat", "swimsuit", "pants", "sweater"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's very sunny. What protects your eyes?", options: ["sunglasses", "umbrella", "coat", "boots"], answer: 0 },
+            { section: "Clothes & Weather", question: "You wear _____ on your legs.", options: ["shirt", "hat", "pants", "gloves"], answer: 2 },
+            { section: "Clothes & Weather", question: "A girl wears a _____.", options: ["dress", "tie", "suit", "beard"], answer: 0 },
+            { section: "Clothes & Weather", question: "What do you wear to sleep?", options: ["suit", "pajamas", "coat", "boots"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's cloudy and might rain. Take your _____.", options: ["sunglasses", "umbrella", "shorts", "t-shirt"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's a formal event. You wear a _____.", options: ["pajamas", "swimsuit", "suit", "shorts"], answer: 2 },
+            { section: "Clothes & Weather", question: "What do you wear under your shoes?", options: ["hat", "socks", "gloves", "scarf"], answer: 1 },
+            { section: "Clothes & Weather", question: "It's windy and cold. You wear a _____.", options: ["t-shirt", "scarf", "shorts", "sandals"], answer: 1 }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            answered = false;
+            const q = questions[currentQuestion];
+            
+            document.getElementById('current-q').textContent = currentQuestion + 1;
+            document.getElementById('question-number').textContent = `Question ${currentQuestion + 1}`;
+            document.getElementById('question-text').textContent = q.question;
+            document.getElementById('section-badge').textContent = q.section;
+            
+            const optionsContainer = document.getElementById('answer-options');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'answer-option';
+                optionDiv.onclick = () => selectOption(index);
+                optionDiv.innerHTML = `
+                    <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+                    <div>${option}</div>
+                `;
+                optionDiv.dataset.index = index;
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            updateProgress();
+            document.getElementById('feedback').classList.remove('show');
+            document.getElementById('btn-next').textContent = 'Check Answer';
+            document.getElementById('btn-next').disabled = true;
+            
+            // Show/hide back button
+            document.getElementById('btn-back').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+        }
+
+        function selectOption(index) {
+            if (answered) return;
+            
+            document.querySelectorAll('.answer-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            const selected = document.querySelector(`[data-index="${index}"]`);
+            selected.classList.add('selected');
+            
+            userAnswers[currentQuestion] = index;
+            document.getElementById('btn-next').disabled = false;
+        }
+
+        function checkAnswer() {
+            if (answered) {
+                nextQuestion();
+                return;
+            }
+            
+            if (userAnswers[currentQuestion] === undefined) {
+                return;
+            }
+            
+            answered = true;
+            const q = questions[currentQuestion];
+            const userAnswer = userAnswers[currentQuestion];
+            const isCorrect = userAnswer === q.answer;
+            
+            const options = document.querySelectorAll('.answer-option');
+            options.forEach((opt, index) => {
+                if (index === q.answer) {
+                    opt.classList.add('correct');
+                } else if (index === userAnswer && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+                opt.onclick = null;
+            });
+            
+            const feedback = document.getElementById('feedback');
+            if (isCorrect) {
+                score++;
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = '✓ ¡Correcto! Excelente trabajo, Emi! 🎉';
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `✗ La respuesta correcta es: <strong>${q.options[q.answer]}</strong>. ¡Sigue intentando! 💪`;
+            }
+            
+            document.getElementById('btn-next').textContent = currentQuestion < questions.length - 1 ? 'Next Question →' : 'See Results 🎯';
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+                
+                // If already answered, show the feedback
+                if (userAnswers[currentQuestion] !== undefined) {
+                    setTimeout(() => {
+                        checkAnswer();
+                        answered = true;
+                    }, 100);
+                }
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('progress-bar').textContent = Math.round(progress) + '%';
+            document.getElementById('progress-percent').textContent = Math.round(progress) + '%';
+        }
+
+        function showResults() {
+            document.getElementById('quiz-area').style.display = 'none';
+            document.getElementById('results-area').style.display = 'block';
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            document.getElementById('score-number').textContent = score;
+            document.getElementById('percentage').textContent = percentage + '%';
+            
+            let message = '';
+            let confetti = '';
+            
+            if (percentage === 100) {
+                message = '¡PERFECTO, EMI! 🌟 ¡Eres una estrella del inglés! 80 de 80 correctas. ¡INCREÍBLE!';
+                confetti = '🎊 🏆 ⭐ 🎉 👑 ✨ 🎈 🌟';
+            } else if (percentage >= 90) {
+                message = '¡EXCELENTE, EMI! 🌟 ¡Dominas el inglés! Sigue así, vas por muy buen camino.';
+                confetti = '🎊 ⭐ 🎉 ✨ 🎈';
+            } else if (percentage >= 80) {
+                message = '¡MUY BIEN, EMI! 👏 Tienes un gran conocimiento. Con un poco más de práctica serás experta.';
+                confetti = '⭐ 🎉 ✨ 🎈';
+            } else if (percentage >= 70) {
+                message = '¡BUEN TRABAJO, EMI! 👍 Vas por buen camino. Sigue practicando y mejorarás aún más.';
+                confetti = '✨ 🎈 ⭐';
+            } else if (percentage >= 60) {
+                message = 'Emi, vas avanzando. 📚 Repasa las secciones donde tuviste dudas y vuelve a intentar.';
+                confetti = '📚 ✨';
+            } else {
+                message = 'Emi, no te desanimes. 💪 La práctica hace al maestro. Repasa la guía de estudio y vuelve a intentar.';
+                confetti = '💪 📚';
+            }
+            
+            document.getElementById('message').textContent = message;
+            document.querySelector('.confetti').textContent = confetti;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            score = 0;
+            answered = false;
+            
+            document.getElementById('quiz-area').style.display = 'block';
+            document.getElementById('results-area').style.display = 'none';
+            
+            loadQuestion();
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</body>
+</html>
